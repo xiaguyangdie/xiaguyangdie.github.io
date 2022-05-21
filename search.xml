@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo搭建博客</title>
+    <url>/2022/05/21/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo文章插入图片</title>
+    <url>/2022/05/21/hexo%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/</url>
+    <content><![CDATA[<h2 id="安装图片插件"><a href="#安装图片插件" class="headerlink" title="安装图片插件"></a>安装图片插件</h2><p>1.在博客根目录下安装插件hexo-renderer-marked</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-marked</span><br></pre></td></tr></table></figure>
+
+<p>2.修改根目录下的配置文件_config.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hexo和Typora结合"><a href="#Hexo和Typora结合" class="headerlink" title="Hexo和Typora结合"></a>Hexo和Typora结合</h2><p>1.偏好设置</p>
+<p><img src="/2022/05/21/hexo%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/image-20220521143743458.png" alt="image-20220521143743458"></p>
+<p>2.博客编写完成后，在Typora编辑器中，使用<code>ctrl+f</code>快捷键，将所有的<code>文章名/</code>替换为空即可在上传GitHub后可以显示：</p>
+<p><img src="/2022/05/21/hexo%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/image-20220521144602182.png" alt="image-20220521144602182"></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+</search>
