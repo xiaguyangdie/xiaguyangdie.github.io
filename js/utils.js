@@ -246,8 +246,8 @@ NexT.utils = {
           scrollTop: offset + 10
         });
       });
-      /* return document.getElementById(link.getAttribute('href').replace('#', '')); */
-	  return target;
+      return document.getElementById(link.getAttribute('href').replace('#', ''));
+	  /* return target; */
     });
 
     var tocElement = document.querySelector('.post-toc-wrap');
