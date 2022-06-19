@@ -30,7 +30,7 @@
 <meta property="og:description" content="Qt读取图片的N种方式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-18T10:25:49.001Z">
-<meta property="article:modified_time" content="2022-06-18T15:28:57.786Z">
+<meta property="article:modified_time" content="2022-06-19T05:43:22.196Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="Qt">
 <meta property="article:tag" content="图片操作">
@@ -218,10 +218,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-06-18 18:25:49 / 修改时间：23:28:57" itemprop="dateCreated datePublished" datetime="2022-06-18T18:25:49+08:00">2022-06-18</time>
+              <time title="创建时间：2022-06-18 18:25:49" itemprop="dateCreated datePublished" datetime="2022-06-18T18:25:49+08:00">2022-06-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-19 13:43:22" itemprop="dateModified" datetime="2022-06-19T13:43:22+08:00">2022-06-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -259,14 +265,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.9k</span>
+              <span>7.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>7 分钟</span>
             </span>
             <div class="post-description">Qt读取图片的N种方式</div>
 
@@ -567,6 +573,8 @@
 <td align="center">Qt5.14</td>
 </tr>
 </tbody></table>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">QImage</span>::Format</span><br><span class="line">QImage::Format_Invalid              	<span class="comment">//图像无效</span></span><br><span class="line">QImage::Format_Mono                 	<span class="comment">//存储使用1位每像素的图像，字节填充最重要位第一</span></span><br><span class="line">QImage::Format_MonoLSB 					<span class="comment">//存储使用1位每像素的图像，字节填充不显著位第一</span></span><br><span class="line">QImage::Format_Indexed8 				<span class="comment">//图像存储使用8位指标转化成Colormap</span></span><br><span class="line"></span><br><span class="line">QImage::Format_Grayscale8 				<span class="comment">//图像是使用一个8位灰度格式存储</span></span><br><span class="line">QImage::Format_Grayscale16				<span class="comment">//图像是使用一个16位灰度格式存储</span></span><br><span class="line"></span><br><span class="line">QImage::Format_RGB16 					<span class="comment">//图像存储使用5-6-5 16位RGB格式</span></span><br><span class="line">QImage::Format_RGB30 					<span class="comment">//存储使用32位RGB格式（x-10-10-10）的的图像</span></span><br><span class="line">QImage::Format_RGB32 					<span class="comment">//存储使用32位RGB格式的图像(0xffrrggbb)</span></span><br><span class="line">QImage::Format_RGB444 					<span class="comment">//图像存储使用16位RGB格式（4-4-4）未使用的位始终为零</span></span><br><span class="line">QImage::Format_RGB555 					<span class="comment">//图像存储使用16位RGB格式（5-5-5），位置用的最重要的始终为零</span></span><br><span class="line">QImage::Format_RGB666 					<span class="comment">//图像存储使用6-6-6 24位RGB格式，未使用的最重要的位总是为零</span></span><br><span class="line">QImage::Format_RGB888 					<span class="comment">//图像存储使用8-8-8 24位RGB格式</span></span><br><span class="line"></span><br><span class="line">QImage::Format_RGBA8888 				<span class="comment">//存储使用32位字节命令RGBA格式（8-8-8-8）的的图像</span></span><br><span class="line">QImage::Format_RGBA8888_Premultiplied 	<span class="comment">//图像存储使用一个自左乘32位字节命令RGBA格式8-8-8-8</span></span><br><span class="line">QImage::Format_RGBX8888 				<span class="comment">//图像存储使用32位字节命令RGB（x）格式8-8-8-8</span></span><br><span class="line"></span><br><span class="line">QImage::Format_ARGB32 					<span class="comment">//存储使用32为ARGB格式的图像(0xaarrggbb)</span></span><br><span class="line">QImage::Format_ARGB32_Premultiplied 	<span class="comment">//图像存储使用一个自左乘32位ARGB格式</span></span><br><span class="line">QImage::Format_ARGB4444_Premultiplied 	<span class="comment">//图像存储使用一个自左乘16位ARGB格式4-4-4-4</span></span><br><span class="line">QImage::Format_ARGB6666_Premultiplied 	<span class="comment">//图像存储使用一个自左乘24位ARGB格式6-6-6-6</span></span><br><span class="line">QImage::Format_ARGB8555_Premultiplied 	<span class="comment">//图像存储使用一个自左乘24位ARGB格式8-5-5-5</span></span><br><span class="line">QImage::Format_ARGB8565_Premultiplied 	<span class="comment">//图像存储使用一个自左乘24位ARGB格式8-5-6-5</span></span><br><span class="line"></span><br><span class="line">QImage::Format_BGR30 					<span class="comment">//存储使用32位BGR格式（x-10-10-10）的的图像</span></span><br><span class="line"></span><br><span class="line">QImage::Format_A2BGR30_Premultiplied 	<span class="comment">//图像存储使用32位自左乘abgr格式2-10-10-10</span></span><br><span class="line"></span><br><span class="line">QImage::Format_A2RGB30_Premultiplied 	<span class="comment">//图像存储使用2-10-10-10 32位自左乘ARGB格式</span></span><br><span class="line">    </span><br><span class="line">QImage::Format_Alpha8 					<span class="comment">//该图像是使用一个8位的阿尔法格式存储</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="3-QPixmap类"><a href="#3-QPixmap类" class="headerlink" title="3.QPixmap类"></a>3.QPixmap类</h3><h4 id="3-1-QPixmap简介"><a href="#3-1-QPixmap简介" class="headerlink" title="3.1 QPixmap简介"></a>3.1 QPixmap简介</h4><ul>
 <li><p>QPixmap类是一个屏幕外的图像表示，可以用作绘图设备。</p>
 </li>
@@ -802,12 +810,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">75k</span>
+    <span title="站点总字数">76k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:08</span>
+    <span title="站点阅读时长">1:09</span>
 </div>
 
         
