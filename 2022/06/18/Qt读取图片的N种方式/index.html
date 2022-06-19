@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2022/06/18/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
 <meta property="article:published_time" content="2022-06-18T10:25:49.001Z">
-<meta property="article:modified_time" content="2022-06-19T08:00:39.733Z">
+<meta property="article:modified_time" content="2022-06-19T09:32:10.598Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="Qt">
 <meta property="article:tag" content="图片操作">
@@ -228,7 +228,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-19 16:00:39" itemprop="dateModified" datetime="2022-06-19T16:00:39+08:00">2022-06-19</time>
+                <time title="修改时间：2022-06-19 17:32:10" itemprop="dateModified" datetime="2022-06-19T17:32:10+08:00">2022-06-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,7 +267,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.1k</span>
+              <span>8.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -622,7 +622,7 @@
 
 <h5 id="2-6-2-彩色图转灰度图"><a href="#2-6-2-彩色图转灰度图" class="headerlink" title="2.6.2 彩色图转灰度图"></a>2.6.2 彩色图转灰度图</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(fileName)</span></span>;</span><br><span class="line">QImage gray = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale8);</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-7-显示和保存图像"><a href="#2-7-显示和保存图像" class="headerlink" title="2.7 显示和保存图像"></a>2.7 显示和保存图像</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(<span class="string">&quot;C:\\Users\\***\\Desktop\\test.png&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;image.format();</span><br><span class="line"><span class="comment">//image.convertToFormat(QImage::Format_Grayscale8);</span></span><br><span class="line">QImage gray = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale8);</span><br><span class="line"></span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray.format();</span><br><span class="line">gray.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray.jpg&quot;</span>);</span><br><span class="line">ui-&gt;imagelabel2-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(image));</span><br><span class="line">ui-&gt;imagelabel-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(gray));</span><br></pre></td></tr></table></figure>
+<h4 id="2-7-显示和保存图像"><a href="#2-7-显示和保存图像" class="headerlink" title="2.7 显示和保存图像"></a>2.7 显示和保存图像</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(<span class="string">&quot;C:\\Users\\***\\Desktop\\test.png&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;image.format();</span><br><span class="line">QImage gray_8 = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale8);</span><br><span class="line">QImage gray_16 = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale16);</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_8.format();</span><br><span class="line">gray_8.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray_8.png&quot;</span>);</span><br><span class="line">gray_16.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray_16.png&quot;</span>);</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_8.<span class="built_in">depth</span>();</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_16.<span class="built_in">depth</span>();</span><br><span class="line">ui-&gt;imagelabel2-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(image));</span><br><span class="line">ui-&gt;imagelabel-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(gray_16));</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2022/06/18/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png" alt="image-20220619155707144"></p>
 <h3 id="3-QPixmap类"><a href="#3-QPixmap类" class="headerlink" title="3.QPixmap类"></a>3.QPixmap类</h3><h4 id="3-1-QPixmap简介"><a href="#3-1-QPixmap简介" class="headerlink" title="3.1 QPixmap简介"></a>3.1 QPixmap简介</h4><ul>
@@ -860,12 +860,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">77k</span>
+    <span title="站点总字数">83k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:10</span>
+    <span title="站点阅读时长">1:15</span>
 </div>
 
         
