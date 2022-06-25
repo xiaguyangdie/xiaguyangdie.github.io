@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2022/06/25/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/image-20220625150115976.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2022/06/25/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/image-20220625150959213.png">
 <meta property="article:published_time" content="2022-06-25T05:49:18.991Z">
-<meta property="article:modified_time" content="2022-06-25T07:31:16.032Z">
+<meta property="article:modified_time" content="2022-06-25T09:48:54.499Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="多线程">
@@ -223,7 +223,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-25 13:49:18 / 修改时间：15:31:16" itemprop="dateCreated datePublished" datetime="2022-06-25T13:49:18+08:00">2022-06-25</time>
+              <time title="创建时间：2022-06-25 13:49:18 / 修改时间：17:48:54" itemprop="dateCreated datePublished" datetime="2022-06-25T13:49:18+08:00">2022-06-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.4k</span>
+              <span>8.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>7 分钟</span>
             </span>
             <div class="post-description">C++多线程之Thread</div>
 
@@ -305,17 +305,17 @@
 <h3 id="3-线程启动"><a href="#3-线程启动" class="headerlink" title="3.线程启动"></a>3.线程启动</h3><blockquote>
 <p>方式一：join()</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th1.<span class="built_in">join</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">th1.<span class="built_in">join</span>()</span><br><span class="line"><span class="comment">//调用该函数会阻塞当前线程（主调线程）。阻塞调用者(caller)所在的线程（主调线程）直至被join的std::thread对象标识的线程（被调线程）执行结束</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>方式二：detach()</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">th2.<span class="built_in">detach</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">th2.<span class="built_in">detach</span>()</span><br><span class="line"><span class="comment">//将当前线程对象所代表的执行实例与该线程对象分离，使得线程的执行可以单独进行。一旦线程执行完毕，它所分配的资源将会被释放</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>区别</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//join表示加入，汇合，即加入进程</span></span><br><span class="line"><span class="comment">//设想一下，一个进程可以包含多个线程，但只有一个主线程，主线</span></span><br><span class="line"><span class="comment">//程执行完毕，进程也就结束了，所以传统多线程编程中，是让主线程等待其它线程执行完毕，然后主线程才能结束</span></span><br><span class="line"><span class="comment">//不然，主线程都结束了，该进程也就结束了，但是那些未结束的其他线程，怎么办？比如其他线程也在往进程输入</span></span><br><span class="line"><span class="comment">//输出,而进程都结束了，肯定会出错，抛出异常，主线程都执行完毕了，而子线程和主线程都属于进程，进程都结束了</span></span><br><span class="line"><span class="comment">//但是子线程还在执行，比如子线程要访问进程中的资源(屏幕，文件等)，这样的程序肯定是不合格的！</span></span><br><span class="line"><span class="comment">//join简单来说，就是告诉主线程，我们是相关的，有关联的，属于同一进程的，你，必须等我执行完毕，才能继续执行</span></span><br><span class="line"><span class="comment">//因为属于同一进程</span></span><br><span class="line"><span class="comment">//一旦join，那么main函数一旦执行完join，就会等待thread1执行完毕再继续执行</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -349,14 +349,19 @@
 <p><strong>get_id()</strong></p>
 </blockquote>
 <ul>
-<li>返回线程id</li>
+<li><strong>获取线程ID</strong>，返回一个类型为std::thread::id的对象。</li>
 </ul>
 <blockquote>
-<p>id</p>
+<p>thread::id</p>
 </blockquote>
 <ul>
-<li>std::thread::id表示线程ID，定义了在运行时操作系统内唯一能够标识该线程的标识符，同时其值还能指示所标识的线程的状态</li>
+<li><code>thread::id</code>表示线程ID，定义了在运行时操作系统内唯一能够标识该线程的标识符，同时其值还能指示所标识的线程的状态</li>
+<li>在C++中用<code>thread::id类</code>来标识线程。对于<code>可连接线程</code>，可以通过<code>get_id</code>成员函数获得标识该thread对象的thread::id对象，每个thread对象的id唯一</li>
+<li>对于<code>不可连接线程</code>，调用get_id会返回<code>默认构造的thread_id对象</code>，所有不可连接线程的id相等</li>
+<li>通过调用<code>命名空间this_thread</code>中的<code>静态函数get_id</code>可以获得当前线程的线程id</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;th1.<span class="built_in">get_id</span>()&lt;&lt;endl;<span class="comment">//thread::id of a non-executing thread</span></span><br><span class="line">cout&lt;&lt;this_thread::<span class="built_in">get_id</span>()&lt;&lt;endl;<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><strong>native_handle()</strong></p>
 </blockquote>
@@ -367,11 +372,37 @@
 <p><strong>hardware_concurrency()</strong></p>
 </blockquote>
 <ul>
-<li><p>静态成员函数</p>
-</li>
-<li><p>获取硬件支持的并发线程数。正常返回支持的并发线程数，若值非良定义或不可计算，则返回 0</p>
-</li>
+<li>静态成员函数</li>
+<li>获取硬件支持的并发线程数。正常返回支持的并发线程数，若值非良定义或不可计算，则返回 0</li>
 </ul>
+<blockquote>
+<p>this_thread的命名空间</p>
+</blockquote>
+<ul>
+<li>this_thread命名空间提供了访问当前线程的一些函数，除了上文提到的<code>get_id</code>外，还有<code>yield</code>、<code>sleep_until</code>和<code>sleep_for</code></li>
+</ul>
+<blockquote>
+<p>yield</p>
+</blockquote>
+<ul>
+<li>调用yield函数可以让出当前线程，让操作系统调度同一进程的其他线程。</li>
+</ul>
+<blockquote>
+<p>sleep_until</p>
+</blockquote>
+<ul>
+<li>sleep_until可以阻塞调用线程直至某个时间点。函数原型为：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Clock</span>, <span class="keyword">class</span> <span class="title class_">Duration</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sleep_until</span> <span class="params">(<span class="type">const</span> chrono::time_point&lt;Clock,Duration&gt;&amp; abs_time)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sleep_for</p>
+</blockquote>
+<ul>
+<li>sleep_for可以在制定的时间跨度内阻塞线程的执行。函数原型为：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Rep</span>, <span class="keyword">class</span> <span class="title class_">Period</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sleep_for</span> <span class="params">(<span class="type">const</span> chrono::duration&lt;Rep,Period&gt;&amp; rel_time)</span></span>;</span><br></pre></td></tr></table></figure>
+
 <h3 id="5-demo代码"><a href="#5-demo代码" class="headerlink" title="5.demo代码"></a>5.demo代码</h3><blockquote>
 <p>widget.h</p>
 </blockquote>
@@ -381,6 +412,8 @@
 <p>widget.cpp</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_widget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//全局变量，方便子线程和ui线程互通</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line">QString temp = <span class="literal">NULL</span>;</span><br><span class="line">QString a;</span><br><span class="line">QString b;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span><br><span class="line">            temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::<span class="built_in">number</span>(i++)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Widget::<span class="built_in">Widget</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QWidget</span>(parent)</span><br><span class="line">    , <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Widget)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_a_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit_2,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_b_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(&amp;mTime,<span class="built_in">SIGNAL</span>(<span class="built_in">timeout</span>()),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">put_ui_message</span>()));</span><br><span class="line">    mTime.<span class="built_in">start</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">void</span> (*myThread_ptr)(<span class="type">void</span>) = myThread;</span><br><span class="line">    function&lt;<span class="type">void</span>(<span class="type">void</span>)&gt; myThread_obj = myThread;</span><br><span class="line">    <span class="comment">//方式一：函数</span></span><br><span class="line">    <span class="function"><span class="keyword">class</span> thread <span class="title">th1</span><span class="params">(myThread)</span></span>;</span><br><span class="line">    <span class="comment">//方式二：函数指针</span></span><br><span class="line">    <span class="comment">//class thread th2(myThread_ptr);</span></span><br><span class="line">    <span class="comment">//方式三：function对象</span></span><br><span class="line">    <span class="comment">//class thread th3(myThread_obj);</span></span><br><span class="line">    <span class="comment">//方式四：lambda表达式</span></span><br><span class="line"><span class="comment">//    class thread th4([]&#123;</span></span><br><span class="line"><span class="comment">//        qDebug()&lt;&lt;&quot;jkhkk&quot;;</span></span><br><span class="line"><span class="comment">//        int i=0;</span></span><br><span class="line"><span class="comment">//        while(1)&#123;</span></span><br><span class="line"><span class="comment">//            if (flag) &#123;</span></span><br><span class="line"><span class="comment">//                usleep(1000);</span></span><br><span class="line"><span class="comment">//                qDebug()&lt;&lt;&quot;hgbhk&quot;&lt;&lt;i++&lt;&lt;&quot;===&quot;&lt;&lt;a&lt;&lt;&quot;===&quot;&lt;&lt;b;</span></span><br><span class="line"><span class="comment">//                temp = &quot;子线程 =&gt; &quot;+QString::number(i++)+&quot;===&quot;+a+&quot;===&quot;+b;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;);</span></span><br><span class="line">    th1.<span class="built_in">detach</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Widget::~<span class="built_in">Widget</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_a_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a = str;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_b_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    flag=!flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::put_ui_message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;lineEdit_3-&gt;<span class="built_in">setText</span>(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line">QString temp = <span class="literal">NULL</span>;</span><br><span class="line">QString a;</span><br><span class="line">QString b;</span><br><span class="line">thread *th1;</span><br><span class="line"><span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span><br><span class="line">            temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::<span class="built_in">number</span>(i)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b;</span><br><span class="line">            c = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//关闭线程</span></span><br><span class="line">        <span class="keyword">if</span>(!flag &amp;&amp; c == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> th1;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Widget::<span class="built_in">Widget</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QWidget</span>(parent)</span><br><span class="line">    , <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Widget)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_a_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit_2,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_b_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(&amp;mTime,<span class="built_in">SIGNAL</span>(<span class="built_in">timeout</span>()),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">put_ui_message</span>()));</span><br><span class="line">    mTime.<span class="built_in">start</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">void</span> (*myThread_ptr)(<span class="type">void</span>) = myThread;</span><br><span class="line">    function&lt;<span class="type">void</span>(<span class="type">void</span>)&gt; myThread_obj = myThread;</span><br><span class="line">    <span class="comment">//方式一：函数</span></span><br><span class="line">    th1 = <span class="keyword">new</span> <span class="keyword">class</span> <span class="built_in">thread</span>(myThread);</span><br><span class="line">    th1-&gt;<span class="built_in">detach</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Widget::~<span class="built_in">Widget</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_a_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a = str;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_b_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    flag=!flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::put_ui_message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;lineEdit_3-&gt;<span class="built_in">setText</span>(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>widget.ui</p>
@@ -566,12 +599,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">95k</span>
+    <span title="站点总字数">97k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:26</span>
+    <span title="站点阅读时长">1:28</span>
 </div>
 
         
