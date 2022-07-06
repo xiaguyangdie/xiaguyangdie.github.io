@@ -30,7 +30,7 @@
 <meta property="og:description" content="C++之字符串">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-03T13:47:55.782Z">
-<meta property="article:modified_time" content="2022-07-03T13:54:57.177Z">
+<meta property="article:modified_time" content="2022-07-06T14:46:45.051Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -217,10 +217,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-03 21:47:55 / 修改时间：21:54:57" itemprop="dateCreated datePublished" datetime="2022-07-03T21:47:55+08:00">2022-07-03</time>
+              <time title="创建时间：2022-07-03 21:47:55" itemprop="dateCreated datePublished" datetime="2022-07-03T21:47:55+08:00">2022-07-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-06 22:46:45" itemprop="dateModified" datetime="2022-07-06T22:46:45+08:00">2022-07-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -258,14 +264,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>404</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
             <div class="post-description">C++之字符串</div>
 
@@ -278,24 +284,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="字符串型"><a href="#字符串型" class="headerlink" title="字符串型"></a>字符串型</h3><p><strong>作用</strong>：用于表示一串字符</p>
+        <h3 id="1-字符串型"><a href="#1-字符串型" class="headerlink" title="1.字符串型"></a>1.字符串型</h3><p><strong>作用</strong>：用于表示一串字符</p>
 <p><strong>两种风格</strong></p>
-<ol>
-<li><p><strong>C风格字符串</strong>： <code>char 变量名[] = &quot;字符串值&quot;</code></p>
+<ul>
+<li><strong>C风格字符串</strong>： <code>char 变量名[] = &quot;字符串值&quot;</code></li>
+</ul>
 <p>示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="type">char</span> str1[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"> cout &lt;&lt; str1 &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="type">char</span> str1[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"> cout &lt;&lt; str1 &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>注意：C风格的字符串要用双引号括起来</p>
 </blockquote>
-<ol>
-<li><p><strong>C++风格字符串</strong>： <code>string 变量名 = &quot;字符串值&quot;</code></p>
+<ul>
+<li><strong>C++风格字符串</strong>： <code>string 变量名 = &quot;字符串值&quot;</code></li>
+</ul>
 <p>示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> string str = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"> cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> string str = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"> cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <blockquote>
 <p>注意：C++风格字符串，需要加入头文件<code>#include&lt;string&gt;</code></p>
 </blockquote>
+<h3 id="2-字符串转换"><a href="#2-字符串转换" class="headerlink" title="2.字符串转换"></a>2.字符串转换</h3><h4 id="2-1-string与QString"><a href="#2-1-string与QString" class="headerlink" title="2.1 string与QString"></a>2.1 string与QString</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//QString =&gt; string</span></span><br><span class="line">QString qstr = <span class="string">&quot;test&quot;</span>;</span><br><span class="line">string str = qstr.<span class="built_in">toStdString</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//string =&gt; QString</span></span><br><span class="line">string str = <span class="string">&quot;test&quot;</span>;</span><br><span class="line">QString qstr = QString::<span class="built_in">fromStdString</span>(str);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-string与char"><a href="#2-2-string与char" class="headerlink" title="2.2 string与char[]"></a>2.2 string与char[]</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//string =&gt; char[]</span></span><br><span class="line"><span class="type">char</span> ch[<span class="number">100</span>];</span><br><span class="line">string str = <span class="string">&quot;test = &gt; strcpy_s&quot;</span>;<span class="comment">//定义一个字符串</span></span><br><span class="line"><span class="built_in">strcpy_s</span>(ch,str.<span class="built_in">c_str</span>());</span><br><span class="line">cout&lt;&lt;ch&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//char[] =&gt; string</span></span><br><span class="line">string str1 = ch;</span><br><span class="line">cout&lt;&lt;str1&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-string与const-char"><a href="#2-3-string与const-char" class="headerlink" title="2.3 string与const char*"></a>2.3 string与const char*</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//string转const char*</span></span><br><span class="line">string str = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str = str.<span class="built_in">c_str</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//const char*转string</span></span><br><span class="line"><span class="comment">//直接赋值即可</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="function">string <span class="title">str2</span><span class="params">(c_str1)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-string与char"><a href="#2-4-string与char" class="headerlink" title="2.4 string与char*"></a>2.4 string与char*</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//string转char*</span></span><br><span class="line">string str = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">char</span>* c;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> len = str.<span class="built_in">length</span>();</span><br><span class="line">c = <span class="keyword">new</span> <span class="type">char</span>[len+<span class="number">1</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(c,str.<span class="built_in">c_str</span>());</span><br><span class="line">cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//char*转string</span></span><br><span class="line"><span class="type">char</span>* c = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="function">string <span class="title">str</span><span class="params">(c)</span></span>;</span><br><span class="line">cout&lt;&lt;str;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-const-char-与char"><a href="#2-5-const-char-与char" class="headerlink" title="2.5 const char* 与char*"></a>2.5 const char* 与char*</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//const char*转char*</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* cpc = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">char</span>* pc = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">100</span>];<span class="comment">//足够长</span></span><br><span class="line"><span class="built_in">strcpy</span>(pc,cpc);</span><br><span class="line"></span><br><span class="line"><span class="comment">//char*转const char*</span></span><br><span class="line"><span class="comment">//直接赋值即可</span></span><br><span class="line"><span class="type">char</span>* pc = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* cpc = pc;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-string常用API"><a href="#3-string常用API" class="headerlink" title="3.string常用API"></a>3.string常用API</h3><blockquote>
+<p>string(const char *s) ：将 string 对象初始化为 s 指向的字符串</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>string(size_type n,char c) ：创建一个包含 n 个元素的 string 对象，其中每个元素都被初始化为字符 c</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="number">10</span>, <span class="string">&#x27;a&#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>string(const string &amp;str) ：将一个 string 对象初始化为 string 对象 str（复制构造函数）</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;abcde&quot;</span>)</span></span>;</span><br><span class="line"><span class="function">string <span class="title">str2</span><span class="params">(str)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>string() ：创建一个默认的 string 对象，长度为 0（默认构造函数）</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string str;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用C++语言风格字符串处理string对象</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string str = <span class="string">&quot;hello!&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获取string对象的长度，C语言中使用strlen()来获取字符串长度，C++中使用str.size()或str.length().</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;hello!&quot;</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> len1 = str.<span class="built_in">size</span>();</span><br><span class="line"><span class="type">int</span> len2 = str.<span class="built_in">length</span>();</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -398,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9E%8B"><span class="nav-text">字符串型</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9E%8B"><span class="nav-text">1.字符串型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2"><span class="nav-text">2.字符串转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-string%E4%B8%8EQString"><span class="nav-text">2.1 string与QString</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-string%E4%B8%8Echar"><span class="nav-text">2.2 string与char[]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-string%E4%B8%8Econst-char"><span class="nav-text">2.3 string与const char*</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-string%E4%B8%8Echar"><span class="nav-text">2.4 string与char*</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-const-char-%E4%B8%8Echar"><span class="nav-text">2.5 const char* 与char*</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-string%E5%B8%B8%E7%94%A8API"><span class="nav-text">3.string常用API</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -477,12 +527,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">145k</span>
+    <span title="站点总字数">146k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:13</span>
 </div>
 
         
