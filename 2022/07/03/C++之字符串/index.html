@@ -30,7 +30,7 @@
 <meta property="og:description" content="C++之字符串">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-03T13:47:55.782Z">
-<meta property="article:modified_time" content="2022-07-06T14:46:45.051Z">
+<meta property="article:modified_time" content="2022-07-07T14:29:00.916Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-06 22:46:45" itemprop="dateModified" datetime="2022-07-06T22:46:45+08:00">2022-07-06</time>
+                <time title="修改时间：2022-07-07 22:29:00" itemprop="dateModified" datetime="2022-07-07T22:29:00+08:00">2022-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,14 +264,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>9.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>9 分钟</span>
             </span>
             <div class="post-description">C++之字符串</div>
 
@@ -317,24 +317,9 @@
 <h4 id="2-5-const-char-与char"><a href="#2-5-const-char-与char" class="headerlink" title="2.5 const char* 与char*"></a>2.5 const char* 与char*</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//const char*转char*</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* cpc = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">char</span>* pc = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">100</span>];<span class="comment">//足够长</span></span><br><span class="line"><span class="built_in">strcpy</span>(pc,cpc);</span><br><span class="line"></span><br><span class="line"><span class="comment">//char*转const char*</span></span><br><span class="line"><span class="comment">//直接赋值即可</span></span><br><span class="line"><span class="type">char</span>* pc = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* cpc = pc;</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-string常用API"><a href="#3-string常用API" class="headerlink" title="3.string常用API"></a>3.string常用API</h3><blockquote>
-<p>string(const char *s) ：将 string 对象初始化为 s 指向的字符串</p>
+<p>构造函数(Constructors)</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>string(size_type n,char c) ：创建一个包含 n 个元素的 string 对象，其中每个元素都被初始化为字符 c</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="number">10</span>, <span class="string">&#x27;a&#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>string(const string &amp;str) ：将一个 string 对象初始化为 string 对象 str（复制构造函数）</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;abcde&quot;</span>)</span></span>;</span><br><span class="line"><span class="function">string <span class="title">str2</span><span class="params">(str)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>string() ：创建一个默认的 string 对象，长度为 0（默认构造函数）</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string str;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>();</span><br><span class="line"><span class="built_in">string</span>( size_type length, <span class="type">char</span> ch );</span><br><span class="line"><span class="built_in">string</span>( <span class="type">const</span> <span class="type">char</span> *str );</span><br><span class="line"><span class="built_in">string</span>( <span class="type">const</span> <span class="type">char</span> *str, size_type length );</span><br><span class="line"><span class="built_in">string</span>( string &amp;str, size_type index, size_type length );</span><br><span class="line"><span class="built_in">string</span>( input_iterator start, input_iterator end );</span><br><span class="line"></span><br><span class="line"><span class="comment">//以length为长度的ch的拷贝（即length个ch） </span></span><br><span class="line"><span class="comment">//以str为初值 (长度任意), </span></span><br><span class="line"><span class="comment">//以index为索引开始的子串，长度为length, 或者 </span></span><br><span class="line"><span class="comment">//以从start到end的元素为初值.</span></span><br><span class="line"></span><br><span class="line">string str;<span class="comment">//创建一个默认的 string 对象，长度为 0（默认构造函数）</span></span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;<span class="comment">//将 string 对象初始化为 s 指向的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="number">10</span>, <span class="string">&#x27;a&#x27;</span>)</span></span>;<span class="comment">//创建一个包含 n 个元素的 string 对象，其中每个元素都被初始化为字符 c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将一个 string 对象初始化为 string 对象 str（复制构造函数）</span></span><br><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;abcde&quot;</span>)</span></span>;</span><br><span class="line"><span class="function">string <span class="title">str2</span><span class="params">(str)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>使用C++语言风格字符串处理string对象</p>
@@ -346,6 +331,278 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span><span class="params">(<span class="string">&quot;hello!&quot;</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> len1 = str.<span class="built_in">size</span>();</span><br><span class="line"><span class="type">int</span> len2 = str.<span class="built_in">length</span>();</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>添加文本(append) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">basic_string &amp;<span class="title">append</span><span class="params">( <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">append</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">append</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index, size_type len )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">append</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type num )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">append</span><span class="params">( size_type num, <span class="type">char</span> ch )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">append</span><span class="params">( input_iterator start, input_iterator end )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在字符串的末尾添加str, </span></span><br><span class="line"><span class="comment">//在字符串的末尾添加str的子串,子串以index索引开始，长度为len </span></span><br><span class="line"><span class="comment">//在字符串的末尾添加str中的num个字符, </span></span><br><span class="line"><span class="comment">//在字符串的末尾添加num个字符ch, </span></span><br><span class="line"><span class="comment">//在字符串的末尾添加以迭代器start和end表示的字符序列. </span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>赋值(assign) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">basic_string &amp;<span class="title">assign</span><span class="params">( <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">assign</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">assign</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type num )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">assign</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index, size_type len )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">assign</span><span class="params">( size_type num, <span class="type">char</span> ch )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用str为字符串赋值, </span></span><br><span class="line"><span class="comment">//用str的开始num个字符为字符串赋值, </span></span><br><span class="line"><span class="comment">//用str的子串为字符串赋值,子串以index索引开始，长度为len </span></span><br><span class="line"><span class="comment">//用num个字符ch为字符串赋值. </span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>at </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function">reference <span class="title">at</span><span class="params">( size_type index )</span></span>; </span><br><span class="line"><span class="comment">//at()函数返回一个引用，指向在index位置的字符. 如果index不在字符串范围内, at() 将报告&quot;out of  range&quot;错误，并抛出out_of_range异常。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以用[]获取特定的字符</li>
+</ul>
+<blockquote>
+<p>begin </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">begin</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>begin()</code>函数返回一个迭代器,指向字符串的第一个元素</li>
+</ul>
+<blockquote>
+<p>end </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">end</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>end()</code>函数返回一个迭代器，指向字符串的末尾(最后一个字符的下一个位置).</li>
+</ul>
+<blockquote>
+<p>rbegin </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> reverse_iterator <span class="title">rbegin</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>rbegin()</code>返回一个逆向迭代器，指向字符串的最后一个字符</li>
+</ul>
+<blockquote>
+<p>rend </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> reverse_iterator <span class="title">rend</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>rend()</code>函数返回一个逆向迭代器，指向字符串的开头（第一个字符的前一个位置）</li>
+</ul>
+<blockquote>
+<p>rfind</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">rfind</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">rfind</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">rfind</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index, size_type num )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">rfind</span><span class="params">( <span class="type">char</span> ch, size_type index )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回最后一个与str中的某个字符匹配的字符，从index开始查找。如果没找到就返回<strong>string::npos</strong> </li>
+<li>返回最后一个与str中的某个字符匹配的字符，从index开始查找,最多查找num个字符。如果没找到就返回<strong>string::npos</strong> </li>
+<li>返回最后一个与ch匹配的字符，从index开始查找。如果没找到就返回<strong>string::npos</strong></li>
+</ul>
+<blockquote>
+<p>c_str </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> <span class="type">char</span> *<span class="title">c_str</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>c_str()</code>函数返回一个指向正规C字符串的指针, 内容与本字符串相同.</li>
+</ul>
+<blockquote>
+<p>data </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> <span class="type">char</span> *<span class="title">data</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>data()</code>函数返回指向自己的第一个字符的指针</li>
+</ul>
+<blockquote>
+<p>容量(capacity) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">capacity</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>capacity()</code>函数返回在重新申请更多的空间前字符串可以容纳的字符数. 这个数字至少与 <code>size()</code>一样大.</li>
+</ul>
+<blockquote>
+<p>size </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">size</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>size()</code>函数返回字符串中现在拥有的字符数。</li>
+</ul>
+<blockquote>
+<p>长度(length)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">length</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>length()</code>函数返回字符串的长度. 这个数字应该和<code>size()</code>返回的数字相同.</li>
+</ul>
+<blockquote>
+<p>max_size </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">max_size</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>max_size()</code>函数返回字符串能保存的最大字符数</li>
+</ul>
+<blockquote>
+<p>保留空间(reserve) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">reserve</span><span class="params">( size_type num )</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>reserve()</code>函数设置本字符串的<code>capacity</code> 以保留num个字符空间</li>
+</ul>
+<blockquote>
+<p>resize </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">resize</span><span class="params">( size_type num )</span></span>;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">resize</span><span class="params">( size_type num, <span class="type">char</span> ch )</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>resize()</code>函数改变本字符串的大小到<em>num</em>, 新空间的内容不确定。也可以指定用ch填充</li>
+</ul>
+<blockquote>
+<p>比较(compare)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">( <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str )</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">( size_type index, size_type length, <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">( size_type index, size_type length, <span class="type">const</span> basic_string &amp;str, size_type index2,size_type length2 )</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">( size_type index, size_type length, <span class="type">const</span> <span class="type">char</span> *str, size_type length2 )</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>比较自己和str, </li>
+<li>比较自己的子串和str,子串以index索引开始，长度为length </li>
+<li>比较自己的子串和str的子串，其中index2和length2引用str，index和length引用自己 </li>
+<li>比较自己的子串和str的子串，其中str的子串以索引0开始，长度为length2，自己的子串以index开始，长度为length</li>
+</ul>
+<blockquote>
+<p>拷贝(copy) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">copy</span><span class="params">( <span class="type">char</span> *str, size_type num, size_type index )</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>copy()</code>函数拷贝自己的num个字符到str中（从索引index开始）。返回值是拷贝的字符数</li>
+</ul>
+<blockquote>
+<p>empty</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果字符串为空则<code>empty()</code>返回真(true)，否则返回假(false).</li>
+</ul>
+<blockquote>
+<p>删除(erase)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">( iterator pos )</span></span>;</span><br><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">( iterator start, iterator end )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">erase</span><span class="params">( size_type index = <span class="number">0</span>, size_type num = npos )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除pos指向的字符, 返回指向下一个字符的迭代器</li>
+<li>删除从start到end的所有字符, 返回一个迭代器,指向被删除的最后一个字符的下一个位置 </li>
+<li>删除从index索引开始的num个字符, 返回*<strong>this</strong>.</li>
+</ul>
+<blockquote>
+<p>查找(find)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">find</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index, size_type length )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find</span><span class="params">( <span class="type">char</span> ch, size_type index )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回str在字符串中第一次出现的位置（从index开始查找）<em>。</em>如果没找到则返回<strong>string::npos</strong>,  (-1)</li>
+<li>返回str在字符串中第一次出现的位置（从index开始查找，长度为length）。如果没找到就返回<strong>string::npos</strong>, </li>
+<li>返回字符ch在字符串中第一次出现的位置（从index开始查找）。如果没找到就返回<strong>string::npos</strong></li>
+</ul>
+<blockquote>
+<p>find_first_of </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">find_first_of</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index = <span class="number">0</span> )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_first_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index = <span class="number">0</span> )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_first_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index, size_type num )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_first_of</span><span class="params">( <span class="type">char</span> ch, size_type index = <span class="number">0</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查找在字符串中第一个与str中的某个字符匹配的字符，返回它的位置。搜索从index开始，如果没找到就返回<strong>string::npos</strong> </li>
+<li>查找在字符串中第一个与str中的某个字符匹配的字符，返回它的位置。搜索从index开始，最多搜索num个字符。如果没找到就返回<strong>string::npos，</strong> </li>
+<li>查找在字符串中第一个与ch匹配的字符，返回它的位置。搜索从index开始。</li>
+</ul>
+<blockquote>
+<p>find_first_not_of </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">find_first_not_of</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index = <span class="number">0</span> )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_first_not_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index = <span class="number">0</span> )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_first_not_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index, size_type num )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_first_not_of</span><span class="params">( <span class="type">char</span> ch, size_type index = <span class="number">0</span> )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在字符串中查找第一个与str中的字符都不匹配的字符，返回它的位置。搜索从index开始。如果没找到就返回<strong>string::nops</strong> </li>
+<li>在字符串中查找第一个与str中的字符都不匹配的字符，返回它的位置。搜索从index开始，最多查找num个字符。如果没找到就返回<strong>string::nops</strong> </li>
+<li>在字符串中查找第一个与ch不匹配的字符，返回它的位置。搜索从index开始。如果没找到就返回<strong>string::nops</strong></li>
+</ul>
+<blockquote>
+<p>find_last_of </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">find_last_of</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index = npos )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_last_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index = npos )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_last_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index, size_type num )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_last_of</span><span class="params">( <span class="type">char</span> ch, size_type index = npos )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在字符串中查找最后一个与str中的某个字符匹配的字符，返回它的位置。搜索从index开始。如果没找到就返回<strong>string::nops</strong> </li>
+<li>在字符串中查找最后一个与str中的某个字符匹配的字符，返回它的位置。搜索从index开始，最多搜索num个字符。如果没找到就返回<strong>string::nops</strong> </li>
+<li>在字符串中查找最后一个与ch匹配的字符，返回它的位置。搜索从index开始。如果没找到就返回<strong>string::nops</strong></li>
+</ul>
+<blockquote>
+<p>find_last_not_of </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">size_type <span class="title">find_last_not_of</span><span class="params">( <span class="type">const</span> basic_string &amp;str, size_type index = npos )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_last_not_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index = npos)</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_last_not_of</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *str, size_type index, size_type num )</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">find_last_not_of</span><span class="params">( <span class="type">char</span> ch, size_type index = npos )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在字符串中查找最后一个与str中的字符都不匹配的字符，返回它的位置。搜索从index开始。如果没找到就返回<strong>string::nops</strong> </li>
+<li>在字符串中查找最后一个与str中的字符都不匹配的字符，返回它的位置。搜索从index开始，最多查找num个字符如果没找到就返回<strong>string::nops</strong> </li>
+<li>在字符串中查找最后一个与ch不匹配的字符，返回它的位置。搜索从index开始。如果没找到就返回<strong>string::nops</strong></li>
+</ul>
+<blockquote>
+<p>插入(insert)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">insert</span><span class="params">( iterator i, <span class="type">const</span> <span class="type">char</span> &amp;ch )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">insert</span><span class="params">( size_type index, <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">insert</span><span class="params">( size_type index, <span class="type">const</span> <span class="type">char</span> *str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">insert</span><span class="params">( size_type index1, <span class="type">const</span> basic_string &amp;str, size_type index2, size_type num )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">insert</span><span class="params">( size_type index, <span class="type">const</span> <span class="type">char</span> *str, size_type num )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">insert</span><span class="params">( size_type index, size_type num, <span class="type">char</span> ch )</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">( iterator i, size_type num, <span class="type">const</span> <span class="type">char</span> &amp;ch )</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">( iterator i, iterator start, iterator end )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在迭代器i表示的位置前面插入一个字符ch, </li>
+<li>在字符串的位置index插入字符串str, </li>
+<li>在字符串的位置index插入字符串str的子串(从<em>index2</em>开始，长num个字符), </li>
+<li>在字符串的位置index插入字符串str的num个字符, </li>
+<li>在字符串的位置index插入num个字符ch的拷贝, </li>
+<li>在迭代器i表示的位置前面插入num个字符ch的拷贝, </li>
+<li>在迭代器i表示的位置前面插入一段字符，从start开始，以end结束.</li>
+</ul>
+<blockquote>
+<p>替换(replace)</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( size_type index, size_type num, <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( size_type index1, size_type num1, <span class="type">const</span> basic_string &amp;str, size_type index2,size_type num2 )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( size_type index, size_type num, <span class="type">const</span> <span class="type">char</span> *str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( size_type index, size_type num1, <span class="type">const</span> <span class="type">char</span> *str, size_type num2 )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( size_type index, size_type num1, size_type num2, <span class="type">char</span> ch )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( iterator start, iterator end, <span class="type">const</span> basic_string &amp;str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( iterator start, iterator end, <span class="type">const</span> <span class="type">char</span> *str )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( iterator start, iterator end, <span class="type">const</span> <span class="type">char</span> *str, size_type num )</span></span>;</span><br><span class="line"><span class="function">basic_string &amp;<span class="title">replace</span><span class="params">( iterator start, iterator end, size_type num, <span class="type">char</span> ch )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>用str中的num个字符替换本字符串中的字符,从index开始 </li>
+<li>用str中的num2个字符（从index2开始）替换本字符串中的字符，从index1开始，最多num1个字符 </li>
+<li>用str中的num个字符（从index开始）替换本字符串中的字符 </li>
+<li>用str中的num2个字符（从index2开始）替换本字符串中的字符，从index1开始，num1个字符 </li>
+<li>用num2个ch字符替换本字符串中的字符，从index开始 </li>
+<li>用str中的字符替换本字符串中的字符,迭代器start和end指示范围 </li>
+<li>用str中的num个字符替换本字符串中的内容,迭代器start和end指示范围， </li>
+<li>用num个ch字符替换本字符串中的内容，迭代器start和end指示范围.</li>
+</ul>
+<blockquote>
+<p>get_allocator </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">allocator_type <span class="title">get_allocator</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回本字符串的配置器</li>
+</ul>
+<blockquote>
+<p>substr </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">basic_string <span class="title">substr</span><span class="params">( size_type index, size_type num = npos )</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>substr()</code>返回本字符串的一个子串，从index开始，长num个字符。如果没有指定，将是默认值  <strong>string::npos</strong>。这样，<code>substr()</code>函数将简单的返回从index开始的剩余的字符串</li>
+</ul>
+<blockquote>
+<p>交换(swap) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">( basic_string &amp;str )</span></span>; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>swap()</code>函数把str和本字符串交换</li>
+</ul>
+<blockquote>
+<p>操作符(Operators) </p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==  &gt;  &lt;  &gt;=  &lt;=  !=  +  +=  [] </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以用 &#x3D;&#x3D;, &gt;, &lt;, &gt;&#x3D;, &lt;&#x3D;, and !&#x3D;比较字符串. 可以用 + 或者 +&#x3D; 操作符连接两个字符串,  并且可以用[]获取特定的字符</li>
+</ul>
 
     </div>
 
@@ -527,12 +784,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">146k</span>
+    <span title="站点总字数">154k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:13</span>
+    <span title="站点阅读时长">2:20</span>
 </div>
 
         
