@@ -30,7 +30,7 @@
 <meta property="og:description" content="计算机基础">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-23T13:15:53.003Z">
-<meta property="article:modified_time" content="2024-03-23T18:08:16.311Z">
+<meta property="article:modified_time" content="2024-03-23T19:11:48.539Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="计算机基础">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-24 02:08:16" itemprop="dateModified" datetime="2024-03-24T02:08:16+08:00">2024-03-24</time>
+                <time title="修改时间：2024-03-24 03:11:48" itemprop="dateModified" datetime="2024-03-24T03:11:48+08:00">2024-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,7 +264,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>239</span>
+              <span>767</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -284,14 +284,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <pre class="mermaid">graph TD;
+        <h2 id="1-计算机组成"><a href="#1-计算机组成" class="headerlink" title="1.计算机组成"></a>1.计算机组成</h2><pre class="mermaid">graph LR;
   A["计算机"] --> A1["硬件"] --> A11["控制器"] --> CPU
                    A1["硬件"] --> A12["运算器"] --> CPU
-                   A1["硬件"] --> A13["存储器"] --> A131["内存"]
-                   			   A13["存储器"] --> A132["硬盘"]
-                   A1["硬件"] --> A14["I/O设备"] --> A141["键盘、鼠标、扫描仪、显示器、... ..."]
-  A["计算机"] --> A2["软件"] --> A21["系统软件"]
-                   A2["软件"] --> A22["应用软件"]</pre>
+                   A1["硬件"] --> A13["存储器"] --> A131["内存"] --> 只读存储器ROM
+                   							    A131["内存"] --> 随机存储器RAM
+                   			   A13["存储器"] --> A132["外存"] --> A1321["硬盘、软盘、光盘、......"]
+                   A1["硬件"] --> A14["I/O设备"] --> A141["输入设备"] --> A1411["键盘、鼠标、扫描仪、......"]
+                   			   A14["I/O设备"] --> A142["输出设备"] --> A1412["显示器、打印机、......"]
+                   A1["硬件"] --> A15["主板"] --> A151["I/O总线"]
+                   			    A15["主板"] --> A152["输入输出系统"]
+                   A1["硬件"] --> A16["机箱"]
+                   A1["硬件"] --> A17["电源"]
+                   A1["硬件"] --> A18["......"]
+  A["计算机"] --> A2["软件"] --> A21["系统软件"] --> A211["操作系统"] --> A2111["DOS、Windows、Linux、......"]
+                                  A21["系统软件"] --> A212["语言处理程序"] --> A2121["机器语言"]
+                                                     A212["语言处理程序"] --> A2122["汇编语言"]
+                                                  A212["语言处理程序"] --> A2123["高级语言(C++、C、Java、......)"]
+                                  A21["系统软件"] --> A213["诊断程序"]
+                                  A21["系统软件"] --> A214["......"]
+                   A2["软件"] --> A22["应用软件"] --> A221["QQ、WeChat、EXCEL、IDEA、Word、......"]</pre>
 
 
     </div>
@@ -395,6 +407,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90"><span class="nav-text">1.计算机组成</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -478,7 +491,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39:38</span>
+    <span title="站点阅读时长">39:39</span>
 </div>
 
         
