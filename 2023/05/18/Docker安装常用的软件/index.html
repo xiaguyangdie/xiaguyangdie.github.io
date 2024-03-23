@@ -466,7 +466,7 @@
 
 <p><img src="image-20230521234716768.png" alt="Docker安装常用的软件/image-20230521234716768"></p>
 <ul>
-<li>RabbitMQ默认日志存放路径： &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#x72;&#97;&#x62;&#x62;&#x69;&#116;&#64;&#x78;&#120;&#120;&#x2e;&#108;&#x6f;&#x67;">&#x72;&#97;&#x62;&#x62;&#x69;&#116;&#64;&#x78;&#120;&#120;&#x2e;&#108;&#x6f;&#x67;</a>，日志包含了RabbitMQ的版本号、Erlang的版本号、RabbitMQ服务节点名称、cookie的hash值、RabbitMQ配置文件地址、内存限制、磁盘限制、默认账户guest的创建以及权限配置等等</li>
+<li>RabbitMQ默认日志存放路径： &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#x72;&#x61;&#98;&#98;&#x69;&#x74;&#64;&#120;&#x78;&#x78;&#x2e;&#x6c;&#x6f;&#103;">&#x72;&#x61;&#98;&#98;&#x69;&#x74;&#64;&#120;&#x78;&#x78;&#x2e;&#x6c;&#x6f;&#103;</a>，日志包含了RabbitMQ的版本号、Erlang的版本号、RabbitMQ服务节点名称、cookie的hash值、RabbitMQ配置文件地址、内存限制、磁盘限制、默认账户guest的创建以及权限配置等等</li>
 </ul>
 </li>
 <li><p>配置文件存储路径</p>
@@ -969,7 +969,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1180,6 +1180,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

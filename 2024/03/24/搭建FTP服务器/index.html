@@ -317,7 +317,10 @@
     <a href="/2024/03/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" rel="prev" title="计算机基础">
       <i class="fa fa-chevron-left"></i> 计算机基础
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/03/24/hexo%E6%94%AF%E6%8C%81mermaid/" rel="next" title="hexo支持mermaid">
+      hexo支持mermaid <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -392,7 +395,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -603,6 +606,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
