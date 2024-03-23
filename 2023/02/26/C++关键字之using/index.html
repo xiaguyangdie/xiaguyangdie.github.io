@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="C++关键字之using">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/image-20220721135528661.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/image-20220721135528661.png">
 <meta property="article:published_time" content="2023-02-26T08:27:30.989Z">
 <meta property="article:modified_time" content="2022-07-21T06:05:40.000Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="C++关键字">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/image-20220721135528661.png">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/image-20220721135528661.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/">
 
@@ -314,7 +314,7 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> name_1 &#123;</span><br><span class="line">    <span class="type">int</span> age = <span class="number">18</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun_1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> age = <span class="number">28</span>;				<span class="comment">//先指明一个变量</span></span><br><span class="line">    <span class="keyword">using</span> name_1::age;			<span class="comment">//再引用一个局域变量</span></span><br><span class="line">    cout &lt;&lt; age &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">fun_1</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2023/02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/image-20220721135528661.png" alt="image-20220721135528661"></p>
+<p><img src="02/26/C++%E5%85%B3%E9%94%AE%E5%AD%97%E4%B9%8Busing/image-20220721135528661.png" alt="image-20220721135528661"></p>
 <h3 id="2-指定别名"><a href="#2-指定别名" class="headerlink" title="2.指定别名"></a>2.指定别名</h3><ul>
 <li>C++ 11 通过 <code>using</code> 指定别名，作用等同于 <code>typedef</code>，但相比 <code>typedef</code>，逻辑更直观，可读性更好。</li>
 </ul>
@@ -445,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -458,7 +458,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

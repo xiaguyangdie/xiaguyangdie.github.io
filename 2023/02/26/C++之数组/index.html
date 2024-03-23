@@ -29,17 +29,17 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="C++之数组">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220614133.png">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220841690.png">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220926652.png">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529221229513.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220614133.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220841690.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220926652.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529221229513.png">
 <meta property="article:published_time" content="2023-02-26T08:27:30.971Z">
 <meta property="article:modified_time" content="2022-05-29T14:13:36.000Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="数据类型">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220614133.png">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220614133.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/">
 
@@ -398,10 +398,10 @@
 <p><strong>参考答案：</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="type">int</span> scores[<span class="number">3</span>][<span class="number">3</span>] =</span><br><span class="line">	&#123;</span><br><span class="line">		&#123;<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>&#125;,</span><br><span class="line">		&#123;<span class="number">90</span>,<span class="number">50</span>,<span class="number">100</span>&#125;,</span><br><span class="line">		&#123;<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>&#125;,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	string names[<span class="number">3</span>] = &#123; <span class="string">&quot;张三&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;王五&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">  <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum += scores[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; names[i] &lt;&lt; <span class="string">&quot;同学总成绩为： &quot;</span> &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-一维字符数组"><a href="#4-一维字符数组" class="headerlink" title="4.一维字符数组"></a>4.一维字符数组</h4><h5 id="4-1-一维字符数组初始化"><a href="#4-1-一维字符数组初始化" class="headerlink" title="4.1 一维字符数组初始化"></a>4.1 一维字符数组初始化</h5><p><img src="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220614133.png" alt="image-20220529220614133"></p>
-<h5 id="4-2-字符数组的遍历"><a href="#4-2-字符数组的遍历" class="headerlink" title="4.2 字符数组的遍历"></a>4.2 字符数组的遍历</h5><p><img src="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220841690.png" alt="image-20220529220841690"></p>
-<h5 id="4-3-键盘获取字符串"><a href="#4-3-键盘获取字符串" class="headerlink" title="4.3 键盘获取字符串"></a>4.3 键盘获取字符串</h5><p><img src="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220926652.png" alt="image-20220529220926652"></p>
-<h5 id="4-4-一维字符数组的案例"><a href="#4-4-一维字符数组的案例" class="headerlink" title="4.4 一维字符数组的案例"></a>4.4 一维字符数组的案例</h5><p><img src="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529221229513.png" alt="image-20220529221229513"></p>
+<h4 id="4-一维字符数组"><a href="#4-一维字符数组" class="headerlink" title="4.一维字符数组"></a>4.一维字符数组</h4><h5 id="4-1-一维字符数组初始化"><a href="#4-1-一维字符数组初始化" class="headerlink" title="4.1 一维字符数组初始化"></a>4.1 一维字符数组初始化</h5><p><img src="02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220614133.png" alt="image-20220529220614133"></p>
+<h5 id="4-2-字符数组的遍历"><a href="#4-2-字符数组的遍历" class="headerlink" title="4.2 字符数组的遍历"></a>4.2 字符数组的遍历</h5><p><img src="02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220841690.png" alt="image-20220529220841690"></p>
+<h5 id="4-3-键盘获取字符串"><a href="#4-3-键盘获取字符串" class="headerlink" title="4.3 键盘获取字符串"></a>4.3 键盘获取字符串</h5><p><img src="02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529220926652.png" alt="image-20220529220926652"></p>
+<h5 id="4-4-一维字符数组的案例"><a href="#4-4-一维字符数组的案例" class="headerlink" title="4.4 一维字符数组的案例"></a>4.4 一维字符数组的案例</h5><p><img src="02/26/C++%E4%B9%8B%E6%95%B0%E7%BB%84/image-20220529221229513.png" alt="image-20220529221229513"></p>
 
     </div>
 
@@ -439,12 +439,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/26/C++%E4%B9%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="prev" title="C++之文件操作">
-      <i class="fa fa-chevron-left"></i> C++之文件操作
+    <a href="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="C++之数据类型">
+      <i class="fa fa-chevron-left"></i> C++之数据类型
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/02/26/C++%E4%B9%8B%E6%A8%A1%E6%9D%BF/" rel="next" title="C++之模板">
-      C++之模板 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/02/26/C++%E4%B9%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="next" title="C++之文件操作">
+      C++之文件操作 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -521,7 +521,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -534,7 +534,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

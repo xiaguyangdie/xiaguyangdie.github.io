@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="Qt读取图片的N种方式">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
 <meta property="article:published_time" content="2023-02-26T08:27:31.125Z">
 <meta property="article:modified_time" content="2022-06-19T09:32:12.000Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="Qt">
 <meta property="article:tag" content="图片操作">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/">
 
@@ -624,7 +624,7 @@
 
 <h4 id="2-7-显示和保存图像"><a href="#2-7-显示和保存图像" class="headerlink" title="2.7 显示和保存图像"></a>2.7 显示和保存图像</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(<span class="string">&quot;C:\\Users\\***\\Desktop\\test.png&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;image.format();</span><br><span class="line">QImage gray_8 = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale8);</span><br><span class="line">QImage gray_16 = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale16);</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_8.format();</span><br><span class="line">gray_8.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray_8.png&quot;</span>);</span><br><span class="line">gray_16.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray_16.png&quot;</span>);</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_8.<span class="built_in">depth</span>();</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_16.<span class="built_in">depth</span>();</span><br><span class="line">ui-&gt;imagelabel2-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(image));</span><br><span class="line">ui-&gt;imagelabel-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(gray_16));</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png" alt="image-20220619155707144"></p>
+<p><img src="02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png" alt="image-20220619155707144"></p>
 <h3 id="3-QPixmap类"><a href="#3-QPixmap类" class="headerlink" title="3.QPixmap类"></a>3.QPixmap类</h3><h4 id="3-1-QPixmap简介"><a href="#3-1-QPixmap简介" class="headerlink" title="3.1 QPixmap简介"></a>3.1 QPixmap简介</h4><ul>
 <li><p>QPixmap类是一个屏幕外的图像表示，可以用作绘图设备。</p>
 </li>
@@ -800,7 +800,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -813,7 +813,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
