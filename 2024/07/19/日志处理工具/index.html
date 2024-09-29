@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="日志处理工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日志处理工具">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="日志处理工具">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240811232020001.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240804144438857.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240804143151996.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240811191651826.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240804110814208.png">
+<meta property="article:published_time" content="2024-07-19T15:15:45.020Z">
+<meta property="article:modified_time" content="2024-08-21T13:13:56.156Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="java日志框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240811232020001.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>日志处理工具 | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          日志处理工具
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-07-19 23:15:45" itemprop="dateCreated datePublished" datetime="2024-07-19T23:15:45+08:00">2024-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-08-21 21:13:56" itemprop="dateModified" datetime="2024-08-21T21:13:56+08:00">2024-08-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="日志处理工具" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+            <div class="post-description">日志处理工具</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-日志门面和日志框架"><a href="#1-日志门面和日志框架" class="headerlink" title="1.日志门面和日志框架"></a>1.日志门面和日志框架</h1><h2 id="1-1-日志门面"><a href="#1-1-日志门面" class="headerlink" title="1.1 日志门面"></a>1.1 日志门面</h2><ul>
+<li>Java日志门面(日志抽象层)是一种抽象层，<strong>它为不同的日志实现提供一致的API</strong>。这使得更改日志实现变得容易，因为代码库可以在不修改的情况下工作（<strong>门面模式</strong>）</li>
+<li><strong>Java日志门面的作用主要是面向接口开发，‌提供一种标准的方式来记录日志</strong></li>
+<li>开发人员可以使用统一的接口来管理和记录应用程序的日志信息，‌而不必关心底层日志框架的具体实现细节</li>
+<li>通过使用日志门面，‌可以更容易地切换不同的日志框架</li>
+<li>常见的日志门面 ：slf4j、JCL</li>
+</ul>
+<h2 id="1-2-日志框架"><a href="#1-2-日志框架" class="headerlink" title="1.2 日志框架"></a>1.2 日志框架</h2><ul>
+<li>常见的日志框架：JUL、Logback、log4j2、log4j2</li>
+<li>出现顺序 ：log4j –&gt;JUL–&gt;JCL–&gt; slf4j –&gt; logback –&gt; log4j2</li>
+<li><strong>业务代码（开发人员）调用日志门面日志门面调用具体的日志框架</strong></li>
+<li><strong>日志门面仅提供通用的日志 API 给业务代码（开发人员），不包括每个日志框架的配置</strong>。因此在使用时，还是需要添加使用的具体的日志框架的<strong>配置文件</strong></li>
+</ul>
+<h1 id="2-日志门面"><a href="#2-日志门面" class="headerlink" title="2.日志门面"></a>2.日志门面</h1><h2 id="2-1-JCL"><a href="#2-1-JCL" class="headerlink" title="2.1 JCL"></a>2.1 JCL</h2><h2 id="2-2-slf4j"><a href="#2-2-slf4j" class="headerlink" title="2.2 slf4j"></a>2.2 slf4j</h2><h1 id="3-日志框架"><a href="#3-日志框架" class="headerlink" title="3.日志框架"></a>3.日志框架</h1><h2 id="3-1-log4j"><a href="#3-1-log4j" class="headerlink" title="3.1 log4j"></a>3.1 log4j</h2><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/1.x/">https://logging.apache.org/log4j/1.x/</a></p>
+<p><img src="image-20240811232020001.png" alt="image-20240811232020001"></p>
+</li>
+<li><p>Log4j 很重要的一个缺陷是不支持占位符，但是用户可自己定义实现占位符的功能</p>
+</li>
+<li><p>Log4j是Apache下的一款开源日志框架，通过使用Log4j，可以控制日志信息输出到控制台、文件、甚至是数据库中</p>
+</li>
+<li><p>可以控制每条日志的输出格式，通过定义日志的输出级别，可以更灵活的控制日志的输出过程，方便项目调试</p>
+</li>
+<li><p>可以通过一个配置文件来灵活的进行配置，而不需要修改应用的代码</p>
+</li>
+</ul>
+<h3 id="3-1-1-组成"><a href="#3-1-1-组成" class="headerlink" title="3.1.1 组成"></a>3.1.1 组成</h3><ul>
+<li><strong>Log4j主要由三大组件组成：‌Loggers（‌日志记录器）‌、‌Appenders（‌输出控制器）‌和Layout（‌日志格式化器）‌</strong><ul>
+<li><strong>Loggers</strong>：‌负责收集和处理日志记录，‌实例的命名通常采用类的全限定名。‌Logger的名字大小写敏感，‌并且具有继承机制。‌例如，‌名为<code>com.bjpowernode.log4j</code>的Logger会继承名为<code>com.bjpowernode</code>的Logger的配置。‌Log4j中还有一个特殊的Logger叫做“root”，‌它是所有Logger的根，‌其他所有的Logger都会直接或间接地继承自root</li>
+<li><strong>Appenders</strong>：‌指定日志的输 出方式，‌可以是输出到控制台、‌文件等。‌Appenders决定了日志信息应该如何和在哪里被记录。‌通过配置不同的Appender，‌可以控制日志信息的输出目的地</li>
+<li><strong>Layout</strong>：‌控制日志信息的输出格式。‌Layout定义了日志信息的展示方式，‌包括日期、‌时间、‌级别、‌消息内容等的格式化输出</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-1-1-1-Logger"><a href="#3-1-1-1-Logger" class="headerlink" title="3.1.1.1 Logger"></a>3.1.1.1 Logger</h4><h4 id="3-1-1-2-Appenders"><a href="#3-1-1-2-Appenders" class="headerlink" title="3.1.1.2 Appenders"></a>3.1.1.2 Appenders</h4><ul>
+<li>Appender 用来指定日志输出到哪个地方，可以同时指定日志的输出目的地</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>输出端类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ConsoleAppender</td>
+<td>将日志输出到控制台</td>
+</tr>
+<tr>
+<td>FileAppender</td>
+<td>将日志输出到文件中</td>
+</tr>
+<tr>
+<td>DailyRollingFileAppender</td>
+<td>将日志输出到一个日志文件，并且每天输出到一个新的文件</td>
+</tr>
+<tr>
+<td>RollingFileAppender</td>
+<td>将日志信息输出到一个日志文件，并且指定文件的尺寸，当文件大小达到指定<br>尺寸时，会自动把文件改名，同时产生一个新的文件</td>
+</tr>
+<tr>
+<td>JDBCAppender</td>
+<td>把日志信息保存到数据库中</td>
+</tr>
+</tbody></table>
+<h4 id="3-1-1-3-Layout"><a href="#3-1-1-3-Layout" class="headerlink" title="3.1.1.3 Layout"></a>3.1.1.3 Layout</h4><h3 id="3-1-2-快速入门"><a href="#3-1-2-快速入门" class="headerlink" title="3.1.2 快速入门"></a>3.1.2 快速入门</h3><blockquote>
+<p>1.导入依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.Log4jDemo.java</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.log4j.BasicConfigurator;</span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Log4jDemo</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testQuick</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * log4j:WARN No appenders could be found for logger (com.yang.Log4jDemo).</span></span><br><span class="line"><span class="comment">         * log4j:WARN Please initialize the log4j system properly.</span></span><br><span class="line"><span class="comment">         * log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">//初始化配置信息，也可以使用配置文件</span></span><br><span class="line">        BasicConfigurator.configure();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取日志记录器</span></span><br><span class="line">        <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Log4jDemo.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出日志</span></span><br><span class="line">        logger.info(<span class="string">&quot;hello log4j&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//日志级别</span></span><br><span class="line">        logger.fatal(<span class="string">&quot;非常严重的错误事件，可能导致应用程序崩溃&quot;</span>);</span><br><span class="line">        logger.error(<span class="string">&quot;错误事件，可能允许应用程序继续运行&quot;</span>);</span><br><span class="line">        logger.warn(<span class="string">&quot;警告级别，表示程序运行出现了一些不正常的情况，但不会导致程序终止或中断&quot;</span>);</span><br><span class="line">        logger.info(<span class="string">&quot;一般程序运行信息，如程序启动和结束信息、关键操作的成功或失败等&quot;</span>);</span><br><span class="line">        logger.debug(<span class="string">&quot;调试信息，用于追踪程序的执行流程和状态&quot;</span>);</span><br><span class="line">        logger.trace(<span class="string">&quot;最低级别，用于最详细的日志记录，通常用于跟踪问题和排查bug&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-3-日志级别"><a href="#3-1-3-日志级别" class="headerlink" title="3.1.3 日志级别"></a>3.1.3 日志级别</h3><blockquote>
+<p>Log4j提供了八个日志级别，这些级别按照严重程度从高到低排列，具体如下：</p>
+</blockquote>
+<ul>
+<li><strong>OFF</strong>：最高等级，关闭所有日志记录</li>
+<li><strong>FATAL</strong>：非常严重的错误事件，可能导致应用程序崩溃</li>
+<li><strong>ERROR</strong>：错误事件，可能允许应用程序继续运行</li>
+<li><strong>WARN</strong>：警告级别，表示程序运行出现了一些不正常的情况，但不会导致程序终止或中断</li>
+<li><strong>INFO</strong>：一般程序运行信息，如程序启动和结束信息、关键操作的成功或失败等</li>
+<li><strong>DEBUG</strong>：调试信息，用于追踪程序的执行流程和状态</li>
+<li><strong>TRACE</strong>：最低级别，用于最详细的日志记录，通常用于跟踪问题和排查bug</li>
+<li><strong>ALL</strong>：最低等级，打开所有日志记录</li>
+</ul>
+<h3 id="3-1-4-配置文件"><a href="#3-1-4-配置文件" class="headerlink" title="3.1.4 配置文件"></a>3.1.4 配置文件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">### <span class="number">3.1</span><span class="number">.5</span> 源码分析与执行流程</span><br><span class="line"></span><br><span class="line">## <span class="number">3.2</span> JUL</span><br><span class="line"></span><br><span class="line">- JUL(java.util.logging)，java原生的日志框架，不需要引入第三方依赖，使用简单，可以使用在小型项目中</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  <span class="keyword">import</span> java.util.logging.*;</span><br></pre></td></tr></table></figure>
+
+<p>  <img src="image-20240804144438857.png" alt="image-20240804144438857"></p>
+<h3 id="3-2-1-JUL架构"><a href="#3-2-1-JUL架构" class="headerlink" title="3.2.1 JUL架构"></a>3.2.1 JUL架构</h3><p><img src="image-20240804143151996.png" alt="image-20240804143151996"></p>
+<ul>
+<li><strong>Application：</strong>java应用程序</li>
+<li><strong>Logger：</strong>日志记录器（在框架中就是一个类），应用程序通过获取Logger对象，调用其API来发布日志信息。Logger通常是应用程序访问日志系统的入口程序</li>
+<li><strong>Appender：</strong>也被称为Handler，每一个Logger都会关联一组Handler，Logger会将日志交给关联的Handler处理，由Handler将日志处理到响应的输出设备（如负责控制台的Handler会将日志输出到控制台，负责文件的Handler会将日志输出到文件，还有网络、日志服务器等其他的位置）</li>
+<li><strong>Layout：</strong>也被称为Formatter，主要负责对日志的格式进行排布，可以通过具体的参数来自定义日志的表现格式</li>
+<li><strong>Level：</strong>每一条日志消息都会有其日志级别，该级别标识了这条日志的重要程度。可以关联Level和Logger、Appender，便于过滤日志消息</li>
+<li><strong>Filter：</strong>过滤器，根据需要可以定制哪些信息被记录（ACCEPT），哪些信息被放过（DENY）</li>
+</ul>
+<blockquote>
+<p>总结：</p>
+<p>1.用户使用Logger进行日志记录，Logger持有若干个Handler，日志的输出操作由Handler完成</p>
+<p>2.在Handler输出日志之前，会经过Filter过滤，判断哪些日志级别过滤放行和拦截</p>
+<p>3.Handler会将日志输出到指定位置：日志文件、控制台、… …</p>
+<p>4.Handler在输出日志时会使用Layout，将输出内容排版</p>
+</blockquote>
+<h3 id="3-2-2-日志分级"><a href="#3-2-2-日志分级" class="headerlink" title="3.2.2 日志分级"></a>3.2.2 日志分级</h3><ul>
+<li>将日志信息进行分级管理，便可方便的控制信息输出内容及输出位置：哪些信息需要输出，哪些信息不需要输出，只需在一个日志输出控制文件中稍加修改即可。而代码中的输出语句不用做任何修改</li>
+<li>代码中的日志编写，其实就是写大量的输出语句。只不过，这些输出语句比较特殊，它们具有级别，在程序运行期间不定被执行。它们的执行是由另一个控制文件控制</li>
+<li>JUL的日志级别包括：‌<ul>
+<li>SEVERE：‌表示严重错误，‌程序可能无法继续运行</li>
+<li>WARNING：‌表示可能出现了一些问题，‌但程序可能还能继续运行</li>
+<li>INFO：‌提供了一些重要的信息，‌通常用于监控程序的运行状态</li>
+<li>CONFIG：‌通常用于配置信息，‌帮助管理员了解系统的配置情况</li>
+<li>FINE：‌提供了详细的调试信息，‌用于开发和调试阶段</li>
+<li>FINER：‌比FINE更详细的调试信息，‌通常用于开发过程中的调试</li>
+<li>FINEST：‌最详细的调试信息，‌通常只在开发和测试阶段使用</li>
+</ul>
+</li>
+<li>JUL还有2个特殊的日志级别：‌<ul>
+<li>OFF：用来关闭日志记录</li>
+<li>ALL：用来启用所有日志的记录</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.logging.ConsoleHandler;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Level;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Logger;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.SimpleFormatter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JULDemo</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testLog</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1.获取日志记录器对象</span></span><br><span class="line">        <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.日志记录输出，从高往低</span></span><br><span class="line">        logger.severe(<span class="string">&quot;severe&quot;</span>);</span><br><span class="line">        logger.warning(<span class="string">&quot;warning&quot;</span>);</span><br><span class="line">        logger.info(<span class="string">&quot;info&quot;</span>);  <span class="comment">// 默认只会输出info以上级别的日志信息</span></span><br><span class="line">        logger.config(<span class="string">&quot;config&quot;</span>);</span><br><span class="line">        logger.fine(<span class="string">&quot;fine&quot;</span>);</span><br><span class="line">        logger.finer(<span class="string">&quot;finner&quot;</span>);</span><br><span class="line">        logger.finest(<span class="string">&quot;finest&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.输出指定日志级别的日志记录</span></span><br><span class="line">        logger.log(Level.SEVERE,<span class="string">&quot;severe&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4.占位符形式</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">        logger.log(Level.INFO,<span class="string">&quot;请求成功的状态码：&#123;0&#125;&quot;</span>,msg);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5.异常堆栈信息</span></span><br><span class="line">        logger.log(Level.SEVERE,<span class="string">&quot;msg&quot;</span>,<span class="keyword">new</span> <span class="title class_">NullPointerException</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">CustomLoggerLevel</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 1. 获取日志记录器对象</span></span><br><span class="line">        <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 关闭系统默认的配置（不继承父日志记录器的相关参数）</span></span><br><span class="line">        logger.setUseParentHandlers(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 自定义配置日志</span></span><br><span class="line">        <span class="comment">// 3.1 创建日志处理器（Handler对象），这是一个可以让日志输出到控制台(Console)的日志处理器</span></span><br><span class="line">        <span class="type">ConsoleHandler</span> <span class="variable">consoleHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConsoleHandler</span>();</span><br><span class="line">        <span class="comment">// 3.2 创建简单格式转换器</span></span><br><span class="line">        <span class="type">SimpleFormatter</span> <span class="variable">simpleFormatter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleFormatter</span>();</span><br><span class="line">        <span class="comment">// 3.3 关联日志处理器和格式转换器</span></span><br><span class="line">        consoleHandler.setFormatter(simpleFormatter);</span><br><span class="line">        <span class="comment">// 3.4 给Logger对象添加我们创建的Handler，（因为在第2步阻止使用父日志记录器参数所以不会继承父日志记录器中的Handler有关继承请继续阅读）</span></span><br><span class="line">        logger.addHandler(consoleHandler);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4. 配置日志级别</span></span><br><span class="line">        logger.setLevel(Level.FINE);</span><br><span class="line">        consoleHandler.setLevel(Level.SEVERE);   <span class="comment">//最终级别为这两个中更为严格的那个</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//logger.setLevel(Level.ALL);</span></span><br><span class="line">        <span class="comment">//consoleHandler.setLevel(Level.ALL);</span></span><br><span class="line">        </span><br><span class="line">        logger.severe(<span class="string">&quot;severe&quot;</span>);</span><br><span class="line">        logger.warning(<span class="string">&quot;warning&quot;</span>);</span><br><span class="line">        logger.info(<span class="string">&quot;info&quot;</span>);  <span class="comment">// 默认只会输出info以上级别的日志信息</span></span><br><span class="line">        logger.config(<span class="string">&quot;config&quot;</span>);</span><br><span class="line">        logger.fine(<span class="string">&quot;fine&quot;</span>);</span><br><span class="line">        logger.finer(<span class="string">&quot;finner&quot;</span>);</span><br><span class="line">        logger.finest(<span class="string">&quot;finest&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-Logger父子继承关系"><a href="#3-2-3-Logger父子继承关系" class="headerlink" title="3.2.3 Logger父子继承关系"></a>3.2.3 Logger父子继承关系</h3><ul>
+<li>在JUL 中，Logger 有父子继承关系概念，会根据 Logger 对象的名称的包含关系，划分父子继承关系。对于某个 Logger 对象，如果找不到显性创建的父 Logger 对象，那么它的父 Logger 是根 Logger，即 RootLogger</li>
+<li>子 Logger 对象会继承父Logger 的配置，例如日志级别，关联的 Handler，日志格式等等</li>
+<li>对于任何 Logger 对象，如果没对其做特殊配置，那么它最终都会继承 RootLogger 的配置</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">Parent_Son_Logger</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">loggerParent</span> <span class="operator">=</span> logger.getParent();</span><br><span class="line">    System.out.println(<span class="string">&quot;loggerParent：&quot;</span> + loggerParent + <span class="string">&quot;，name：&quot;</span> + loggerParent.getName());</span><br><span class="line"></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger1</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo1&quot;</span>);</span><br><span class="line">    logger.setParent(logger1);</span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger1Parent</span> <span class="operator">=</span> logger.getParent();</span><br><span class="line">    System.out.println(<span class="string">&quot;logger1Parent：&quot;</span> + loggerParent + <span class="string">&quot;，name：&quot;</span> + logger1Parent.getName());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">loggerParent：java.util.logging.LogManager$RootLogger@61e717c2，name：</span></span><br><span class="line"><span class="comment">logger1Parent：java.util.logging.LogManager$RootLogger@61e717c2，name：com.yang.JULDemo1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-4-日志配置"><a href="#3-2-4-日志配置" class="headerlink" title="3.2.4 日志配置"></a>3.2.4 日志配置</h3><ul>
+<li>过2种方式调整JUL默认的日志行为(设置日志级别，日志输出目的地日志格式等等)<ul>
+<li>一种是通过在程序中硬编码形式(不推荐)</li>
+<li>另一种是通过单独的配置文件形式</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-4-1-java代码日志配置"><a href="#3-2-4-1-java代码日志配置" class="headerlink" title="3.2.4.1 java代码日志配置"></a>3.2.4.1 java代码日志配置</h4><ul>
+<li><p>在JUL中，Logger 是有父子继承关系的，所以当对某一个 Logger 对象进行单独的配置时，需要将它设置为不继承使用父Logger 的配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java代码日志配置</span></span><br><span class="line"><span class="meta">@SneakyThrows</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test_config_log</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//获取日志记录器对象</span></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//关闭默认配置，即不再使用父Logger的handler配置</span></span><br><span class="line">    logger.setUseParentHandlers(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置日志记录器的级别为all</span></span><br><span class="line">    logger.setLevel(Level.ALL);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//日志记录格式，使用简单格式转换对象</span></span><br><span class="line">    <span class="type">SimpleFormatter</span> <span class="variable">simpleFormatter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleFormatter</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控制台输出Handler,并且设置日志级别为INFO，日志记录格式</span></span><br><span class="line">    <span class="type">ConsoleHandler</span> <span class="variable">consoleHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConsoleHandler</span>();</span><br><span class="line">    consoleHandler.setLevel(Level.INFO);</span><br><span class="line">    consoleHandler.setFormatter(simpleFormatter);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 文件输出Handler,并且设置日志级别为FINE，日志记录格式</span></span><br><span class="line">    <span class="type">FileHandler</span> <span class="variable">fileHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileHandler</span>(<span class="string">&quot;./javaConfig.log&quot;</span>);</span><br><span class="line">    fileHandler.setLevel(Level.FINE);</span><br><span class="line">    fileHandler.setFormatter(simpleFormatter);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录器关联处理器，即此logger对象的日志信息输出到这两个Handler进行处理</span></span><br><span class="line">    logger.addHandler(consoleHandler);</span><br><span class="line">    logger.addHandler(fileHandler);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 日志记录输出</span></span><br><span class="line">    logger.severe(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o severe!!&quot;</span>);</span><br><span class="line">    logger.warning(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o warning!!&quot;</span>);</span><br><span class="line">    logger.info(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He1To info!!&quot;</span>);</span><br><span class="line">    logger.config(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o config!!&quot;</span>);</span><br><span class="line">    logger.fine(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o fine!!&quot;</span>);</span><br><span class="line">    logger.finer(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o finer!!&quot;</span>);</span><br><span class="line">    logger.finest(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o finest!!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20240811191651826.png" alt="image-20240811191651826"></p>
+<ul>
+<li>因为 Logger 设置的日志级别是 ALL，即所有级别的日志记录都可以通过。但是 ConsoleHandler 设置的日志级别是 INFO，所以控制台只输出 INFO 级别以上的日志记录。而 FileHandler 设置的日志级别是 FINE，所以日志文件中输出的是 FINE 级别以上的日志记录</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-4-2-日志配置文件"><a href="#3-2-4-2-日志配置文件" class="headerlink" title="3.2.4.2 日志配置文件"></a>3.2.4.2 日志配置文件</h4><ul>
+<li><p>如果通过 debug 调试，按以下方法顺序，可以发现，如果我们没有配置]UL 的配置文件，系统默认从JDK 的安装目录下的 lib 目录下读取默认的配置文件logging.properties</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getLogger -&gt; demandLogger() -&gt; LogManager.getLogManager() -&gt; ensureLogManagerInitialized() -&gt; owner.readPrimordialConfiguration() -&gt; readConfiguration()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件logging.properties</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局属性</span></span><br><span class="line"><span class="comment">#指定日志记录器的处理器，既可以配置一个，也可以通过合适的分隔符“,”来配置多个处理器</span></span><br><span class="line"><span class="attr">handlers</span>= <span class="string">java.util.logging.FileHandler, java.util.logging.ConsoleHandler</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 默认全局日志级别</span></span><br><span class="line"><span class="comment">#用于全局设置日志处理器处理对象信息的级别的阈值，这里的设置的级别是INFO</span></span><br><span class="line"><span class="attr">.level</span>= <span class="string">INFO</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># Handler配置</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># FileHandler定义</span></span><br><span class="line"><span class="comment"># 设置日志文件输出的位置</span></span><br><span class="line"><span class="comment"># 为生成的输出文件名称指定一个模式，默认为 &quot;%h/java%u.log&quot;</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.pattern</span> = <span class="string">./java%u.log</span></span><br><span class="line"><span class="comment"># 指定文件最大字节数。如果该数为0，则没有限制（默认为无限制）</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.limit</span> = <span class="string">50000</span></span><br><span class="line"><span class="comment"># 指定文件数量上限（默认为 1）java0.log.0、java0.log.1、java0.log.2、java0.log.3、java0.log.4</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.count</span> = <span class="string">5</span></span><br><span class="line"><span class="comment"># 指定日志级别</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.level</span> = <span class="string">SEVERE</span></span><br><span class="line"><span class="comment"># 指定日志字符集</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.encoding</span> = <span class="string">utf-8</span></span><br><span class="line"><span class="comment"># 指定日志追加方式（默认为 false）</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.append</span> = <span class="string">false</span></span><br><span class="line"><span class="comment"># 指定日志要使用格式（默认为 java.util.logging.XMLFormatter）。可设为：java.util.logging.SimpleFormatter</span></span><br><span class="line"><span class="attr">java.util.logging.FileHandler.formatter</span> = <span class="string">java.util.logging.SimpleFormatter</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># ConsoleHandler定义</span></span><br><span class="line"><span class="comment"># 指定日志默认的级别（默认为 Level.ALL）</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.level</span>=<span class="string">INFO</span></span><br><span class="line"><span class="comment"># 指定日志要使用格式（默认为 java.util.logging.XMLFormatter）。可设为：java.util.logging.SimpleFormatter</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.formatter</span> = <span class="string">java.util.logging.SimpleFormatter</span></span><br><span class="line"><span class="attr">java.util.logging.SimpleFormatter.format</span>=<span class="string">[%1$tc] %4$s: %5$s%n</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载配置文件</span></span><br><span class="line"><span class="meta">@SneakyThrows</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test_config_log_properties</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//读取配置文件</span></span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> JULDemo.class.getClassLoader().getResourceAsStream(<span class="string">&quot;logging.properties&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取LogManager</span></span><br><span class="line">    <span class="type">LogManager</span> <span class="variable">logManager</span> <span class="operator">=</span> LogManager.getLogManager();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//加载配置文件</span></span><br><span class="line">    logManager.readConfiguration(inputStream);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取日志记录器对象</span></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 日志记录输出</span></span><br><span class="line">    logger.severe(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o severe!!&quot;</span>);</span><br><span class="line">    logger.warning(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o warning!!&quot;</span>);</span><br><span class="line">    logger.info(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He1To info!!&quot;</span>);</span><br><span class="line">    logger.config(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o config!!&quot;</span>);</span><br><span class="line">    logger.fine(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o fine!!&quot;</span>);</span><br><span class="line">    logger.finer(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o finer!!&quot;</span>);</span><br><span class="line">    logger.finest(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o finest!!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-2-4-3-自定义Logger"><a href="#3-2-4-3-自定义Logger" class="headerlink" title="3.2.4.3 自定义Logger"></a>3.2.4.3 自定义Logger</h4><ul>
+<li><p>可以针对某一个 Logger 进行单独的配置，例如日志级别，关联的 Handler 等，而不默认继承父级的</p>
+</li>
+<li><p>也可以为以包名为名称的 Logger 进行配置，这样这个包名下的所有子代 Logger 都能继承此配置</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Logger 配置</span></span><br><span class="line"><span class="comment"># 设置名称为com.yang.person的Logger对象的日志级别</span></span><br><span class="line"><span class="attr">com.yang.person.level</span> = <span class="string">WARNING</span></span><br><span class="line"><span class="comment"># 关联handler</span></span><br><span class="line"><span class="attr">com.yang.person.handlers</span> = <span class="string">java.util.logging.FileHandler</span></span><br><span class="line"><span class="comment">#关闭默认配置</span></span><br><span class="line"><span class="attr">com.yang.person.useParentHandlers</span> = <span class="string">false</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-2-5-日志过滤器"><a href="#3-2-5-日志过滤器" class="headerlink" title="3.2.5 日志过滤器"></a>3.2.5 日志过滤器</h3><ul>
+<li><p>Filter，日志过滤器，用来对输出的日志记录进行过滤</p>
+</li>
+<li><p>可以根据多个维度进行过滤，例如只输出 message 包含某段文本信息的日志，只输出某个方法中记录的日志，某个级别的日志等等</p>
+</li>
+<li><p>Logger 对象将日志信息包装成一个LogRecord 对象，然后将该对象传给 Handler 进行处理</p>
+</li>
+<li><p><strong>每一个Logger 和 Handler 都可以关联一个Filter</strong></p>
+</li>
+<li><p>LogRecord 中包含了日志的文本信息、日志生成的时间戳、日志来自于哪个类、日志来自于哪个方法、日志来自于哪个线程等等<br>信息</p>
+</li>
+<li><p>Filter 源码如下所示，只需要创建一个 Filter 的实现类，重写方法即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.util.logging;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A Filter can be used to provide fine grain control over</span></span><br><span class="line"><span class="comment"> * what is logged, beyond the control provided by log levels.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Each Logger and each Handler can have a filter associated with it.</span></span><br><span class="line"><span class="comment"> * The Logger or Handler will call the isLoggable method to check</span></span><br><span class="line"><span class="comment"> * if a given LogRecord should be published.  If isLoggable returns</span></span><br><span class="line"><span class="comment"> * false, the LogRecord will be discarded.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.4</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Check if a given log record should be published.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> record  a LogRecord</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> true if the log record should be published.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isLoggable</span><span class="params">(LogRecord record)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>例如过滤日志中包含<code>成功</code>，则不记录这条日志</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.logging.Filter;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.LogRecord;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：com.yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：log_study</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2024/8/11 22:46</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Filename</span>：myFilter</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：日志过滤器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">myFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">FILTER_MESSAGE</span> <span class="operator">=</span> <span class="string">&quot;成功&quot;</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isLoggable</span><span class="params">(LogRecord record)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> record.getMessage();</span><br><span class="line">        <span class="keyword">if</span> (message.contains(FILTER_MESSAGE))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关联过滤器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关联过滤器</span></span><br><span class="line"><span class="meta">@SneakyThrows</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test_config_log_filter</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//读取配置文件</span></span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> JULDemo.class.getClassLoader().getResourceAsStream(<span class="string">&quot;logging.properties&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取LogManager</span></span><br><span class="line">    <span class="type">LogManager</span> <span class="variable">logManager</span> <span class="operator">=</span> LogManager.getLogManager();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//加载配置文件</span></span><br><span class="line">    logManager.readConfiguration(inputStream);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取日志记录器对象</span></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;com.yang.JULDemo&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Logger关联过滤器</span></span><br><span class="line">    logger.setFilter(<span class="keyword">new</span> <span class="title class_">myFilter</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 日志记录输出</span></span><br><span class="line">    logger.severe(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; 成功He11o severe!!&quot;</span>);</span><br><span class="line">    logger.warning(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o warning!!&quot;</span>);</span><br><span class="line">    logger.info(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He1To info!!&quot;</span>);</span><br><span class="line">    logger.config(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o config!!&quot;</span>);</span><br><span class="line">    logger.fine(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o fine!!&quot;</span>);</span><br><span class="line">    logger.finer(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o finer!!&quot;</span>);</span><br><span class="line">    logger.finest(<span class="string">&quot;&gt;&gt;&gt;&gt;&gt; He11o finest!!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">[星期日 八月 11 23:01:15 CST 2024] 警告: &gt;&gt;&gt;&gt;&gt; He11o warning!!</span></span><br><span class="line"><span class="comment">[星期日 八月 11 23:01:15 CST 2024] 信息: &gt;&gt;&gt;&gt;&gt; He1To info!!</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-2-6-源码分析与执行流程"><a href="#3-2-6-源码分析与执行流程" class="headerlink" title="3.2.6 源码分析与执行流程"></a>3.2.6 源码分析与执行流程</h3><h2 id="3-3-Logback"><a href="#3-3-Logback" class="headerlink" title="3.3 Logback"></a>3.3 Logback</h2><h2 id="3-4-log4j2"><a href="#3-4-log4j2" class="headerlink" title="3.4 log4j2"></a>3.4 log4j2</h2><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.12.x/manual/appenders.html">https://logging.apache.org/log4j/2.12.x/manual/appenders.html</a></p>
+<p><img src="image-20240804110814208.png" alt="image-20240804110814208"></p>
+</li>
+</ul>
+<h2 id="3-5-slf4j-log4j2"><a href="#3-5-slf4j-log4j2" class="headerlink" title="3.5 slf4j + log4j2"></a>3.5 slf4j + log4j2</h2>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/" title="日志处理工具">https://xiaguyangdie.github.io/2024/07/19/日志处理工具/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> java日志框架</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/18/json%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/" rel="prev" title="json处理工具">
+      <i class="fa fa-chevron-left"></i> json处理工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/20/java%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="next" title="java之23种设计模式">
+      java之23种设计模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2%E5%92%8C%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">1.日志门面和日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-text">1.1 日志门面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">1.2 日志框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-text">2.日志门面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-JCL"><span class="nav-text">2.1 JCL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-slf4j"><span class="nav-text">2.2 slf4j</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">3.日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-log4j"><span class="nav-text">3.1 log4j</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E7%BB%84%E6%88%90"><span class="nav-text">3.1.1 组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-1-Logger"><span class="nav-text">3.1.1.1 Logger</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-2-Appenders"><span class="nav-text">3.1.1.2 Appenders</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-3-Layout"><span class="nav-text">3.1.1.3 Layout</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">3.1.2 快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB"><span class="nav-text">3.1.3 日志级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3.1.4 配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-JUL%E6%9E%B6%E6%9E%84"><span class="nav-text">3.2.1 JUL架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E6%97%A5%E5%BF%97%E5%88%86%E7%BA%A7"><span class="nav-text">3.2.2 日志分级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-Logger%E7%88%B6%E5%AD%90%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB"><span class="nav-text">3.2.3 Logger父子继承关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="nav-text">3.2.4 日志配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-1-java%E4%BB%A3%E7%A0%81%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="nav-text">3.2.4.1 java代码日志配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-2-%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3.2.4.2 日志配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-3-%E8%87%AA%E5%AE%9A%E4%B9%89Logger"><span class="nav-text">3.2.4.3 自定义Logger</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-%E6%97%A5%E5%BF%97%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-text">3.2.5 日志过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-6-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-text">3.2.6 源码分析与执行流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Logback"><span class="nav-text">3.3 Logback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-log4j2"><span class="nav-text">3.4 log4j2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-slf4j-log4j2"><span class="nav-text">3.5 slf4j + log4j2</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">45:15</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
