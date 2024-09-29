@@ -29,12 +29,24 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="Jmeter基本功能">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929200804397.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930004853879.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201043891.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201124298.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201156515.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201237519.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201306177.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201339228.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201420540.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201450487.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930014501324.png">
 <meta property="article:published_time" content="2024-09-29T11:20:20.000Z">
-<meta property="article:modified_time" content="2024-09-29T11:50:27.101Z">
+<meta property="article:modified_time" content="2024-09-29T17:48:18.408Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="测试">
 <meta property="article:tag" content="Jmeter">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929200804397.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/">
 
@@ -218,10 +230,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-09-29 19:20:20 / 修改时间：19:50:27" itemprop="dateCreated datePublished" datetime="2024-09-29T19:20:20+08:00">2024-09-29</time>
+              <time title="创建时间：2024-09-29 19:20:20" itemprop="dateCreated datePublished" datetime="2024-09-29T19:20:20+08:00">2024-09-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-30 01:48:18" itemprop="dateModified" datetime="2024-09-30T01:48:18+08:00">2024-09-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -259,7 +277,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -279,7 +297,74 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="1-线程组"><a href="#1-线程组" class="headerlink" title="1.线程组"></a>1.线程组</h1><p><img src="image-20240929200804397.png" alt="image-20240929200804397"></p>
+<h2 id="1-1-线程组"><a href="#1-1-线程组" class="headerlink" title="1.1 线程组"></a>1.1 线程组</h2><p><img src="image-20240930004853879.png" alt="image-20240930004853879"></p>
+<blockquote>
+<p>在<font color="red">取样器</font>错误后要执行的动作（当接口请求失败时，要执行的动作）</p>
+</blockquote>
+<ul>
+<li>继续：继续执行接下来的操作</li>
+<li>启动下一进程循环：忽略错误，执行下一个循环</li>
+<li>停止线程：退出当前线程，不再执行此线程的任务操作</li>
+<li>停止测试：等待当前执行的采样器结束，接着结束整个测试</li>
+<li>立即停止测试：直接停止整个测试</li>
+</ul>
+<blockquote>
+<p>线程数：模拟用户数量</p>
+<p>Ramp-Up时间（秒）：达到指定线程数所需要的时间，防止对服务器有太大的负载。比如线程数为10，此处为5秒，10&#x2F;5&#x3D;2，那么相当于每秒启动2个线程，用时5秒达到10</p>
+<p>循环次数：每个线程要循环的次数，如果勾选“永远”，会一直循环下去</p>
+</blockquote>
+<blockquote>
+<p>Same user on each iteration：表示每个迭代都用相同的线程</p>
+<p>默认值：默认是勾选</p>
+<p>举例1：比如线程数为1，循环次数为5，那么创建好1个线程后，每次循环迭代都用这个线程，直到测试结束。如果不勾选，那么每次循环会销毁之前的线程，再创建1个新的线程，测试结束总共会经过5次创建销毁线程，浪费了计算机资源，线程多了甚至可能会影响性能测试结果，所以默认是勾选的</p>
+<p>举例2：这1个线程中有登录操作，加入cookie后，这个线程5次迭代下来用的都是这一个cookie</p>
+</blockquote>
+<blockquote>
+<p>延迟创建线程直到需要</p>
+<p>勾选：当线程需要执行的时候才会被创建</p>
+<p>不勾选：在计划开始的时候，所有的线程就都创建好</p>
+</blockquote>
+<blockquote>
+<p>持续时间(秒)：表示多少秒后，结束测试<br>启动延迟(秒)：表示点击开始执行计划后，延迟多少秒，才真正开始执行</p>
+</blockquote>
+<h2 id="1-2-setUp-线程组"><a href="#1-2-setUp-线程组" class="headerlink" title="1.2 setUp 线程组"></a>1.2 setUp 线程组</h2><h2 id="1-3-tearDown-线程组"><a href="#1-3-tearDown-线程组" class="headerlink" title="1.3 tearDown 线程组"></a>1.3 tearDown 线程组</h2><h2 id="1-4-Open-Model-Thread-Group"><a href="#1-4-Open-Model-Thread-Group" class="headerlink" title="1.4 Open Model Thread Group"></a>1.4 Open Model Thread Group</h2><h1 id="2-配置元件"><a href="#2-配置元件" class="headerlink" title="2.配置元件"></a>2.配置元件</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201043891.png" alt="image-20240929201043891"></p>
+<h2 id="2-1-HTTP请求默认值"><a href="#2-1-HTTP请求默认值" class="headerlink" title="2.1 HTTP请求默认值"></a>2.1 HTTP请求默认值</h2><h2 id="2-2-HTTP信息头管理器"><a href="#2-2-HTTP信息头管理器" class="headerlink" title="2.2 HTTP信息头管理器"></a>2.2 HTTP信息头管理器</h2><h2 id="2-3-用户定义变量"><a href="#2-3-用户定义变量" class="headerlink" title="2.3 用户定义变量"></a>2.3 用户定义变量</h2><h2 id="2-4-计数器"><a href="#2-4-计数器" class="headerlink" title="2.4 计数器"></a>2.4 计数器</h2><h2 id="2-5-JDBC-Connection-Configuration"><a href="#2-5-JDBC-Connection-Configuration" class="headerlink" title="2.5 JDBC Connection Configuration"></a>2.5 JDBC Connection Configuration</h2><h2 id="2-6-随机变量"><a href="#2-6-随机变量" class="headerlink" title="2.6 随机变量"></a>2.6 随机变量</h2><h1 id="3-监听器"><a href="#3-监听器" class="headerlink" title="3.监听器"></a>3.监听器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201124298.png" alt="image-20240929201124298"></p>
+<h2 id="3-1-查看结果树"><a href="#3-1-查看结果树" class="headerlink" title="3.1 查看结果树"></a>3.1 查看结果树</h2><h2 id="3-2-聚合报告"><a href="#3-2-聚合报告" class="headerlink" title="3.2 聚合报告"></a>3.2 聚合报告</h2><h2 id="3-3-汇总报告"><a href="#3-3-汇总报告" class="headerlink" title="3.3 汇总报告"></a>3.3 汇总报告</h2><h1 id="4-定时器"><a href="#4-定时器" class="headerlink" title="4.定时器"></a>4.定时器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201156515.png" alt="image-20240929201156515"></p>
+<h2 id="4-1-固定定时器"><a href="#4-1-固定定时器" class="headerlink" title="4.1 固定定时器"></a>4.1 固定定时器</h2><h2 id="4-2-BeanShell-定时器"><a href="#4-2-BeanShell-定时器" class="headerlink" title="4.2 BeanShell 定时器"></a>4.2 BeanShell 定时器</h2><h2 id="4-3-同步定时器"><a href="#4-3-同步定时器" class="headerlink" title="4.3 同步定时器"></a>4.3 同步定时器</h2><h1 id="5-前置处理器"><a href="#5-前置处理器" class="headerlink" title="5.前置处理器"></a>5.前置处理器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201237519.png" alt="image-20240929201237519"></p>
+<h2 id="5-1-用户参数"><a href="#5-1-用户参数" class="headerlink" title="5.1 用户参数"></a>5.1 用户参数</h2><h2 id="5-2-BeanShell-预处理程序"><a href="#5-2-BeanShell-预处理程序" class="headerlink" title="5.2 BeanShell 预处理程序"></a>5.2 BeanShell 预处理程序</h2><h2 id="5-3-取样器超时"><a href="#5-3-取样器超时" class="headerlink" title="5.3 取样器超时"></a>5.3 取样器超时</h2><h1 id="6-后置处理器"><a href="#6-后置处理器" class="headerlink" title="6.后置处理器"></a>6.后置处理器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201306177.png" alt="image-20240929201306177"></p>
+<h2 id="6-1-BeanShell-后置处理程序"><a href="#6-1-BeanShell-后置处理程序" class="headerlink" title="6.1 BeanShell 后置处理程序"></a>6.1 BeanShell 后置处理程序</h2><h2 id="6-2-JSON提取器"><a href="#6-2-JSON提取器" class="headerlink" title="6.2 JSON提取器"></a>6.2 JSON提取器</h2><h2 id="6-3-XPath提取器"><a href="#6-3-XPath提取器" class="headerlink" title="6.3 XPath提取器"></a>6.3 XPath提取器</h2><h1 id="7-断言"><a href="#7-断言" class="headerlink" title="7.断言"></a>7.断言</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201339228.png" alt="image-20240929201339228"></p>
+<h2 id="7-1-响应断言"><a href="#7-1-响应断言" class="headerlink" title="7.1 响应断言"></a>7.1 响应断言</h2><h2 id="7-2-JSON断言"><a href="#7-2-JSON断言" class="headerlink" title="7.2 JSON断言"></a>7.2 JSON断言</h2><h2 id="7-3-BeanShell断言"><a href="#7-3-BeanShell断言" class="headerlink" title="7.3 BeanShell断言"></a>7.3 BeanShell断言</h2><h1 id="8-测试片段"><a href="#8-测试片段" class="headerlink" title="8.测试片段"></a>8.测试片段</h1><blockquote>
+<p>配置范围：测试计划、线程组</p>
+</blockquote>
+<p><img src="image-20240929201420540.png" alt="image-20240929201420540"></p>
+<h1 id="9-非测试元件"><a href="#9-非测试元件" class="headerlink" title="9.非测试元件"></a>9.非测试元件</h1><blockquote>
+<p>配置范围：测试计划</p>
+</blockquote>
+<p><img src="image-20240929201450487.png" alt="image-20240929201450487"></p>
+<h1 id="10-逻辑控制器"><a href="#10-逻辑控制器" class="headerlink" title="10.逻辑控制器"></a>10.逻辑控制器</h1><blockquote>
+<p>配置范围：线程组</p>
+</blockquote>
+<p><img src="image-20240930014501324.png" alt="image-20240930014501324"></p>
+<h2 id="10-1-循环控制器"><a href="#10-1-循环控制器" class="headerlink" title="10.1 循环控制器"></a>10.1 循环控制器</h2><h2 id="10-2-简单控制器"><a href="#10-2-简单控制器" class="headerlink" title="10.2 简单控制器"></a>10.2 简单控制器</h2>
     </div>
 
     
@@ -379,6 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.线程组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.1 线程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-setUp-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.2 setUp 线程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-tearDown-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.3 tearDown 线程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Open-Model-Thread-Group"><span class="nav-text">1.4 Open Model Thread Group</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE%E5%85%83%E4%BB%B6"><span class="nav-text">2.配置元件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-HTTP%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-text">2.1 HTTP请求默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-HTTP%E4%BF%A1%E6%81%AF%E5%A4%B4%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-text">2.2 HTTP信息头管理器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-text">2.3 用户定义变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="nav-text">2.4 计数器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-JDBC-Connection-Configuration"><span class="nav-text">2.5 JDBC Connection Configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="nav-text">2.6 随机变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-text">3.监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C%E6%A0%91"><span class="nav-text">3.1 查看结果树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E8%81%9A%E5%90%88%E6%8A%A5%E5%91%8A"><span class="nav-text">3.2 聚合报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%B1%87%E6%80%BB%E6%8A%A5%E5%91%8A"><span class="nav-text">3.3 汇总报告</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%9B%BA%E5%AE%9A%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.1 固定定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-BeanShell-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.2 BeanShell 定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%90%8C%E6%AD%A5%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.3 同步定时器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%89%8D%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">5.前置处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E7%94%A8%E6%88%B7%E5%8F%82%E6%95%B0"><span class="nav-text">5.1 用户参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-BeanShell-%E9%A2%84%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-text">5.2 BeanShell 预处理程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%8F%96%E6%A0%B7%E5%99%A8%E8%B6%85%E6%97%B6"><span class="nav-text">5.3 取样器超时</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">6.后置处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-BeanShell-%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-text">6.1 BeanShell 后置处理程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-JSON%E6%8F%90%E5%8F%96%E5%99%A8"><span class="nav-text">6.2 JSON提取器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-XPath%E6%8F%90%E5%8F%96%E5%99%A8"><span class="nav-text">6.3 XPath提取器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E6%96%AD%E8%A8%80"><span class="nav-text">7.断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E5%93%8D%E5%BA%94%E6%96%AD%E8%A8%80"><span class="nav-text">7.1 响应断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-JSON%E6%96%AD%E8%A8%80"><span class="nav-text">7.2 JSON断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-BeanShell%E6%96%AD%E8%A8%80"><span class="nav-text">7.3 BeanShell断言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%B5%8B%E8%AF%95%E7%89%87%E6%AE%B5"><span class="nav-text">8.测试片段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E9%9D%9E%E6%B5%8B%E8%AF%95%E5%85%83%E4%BB%B6"><span class="nav-text">9.非测试元件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">10.逻辑控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E5%BE%AA%E7%8E%AF%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">10.1 循环控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E7%AE%80%E5%8D%95%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">10.2 简单控制器</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -462,7 +548,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">45:15</span>
+    <span title="站点阅读时长">45:16</span>
 </div>
 
         
