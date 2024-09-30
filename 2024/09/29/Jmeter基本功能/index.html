@@ -35,6 +35,10 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930042256013.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930113533622.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930114415873.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930121902489.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930122019094.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930142510042-1727677515731-1.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930142551137.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201124298.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201156515.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201237519.png">
@@ -45,7 +49,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930014501324.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930021435885.png">
 <meta property="article:published_time" content="2024-09-29T11:20:20.000Z">
-<meta property="article:modified_time" content="2024-09-30T03:48:38.619Z">
+<meta property="article:modified_time" content="2024-09-30T06:41:26.913Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="测试">
 <meta property="article:tag" content="Jmeter">
@@ -242,7 +246,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-30 11:48:38" itemprop="dateModified" datetime="2024-09-30T11:48:38+08:00">2024-09-30</time>
+                <time title="修改时间：2024-09-30 14:41:26" itemprop="dateModified" datetime="2024-09-30T14:41:26+08:00">2024-09-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,7 +285,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -364,7 +368,34 @@
 <li><p>作用域：<strong>HTTP信息头管理器</strong>的设置仅对同一层级及其下方的HTTP请求生效</p>
 </li>
 </ul>
-<h2 id="2-3-用户定义变量"><a href="#2-3-用户定义变量" class="headerlink" title="2.3 用户定义变量"></a>2.3 用户定义变量</h2><h2 id="2-4-计数器"><a href="#2-4-计数器" class="headerlink" title="2.4 计数器"></a>2.4 计数器</h2><h2 id="2-5-JDBC-Connection-Configuration"><a href="#2-5-JDBC-Connection-Configuration" class="headerlink" title="2.5 JDBC Connection Configuration"></a>2.5 JDBC Connection Configuration</h2><h2 id="2-6-随机变量"><a href="#2-6-随机变量" class="headerlink" title="2.6 随机变量"></a>2.6 随机变量</h2><h1 id="3-监听器"><a href="#3-监听器" class="headerlink" title="3.监听器"></a>3.监听器</h1><blockquote>
+<h2 id="2-3-用户定义变量"><a href="#2-3-用户定义变量" class="headerlink" title="2.3 用户定义变量"></a>2.3 用户定义变量</h2><blockquote>
+<p>定义和管理变量</p>
+<p>一般仅设置测试计划中不需要随迭代发生改变的参数（只取一次值的参数）</p>
+<p>多个 HTTP 请求存在重复的参数，把重复的参数提取出来，只需要定义一次即可</p>
+</blockquote>
+<ul>
+<li><p>引用变量格式为： <code>$&#123;变量名&#125;</code></p>
+</li>
+<li><p>作用域：<font color="red">全局生效（作用于整个测试计划，包括跨线程组）</font></p>
+<p><img src="image-20240930121902489.png" alt="image-20240930121902489"></p>
+<p><img src="image-20240930122019094.png" alt="image-20240930122019094"></p>
+</li>
+<li><p><strong>优先级：如果定义了相同的变量名，则取样器下的用户定义变量优先级最高</strong></p>
+</li>
+<li><p>在启动运行时，获取一次值，运行过程中，值一直都不变</p>
+</li>
+<li><p>变量的值可以通过其他变量来引用，这样可以实现变量之间的关联和依赖关系</p>
+</li>
+<li><p><strong>在多线程环境中，可以通过用户定义变量实现参数的传递和使用‌</strong></p>
+</li>
+</ul>
+<h2 id="2-4-计数器"><a href="#2-4-计数器" class="headerlink" title="2.4 计数器"></a>2.4 计数器</h2><p><img src="image-20240930142510042-1727677515731-1.png" alt="image-20240930142510042"></p>
+<p><img src="image-20240930142551137.png" alt="image-20240930142551137"></p>
+<ul>
+<li>计数器的作用域主要限定在其所在的线程组内。计数器仅对同一线程组内的所有采样器有效，能够确保每个虚拟用户（线程）在使用时都能获取到正确的计数值</li>
+<li>作用域：<strong>计数器</strong>的设置仅对同一层级及其往下层级生效（测试计划》线程组》取样器）</li>
+</ul>
+<h2 id="2-5-JDBC-Connection-Configuration"><a href="#2-5-JDBC-Connection-Configuration" class="headerlink" title="2.5 JDBC Connection Configuration"></a>2.5 JDBC Connection Configuration</h2><h2 id="2-6-随机变量"><a href="#2-6-随机变量" class="headerlink" title="2.6 随机变量"></a>2.6 随机变量</h2><h1 id="3-监听器"><a href="#3-监听器" class="headerlink" title="3.监听器"></a>3.监听器</h1><blockquote>
 <p>配置范围：测试计划、线程组、取样器</p>
 </blockquote>
 <p><img src="image-20240929201124298.png" alt="image-20240929201124298"></p>
