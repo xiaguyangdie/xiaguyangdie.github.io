@@ -52,7 +52,6 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20250602130316686.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230226224523096.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230226224656703.png">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230226224808843.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230226233000841.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230226233035525.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230528153639337.png">
@@ -75,7 +74,6 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230227145155533.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230227145504091.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230227150301419.png">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/02/26/Redis/QQ%E6%88%AA%E5%9B%BE20230227151348.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230528185944786.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230227161444535.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/image-20230227171135425.png">
@@ -102,7 +100,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/02/26/Redis/1653365839526.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Redis/02/26/Redis/1653366238564.png">
 <meta property="article:published_time" content="2023-02-26T08:27:31.127Z">
-<meta property="article:modified_time" content="2025-06-02T16:16:01.391Z">
+<meta property="article:modified_time" content="2025-06-03T17:06:05.452Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="中间件">
 <meta name="twitter:card" content="summary">
@@ -298,7 +296,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-03 00:16:01" itemprop="dateModified" datetime="2025-06-03T00:16:01+08:00">2025-06-03</time>
+                <time title="修改时间：2025-06-04 01:06:05" itemprop="dateModified" datetime="2025-06-04T01:06:05+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -630,16 +628,44 @@
 <td align="center">将一个键的值复制到一个新键</td>
 </tr>
 <tr>
-<td align="center">BUMP</td>
+<td align="center">DUMP</td>
 <td align="center">将一个键的value表示序列化为一个二进制的字符串</td>
 </tr>
 <tr>
+<td align="center">RESTORE</td>
+<td align="center"></td>
+</tr>
+<tr>
 <td align="center">EXPIRE</td>
-<td align="center">给一个key设置有效期，有效期到期时该key会被自动删除</td>
+<td align="center">给一个key设置有效期，有效期到期时该key会被自动删除，单位秒</td>
+</tr>
+<tr>
+<td align="center">PEXPIRE</td>
+<td align="center">给一个key设置有效期，有效期到期时该key会被自动删除，单位毫秒</td>
 </tr>
 <tr>
 <td align="center">TTL</td>
-<td align="center">查看一个KEY的剩余有效期</td>
+<td align="center">查看一个KEY的剩余有效期，单位秒</td>
+</tr>
+<tr>
+<td align="center">PTTL</td>
+<td align="center">查看一个KEY的剩余有效期，单位毫秒</td>
+</tr>
+<tr>
+<td align="center">EXPIREAT</td>
+<td align="center">用于设置键的过期时间，UNIX时间戳（以秒为单位），当键的过期时间到达时，Redis会自动删除该键</td>
+</tr>
+<tr>
+<td align="center">PEXPIREAT</td>
+<td align="center">用于设置键的过期时间，UNIX时间戳（以毫秒为单位），当键的过期时间到达时，Redis会自动删除该键</td>
+</tr>
+<tr>
+<td align="center"><strong>EXPIRETIME</strong></td>
+<td align="center">返回键的过期时间，UNIX时间戳（以秒为单位）</td>
+</tr>
+<tr>
+<td align="center"><strong>PEXPIRETIME</strong></td>
+<td align="center">返回键的过期时间，UNIX时间戳（以毫秒为单位）</td>
 </tr>
 <tr>
 <td align="center">PERSIST</td>
@@ -650,6 +676,10 @@
 <td align="center">将一个键（key）从当前数据库（database）移动到另一个数据库</td>
 </tr>
 <tr>
+<td align="center">MIGRATE</td>
+<td align="center"></td>
+</tr>
+<tr>
 <td align="center">RANDOMKEY</td>
 <td align="center">从当前选定的数据库中返回一个随机key</td>
 </tr>
@@ -657,7 +687,6 @@
 <p><strong>可以通过<code>help [command] </code>可以查看一个命令的具体用法！</strong></p>
 <p><img src="image-20230226224523096.png" alt="Redis/image-20230226224523096"></p>
 <p><img src="image-20230226224656703.png" alt="Redis/image-20230226224656703"></p>
-<p><img src="image-20230226224808843.png" alt="Redis/image-20230226224808843"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">192.168.198.148:6379&gt; help @generic</span><br><span class="line"></span><br><span class="line">  COPY source destination [DB destination-db] [REPLACE]</span><br><span class="line">  summary: Copy a key</span><br><span class="line">  since: 6.2.0</span><br><span class="line"></span><br><span class="line">  DEL key [key ...]</span><br><span class="line">  summary: Delete a key</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  DUMP key</span><br><span class="line">  summary: Return a serialized version of the value stored at the specified key.</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  EXISTS key [key ...]</span><br><span class="line">  summary: Determine if a key exists</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  EXPIRE key seconds</span><br><span class="line">  summary: Set a key&#x27;s time to live in seconds</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  EXPIREAT key timestamp</span><br><span class="line">  summary: Set the expiration for a key as a UNIX timestamp</span><br><span class="line">  since: 1.2.0</span><br><span class="line"></span><br><span class="line">  KEYS pattern</span><br><span class="line">  summary: Find all keys matching the given pattern</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  MIGRATE host port key| destination-db timeout [COPY] [REPLACE] [AUTH password] [AUTH2 username password] [KEYS key]</span><br><span class="line">  summary: Atomically transfer a key from a Redis instance to another one.</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  MOVE key db</span><br><span class="line">  summary: Move a key to another database</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  OBJECT subcommand [arguments [arguments ...]]</span><br><span class="line">  summary: Inspect the internals of Redis objects</span><br><span class="line">  since: 2.2.3</span><br><span class="line"></span><br><span class="line">  PERSIST key</span><br><span class="line">  summary: Remove the expiration from a key</span><br><span class="line">  since: 2.2.0</span><br><span class="line"></span><br><span class="line">  PEXPIRE key milliseconds</span><br><span class="line">  summary: Set a key&#x27;s time to live in milliseconds</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  PEXPIREAT key milliseconds-timestamp</span><br><span class="line">  summary: Set the expiration for a key as a UNIX timestamp specified in milliseconds</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  PTTL key</span><br><span class="line">  summary: Get the time to live for a key in milliseconds</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  RANDOMKEY -</span><br><span class="line">  summary: Return a random key from the keyspace</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  RENAME key newkey</span><br><span class="line">  summary: Rename a key</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  RENAMENX key newkey</span><br><span class="line">  summary: Rename a key, only if the new key does not exist</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  RESTORE key ttl serialized-value [REPLACE] [ABSTTL] [IDLETIME seconds] [FREQ frequency]</span><br><span class="line">  summary: Create a key using the provided serialized value, previously obtained using DUMP.</span><br><span class="line">  since: 2.6.0</span><br><span class="line"></span><br><span class="line">  SCAN cursor [MATCH pattern] [COUNT count] [TYPE type]</span><br><span class="line">  summary: Incrementally iterate the keys space</span><br><span class="line">  since: 2.8.0</span><br><span class="line"></span><br><span class="line">  SORT key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern ...]] [ASC|DESC] [ALPHA] [STORE destination]</span><br><span class="line">  summary: Sort the elements in a list, set or sorted set</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  TOUCH key [key ...]</span><br><span class="line">  summary: Alters the last access time of a key(s). Returns the number of existing keys specified.</span><br><span class="line">  since: 3.2.1</span><br><span class="line"></span><br><span class="line">  TTL key</span><br><span class="line">  summary: Get the time to live for a key</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  TYPE key</span><br><span class="line">  summary: Determine the type stored at key</span><br><span class="line">  since: 1.0.0</span><br><span class="line"></span><br><span class="line">  UNLINK key [key ...]</span><br><span class="line">  summary: Delete a key asynchronously in another thread. Otherwise it is just as DEL, but non blocking.</span><br><span class="line">  since: 4.0.0</span><br><span class="line"></span><br><span class="line">  WAIT numreplicas timeout</span><br><span class="line">  summary: Wait for the synchronous replication of all the write commands sent in the context of the current connection</span><br><span class="line">  since: 3.0.0</span><br></pre></td></tr></table></figure>
 
 <h2 id="5-3-String类型"><a href="#5-3-String类型" class="headerlink" title="5.3 String类型"></a>5.3 String类型</h2><blockquote>
@@ -1042,7 +1071,7 @@
 </blockquote>
 <ul>
 <li><p><strong>新建一个Maven工程并引入以下依赖</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入Jedis依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引入单元测试依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入Jedis依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>编写测试类并与Redis建立连接</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Jedis jedis;</span><br><span class="line"></span><br><span class="line"><span class="meta">@BeforeEach</span> <span class="comment">//被该注解修饰的方法每次执行其他方法前自动执行</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setUp</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">// 1. 获取连接</span></span><br><span class="line">    jedis = <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;192.168.230.88&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">    <span class="comment">// 2. 设置密码</span></span><br><span class="line">    jedis.auth(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">    <span class="comment">// 3. 选择库（默认是下标为0的库）</span></span><br><span class="line">    jedis.select(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1161,7 +1190,6 @@
 <li>写入Redis时，手动把对象序列化为JSON</li>
 <li>读取Redis时，手动把读取到的JSON反序列化为对象</li>
 </ol>
-<p><img src="02/26/Redis/QQ%E6%88%AA%E5%9B%BE20230227151348.png" alt="实战"></p>
 <p><img src="image-20230528185944786.png" alt="Redis/image-20230528185944786"></p>
 <h1 id="7-短信登录"><a href="#7-短信登录" class="headerlink" title="7.短信登录"></a>7.短信登录</h1><h2 id="7-1-环境准备"><a href="#7-1-环境准备" class="headerlink" title="7.1 环境准备"></a>7.1 环境准备</h2><h2 id="7-2-基于Session实现登录"><a href="#7-2-基于Session实现登录" class="headerlink" title="7.2 基于Session实现登录"></a>7.2 基于Session实现登录</h2><p><strong>发送验证码：</strong></p>
 <p>用户在提交手机号后，会校验手机号是否合法，如果不合法，则要求用户重新输入手机号</p>
