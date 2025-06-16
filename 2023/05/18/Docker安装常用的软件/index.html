@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Docker安装常用的软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker安装常用的软件">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="Docker安装常用的软件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528123903355.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230519220344044.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230520111513258.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230520111535382.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230520113539279.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230521151829690.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526201538502.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526201637678.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526203007650.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526203033312.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526203104098.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526203129235.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526203236503.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526202849165.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230521234523582.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230521234716768.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230521234129573.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230520000734071.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230522110649352.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230522111106242.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230522112116782.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230524115042547.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230524115121798.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230524115142799.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525204323099.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525204400849.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525204844692.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525204931771.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525205528748.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525205626129.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525213139158.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525213305935.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525213326464.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525213413002.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525213436780.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525221945193.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525223130614.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230525223728042.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526113627389.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526131029250.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526131211168.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526131400292.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526131311663.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526131439177.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526133821182.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526133916977.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526134010635.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526135833507.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526113944244.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526143036308.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526143823887.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526143957945.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526145503114.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526145655651.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526151254218.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526151350095.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230526151456905.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528014544445.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528015728169.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528015820926.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528015958064.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528020015106.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528020744873.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528020834009.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528020924676.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528021154588.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528021230315.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528131152719.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528131012792.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528131633241.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528131902733.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528142833748.png">
+<meta property="article:published_time" content="2023-05-18T13:55:07.208Z">
+<meta property="article:modified_time" content="2024-09-29T06:01:14.578Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/image-20230528123903355.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker安装常用的软件 | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker安装常用的软件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-18 21:55:07" itemprop="dateCreated datePublished" datetime="2023-05-18T21:55:07+08:00">2023-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-29 14:01:14" itemprop="dateModified" datetime="2024-09-29T14:01:14+08:00">2024-09-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="Docker安装常用的软件" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>31k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>28 分钟</span>
+            </span>
+            <div class="post-description">Docker安装常用的软件</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-Docker安装"><a href="#1-Docker安装" class="headerlink" title="1.Docker安装"></a>1.Docker安装</h1><p><a href="https://xiaguyangdie.github.io/2023/02/26/Docker/">https://xiaguyangdie.github.io/2023/02/26/Docker/</a></p>
+<h1 id="2-Redis"><a href="#2-Redis" class="headerlink" title="2.Redis"></a>2.Redis</h1><h2 id="2-1-数据存储路径"><a href="#2-1-数据存储路径" class="headerlink" title="2.1 数据存储路径"></a>2.1 数据存储路径</h2><blockquote>
+<p>数据存储路径，日志文件也在其中</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>服务启动命令路径</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528123903355.png" alt="Docker安装常用的软件/image-20230528123903355"></p>
+<h2 id="2-2-配置文件存储路径"><a href="#2-2-配置文件存储路径" class="headerlink" title="2.2 配置文件存储路径"></a>2.2 配置文件存储路径</h2><ul>
+<li><p>早期的 Docker Redis 在容器中的配置文件，在一个专门的、特定的目录下，<strong>但现在没有了</strong></p>
+</li>
+<li><p>从 5.x 版本开始 Docker Redis 改变了思路：<strong>可以将配置文件放在任意位置，然后在 Redis 启动时告诉 Redis 从哪里加载配置文件即可</strong></p>
+</li>
+<li><p><strong>因此想要配置容器内的 Redis，那么你需要在宿主机中准备好一个配置文件，然后映射到容器中的任意位置，然后将这个「任意位置」告诉容器中的 Redis</strong></p>
+</li>
+<li><p>从GitHub上<a target="_blank" rel="noopener" href="https://github.com/redis/redis%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%E5%88%B0%E5%AF%B9%E5%BA%94%E6%95%B0%E6%8D%AE%E5%8D%B7%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%9A">https://github.com/redis/redis下载对应版本的配置文件拷贝到对应数据卷的位置：</a></p>
+<p><img src="image-20230519220344044.png" alt="Docker安装常用的软件/image-20230519220344044"></p>
+</li>
+<li><p><strong>修改redis.conf</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 允许访问的地址，默认是127.0.0.1，会导致只能在本地访问。修改为0.0.0.0则可以在任意IP访问，生产环境不要设置为0.0.0.0</span></span><br><span class="line"><span class="built_in">bind</span> 0.0.0.0</span><br><span class="line"><span class="comment"># 守护进程，修改为yes后即可后台运行,yes会使配置文件方式启动redis失败</span></span><br><span class="line">daemonize no </span><br><span class="line"><span class="comment"># 密码，设置后访问Redis必须输入密码</span></span><br><span class="line">requirepass 123456</span><br><span class="line"><span class="comment"># 监听的端口</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">appendonly <span class="built_in">yes</span> <span class="comment">#持久化</span></span><br><span class="line"><span class="built_in">dir</span>  /data        <span class="comment">#输入本地redis数据库存放文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置redis能够使用的最大内存</span></span><br><span class="line">maxmemory 512mb</span><br><span class="line"><span class="comment"># 日志文件，默认为空，不记录日志，可以指定日志文件名</span></span><br><span class="line">logfile <span class="string">&quot;redis.log&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-3-启动命令"><a href="#2-3-启动命令" class="headerlink" title="2.3 启动命令"></a>2.3 启动命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 6379:6379 \</span><br><span class="line">--name redis \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/redis/data:/data \</span><br><span class="line">-v /root/docker_volume/redis/conf:/etc/redis/conf \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d redis:6.2.6 \</span><br><span class="line">redis-server  /etc/redis/conf/redis.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 6379:6379 \</span><br><span class="line">--name redis \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/redis/data:/data \</span><br><span class="line">-v /root/docker_volume/redis/conf/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d redis:6.2.6 \</span><br><span class="line">redis-server  /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> <strong>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime</strong> ，使宿主机时间和docker时间一致</p>
+</blockquote>
+<blockquote>
+<p><strong>-v &#x2F;root&#x2F;docker_volume&#x2F;redis&#x2F;data:&#x2F;data</strong>，数据挂载</p>
+</blockquote>
+<blockquote>
+<p><strong>-v &#x2F;root&#x2F;docker_volume&#x2F;redis&#x2F;conf:&#x2F;etc&#x2F;redis&#x2F;conf</strong>，配置文件挂载</p>
+</blockquote>
+<blockquote>
+<p><strong>–privileged&#x3D;true</strong>，容器内权限为root用户权限，否则只是普通用户</p>
+</blockquote>
+<blockquote>
+<p><strong>–restart&#x3D;always</strong>，在重启docker时，自动启动该容器</p>
+</blockquote>
+<blockquote>
+<p><strong>-d</strong>  ，在后台运行容器，并且打印容器id</p>
+</blockquote>
+<p><img src="image-20230520111513258.png" alt="Docker安装常用的软件/image-20230520111513258"></p>
+<p><img src="image-20230520111535382.png" alt="Docker安装常用的软件/image-20230520111535382"></p>
+<p><img src="image-20230520113539279.png" alt="Docker安装常用的软件/image-20230520113539279"></p>
+<h2 id="2-4-redis命令所在目录"><a href="#2-4-redis命令所在目录" class="headerlink" title="2.4 redis命令所在目录"></a>2.4 redis命令所在目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230521151829690.png" alt="Docker安装常用的软件/image-20230521151829690"></p>
+<h2 id="2-5-挂载目录导致容器内文件清空"><a href="#2-5-挂载目录导致容器内文件清空" class="headerlink" title="2.5 挂载目录导致容器内文件清空"></a>2.5 挂载目录导致容器内文件清空</h2><p><strong>（有问题）</strong></p>
+<ul>
+<li>宿主机和容器内的文件或者目录进行绑定的方式有两种：<ul>
+<li>1.挂载文件或目录挂载容器内的文件或目录：如果挂载目录为空，则容器内的目录也会被清空；文件则是覆盖</li>
+<li>2.数据卷：可以解决挂载文件的问题<ul>
+<li>数据卷中没有文件时，会将容器目录中的文件挂载到数据卷中，数据卷中有文件时，会将数据卷中的文件覆盖容器目录中的文件</li>
+<li>数据卷不存在时会自动创建</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>所以，后续docker安装软件，除非个别清空，均使用数据卷挂载容器内的目录或者文件</li>
+</ul>
+<h1 id="3-MySQL安装"><a href="#3-MySQL安装" class="headerlink" title="3.MySQL安装"></a>3.MySQL安装</h1><h2 id="3-1-数据存储路径"><a href="#3-1-数据存储路径" class="headerlink" title="3.1 数据存储路径"></a>3.1 数据存储路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">--name mysql \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=<span class="string">&#x27;123456&#x27;</span> \</span><br><span class="line">-d mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>数据存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526201538502.png" alt="Docker安装常用的软件/image-20230526201538502"></p>
+</li>
+<li><p>日志存储路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/log/mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526201637678.png" alt="Docker安装常用的软件/image-20230526201637678"></p>
+</li>
+<li><p>配置文件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526203007650.png" alt="Docker安装常用的软件/image-20230526203007650"></p>
+<p><img src="image-20230526203033312.png" alt="Docker安装常用的软件/image-20230526203033312"></p>
+<p><img src="image-20230526203104098.png" alt="Docker安装常用的软件/image-20230526203104098"></p>
+<p><img src="image-20230526203129235.png" alt="Docker安装常用的软件/image-20230526203129235"></p>
+<p><img src="image-20230526203236503.png" alt="Docker安装常用的软件/image-20230526203236503"></p>
+<p><img src="image-20230526202849165.png" alt="Docker安装常用的软件/image-20230526202849165"></p>
+</li>
+</ul>
+<h2 id="3-2-安装"><a href="#3-2-安装" class="headerlink" title="3.2 安装"></a>3.2 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker stop mysql</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 由于目前我不知道具体配置文件的作用，所以暂时不做配置文件和日志挂载，只做数据挂载</span></span><br><span class="line"><span class="comment"># 密码需要加&#x27;&#x27;</span></span><br><span class="line">docker run \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">--name mysql \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/mysql/data:/var/lib/mysql \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=<span class="string">&#x27;123456&#x27;</span> \</span><br><span class="line">-d mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-RabbitMQ安装"><a href="#4-RabbitMQ安装" class="headerlink" title="4.RabbitMQ安装"></a>4.RabbitMQ安装</h1><h2 id="4-1-数据存储路径"><a href="#4-1-数据存储路径" class="headerlink" title="4.1 数据存储路径"></a>4.1 数据存储路径</h2><blockquote>
+<p>rabbitmq默认账号和密码是:guest ，默认情况只能在 localhost访问，所以我们需要通过刚才创建的admin用户进行登录。输入 <a target="_blank" rel="noopener" href="http://ip地址:15672/">http://IP地址:15672</a> 即可完成访问，账号密码都为admin</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-e RABBITMQ_DEFAULT_USER=root \</span><br><span class="line">-e RABBITMQ_DEFAULT_PASS=000000 \</span><br><span class="line">--name rabbitmq \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-p 15672:15672 \</span><br><span class="line">-p 5672:5672 \</span><br><span class="line">-d rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>消息存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/rabbitmq</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230521234523582.png" alt="Docker安装常用的软件/image-20230521234523582"></p>
+<ul>
+<li><strong>Mnesia</strong> 是一个分布式数据库，<strong>RabbitMQ</strong>使用它来存储有关<strong>用户</strong>、<strong>交换器</strong>、<strong>队列</strong>和<strong>绑定的信息</strong>。 但是，<strong>消息不存储在数据库</strong>中</li>
+</ul>
+</li>
+<li><p>日志存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/log/rabbitmq</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230521234716768.png" alt="Docker安装常用的软件/image-20230521234716768"></p>
+<ul>
+<li>RabbitMQ默认日志存放路径： &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#x72;&#97;&#98;&#x62;&#105;&#116;&#64;&#120;&#120;&#x78;&#46;&#x6c;&#111;&#x67;">&#x72;&#97;&#98;&#x62;&#105;&#116;&#64;&#120;&#120;&#x78;&#46;&#x6c;&#111;&#x67;</a>，日志包含了RabbitMQ的版本号、Erlang的版本号、RabbitMQ服务节点名称、cookie的hash值、RabbitMQ配置文件地址、内存限制、磁盘限制、默认账户guest的创建以及权限配置等等</li>
+</ul>
+</li>
+<li><p>配置文件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/rabbitmq</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230521234129573.png" alt="Docker安装常用的软件/image-20230521234129573"></p>
+</li>
+</ul>
+<h2 id="4-2-安装"><a href="#4-2-安装" class="headerlink" title="4.2 安装"></a>4.2 安装</h2><p><strong>暂时不做宿主机挂载</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-e RABBITMQ_DEFAULT_USER=root \</span><br><span class="line">-e RABBITMQ_DEFAULT_PASS=000000 \</span><br><span class="line">--name rabbitmq \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-p 15672:15672 \</span><br><span class="line">-p 5672:5672 \</span><br><span class="line">-d rabbitmq:3-management</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> rabbitmq:/var/log/rabbitmq/. /root/docker_volume/rabbitmq/log</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> rabbitmq:/etc/rabbitmq/. /root/docker_volume/rabbitmq/conf</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> rabbitmq:/var/lib/rabbitmq/. /root/docker_volume/rabbitmq/data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker stop rabbitmq</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> rabbitmq</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-e RABBITMQ_DEFAULT_USER=root \</span><br><span class="line">-e RABBITMQ_DEFAULT_PASS=000000 \</span><br><span class="line">--name rabbitmq \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/rabbitmq/log:/var/log/rabbitmq \</span><br><span class="line">-v /root/docker_volume/rabbitmq/conf:/etc/rabbitmq \</span><br><span class="line">-v /root/docker_volume/rabbitmq/data:/var/lib/rabbitmq \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-p 15672:15672 \</span><br><span class="line">-p 5672:5672 \</span><br><span class="line">-d rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-MongoDB安装"><a href="#5-MongoDB安装" class="headerlink" title="5.MongoDB安装"></a>5.MongoDB安装</h1><h2 id="5-1-数据存储路径"><a href="#5-1-数据存储路径" class="headerlink" title="5.1 数据存储路径"></a>5.1 数据存储路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230520000734071.png" alt="Docker安装常用的软件/image-20230520000734071"></p>
+<h2 id="5-2-配置文件存储路径"><a href="#5-2-配置文件存储路径" class="headerlink" title="5.2 配置文件存储路径"></a>5.2 配置文件存储路径</h2><p><strong>没发现mongodb.conf</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/mongod.conf.orig</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mongod.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for documentation of all options, see:</span></span><br><span class="line"><span class="comment">#   http://docs.mongodb.org/manual/reference/configuration-options/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Where and how to store data.</span></span><br><span class="line">storage:</span><br><span class="line">  dbPath: /var/lib/mongodb</span><br><span class="line">  journal:</span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line"><span class="comment">#  engine:</span></span><br><span class="line"><span class="comment">#  wiredTiger:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># where to write logging data.</span></span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">  path: /var/log/mongodb/mongod.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># network interfaces</span></span><br><span class="line">net:</span><br><span class="line">  port: 27017</span><br><span class="line">  bindIp: 127.0.0.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># how the process runs</span></span><br><span class="line">processManagement:</span><br><span class="line">  timeZoneInfo: /usr/share/zoneinfo</span><br><span class="line"></span><br><span class="line"><span class="comment">#security:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#operationProfiling:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#replication:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#sharding:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Enterprise-Only Options:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#auditLog:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#snmp:</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-3-启动命令"><a href="#5-3-启动命令" class="headerlink" title="5.3 启动命令"></a>5.3 启动命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 27017:27017 \</span><br><span class="line">--name mongo \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/mongodb/data:/data/db \</span><br><span class="line">-v /root/docker_volume/mongodb/conf:/etc/mongod.conf.orig</span><br><span class="line">-e MONGO_INITDB_ROOT_USERNAME=admin \</span><br><span class="line">-e MONGO_INITDB_ROOT_PASSWORD=123456 \</span><br><span class="line">-d mongo \</span><br><span class="line">--auth</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>-e MONGO_INITDB_ROOT_USERNAME&#x3D;admin -e MONGO_INITDB_ROOT_PASSWORD&#x3D;123456</strong>  指定容器内的环境变量 初始化容器账号、密码</p>
+</blockquote>
+<blockquote>
+<p><strong>–auth</strong>，需要密码才能访问容器服务</p>
+</blockquote>
+<h1 id="6-Nginx安装"><a href="#6-Nginx安装" class="headerlink" title="6.Nginx安装"></a>6.Nginx安装</h1><h2 id="6-1-数据存储路径"><a href="#6-1-数据存储路径" class="headerlink" title="6.1 数据存储路径"></a>6.1 数据存储路径</h2><ul>
+<li><p>配置文件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/nginx/</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230522110649352.png" alt="Docker安装常用的软件/image-20230522110649352"></p>
+</li>
+<li><p>数据存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/nginx/html</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230522111106242.png" alt="Docker安装常用的软件/image-20230522111106242"></p>
+</li>
+<li><p>日志存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/log/nginx</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230522112116782.png" alt="Docker安装常用的软件/image-20230522112116782"></p>
+</li>
+</ul>
+<h2 id="6-2-安装"><a href="#6-2-安装" class="headerlink" title="6.2 安装"></a>6.2 安装</h2><blockquote>
+<p>1.普通安装-复制相关的文件到宿主机</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成容器</span></span><br><span class="line">docker run --name nginx -p 80:80 -d nginx</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将容器nginx.conf文件复制到宿主机</span></span><br><span class="line">docker <span class="built_in">cp</span> nginx:/etc/nginx/nginx.conf /root/docker_volume/nginx/conf/nginx.conf</span><br><span class="line"><span class="comment"># 将容器conf.d文件夹下内容复制到宿主机</span></span><br><span class="line">docker <span class="built_in">cp</span> nginx:/etc/nginx/conf.d /root/docker_volume/nginx/conf/conf.d</span><br><span class="line"><span class="comment"># 将容器中的html文件夹复制到宿主机</span></span><br><span class="line">docker <span class="built_in">cp</span> nginx:/usr/share/nginx/html /root/docker_volume/nginx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.挂载安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 80:80 \</span><br><span class="line">--name nginx \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /root/docker_volume/nginx/conf/conf.d:/etc/nginx/conf.d \</span><br><span class="line">-v /root/docker_volume/nginx/log:/var/log/nginx \</span><br><span class="line">-v /root/docker_volume/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d nginx:latest</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-Httpd安装"><a href="#7-Httpd安装" class="headerlink" title="7.Httpd安装"></a>7.Httpd安装</h1><h2 id="7-1-数据存储路径"><a href="#7-1-数据存储路径" class="headerlink" title="7.1 数据存储路径"></a>7.1 数据存储路径</h2><ul>
+<li><p>配置文件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache2/conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230524115042547.png" alt="Docker安装常用的软件/image-20230524115042547"></p>
+</li>
+<li><p>数据存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache2/htdocs</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230524115121798.png" alt="Docker安装常用的软件/image-20230524115121798"></p>
+</li>
+<li><p>日志存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache2/logs</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230524115142799.png" alt="Docker安装常用的软件/image-20230524115142799"></p>
+</li>
+</ul>
+<h2 id="7-2-安装"><a href="#7-2-安装" class="headerlink" title="7.2 安装"></a>7.2 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">--name httpd \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d httpd:latest</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> httpd:/usr/local/apache2/htdocs/. /root/docker_volume/httpd/htdocs</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> httpd:/usr/local/apache2/conf/. /root/docker_volume/httpd/conf</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> httpd:/usr/local/apache2/logs/. /root/docker_volume/httpd/logs</span><br><span class="line"></span><br><span class="line">docker stop httpd</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> httpd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">--name httpd \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/httpd/htdocs:/usr/local/apache2/htdocs/ \</span><br><span class="line">-v /root/docker_volume/httpd/conf:/usr/local/apache2/conf/ \</span><br><span class="line">-v /root/docker_volume/httpd/logs:/usr/local/apache2/logs/ \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d httpd:latest</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="8-reader安装"><a href="#8-reader安装" class="headerlink" title="8.reader安装"></a>8.reader安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 8000:8080 \</span><br><span class="line">--name reader \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d hectorqin/reader:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8000:8080 \</span><br><span class="line">--name reader \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/reader/storage:/storage \</span><br><span class="line">-v /root/docker_volume/reader/logs:/logs \</span><br><span class="line">-e <span class="string">&quot;SPRING_PROFILES_ACTIVE=prod&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;READER_APP_SECURE=true&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;READER_APP_SECUREKEY=root&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;READER_APP_INVITECODE=yangtongyu&quot;</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d hectorqin/reader:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8000:8080 \</span><br><span class="line">--name reader \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/reader/storage:/storage \</span><br><span class="line">-v /root/docker_volume/reader/logs:/logs \</span><br><span class="line">-e <span class="string">&quot;SPRING_PROFILES_ACTIVE=prod&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;READER_APP_SECURE=true&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;READER_APP_SECUREKEY=root&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;READER_APP_INVITECODE=yangtongyu&quot;</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d hectorqin/reader:latest \</span><br><span class="line">java -jar /app/bin/reader.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="9-Java安装"><a href="#9-Java安装" class="headerlink" title="9.Java安装"></a>9.Java安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-it \</span><br><span class="line">--name java \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-v /root/docker_volume/java:/home \</span><br><span class="line">-p 7000:8080 \</span><br><span class="line">-d java</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">cp</span> /root/docker_volume/java/xscjcx-0.0.1-SNAPSHOT.jar java:/home</span><br><span class="line"></span><br><span class="line"><span class="comment"># /root/docker_volume/java =&gt; 存储项目jar包和日志文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">nohup</span> java -jar xscjcx-0.0.1-SNAPSHOT.jar &gt; xscjcx.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<h1 id="10-Tomcat"><a href="#10-Tomcat" class="headerlink" title="10.Tomcat"></a>10.Tomcat</h1><h2 id="10-1-数据存储路径"><a href="#10-1-数据存储路径" class="headerlink" title="10.1 数据存储路径"></a>10.1 数据存储路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/tomcat</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230525204323099.png" alt="Docker安装常用的软件/image-20230525204323099"></p>
+<blockquote>
+<p>与Windows下的tomcat目录结构类似</p>
+</blockquote>
+<p><img src="image-20230525204400849.png" alt="Docker安装常用的软件/image-20230525204400849"></p>
+<blockquote>
+<p>多了两个目录</p>
+</blockquote>
+<ul>
+<li>native-jni-lib</li>
+<li>webapps.dist</li>
+</ul>
+<blockquote>
+<p>默认webpps目录内为空，内容在webapps.dist目录下</p>
+</blockquote>
+<p><img src="image-20230525204844692.png" alt="Docker安装常用的软件/image-20230525204844692"></p>
+<blockquote>
+<p>和Windows安装目录webapps内容一样</p>
+</blockquote>
+<p><img src="image-20230525204931771.png" alt="Docker安装常用的软件/image-20230525204931771"></p>
+<h2 id="10-2-安装"><a href="#10-2-安装" class="headerlink" title="10.2 安装"></a>10.2 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 8081:8080 \</span><br><span class="line">--name tomcat \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d tomcat:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230525205528748.png" alt="Docker安装常用的软件/image-20230525205528748"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> -r webapps.dist/* webapps/</span><br><span class="line"></span><br><span class="line">docker restart tomcat</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230525205626129.png" alt="Docker安装常用的软件/image-20230525205626129"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker stop tomcat</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> tomcat</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8081:8080 \</span><br><span class="line">--name tomcat \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/tomcat/webapps:/usr/local/tomcat/webapps \</span><br><span class="line">-v /root/docker_volume/tomcat/logs:/usr/local/tomcat/logs \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d tomcat:latest</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打好一个war包</p>
+</blockquote>
+<p><img src="image-20230525213139158.png" alt="Docker安装常用的软件/image-20230525213139158"></p>
+<blockquote>
+<p>将war包复制到宿主机webapps目录下，tomcat自动将war包解压</p>
+</blockquote>
+<p><img src="image-20230525213305935.png" alt="Docker安装常用的软件/image-20230525213305935"></p>
+<p><img src="image-20230525213326464.png" alt="Docker安装常用的软件/image-20230525213326464"></p>
+<blockquote>
+<p>谷歌浏览器访问项目</p>
+</blockquote>
+<p><img src="image-20230525213413002.png" alt="Docker安装常用的软件/image-20230525213413002"></p>
+<p><img src="image-20230525213436780.png" alt="Docker安装常用的软件/image-20230525213436780"></p>
+<blockquote>
+<p>报错</p>
+</blockquote>
+<p><img src="image-20230525221945193.png" alt="Docker安装常用的软件/image-20230525221945193"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: class com.yang.HelloServlet cannot be cast to class jakarta.servlet.Servlet (com.yang.HelloServlet is <span class="keyword">in</span> unnamed module of loader org.apache.catalina.loader.ParallelWebappClassLoader @25c6da3; jakarta.servlet.Servlet is <span class="keyword">in</span> unnamed module of loader java.net.URLClassLoader @3d646c37)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>原因：</strong> Tomcat中javax.servlet 确实被换成了 jaraka.servlet（<strong>tomcat 10</strong>前后）</li>
+</ul>
+<blockquote>
+<p>重新安装低于tomcat10版本的</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">docker stop tomcat</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> tomcat</span><br><span class="line"></span><br><span class="line">docker rmi tomcat:latest</span><br><span class="line"></span><br><span class="line">docker pull tomcat:8.5.61</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8081:8080 \</span><br><span class="line">--name tomcat \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/tomcat/webapps:/usr/local/tomcat/webapps \</span><br><span class="line">-v /root/docker_volume/tomcat/logs:/usr/local/tomcat/logs \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d tomcat:8.5.61</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230525223130614.png" alt="Docker安装常用的软件/image-20230525223130614"></p>
+<blockquote>
+<p>日志文件</p>
+</blockquote>
+<p><img src="image-20230525223728042.png" alt="Docker安装常用的软件/image-20230525223728042"></p>
+<h1 id="11-Elasticsearch"><a href="#11-Elasticsearch" class="headerlink" title="11.Elasticsearch"></a>11.Elasticsearch</h1><h2 id="11-1-Elasticsearch"><a href="#11-1-Elasticsearch" class="headerlink" title="11.1 Elasticsearch"></a>11.1 Elasticsearch</h2><h3 id="11-1-1-数据存储路径"><a href="#11-1-1-数据存储路径" class="headerlink" title="11.1.1 数据存储路径"></a>11.1.1 数据存储路径</h3><blockquote>
+<p>1.下载镜像</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:7.17.10</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.打包镜像：因为下载很慢，所以打包方便迁移使用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o elasticsearch-7.10.17.tar elasticsearch:7.17.10</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526113627389.png" alt="Docker安装常用的软件/image-20230526113627389"></p>
+<blockquote>
+<p>3.基本安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name elasticsearch \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-e <span class="string">&quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;discovery.type=single-node&quot;</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-p 9200:9200 \</span><br><span class="line">-p 9300:9300 \</span><br><span class="line">-d elasticsearch:7.17.10</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526131029250.png" alt="Docker安装常用的软件/image-20230526131029250"></p>
+<ul>
+<li><p>数据存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/elasticsearch/data</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526131211168.png" alt="Docker安装常用的软件/image-20230526131211168"></p>
+</li>
+<li><p>配置文件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/elasticsearch/config</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526131400292.png" alt="Docker安装常用的软件/image-20230526131400292"></p>
+</li>
+<li><p>日志存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/elasticsearch/logs</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526131311663.png" alt="Docker安装常用的软件/image-20230526131311663"></p>
+</li>
+<li><p>插件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/elasticsearch/plugins</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526131439177.png" alt="Docker安装常用的软件/image-20230526131439177"></p>
+</li>
+</ul>
+<blockquote>
+<p>4.复制配置文件到宿主机目录</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> elasticsearch:/usr/share/elasticsearch/config/elasticsearch.yml /root/docker_volume/elasticsearch/config</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5.复制基本数据到宿主机目录</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> elasticsearch:/usr/share/elasticsearch/data/. /root/docker_volume/elasticsearch/data</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>6.复制日志文件到宿主机目录</p>
+</blockquote>
+<ul>
+<li><p>不复制日志文件，则直接挂载日志目录会报错</p>
+<p><img src="image-20230526133821182.png" alt="Docker安装常用的软件/image-20230526133821182"></p>
+<p><img src="image-20230526133916977.png" alt="Docker安装常用的软件/image-20230526133916977"></p>
+</li>
+<li><p>或者不挂载日志目录：直接通过<code>docker logs elasticsearch</code>查看日志或者进入容器查看日志文件</p>
+<p><img src="image-20230526134010635.png" alt="Docker安装常用的软件/image-20230526134010635"></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> elasticsearch:/usr/share/elasticsearch/logs/. /root/docker_volume/elasticsearch/logs</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>7.删除此容器</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop elasticsearch</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> elasticsearch</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-1-2-安装"><a href="#11-1-2-安装" class="headerlink" title="11.1.2 安装"></a>11.1.2 安装</h3><blockquote>
+<p>1.创建网络</p>
+</blockquote>
+<ul>
+<li>因为还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create es-kibana-net</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526135833507.png" alt="Docker安装常用的软件/image-20230526135833507"></p>
+<blockquote>
+<p>2.安装elasticsearch，创建elasticsearch容器</p>
+</blockquote>
+<ul>
+<li>运行docker命令，部署单点elasticsearch：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">--name elasticsearch \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-e <span class="string">&quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;</span> \</span><br><span class="line">-e <span class="string">&quot;discovery.type=single-node&quot;</span> \</span><br><span class="line">-v /root/docker_volume/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line">-v /root/docker_volume/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line">-v /root/docker_volume/elasticsearch/logs:/usr/share/elasticsearch/logs \</span><br><span class="line">-v /root/docker_volume/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">--network es-kibana-net \</span><br><span class="line">-p 9200:9200 \</span><br><span class="line">-p 9300:9300 \</span><br><span class="line">-d elasticsearch:7.17.10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命令解释：<ul>
+<li><code>-e &quot;cluster.name=es-docker-cluster&quot;</code>：设置集群名称</li>
+<li><code>-e &quot;http.host=0.0.0.0&quot;</code>：监听的地址，可以外网访问</li>
+<li><code>-e &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;</code>：内存大小</li>
+<li><code>-e &quot;discovery.type=single-node&quot;</code>：非集群模式</li>
+<li><code>--network es-kibana-net</code> ：加入一个名为es-kibana-net的网络中</li>
+<li><code>-p 9200:9200</code>：端口映射配置</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-2-Kibana"><a href="#11-2-Kibana" class="headerlink" title="11.2 Kibana"></a>11.2 Kibana</h2><ul>
+<li>kibana可以给提供一个elasticsearch的可视化界面，便于学习</li>
+</ul>
+<blockquote>
+<p>1.下载镜像</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull kibana:7.17.10</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.打包镜像：因为下载很慢，所以打包方便迁移使用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o kibana-7.10.17.tar kibana:7.17.10</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526113944244.png" alt="Docker安装常用的软件/image-20230526113944244"></p>
+<blockquote>
+<p>3.部署</p>
+</blockquote>
+<ul>
+<li>运行docker命令，部署kibana</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name kibana \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-e ELASTICSEARCH_HOSTS=http://elasticsearch:9200 \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">--network es-kibana-net \</span><br><span class="line">-p 5601:5601  \</span><br><span class="line">kibana:7.17.10</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>--network es-kibana-net</code> ：加入一个名为es-kibana-net的网络中，与elasticsearch在同一个网络中</li>
+<li><code>-e ELASTICSEARCH_HOSTS=http://elasticsearch:9200&quot;</code>：设置elasticsearch的地址，因为kibana已经与elasticsearch在一个网络，因此可以用容器名直接访问elasticsearch</li>
+<li><code>-p 5601:5601</code>：端口映射配置</li>
+</ul>
+<p><img src="image-20230526143036308.png" alt="Docker安装常用的软件/image-20230526143036308"></p>
+<ul>
+<li><p>kibana启动一般比较慢，需要多等待一会，可以通过命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f kibana</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看运行日志，当查看到下面的日志，说明成功：</p>
+<p><img src="image-20230526143823887.png" alt="Docker安装常用的软件/image-20230526143823887"></p>
+</li>
+</ul>
+<blockquote>
+<p>4.DevTools</p>
+</blockquote>
+<ul>
+<li><p>kibana中提供了一个DevTools界面：</p>
+<p><img src="image-20230526143957945.png" alt="Docker安装常用的软件/image-20230526143957945"></p>
+</li>
+</ul>
+<blockquote>
+<p>5.添加ik分词器插件</p>
+</blockquote>
+<p><img src="image-20230526145503114.png" alt="Docker安装常用的软件/image-20230526145503114"></p>
+<ul>
+<li><p>重启elasticsearch容器报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker restart elasticsearch</span><br><span class="line"></span><br><span class="line">docker logs -f elasticsearch</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230526145655651.png" alt="Docker安装常用的软件/image-20230526145655651"></p>
+</li>
+<li><p>版本不一致，更换ik版本</p>
+</li>
+</ul>
+<h2 id="11-3-ik分词器"><a href="#11-3-ik分词器" class="headerlink" title="11.3 ik分词器"></a>11.3 ik分词器</h2><blockquote>
+<p>1.下载地址</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik/releases">https://github.com/medcl/elasticsearch-analysis-ik/releases</a></p>
+<blockquote>
+<p>2.下载与elasticsearch一致的版本</p>
+</blockquote>
+<ul>
+<li><p>发现没有7.17.10版本的ik分词器，则下载一个版本最接近的ik分词器</p>
+<p><img src="image-20230526151254218.png" alt="Docker安装常用的软件/image-20230526151254218"></p>
+</li>
+<li><p>解压到ik，复制到plugins目录下</p>
+<p><img src="image-20230526151350095.png" alt="Docker安装常用的软件/image-20230526151350095"></p>
+</li>
+<li><p>修改配置文件&#x2F;root&#x2F;docker_volume&#x2F;elasticsearch&#x2F;plugins&#x2F;ik&#x2F;plugin-descriptor.properties里的版本号</p>
+<p><img src="image-20230526151456905.png" alt="Docker安装常用的软件/image-20230526151456905"></p>
+</li>
+<li><p>重启elasticsearch容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker restart elasticsearch</span><br><span class="line"></span><br><span class="line">docker logs -f elasticsearch</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="12-redislabs-x2F-redisinsight"><a href="#12-redislabs-x2F-redisinsight" class="headerlink" title="12.redislabs&#x2F;redisinsight"></a>12.redislabs&#x2F;redisinsight</h1><h2 id="12-1-数据存储路径"><a href="#12-1-数据存储路径" class="headerlink" title="12.1 数据存储路径"></a>12.1 数据存储路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker pull redislabs/redisinsight</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8001:8001 \</span><br><span class="line">--name redisinsight \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d redislabs/redisinsight:latest</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>数据存储路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/db</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528014544445.png" alt="Docker安装常用的软件/image-20230528014544445"></p>
+</li>
+</ul>
+<h2 id="12-2-安装"><a href="#12-2-安装" class="headerlink" title="12.2 安装"></a>12.2 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker stop redisinsight</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> redisinsight</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">-p 8001:8001 \</span><br><span class="line">--name redisinsight \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/redisinsight/data:/db \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-d redislabs/redisinsight:latest</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问：<a target="_blank" rel="noopener" href="http://192.168.198.134:8001/">http://192.168.198.134:8001</a></p>
+</blockquote>
+<p><img src="image-20230528015728169.png" alt="Docker安装常用的软件/image-20230528015728169"></p>
+<p><img src="image-20230528015820926.png" alt="Docker安装常用的软件/image-20230528015820926"></p>
+<p><img src="image-20230528015958064.png" alt="Docker安装常用的软件/image-20230528015958064"></p>
+<p><img src="image-20230528020015106.png" alt="Docker安装常用的软件/image-20230528020015106"></p>
+<ul>
+<li>主机（Host）：是群晖的 IP ，也就是 192.168.0.197</li>
+<li>端口（Port）：为主机的 本地端口 而不是 容器端口 ，所以是 6479</li>
+<li>名称（Name）：并没有设置过，但是这里又是必填的，所以随便设了个 redis</li>
+<li>用户名（Username）和密码（Password），Username没设置过，所以直接留空，Password设置了就必需填</li>
+</ul>
+<p><img src="image-20230528020744873.png" alt="Docker安装常用的软件/image-20230528020744873"></p>
+<p><img src="image-20230528020834009.png" alt="Docker安装常用的软件/image-20230528020834009"></p>
+<p><img src="image-20230528020924676.png" alt="Docker安装常用的软件/image-20230528020924676"></p>
+<p><img src="image-20230528021154588.png" alt="Docker安装常用的软件/image-20230528021154588"></p>
+<p><img src="image-20230528021230315.png" alt="Docker安装常用的软件/image-20230528021230315"></p>
+<h1 id="13-Neo4j"><a href="#13-Neo4j" class="headerlink" title="13.Neo4j"></a>13.Neo4j</h1><h2 id="13-1-数据存储路径"><a href="#13-1-数据存储路径" class="headerlink" title="13.1 数据存储路径"></a>13.1 数据存储路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-v /home/neo4j/data:/data   <span class="comment"># 把容器内的数据目录挂载到宿主机的对应目录下</span></span><br><span class="line">-v /home/neo4j/logs:/logs   <span class="comment"># 挂载日志目录</span></span><br><span class="line">-v /home/neo4j/conf:/var/lib/neo4j/conf   <span class="comment"># 挂载配置目录</span></span><br><span class="line">-v /home/neo4j/import:/var/lib/neo4j/import   <span class="comment"># 挂载数据导入目录</span></span><br><span class="line">-e NEO4J_AUTH=neo4j/password   <span class="comment"># 设定数据库的名字的访问密码，名字必须是neo4j，否则报错：Invalid admin username, it must be neo4j</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker pull neo4j</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">--name neo4j \</span><br><span class="line">-p 27474:7474 \</span><br><span class="line">-p 27687:7687 \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-e NEO4J_AUTH=neo4j/123456 \</span><br><span class="line">-d neo4j:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528131152719.png" alt="Docker安装常用的软件/image-20230528131152719"></p>
+<ul>
+<li><p>配置文件存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/neo4j/conf/neo4j.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528131012792.png" alt="Docker安装常用的软件/image-20230528131012792"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"><span class="comment"># Neo4j configuration</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more details and a complete list of settings, please see</span></span><br><span class="line"><span class="comment"># https://neo4j.com/docs/operations-manual/current/reference/configuration-settings/</span></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The name of the default database</span></span><br><span class="line"><span class="comment">#dbms.default_database=neo4j</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Paths of directories in the installation.</span></span><br><span class="line"><span class="comment">#dbms.directories.data=data</span></span><br><span class="line"><span class="comment">#dbms.directories.plugins=plugins</span></span><br><span class="line"><span class="comment">#dbms.directories.logs=logs</span></span><br><span class="line"><span class="comment">#dbms.directories.lib=lib</span></span><br><span class="line"><span class="comment">#dbms.directories.run=run</span></span><br><span class="line"><span class="comment">#dbms.directories.licenses=licenses</span></span><br><span class="line"><span class="comment">#dbms.directories.transaction.logs.root=data/transactions</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This setting constrains all `LOAD CSV` import files to be under the `import` directory. Remove or comment it out to</span></span><br><span class="line"><span class="comment"># allow files to be loaded from anywhere in the filesystem; this introduces possible security problems. See the</span></span><br><span class="line"><span class="comment"># `LOAD CSV` section of the manual for details.</span></span><br><span class="line">dbms.directories.import=import</span><br><span class="line"></span><br><span class="line"><span class="comment"># Whether requests to Neo4j are authenticated.</span></span><br><span class="line"><span class="comment"># To disable authentication, uncomment this line</span></span><br><span class="line"><span class="comment">#dbms.security.auth_enabled=false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable this to be able to upgrade a store from an older version.</span></span><br><span class="line"><span class="comment">#dbms.allow_upgrade=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"><span class="comment"># Memory Settings</span></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Memory settings are specified kilobytes with the &#x27;k&#x27; suffix, megabytes with</span></span><br><span class="line"><span class="comment"># &#x27;m&#x27; and gigabytes with &#x27;g&#x27;.</span></span><br><span class="line"><span class="comment"># If Neo4j is running on a dedicated server, then it is generally recommended</span></span><br><span class="line"><span class="comment"># to leave about 2-4 gigabytes for the operating system, give the JVM enough</span></span><br><span class="line"><span class="comment"># heap to hold all your transaction state and query context, and then leave the</span></span><br><span class="line"><span class="comment"># rest for the page cache.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Java Heap Size: by default the Java heap size is dynamically calculated based</span></span><br><span class="line"><span class="comment"># on available system resources. Uncomment these lines to set specific initial</span></span><br><span class="line"><span class="comment"># and maximum heap size.</span></span><br><span class="line"><span class="comment">#dbms.memory.heap.initial_size=512m</span></span><br><span class="line"><span class="comment">#dbms.memory.heap.max_size=512m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The amount of memory to use for mapping the store files.</span></span><br><span class="line"><span class="comment"># The default page cache memory assumes the machine is dedicated to running</span></span><br><span class="line"><span class="comment"># Neo4j, and is heuristically set to 50% of RAM minus the Java heap size.</span></span><br><span class="line"><span class="comment">#dbms.memory.pagecache.size=10g</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Limit the amount of memory that all of the running transaction can consume.</span></span><br><span class="line"><span class="comment"># By default there is no limit.</span></span><br><span class="line"><span class="comment">#dbms.memory.transaction.global_max_size=256m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Limit the amount of memory that a single transaction can consume.</span></span><br><span class="line"><span class="comment"># By default there is no limit.</span></span><br><span class="line"><span class="comment">#dbms.memory.transaction.max_size=16m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Transaction state location. It is recommended to use ON_HEAP.</span></span><br><span class="line">dbms.tx_state.memory_allocation=ON_HEAP</span><br><span class="line"></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"><span class="comment"># Network connector configuration</span></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># With default configuration Neo4j only accepts local connections.</span></span><br><span class="line"><span class="comment"># To accept non-local connections, uncomment this line:</span></span><br><span class="line"><span class="comment">#dbms.default_listen_address=0.0.0.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You can also choose a specific network interface, and configure a non-default</span></span><br><span class="line"><span class="comment"># port for each connector, by setting their individual listen_address.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The address at which this server can be reached by its clients. This may be the server&#x27;s IP address or DNS name, or</span></span><br><span class="line"><span class="comment"># it may be the address of a reverse proxy which sits in front of the server. This setting may be overridden for</span></span><br><span class="line"><span class="comment"># individual connectors below.</span></span><br><span class="line"><span class="comment">#dbms.default_advertised_address=localhost</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You can also choose a specific advertised hostname or IP address, and</span></span><br><span class="line"><span class="comment"># configure an advertised port for each connector, by setting their</span></span><br><span class="line"><span class="comment"># individual advertised_address.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># By default, encryption is turned off.</span></span><br><span class="line"><span class="comment"># To turn on encryption, an ssl policy for the connector needs to be configured</span></span><br><span class="line"><span class="comment"># Read more in SSL policy section in this file for how to define a SSL policy.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Bolt connector</span></span><br><span class="line">dbms.connector.bolt.enabled=<span class="literal">true</span></span><br><span class="line"><span class="comment">#dbms.connector.bolt.tls_level=DISABLED</span></span><br><span class="line"><span class="comment">#dbms.connector.bolt.listen_address=:7687</span></span><br><span class="line"><span class="comment">#dbms.connector.bolt.advertised_address=:7687</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># HTTP Connector. There can be zero or one HTTP connectors.</span></span><br><span class="line">dbms.connector.http.enabled=<span class="literal">true</span></span><br><span class="line"><span class="comment">#dbms.connector.http.listen_address=:7474</span></span><br><span class="line"><span class="comment">#dbms.connector.http.advertised_address=:7474</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># HTTPS Connector. There can be zero or one HTTPS connectors.</span></span><br><span class="line">dbms.connector.https.enabled=<span class="literal">false</span></span><br><span class="line"><span class="comment">#dbms.connector.https.listen_address=:7473</span></span><br><span class="line"><span class="comment">#dbms.connector.https.advertised_address=:7473</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Number of Neo4j worker threads.</span></span><br><span class="line"><span class="comment">#dbms.threads.worker_count=</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"><span class="comment"># SSL policy configuration</span></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Each policy is configured under a separate namespace, e.g.</span></span><br><span class="line"><span class="comment">#    dbms.ssl.policy.&lt;scope&gt;.*</span></span><br><span class="line"><span class="comment">#    &lt;scope&gt; can be any of &#x27;bolt&#x27;, &#x27;https&#x27;, &#x27;cluster&#x27; or &#x27;backup&#x27;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The scope is the name of the component where the policy will be used</span></span><br><span class="line"><span class="comment"># Each component where the use of an ssl policy is desired needs to declare at least one setting of the policy.</span></span><br><span class="line"><span class="comment"># Allowable values are &#x27;bolt&#x27;, &#x27;https&#x27;, &#x27;cluster&#x27; or &#x27;backup&#x27;.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># E.g if bolt and https connectors should use the same policy, the following could be declared</span></span><br><span class="line"><span class="comment">#   dbms.ssl.policy.bolt.base_directory=certificates/default</span></span><br><span class="line"><span class="comment">#   dbms.ssl.policy.https.base_directory=certificates/default</span></span><br><span class="line"><span class="comment"># However, it&#x27;s strongly encouraged to not use the same key pair for multiple scopes.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># N.B: Note that a connector must be configured to support/require</span></span><br><span class="line"><span class="comment">#      SSL/TLS for the policy to actually be utilized.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># see: dbms.connector.*.tls_level</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SSL settings (dbms.ssl.policy.&lt;scope&gt;.*)</span></span><br><span class="line"><span class="comment">#  .base_directory       Base directory for SSL policies paths. All relative paths within the</span></span><br><span class="line"><span class="comment">#                        SSL configuration will be resolved from the base dir.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .private_key          A path to the key file relative to the &#x27;.base_directory&#x27;.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .private_key_password The password for the private key.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .public_certificate   A path to the public certificate file relative to the &#x27;.base_directory&#x27;.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .trusted_dir          A path to a directory containing trusted certificates.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .revoked_dir          Path to the directory with Certificate Revocation Lists (CRLs).</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .verify_hostname      If true, the server will verify the hostname that the client uses to connect with. In order</span></span><br><span class="line"><span class="comment">#                        for this to work, the server public certificate must have a valid CN and/or matching</span></span><br><span class="line"><span class="comment">#                        Subject Alternative Names.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .client_auth          How the client should be authorized. Possible values are: &#x27;none&#x27;, &#x27;optional&#x27;, &#x27;require&#x27;.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .tls_versions         A comma-separated list of allowed TLS versions. By default only TLSv1.2 is allowed.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .trust_all            Setting this to &#x27;true&#x27; will ignore the trust truststore, trusting all clients and servers.</span></span><br><span class="line"><span class="comment">#                        Use of this mode is discouraged. It would offer encryption but no security.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  .ciphers              A comma-separated list of allowed ciphers. The default ciphers are the defaults of</span></span><br><span class="line"><span class="comment">#                        the JVM platform.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Bolt SSL configuration</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.bolt.enabled=true</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.bolt.base_directory=certificates/bolt</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.bolt.private_key=private.key</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.bolt.public_certificate=public.crt</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.bolt.client_auth=NONE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Https SSL configuration</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.https.enabled=true</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.https.base_directory=certificates/https</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.https.private_key=private.key</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.https.public_certificate=public.crt</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.https.client_auth=NONE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Cluster SSL configuration</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.cluster.enabled=true</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.cluster.base_directory=certificates/cluster</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.cluster.private_key=private.key</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.cluster.public_certificate=public.crt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Backup SSL configuration</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.backup.enabled=true</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.backup.base_directory=certificates/backup</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.backup.private_key=private.key</span></span><br><span class="line"><span class="comment">#dbms.ssl.policy.backup.public_certificate=public.crt</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"><span class="comment"># Logging configuration</span></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># To enable HTTP logging, uncomment this line</span></span><br><span class="line"><span class="comment">#dbms.logs.http.enabled=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Number of HTTP logs to keep.</span></span><br><span class="line"><span class="comment">#dbms.logs.http.rotation.keep_number=5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Size of each HTTP log that is kept.</span></span><br><span class="line"><span class="comment">#dbms.logs.http.rotation.size=20m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># To enable GC Logging, uncomment this line</span></span><br><span class="line"><span class="comment">#dbms.logs.gc.enabled=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># GC Logging Options</span></span><br><span class="line"><span class="comment"># see https://docs.oracle.com/en/java/javase/11/tools/java.html#GUID-BE93ABDC-999C-4CB5-A88B-1994AAAC74D5</span></span><br><span class="line"><span class="comment">#dbms.logs.gc.options=-Xlog:gc*,safepoint,age*=trace</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Number of GC logs to keep.</span></span><br><span class="line"><span class="comment">#dbms.logs.gc.rotation.keep_number=5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Size of each GC log that is kept.</span></span><br><span class="line"><span class="comment">#dbms.logs.gc.rotation.size=20m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Log level for the debug log. One of DEBUG, INFO, WARN and ERROR. Be aware that logging at DEBUG level can be very verbose.</span></span><br><span class="line"><span class="comment">#dbms.logs.debug.level=INFO</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Size threshold for rotation of the debug log. If set to zero then no rotation will occur. Accepts a binary suffix &quot;k&quot;,</span></span><br><span class="line"><span class="comment"># &quot;m&quot; or &quot;g&quot;.</span></span><br><span class="line"><span class="comment">#dbms.logs.debug.rotation.size=20m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Maximum number of history files for the internal log.</span></span><br><span class="line"><span class="comment">#dbms.logs.debug.rotation.keep_number=7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"><span class="comment"># Miscellaneous configuration</span></span><br><span class="line"><span class="comment">#*****************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable this to specify a parser other than the default one.</span></span><br><span class="line"><span class="comment">#cypher.default_language_version=3.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Determines if Cypher will allow using file URLs when loading data using</span></span><br><span class="line"><span class="comment"># `LOAD CSV`. Setting this value to `false` will cause Neo4j to fail `LOAD CSV`</span></span><br><span class="line"><span class="comment"># clauses that load data from the file system.</span></span><br><span class="line"><span class="comment">#dbms.security.allow_csv_import_from_file_urls=true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Value of the Access-Control-Allow-Origin header sent over any HTTP or HTTPS</span></span><br><span class="line"><span class="comment"># connector. This defaults to &#x27;*&#x27;, which allows broadest compatibility. Note</span></span><br><span class="line"><span class="comment"># that any URI provided here limits HTTP/HTTPS access to that URI only.</span></span><br><span class="line"><span class="comment">#dbms.security.http_access_control_allow_origin=*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Value of the HTTP Strict-Transport-Security (HSTS) response header. This header</span></span><br><span class="line"><span class="comment"># tells browsers that a webpage should only be accessed using HTTPS instead of HTTP.</span></span><br><span class="line"><span class="comment"># It is attached to every HTTPS response. Setting is not set by default so</span></span><br><span class="line"><span class="comment"># &#x27;Strict-Transport-Security&#x27; header is not sent. Value is expected to contain</span></span><br><span class="line"><span class="comment"># directives like &#x27;max-age&#x27;, &#x27;includeSubDomains&#x27; and &#x27;preload&#x27;.</span></span><br><span class="line"><span class="comment">#dbms.security.http_strict_transport_security=</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Retention policy for transaction logs needed to perform recovery and backups.</span></span><br><span class="line">dbms.tx_log.rotation.retention_policy=1 days</span><br><span class="line"></span><br><span class="line"><span class="comment"># Only allow read operations from this Neo4j instance. This mode still requires</span></span><br><span class="line"><span class="comment"># write access to the directory for lock purposes.</span></span><br><span class="line"><span class="comment">#dbms.read_only=false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Comma separated list of JAX-RS packages containing JAX-RS resources, one</span></span><br><span class="line"><span class="comment"># package name for each mountpoint. The listed package names will be loaded</span></span><br><span class="line"><span class="comment"># under the mountpoints specified. Uncomment this line to mount the</span></span><br><span class="line"><span class="comment"># org.neo4j.examples.server.unmanaged.HelloWorldResource.java from</span></span><br><span class="line"><span class="comment"># neo4j-server-examples under /examples/unmanaged, resulting in a final URL of</span></span><br><span class="line"><span class="comment"># http://localhost:7474/examples/unmanaged/helloworld/&#123;nodeId&#125;</span></span><br><span class="line"><span class="comment">#dbms.unmanaged_extension_classes=org.neo4j.examples.server.unmanaged=/examples/unmanaged</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A comma separated list of procedures and user defined functions that are allowed</span></span><br><span class="line"><span class="comment"># full access to the database through unsupported/insecure internal APIs.</span></span><br><span class="line"><span class="comment">#dbms.security.procedures.unrestricted=my.extensions.example,my.procedures.*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A comma separated list of procedures to be loaded by default.</span></span><br><span class="line"><span class="comment"># Leaving this unconfigured will load all procedures found.</span></span><br><span class="line"><span class="comment">#dbms.security.procedures.allowlist=apoc.coll.*,apoc.load.*,gds.*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"><span class="comment"># JVM Parameters</span></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># G1GC generally strikes a good balance between throughput and tail</span></span><br><span class="line"><span class="comment"># latency, without too much tuning.</span></span><br><span class="line">dbms.jvm.additional=-XX:+UseG1GC</span><br><span class="line"></span><br><span class="line"><span class="comment"># Have common exceptions keep producing stack traces, so they can be</span></span><br><span class="line"><span class="comment"># debugged regardless of how often logs are rotated.</span></span><br><span class="line">dbms.jvm.additional=-XX:-OmitStackTraceInFastThrow</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure that `initmemory` is not only allocated, but committed to</span></span><br><span class="line"><span class="comment"># the process, before starting the database. This reduces memory</span></span><br><span class="line"><span class="comment"># fragmentation, increasing the effectiveness of transparent huge</span></span><br><span class="line"><span class="comment"># pages. It also reduces the possibility of seeing performance drop</span></span><br><span class="line"><span class="comment"># due to heap-growing GC events, where a decrease in available page</span></span><br><span class="line"><span class="comment"># cache leads to an increase in mean IO response time.</span></span><br><span class="line"><span class="comment"># Try reducing the heap memory, if this flag degrades performance.</span></span><br><span class="line">dbms.jvm.additional=-XX:+AlwaysPreTouch</span><br><span class="line"></span><br><span class="line"><span class="comment"># Trust that non-static final fields are really final.</span></span><br><span class="line"><span class="comment"># This allows more optimizations and improves overall performance.</span></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> Disable this if you use embedded mode, or have extensions or dependencies that may use reflection or</span></span><br><span class="line"><span class="comment"># serialization to change the value of final fields!</span></span><br><span class="line">dbms.jvm.additional=-XX:+UnlockExperimentalVMOptions</span><br><span class="line">dbms.jvm.additional=-XX:+TrustFinalNonStaticFields</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable explicit garbage collection, which is occasionally invoked by the JDK itself.</span></span><br><span class="line">dbms.jvm.additional=-XX:+DisableExplicitGC</span><br><span class="line"></span><br><span class="line"><span class="comment">#Increase maximum number of nested calls that can be inlined from 9 (default) to 15</span></span><br><span class="line">dbms.jvm.additional=-XX:MaxInlineLevel=15</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable biased locking</span></span><br><span class="line">dbms.jvm.additional=-XX:-UseBiasedLocking</span><br><span class="line"></span><br><span class="line"><span class="comment"># Restrict size of cached JDK buffers to 256 KB</span></span><br><span class="line">dbms.jvm.additional=-Djdk.nio.maxCachedBufferSize=262144</span><br><span class="line"></span><br><span class="line"><span class="comment"># More efficient buffer allocation in Netty by allowing direct no cleaner buffers.</span></span><br><span class="line">dbms.jvm.additional=-Dio.netty.tryReflectionSetAccessible=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exits JVM on the first occurrence of an out-of-memory error. Its preferable to restart VM in case of out of memory errors.</span></span><br><span class="line"><span class="comment"># dbms.jvm.additional=-XX:+ExitOnOutOfMemoryError</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Expand Diffie Hellman (DH) key size from default 1024 to 2048 for DH-RSA cipher suites used in server TLS handshakes.</span></span><br><span class="line"><span class="comment"># This is to protect the server from any potential passive eavesdropping.</span></span><br><span class="line">dbms.jvm.additional=-Djdk.tls.ephemeralDHKeySize=2048</span><br><span class="line"></span><br><span class="line"><span class="comment"># This mitigates a DDoS vector.</span></span><br><span class="line">dbms.jvm.additional=-Djdk.tls.rejectClientInitiatedRenegotiation=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable remote debugging</span></span><br><span class="line"><span class="comment">#dbms.jvm.additional=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This filter prevents deserialization of arbitrary objects via java object serialization, addressing potential vulnerabilities.</span></span><br><span class="line"><span class="comment"># By default this filter whitelists all neo4j classes, as well as classes from the hazelcast library and the java standard library.</span></span><br><span class="line"><span class="comment"># These defaults should only be modified by expert users!</span></span><br><span class="line"><span class="comment"># For more details (including filter syntax) see: https://openjdk.java.net/jeps/290</span></span><br><span class="line"><span class="comment">#dbms.jvm.additional=-Djdk.serialFilter=java.**;org.neo4j.**;com.neo4j.**;com.hazelcast.**;net.sf.ehcache.Element;com.sun.proxy.*;org.openjdk.jmh.**;!*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Increase the default flight recorder stack sampling depth from 64 to 256, to avoid truncating frames when profiling.</span></span><br><span class="line">dbms.jvm.additional=-XX:FlightRecorderOptions=stackdepth=256</span><br><span class="line"></span><br><span class="line"><span class="comment"># Allow profilers to sample between safepoints. Without this, sampling profilers may produce less accurate results.</span></span><br><span class="line">dbms.jvm.additional=-XX:+UnlockDiagnosticVMOptions</span><br><span class="line">dbms.jvm.additional=-XX:+DebugNonSafepoints</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable logging JMX endpoint.</span></span><br><span class="line">dbms.jvm.additional=-Dlog4j2.disable.jmx=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Limit JVM metaspace and code cache to allow garbage collection. Used by cypher for code generation and may grow indefinitely unless constrained.</span></span><br><span class="line"><span class="comment"># Useful for memory constrained environments</span></span><br><span class="line"><span class="comment">#dbms.jvm.additional=-XX:MaxMetaspaceSize=1024m</span></span><br><span class="line"><span class="comment">#dbms.jvm.additional=-XX:ReservedCodeCacheSize=512m</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"><span class="comment"># Wrapper Windows NT/2000/XP Service Properties</span></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"><span class="comment"># WARNING - Do not modify any of these properties when an application</span></span><br><span class="line"><span class="comment">#  using this configuration file has been installed as a service.</span></span><br><span class="line"><span class="comment">#  Please uninstall the service before modifying this section.  The</span></span><br><span class="line"><span class="comment">#  service can then be reinstalled.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Name of the service</span></span><br><span class="line">dbms.windows_service_name=neo4j</span><br><span class="line"></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"><span class="comment"># Other Neo4j system properties</span></span><br><span class="line"><span class="comment">#********************************************************************</span></span><br><span class="line"></span><br><span class="line">dbms.memory.pagecache.size=512M</span><br><span class="line"></span><br><span class="line">dbms.default_listen_address=0.0.0.0</span><br><span class="line">dbms.directories.logs=/logs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/neo4j/data</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data<span class="comment"># ls</span></span><br><span class="line">databases  dbms  server_id  transactions</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data<span class="comment"># cd databases/</span></span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/databases<span class="comment"># ls</span></span><br><span class="line">neo4j  store_lock  system</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/databases<span class="comment"># cd ../dbms/</span></span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/dbms<span class="comment"># ls</span></span><br><span class="line">auth.ini</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/dbms<span class="comment"># cat auth.ini </span></span><br><span class="line">neo4j:SHA-256,fe98496dba6072e5e80171d935eb2f71e37d87b4d4436aeac4b74058629806d0,6dac2083d03859c559d32821135cdfc0383d31f6dfc0a5f4d052bd456d2ebfd1,1024:</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/dbms<span class="comment"># cd ../server_id </span></span><br><span class="line">bash: <span class="built_in">cd</span>: ../server_id: Not a directory</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/dbms<span class="comment"># cd ../</span></span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data<span class="comment"># ls</span></span><br><span class="line">databases  dbms  server_id  transactions</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data<span class="comment"># cat server_id </span></span><br><span class="line">+Ͷ</span><br><span class="line">  챚	\V¿root@dac1ae4e4eca:/var/lib/neo4j/data<span class="comment"># Xshell</span></span><br><span class="line">bash: Xshell: <span class="built_in">command</span> not found</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data<span class="comment"># cd transactions/</span></span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/transactions<span class="comment"># ls</span></span><br><span class="line">neo4j  system</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/transactions<span class="comment"># cat neo4j/</span></span><br><span class="line"><span class="built_in">cat</span>: neo4j/: Is a directory</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/transactions<span class="comment"># cd neo4j/</span></span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/transactions/neo4j<span class="comment"># ls</span></span><br><span class="line">checkpoint.0  neostore.transaction.db.0</span><br><span class="line">root@dac1ae4e4eca:/var/lib/neo4j/data/transactions/neo4j<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>日志存储路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/neo4j/logs</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528131633241.png" alt="Docker安装常用的软件/image-20230528131633241"></p>
+</li>
+<li><p>挂载数据导入目录路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/neo4j/import</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528131902733.png" alt="Docker安装常用的软件/image-20230528131902733"></p>
+</li>
+</ul>
+<h2 id="13-2-安装"><a href="#13-2-安装" class="headerlink" title="13.2 安装"></a>13.2 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">docker stop neo4j</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> neo4j</span><br><span class="line"></span><br><span class="line">docker run \</span><br><span class="line">--name neo4j \</span><br><span class="line">-p 27474:7474 \</span><br><span class="line">-p 27687:7687 \</span><br><span class="line">--restart=always \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /root/docker_volume/neo4j/data:/var/lib/neo4j/data \</span><br><span class="line">-v /root/docker_volume/neo4j/import:/var/lib/neo4j/import \</span><br><span class="line">-v /root/docker_volume/neo4j/logs:/var/lib/neo4j/logs \</span><br><span class="line">-v /root/docker_volume/neo4j/conf:/var/lib/neo4j/conf \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-e NEO4J_AUTH=neo4j/123456 \</span><br><span class="line">-d neo4j:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230528142833748.png" alt="Docker安装常用的软件/image-20230528142833748"></p>
+<blockquote>
+<p>修改配置文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入容器配置目录挂载在宿主机的对应目录，我这里是/home/neo4j/conf</span></span><br><span class="line"><span class="built_in">cd</span> /home/neo4j/conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># vim编辑器打开neo4j.conf</span></span><br><span class="line">vim neo4j.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行以下更改</span></span><br><span class="line"><span class="comment"># 在文件配置末尾添加这一行</span></span><br><span class="line">dbms.connectors.default_listen_address=0.0.0.0  //指定连接器的默认监听ip为0.0.0.0，即允许任何ip连接到数据库</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line">dbms.connector.bolt.listen_address=0.0.0.0:7687  //取消注释并把对bolt请求的监听“地址:端口”改为“0.0.0.0:7687”</span><br><span class="line">dbms.connector.http.listen_address=0.0.0.0:7474  //取消注释并把对http请求的监听“地址:端口”改为“0.0.0.0:7474”</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/" title="Docker安装常用的软件">https://xiaguyangdie.github.io/2023/05/18/Docker安装常用的软件/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/15/MongoDB/" rel="prev" title="MongoDB">
+      <i class="fa fa-chevron-left"></i> MongoDB
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/08/31/allure/" rel="next" title="allure">
+      allure <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Docker%E5%AE%89%E8%A3%85"><span class="nav-text">1.Docker安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Redis"><span class="nav-text">2.Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">2.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">2.2 配置文件存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3 启动命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-redis%E5%91%BD%E4%BB%A4%E6%89%80%E5%9C%A8%E7%9B%AE%E5%BD%95"><span class="nav-text">2.4 redis命令所在目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95%E5%AF%BC%E8%87%B4%E5%AE%B9%E5%99%A8%E5%86%85%E6%96%87%E4%BB%B6%E6%B8%85%E7%A9%BA"><span class="nav-text">2.5 挂载目录导致容器内文件清空</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-MySQL%E5%AE%89%E8%A3%85"><span class="nav-text">3.MySQL安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">3.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%AE%89%E8%A3%85"><span class="nav-text">3.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-RabbitMQ%E5%AE%89%E8%A3%85"><span class="nav-text">4.RabbitMQ安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">4.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%AE%89%E8%A3%85"><span class="nav-text">4.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-MongoDB%E5%AE%89%E8%A3%85"><span class="nav-text">5.MongoDB安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">5.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">5.2 配置文件存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">5.3 启动命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Nginx%E5%AE%89%E8%A3%85"><span class="nav-text">6.Nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">6.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E5%AE%89%E8%A3%85"><span class="nav-text">6.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Httpd%E5%AE%89%E8%A3%85"><span class="nav-text">7.Httpd安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">7.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E5%AE%89%E8%A3%85"><span class="nav-text">7.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-reader%E5%AE%89%E8%A3%85"><span class="nav-text">8.reader安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Java%E5%AE%89%E8%A3%85"><span class="nav-text">9.Java安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Tomcat"><span class="nav-text">10.Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">10.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E5%AE%89%E8%A3%85"><span class="nav-text">10.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-Elasticsearch"><span class="nav-text">11.Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-Elasticsearch"><span class="nav-text">11.1 Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">11.1.1 数据存储路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-2-%E5%AE%89%E8%A3%85"><span class="nav-text">11.1.2 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-Kibana"><span class="nav-text">11.2 Kibana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-ik%E5%88%86%E8%AF%8D%E5%99%A8"><span class="nav-text">11.3 ik分词器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-redislabs-x2F-redisinsight"><span class="nav-text">12.redislabs&#x2F;redisinsight</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">12.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-%E5%AE%89%E8%A3%85"><span class="nav-text">12.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Neo4j"><span class="nav-text">13.Neo4j</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="nav-text">13.1 数据存储路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-%E5%AE%89%E8%A3%85"><span class="nav-text">13.2 安装</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Jmeter基本功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jmeter基本功能">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="Jmeter基本功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929200804397.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930004853879.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201043891.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930042256013.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930113533622.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930114415873.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930121902489.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930122019094.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930142510042-1727677515731-1.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930142551137.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241002013039499.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241001000748920.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241001001006185.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241001002639136.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241003125611405.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201124298.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201156515.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241003130426842.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241003130756158.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241120233744502.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241120232733429.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241120233119043.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201237519.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201306177.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241123233550399.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241124001249490.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241124001345802.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201339228.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201420540.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929201450487.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930014501324.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20241120223220936.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240930021435885.png">
+<meta property="article:published_time" content="2024-09-29T11:20:20.000Z">
+<meta property="article:modified_time" content="2025-04-20T16:28:46.256Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/image-20240929200804397.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Jmeter基本功能 | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jmeter基本功能
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-29 19:20:20" itemprop="dateCreated datePublished" datetime="2024-09-29T19:20:20+08:00">2024-09-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-21 00:28:46" itemprop="dateModified" datetime="2025-04-21T00:28:46+08:00">2025-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/" class="post-meta-item leancloud_visitors" data-flag-title="Jmeter基本功能" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">Jmeter基本功能</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JMeter的执行顺序规则如下：</p>
+<ul>
+<li>配置元件（Config elements）</li>
+<li>前置处理器（Per-processors）</li>
+<li>定时器（Timers）</li>
+<li>采样器（Sampler）</li>
+<li>后置处理器（Post-processors）</li>
+<li>断言（Assertions）</li>
+<li>监听器（Listeners）‌</li>
+</ul>
+<h1 id="1-线程组"><a href="#1-线程组" class="headerlink" title="1.线程组"></a>1.线程组</h1><p><img src="image-20240929200804397.png" alt="image-20240929200804397"></p>
+<h2 id="1-1-线程组"><a href="#1-1-线程组" class="headerlink" title="1.1 线程组"></a>1.1 线程组</h2><p><img src="image-20240930004853879.png" alt="image-20240930004853879"></p>
+<blockquote>
+<p>在<font color="red">取样器</font>错误后要执行的动作（当接口请求失败时，要执行的动作）</p>
+</blockquote>
+<ul>
+<li>继续：继续执行接下来的操作</li>
+<li>启动下一进程循环：忽略错误，执行下一个循环</li>
+<li>停止线程：退出当前线程，不再执行此线程的任务操作</li>
+<li>停止测试：等待当前执行的采样器结束，接着结束整个测试</li>
+<li>立即停止测试：直接停止整个测试</li>
+</ul>
+<blockquote>
+<p>线程数：模拟用户数量</p>
+<p>Ramp-Up时间（秒）：达到指定线程数所需要的时间，防止对服务器有太大的负载。比如线程数为10，此处为5秒，10&#x2F;5&#x3D;2，那么相当于每秒启动2个线程，用时5秒达到10</p>
+<p>循环次数：每个线程要循环的次数，如果勾选“永远”，会一直循环下去</p>
+</blockquote>
+<blockquote>
+<p>Same user on each iteration：表示每个迭代都用相同的线程</p>
+<p>默认值：默认是勾选</p>
+<p>举例1：比如线程数为1，循环次数为5，那么创建好1个线程后，每次循环迭代都用这个线程，直到测试结束。如果不勾选，那么每次循环会销毁之前的线程，再创建1个新的线程，测试结束总共会经过5次创建销毁线程，浪费了计算机资源，线程多了甚至可能会影响性能测试结果，所以默认是勾选的</p>
+<p>举例2：这1个线程中有登录操作，加入cookie后，这个线程5次迭代下来用的都是这一个cookie</p>
+</blockquote>
+<blockquote>
+<p>延迟创建线程直到需要</p>
+<p>勾选：当线程需要执行的时候才会被创建</p>
+<p>不勾选：在计划开始的时候，所有的线程就都创建好</p>
+</blockquote>
+<blockquote>
+<p>持续时间(秒)：表示多少秒后，结束测试<br>启动延迟(秒)：表示点击开始执行计划后，延迟多少秒，才真正开始执行</p>
+</blockquote>
+<h2 id="1-2-setUp-线程组"><a href="#1-2-setUp-线程组" class="headerlink" title="1.2 setUp 线程组"></a>1.2 setUp 线程组</h2><h2 id="1-3-tearDown-线程组"><a href="#1-3-tearDown-线程组" class="headerlink" title="1.3 tearDown 线程组"></a>1.3 tearDown 线程组</h2><h2 id="1-4-Open-Model-Thread-Group"><a href="#1-4-Open-Model-Thread-Group" class="headerlink" title="1.4 Open Model Thread Group"></a>1.4 Open Model Thread Group</h2><h1 id="2-配置元件"><a href="#2-配置元件" class="headerlink" title="2.配置元件"></a>2.配置元件</h1><blockquote>
+<p>配置范围：测试计划、线程组、逻辑控制器、取样器</p>
+</blockquote>
+<p><img src="image-20240929201043891.png" alt="image-20240929201043891"></p>
+<h2 id="2-1-HTTP请求默认值"><a href="#2-1-HTTP请求默认值" class="headerlink" title="2.1 HTTP请求默认值"></a>2.1 HTTP请求默认值</h2><ul>
+<li>作用域：<strong>HTTP请求默认值</strong>的设置仅对同一层级及其下方的HTTP请求生效</li>
+<li>优先级：如果HTTP请求中直接设置了与默认值相冲突的参数，将以请求中的设置为准</li>
+<li>安全性：处理敏感信息（如认证信息）时，谨慎使用默认值，确保不会泄露到不安全的环境中</li>
+<li>基本设置<ul>
+<li>协议：默认的通信协议，通常是http或https</li>
+<li>服务器名称或IP：默认的服务器地址，所有使用此默认值的HTTP请求将指向该地址</li>
+<li>端口号：默认的端口号，例如80或443</li>
+<li>内容编码：指定发送请求时的内容编码方式，如UTF-8</li>
+<li>路径：即接口，通常为空</li>
+</ul>
+</li>
+<li>高级设置：一般不用配置</li>
+</ul>
+<p><img src="image-20240930042256013.png" alt="image-20240930042256013"></p>
+<h2 id="2-2-HTTP信息头管理器"><a href="#2-2-HTTP信息头管理器" class="headerlink" title="2.2 HTTP信息头管理器"></a>2.2 HTTP信息头管理器</h2><blockquote>
+<p> 请求在发送时都会一般都会携带请求头信息，常见的包括请求的内容类型、token信息等，可添加HTTP信息头管理器统一管理</p>
+</blockquote>
+<p><img src="image-20240930113533622.png" alt="image-20240930113533622"></p>
+<ul>
+<li><p>authorization：token类型 + token</p>
+</li>
+<li><p>Cookie与token区别：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_54247497/article/details/131443025">https://blog.csdn.net/qq_54247497/article/details/131443025</a></p>
+<p><img src="image-20240930114415873.png" alt="image-20240930114415873"></p>
+</li>
+<li><p>作用域：<font color="red"><strong>HTTP信息头管理器</strong>的设置仅对同一层级及其下方的HTTP请求生效</font></p>
+</li>
+</ul>
+<h2 id="2-3-用户定义变量"><a href="#2-3-用户定义变量" class="headerlink" title="2.3 用户定义变量"></a>2.3 用户定义变量</h2><blockquote>
+<p>定义和管理变量</p>
+<p>一般仅设置测试计划中不需要随迭代发生改变的参数（只取一次值的参数）</p>
+<p>多个 HTTP 请求存在重复的参数，把重复的参数提取出来，只需要定义一次即可</p>
+</blockquote>
+<ul>
+<li><p>引用变量格式为： <code>$&#123;变量名&#125;</code></p>
+</li>
+<li><p>作用域：<font color="red">全局生效（作用于整个测试计划，包括跨线程组）</font></p>
+<p><img src="image-20240930121902489.png" alt="image-20240930121902489"></p>
+<p><img src="image-20240930122019094.png" alt="image-20240930122019094"></p>
+</li>
+<li><p><strong>优先级：如果定义了相同的变量名，则取样器下的用户定义变量优先级最高</strong></p>
+</li>
+<li><p>在启动运行时，获取一次值，运行过程中，值一直都不变</p>
+</li>
+<li><p>变量的值可以通过其他变量来引用，这样可以实现变量之间的关联和依赖关系</p>
+</li>
+<li><p><strong>在多线程环境中，可以通过用户定义变量实现参数的传递和使用‌</strong></p>
+</li>
+</ul>
+<h2 id="2-4-计数器"><a href="#2-4-计数器" class="headerlink" title="2.4 计数器"></a>2.4 计数器</h2><p><img src="image-20240930142510042-1727677515731-1.png" alt="image-20240930142510042"></p>
+<p><img src="image-20240930142551137.png" alt="image-20240930142551137"></p>
+<ul>
+<li>计数器的作用域主要限定在其所在的线程组内。计数器仅对同一线程组内的所有采样器有效，能够确保每个虚拟用户（线程）在使用时都能获取到正确的计数值</li>
+<li>作用域：<strong>计数器</strong>的设置仅对同一层级及其往下层级生效（测试计划》线程组》逻辑控制器》取样器）</li>
+</ul>
+<h2 id="2-5-JDBC-Connection-Configuration"><a href="#2-5-JDBC-Connection-Configuration" class="headerlink" title="2.5 JDBC Connection Configuration"></a>2.5 JDBC Connection Configuration</h2><p><img src="image-20241002013039499.png" alt="image-20241002013039499"></p>
+<ul>
+<li><p>Variable Name for created pool：数据库连接池的名称，可以设置多个 jdbc connection configuration，命名不同<strong>，在 jdbc request 请求中可以通过这个名称选择对应的连接池进行使用</strong></p>
+</li>
+<li><p>Connection Pool Configuration：连接池参数配置，<strong>基本保持默认即可</strong></p>
+<ul>
+<li>Max Number of Connections：连接池中最大连接数，在大多数情况下，**将其设置为零 (0)**。这意味着每个线程将获得自己的连接池，其中只有一个连接，即连接不在线程之间共享</li>
+<li>Max Wait (ms)：在连接池中取回连接最大等待时间，单位毫秒；连接时超过最大等待时间，则连接失败</li>
+<li>Time Between Eviction Runs (ms)：线程可空闲时间，单位毫秒；如果当前连接池中某个连接在空闲了 Time Between Eviction Runs Millis 时间后任然没有使用，则被关闭掉</li>
+<li>Auto Commit：自动 commit</li>
+<li>Transaction Isolation：事务隔离级别</li>
+<li>Pool Prepared Statements：每个连接池中预编译语句的最大数量。-1表示禁用池，0表示池中预编译语句的数量不受限制</li>
+<li>Preinit Pool：立即初始化连接池；如果为 False，则第一个 JDBC 请求的响应时间会较长，因为包含了连接池建立的时间</li>
+<li>Init SOL statements separated by new line：一组 SQL 语句，用于在首次创建物理连接时对其进行初始化。这些语句仅-当配置的连接工厂创建连接时<strong>执行一次</strong></li>
+</ul>
+</li>
+<li><p>Connection Validation by Pool：验证连接池是否可响应，<strong>基本保持默认即可</strong></p>
+<ul>
+<li>Test While Idle：当连接空闲时是否断开</li>
+<li>Soft Min Evictable Idle Time(ms)：连接在池中处于空闲状态的最短时间</li>
+<li>Validation Query：一个简单的查询，用于确定数据库是否仍在响应；默认为 jdbc 驱动程序的 isValid() 方法，适用于许多数据库（Test While Idle 需配置为 True）</li>
+</ul>
+</li>
+<li><p>Database Connection Configuration：数据库连接配置</p>
+<ul>
+<li><p>Database URL：数据库连接 URL（格式：jdbc:mysql:&#x2F;&#x2F;IP:端口号&#x2F;数据库名称）<strong>（jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;test1?useUnicode&#x3D;true&amp;characterEncoding&#x3D;utf8&amp;useSSL&#x3D;false）</strong></p>
+</li>
+<li><p>JDBC Driver class：数据库驱动（选择对应的数据库驱动）</p>
+</li>
+<li><p>Username：数据库登录用户名</p>
+</li>
+<li><p>Password：数据库登录密码</p>
+</li>
+<li><p>Connection Properties：建立连接时要设置的连接属性（分号分割，也可以加在Database URL）<strong>（useUnicode&#x3D;true;characterEncoding&#x3D;utf8;useSSL&#x3D;false）</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在性能测试、自动化测试时，经常在准备测试数据、清理测试数据或者断言时，都会去操作数据库（增删改查），在jmeter中发起JDBC Request，而操作数据库（增删改查）之前，需要需要连接数据库，也就是需要先配置好 JDBC Connection Configuration</p>
+</blockquote>
+<blockquote>
+<p>使用不同的数据库，需要引入不同的 jar 包，一共有两种方式</p>
+<p>1.在<strong>测试计划</strong>底部添加 jar 包即可</p>
+<p><img src="image-20241001000748920.png" alt="image-20241001000748920"></p>
+<p>2.将下好的 jar 包直接放到 jmeter 的 lib&#x2F;ext 目录下，然后重新启动即可</p>
+<p><img src="image-20241001001006185.png" alt="image-20241001001006185"></p>
+</blockquote>
+<ul>
+<li><p><strong>作用域：</strong>JDBC Connection Configuration定义了一个变量，该变量在<strong>整个测试计划</strong>中都可以访问。这个变量代表了数据库的连接。可以在JDBC Request中使用这个变量来执行SQL语句</p>
+<p><img src="image-20241001002639136.png" alt="image-20241001002639136"></p>
+</li>
+</ul>
+<h2 id="2-6-随机变量"><a href="#2-6-随机变量" class="headerlink" title="2.6 随机变量"></a>2.6 随机变量</h2><p><img src="image-20241003125611405.png" alt="image-20241003125611405"></p>
+<h2 id="2-7-CSV-数据文件设置"><a href="#2-7-CSV-数据文件设置" class="headerlink" title="2.7 CSV 数据文件设置"></a>2.7 CSV 数据文件设置</h2><h1 id="3-监听器"><a href="#3-监听器" class="headerlink" title="3.监听器"></a>3.监听器</h1><blockquote>
+<p>配置范围：测试计划、线程组、逻辑控制器、取样器</p>
+</blockquote>
+<p><img src="image-20240929201124298.png" alt="image-20240929201124298"></p>
+<h2 id="3-1-查看结果树"><a href="#3-1-查看结果树" class="headerlink" title="3.1 查看结果树"></a>3.1 查看结果树</h2><h2 id="3-2-聚合报告"><a href="#3-2-聚合报告" class="headerlink" title="3.2 聚合报告"></a>3.2 聚合报告</h2><h2 id="3-3-汇总报告"><a href="#3-3-汇总报告" class="headerlink" title="3.3 汇总报告"></a>3.3 汇总报告</h2><h2 id="3-4-断言结果"><a href="#3-4-断言结果" class="headerlink" title="3.4 断言结果"></a>3.4 断言结果</h2><h2 id="3-5-响应时间图"><a href="#3-5-响应时间图" class="headerlink" title="3.5 响应时间图"></a>3.5 响应时间图</h2><h2 id="3-6-汇总图"><a href="#3-6-汇总图" class="headerlink" title="3.6 汇总图"></a>3.6 汇总图</h2><h2 id="3-7-BeanShell-监听器"><a href="#3-7-BeanShell-监听器" class="headerlink" title="3.7 BeanShell 监听器"></a>3.7 BeanShell 监听器</h2><h1 id="4-定时器"><a href="#4-定时器" class="headerlink" title="4.定时器"></a>4.定时器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201156515.png" alt="image-20240929201156515"></p>
+<h2 id="4-1-固定定时器"><a href="#4-1-固定定时器" class="headerlink" title="4.1 固定定时器"></a>4.1 固定定时器</h2><blockquote>
+<p>取样器：循环执行请求（取样器），暂停相同的时间（先执行取样器延时，再执行取样器请求）</p>
+</blockquote>
+<p><img src="image-20241003130426842.png" alt="image-20241003130426842"></p>
+<p><img src="image-20241003130756158.png" alt="image-20241003130756158"></p>
+<blockquote>
+<p>取样器：执行请求（取样器）之前暂停设置的固定时间（先执行取样器延时，再执行取样器请求）</p>
+</blockquote>
+<p><img src="image-20241120233744502.png" alt="image-20241120233744502"></p>
+<blockquote>
+<p>测试计划、线程组：其下的所有取样器暂停固定相同的时间</p>
+</blockquote>
+<p><img src="image-20241120232733429.png" alt="image-20241120232733429"></p>
+<p><img src="image-20241120233119043.png" alt="image-20241120233119043"></p>
+<h2 id="4-2-BeanShell-定时器"><a href="#4-2-BeanShell-定时器" class="headerlink" title="4.2 BeanShell 定时器"></a>4.2 BeanShell 定时器</h2><blockquote>
+<p>BeanShell定时器适用于需要动态调整延迟时间或者基于某些条件来决定延时时间的场景</p>
+</blockquote>
+<h2 id="4-3-同步定时器"><a href="#4-3-同步定时器" class="headerlink" title="4.3 同步定时器"></a>4.3 同步定时器</h2><blockquote>
+<p>目的是阻塞线程，直到 X 个线程被阻塞，然后它们被一次性释放（当需要进行大量用户的并发测试时，为了让用户能真正的同时执行，添加同步定时器，用户阻塞线程，知道线程数达到预先配置的数值，才开始执行取样器的操作）</p>
+<p> 可以在测试计划的各个点创建大量即时负载（集合点）</p>
+<p>效果：多线程绝对并发</p>
+</blockquote>
+<h1 id="5-前置处理器"><a href="#5-前置处理器" class="headerlink" title="5.前置处理器"></a>5.前置处理器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201237519.png" alt="image-20240929201237519"></p>
+<h2 id="5-1-用户参数"><a href="#5-1-用户参数" class="headerlink" title="5.1 用户参数"></a>5.1 用户参数</h2><h2 id="5-2-BeanShell-预处理程序"><a href="#5-2-BeanShell-预处理程序" class="headerlink" title="5.2 BeanShell 预处理程序"></a>5.2 BeanShell 预处理程序</h2><h2 id="5-3-取样器超时"><a href="#5-3-取样器超时" class="headerlink" title="5.3 取样器超时"></a>5.3 取样器超时</h2><blockquote>
+<p>设置的最大等待时间，如果在这个时间内未收到响应，取样器将标记该请求为超时错误（java.net.SocketException: Socket closed）</p>
+<p>防止单个慢响应或无响应的取样器阻塞整个测试计划的执行</p>
+<p>设置为0，表示永不超时‌</p>
+</blockquote>
+<h1 id="6-后置处理器"><a href="#6-后置处理器" class="headerlink" title="6.后置处理器"></a>6.后置处理器</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+</blockquote>
+<p><img src="image-20240929201306177.png" alt="image-20240929201306177"></p>
+<h2 id="6-1-BeanShell-后置处理程序"><a href="#6-1-BeanShell-后置处理程序" class="headerlink" title="6.1 BeanShell 后置处理程序"></a>6.1 BeanShell 后置处理程序</h2><h2 id="6-2-JSON提取器"><a href="#6-2-JSON提取器" class="headerlink" title="6.2 JSON提取器"></a>6.2 JSON提取器</h2><blockquote>
+<p>JSON提取器允许您使用JSON-PATH语法从JSON响应中提取数据</p>
+<p>必须被放置为HTTP Sampler或任何其他有响应的采样器的子级</p>
+</blockquote>
+<p><img src="image-20241123233550399.png" alt="image-20241123233550399"></p>
+<p><img src="image-20241124001249490.png" alt="image-20241124001249490"></p>
+<p><img src="image-20241124001345802.png" alt="image-20241124001345802"></p>
+<h2 id="6-3-XPath提取器"><a href="#6-3-XPath提取器" class="headerlink" title="6.3 XPath提取器"></a>6.3 XPath提取器</h2><h1 id="7-断言"><a href="#7-断言" class="headerlink" title="7.断言"></a>7.断言</h1><blockquote>
+<p>配置范围：测试计划、线程组、取样器</p>
+<p>作用域：对同一层级及其往下层级生效（测试计划》线程组》逻辑控制器》取样器）</p>
+</blockquote>
+<p><img src="image-20240929201339228.png" alt="image-20240929201339228"></p>
+<blockquote>
+<p>扩展：apply to（应用范围）</p>
+<p>​	Main sample and sub-samples：主要样本和次级样本</p>
+<p>​	Main sample only：仅主要样本</p>
+<p>​	Sub-samples only：仅次级样本</p>
+<p>​	JMeter Variable Name to use：jmeter变量(从指定变量中提取需要的值或者断言)</p>
+<p>通常发出一个请求只触发一个请求，所以勾选“main sampie only”就可以</p>
+<p>若发一个请求可以触发多个服务器请求，就有main sample 和sub-sample之分</p>
+</blockquote>
+<h2 id="7-1-响应断言"><a href="#7-1-响应断言" class="headerlink" title="7.1 响应断言"></a>7.1 响应断言</h2><h2 id="7-2-JSON断言"><a href="#7-2-JSON断言" class="headerlink" title="7.2 JSON断言"></a>7.2 JSON断言</h2><h2 id="7-3-BeanShell断言"><a href="#7-3-BeanShell断言" class="headerlink" title="7.3 BeanShell断言"></a>7.3 BeanShell断言</h2><h2 id="7-4-XML断言"><a href="#7-4-XML断言" class="headerlink" title="7.4 XML断言"></a>7.4 XML断言</h2><blockquote>
+<p>XML 断言测试响应数据是否包含形式上正确的 XML 文档</p>
+</blockquote>
+<h2 id="7-5-HTML断言"><a href="#7-5-HTML断言" class="headerlink" title="7.5 HTML断言"></a>7.5 HTML断言</h2><h2 id="7-6-XPath断言"><a href="#7-6-XPath断言" class="headerlink" title="7.6 XPath断言"></a>7.6 XPath断言</h2><h2 id="7-7-XML-Schema断言"><a href="#7-7-XML-Schema断言" class="headerlink" title="7.7 XML Schema断言"></a>7.7 XML Schema断言</h2><h2 id="7-8-断言持续时间"><a href="#7-8-断言持续时间" class="headerlink" title="7.8 断言持续时间"></a>7.8 断言持续时间</h2><blockquote>
+<p>对请求响应时间的限制。如果响应时间超过设定的最大值，则断言失败</p>
+</blockquote>
+<h2 id="7-9-比较断言"><a href="#7-9-比较断言" class="headerlink" title="7.9 比较断言"></a>7.9 比较断言</h2><h2 id="7-10-大小断言"><a href="#7-10-大小断言" class="headerlink" title="7.10 大小断言"></a>7.10 大小断言</h2><blockquote>
+<p>大小断言测试每个响应是否包含正确的字节数</p>
+<p>空响应将被视为 0 字节，而不是报告为错误</p>
+</blockquote>
+<h2 id="7-11-JSR223-断言"><a href="#7-11-JSR223-断言" class="headerlink" title="7.11 JSR223 断言"></a>7.11 JSR223 断言</h2><h1 id="8-测试片段"><a href="#8-测试片段" class="headerlink" title="8.测试片段"></a>8.测试片段</h1><blockquote>
+<p>配置范围：测试计划、线程组</p>
+</blockquote>
+<p><img src="image-20240929201420540.png" alt="image-20240929201420540"></p>
+<h1 id="9-非测试元件"><a href="#9-非测试元件" class="headerlink" title="9.非测试元件"></a>9.非测试元件</h1><blockquote>
+<p>配置范围：测试计划</p>
+</blockquote>
+<p><img src="image-20240929201450487.png" alt="image-20240929201450487"></p>
+<h1 id="10-逻辑控制器"><a href="#10-逻辑控制器" class="headerlink" title="10.逻辑控制器"></a>10.逻辑控制器</h1><blockquote>
+<p>配置范围：线程组</p>
+</blockquote>
+<p><img src="image-20240930014501324.png" alt="image-20240930014501324"></p>
+<h2 id="10-1-循环控制器"><a href="#10-1-循环控制器" class="headerlink" title="10.1 循环控制器"></a>10.1 循环控制器</h2><h2 id="10-2-简单控制器"><a href="#10-2-简单控制器" class="headerlink" title="10.2 简单控制器"></a>10.2 简单控制器</h2><h1 id="11-取样器"><a href="#11-取样器" class="headerlink" title="11.取样器"></a>11.取样器</h1><h2 id="11-1-HTTP请求"><a href="#11-1-HTTP请求" class="headerlink" title="11.1 HTTP请求"></a>11.1 HTTP请求</h2><blockquote>
+<p>向 Web 服务器发送 HTTP&#x2F;HTTPS 请求</p>
+</blockquote>
+<h3 id="11-1-1-基本配置"><a href="#11-1-1-基本配置" class="headerlink" title="11.1.1 基本配置"></a>11.1.1 基本配置</h3><h3 id="11-1-2-高级配置"><a href="#11-1-2-高级配置" class="headerlink" title="11.1.2 高级配置"></a>11.1.2 高级配置</h3><h2 id="11-2-JDBC-Request"><a href="#11-2-JDBC-Request" class="headerlink" title="11.2 JDBC Request"></a>11.2 JDBC Request</h2><h2 id="11-3-调试取样器"><a href="#11-3-调试取样器" class="headerlink" title="11.3 调试取样器"></a>11.3 调试取样器</h2><blockquote>
+<p>展示Jmeter属性、Jmeter变量和系统属性值</p>
+<p>可在查看结果树查看值</p>
+</blockquote>
+<p><img src="image-20241120223220936.png" alt="image-20241120223220936"></p>
+<blockquote>
+<p>Jmeter属性</p>
+<p>Jmeter变量</p>
+<p>系统属性</p>
+</blockquote>
+<h2 id="11-4-测试活动"><a href="#11-4-测试活动" class="headerlink" title="11.4 测试活动"></a>11.4 测试活动</h2><h1 id="12-测试计划"><a href="#12-测试计划" class="headerlink" title="12.测试计划"></a>12.测试计划</h1><p><img src="image-20240930021435885.png" alt="image-20240930021435885"></p>
+<ul>
+<li><strong>用户定义的变量：</strong>在测试计划上可以添加用户定义的变量，相当于是全局变量，一般添加一些系统常用的置，如果测试过程中想切换环境，切换配置,，一般不建议在测试计划上添加变量，因为不方便启用和禁用，一般是在配置元件中添加用户自定义变量组件</li>
+<li><strong>独立运行每个线程组：</strong>勾选后中，多个线程组时，等待前一个线程组执行完成后才开始下一个线程组；不勾选时，默认各线程组行、随机执行</li>
+<li><strong>主线程结束后运行tearDown线程组：</strong>在主线程因错误结束执行时，如果勾选此选项，会执行tearDown线程组；如果不勾选，就不会执行tearDown线程组</li>
+<li><strong>函数测试模式(functional Testing)：</strong>只有当你需要记录每个请求从服务器取得的数据到文件时才需要选择函数测试模式，选择这个选项很影响性能，在调试脚本的时候，可以开启，但是在压测数量时建议关闭</li>
+<li><strong>添加目录或jar包到ClassPath：</strong>需要调用的外部jar包可以在这里进行添加设置，如添加mysql.jar</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/" title="Jmeter基本功能">https://xiaguyangdie.github.io/2024/09/29/Jmeter基本功能/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/22/K8S/" rel="prev" title="K8S">
+      <i class="fa fa-chevron-left"></i> K8S
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/03/12/java%E4%B9%8BApplet/" rel="next" title="java之Applet">
+      java之Applet <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.线程组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.1 线程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-setUp-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.2 setUp 线程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-tearDown-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">1.3 tearDown 线程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Open-Model-Thread-Group"><span class="nav-text">1.4 Open Model Thread Group</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE%E5%85%83%E4%BB%B6"><span class="nav-text">2.配置元件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-HTTP%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-text">2.1 HTTP请求默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-HTTP%E4%BF%A1%E6%81%AF%E5%A4%B4%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-text">2.2 HTTP信息头管理器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-text">2.3 用户定义变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="nav-text">2.4 计数器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-JDBC-Connection-Configuration"><span class="nav-text">2.5 JDBC Connection Configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="nav-text">2.6 随机变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-CSV-%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E8%AE%BE%E7%BD%AE"><span class="nav-text">2.7 CSV 数据文件设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-text">3.监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C%E6%A0%91"><span class="nav-text">3.1 查看结果树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E8%81%9A%E5%90%88%E6%8A%A5%E5%91%8A"><span class="nav-text">3.2 聚合报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%B1%87%E6%80%BB%E6%8A%A5%E5%91%8A"><span class="nav-text">3.3 汇总报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%96%AD%E8%A8%80%E7%BB%93%E6%9E%9C"><span class="nav-text">3.4 断言结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4%E5%9B%BE"><span class="nav-text">3.5 响应时间图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E6%B1%87%E6%80%BB%E5%9B%BE"><span class="nav-text">3.6 汇总图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-BeanShell-%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-text">3.7 BeanShell 监听器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%9B%BA%E5%AE%9A%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.1 固定定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-BeanShell-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.2 BeanShell 定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%90%8C%E6%AD%A5%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">4.3 同步定时器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%89%8D%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">5.前置处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E7%94%A8%E6%88%B7%E5%8F%82%E6%95%B0"><span class="nav-text">5.1 用户参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-BeanShell-%E9%A2%84%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-text">5.2 BeanShell 预处理程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%8F%96%E6%A0%B7%E5%99%A8%E8%B6%85%E6%97%B6"><span class="nav-text">5.3 取样器超时</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-text">6.后置处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-BeanShell-%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-text">6.1 BeanShell 后置处理程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-JSON%E6%8F%90%E5%8F%96%E5%99%A8"><span class="nav-text">6.2 JSON提取器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-XPath%E6%8F%90%E5%8F%96%E5%99%A8"><span class="nav-text">6.3 XPath提取器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E6%96%AD%E8%A8%80"><span class="nav-text">7.断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E5%93%8D%E5%BA%94%E6%96%AD%E8%A8%80"><span class="nav-text">7.1 响应断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-JSON%E6%96%AD%E8%A8%80"><span class="nav-text">7.2 JSON断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-BeanShell%E6%96%AD%E8%A8%80"><span class="nav-text">7.3 BeanShell断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-XML%E6%96%AD%E8%A8%80"><span class="nav-text">7.4 XML断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-HTML%E6%96%AD%E8%A8%80"><span class="nav-text">7.5 HTML断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-6-XPath%E6%96%AD%E8%A8%80"><span class="nav-text">7.6 XPath断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-7-XML-Schema%E6%96%AD%E8%A8%80"><span class="nav-text">7.7 XML Schema断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-8-%E6%96%AD%E8%A8%80%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="nav-text">7.8 断言持续时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-9-%E6%AF%94%E8%BE%83%E6%96%AD%E8%A8%80"><span class="nav-text">7.9 比较断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-10-%E5%A4%A7%E5%B0%8F%E6%96%AD%E8%A8%80"><span class="nav-text">7.10 大小断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-11-JSR223-%E6%96%AD%E8%A8%80"><span class="nav-text">7.11 JSR223 断言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%B5%8B%E8%AF%95%E7%89%87%E6%AE%B5"><span class="nav-text">8.测试片段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E9%9D%9E%E6%B5%8B%E8%AF%95%E5%85%83%E4%BB%B6"><span class="nav-text">9.非测试元件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">10.逻辑控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E5%BE%AA%E7%8E%AF%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">10.1 循环控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E7%AE%80%E5%8D%95%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">10.2 简单控制器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E5%8F%96%E6%A0%B7%E5%99%A8"><span class="nav-text">11.取样器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-HTTP%E8%AF%B7%E6%B1%82"><span class="nav-text">11.1 HTTP请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-1-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-text">11.1.1 基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-2-%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="nav-text">11.1.2 高级配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-JDBC-Request"><span class="nav-text">11.2 JDBC Request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E8%B0%83%E8%AF%95%E5%8F%96%E6%A0%B7%E5%99%A8"><span class="nav-text">11.3 调试取样器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-%E6%B5%8B%E8%AF%95%E6%B4%BB%E5%8A%A8"><span class="nav-text">11.4 测试活动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92"><span class="nav-text">12.测试计划</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

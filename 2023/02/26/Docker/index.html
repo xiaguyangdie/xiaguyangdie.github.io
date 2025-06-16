@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/02/26/Docker/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="Docker">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527131952902.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527144115741.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527144320900.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527144419136.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527145842920.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527150115376.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527152210730.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527152606817.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527152657463.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527155934025.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527160458017.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527175804433.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527175609477.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527175245664.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527184239002.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527184820673.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527184840856.png">
+<meta property="article:published_time" content="2023-02-26T08:27:31.012Z">
+<meta property="article:modified_time" content="2024-09-29T06:01:02.044Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/Docker/image-20230527131952902.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/Docker/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/02/26/Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-26 16:27:31" itemprop="dateCreated datePublished" datetime="2023-02-26T16:27:31+08:00">2023-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-29 14:01:02" itemprop="dateModified" datetime="2024-09-29T14:01:02+08:00">2024-09-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/02/26/Docker/" class="post-meta-item leancloud_visitors" data-flag-title="Docker" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/02/26/Docker/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/26/Docker/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>25k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>23 分钟</span>
+            </span>
+            <div class="post-description">Docker</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-Docker简介"><a href="#1-Docker简介" class="headerlink" title="1.Docker简介"></a>1.Docker简介</h1><p><img src="image-20230527131952902.png" alt="Docker/image-20230527131952902"></p>
+<h1 id="2-Docker安装"><a href="#2-Docker安装" class="headerlink" title="2.Docker安装"></a>2.Docker安装</h1><h2 id="2-1-卸载（可选）"><a href="#2-1-卸载（可选）" class="headerlink" title="2.1 卸载（可选）"></a>2.1 卸载（可选）</h2><ul>
+<li><p>如果之前安装过旧版本的Docker，可以使用下面命令卸载：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum remove docker \</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">                  docker-client \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-client-latest \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-common \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-latest \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-latest-logrotate \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-logrotate \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-selinux \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-engine-selinux \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-engine \</span></span><br><span class="line"><span class="language-bash">&gt;                   docker-ce</span></span><br><span class="line">已加载插件：fastestmirror, langpacks</span><br><span class="line">Repository epel is listed more than once in the configuration</span><br><span class="line">Repository epel-debuginfo is listed more than once in the configuration</span><br><span class="line">Repository epel-source is listed more than once in the configuration</span><br><span class="line">参数 docker 没有匹配</span><br><span class="line">参数 docker-client 没有匹配</span><br><span class="line">参数 docker-client-latest 没有匹配</span><br><span class="line">参数 docker-common 没有匹配</span><br><span class="line">参数 docker-latest 没有匹配</span><br><span class="line">参数 docker-latest-logrotate 没有匹配</span><br><span class="line">参数 docker-logrotate 没有匹配</span><br><span class="line">参数 docker-selinux 没有匹配</span><br><span class="line">参数 docker-engine-selinux 没有匹配</span><br><span class="line">参数 docker-engine 没有匹配</span><br><span class="line">参数 docker-ce 没有匹配</span><br><span class="line">不删除任何软件包</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-2-安装docker"><a href="#2-2-安装docker" class="headerlink" title="2.2 安装docker"></a>2.2 安装docker</h2><ul>
+<li><p>首先需要虚拟机联网，安装yum工具</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2 --skip-broken</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后更新本地镜像源：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置docker镜像源</span></span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">    </span><br><span class="line">sed -i &#x27;s/download.docker.com/mirrors.aliyun.com\/docker-ce/g&#x27; /etc/yum.repos.d/docker-ce.repo</span><br><span class="line"></span><br><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后输入命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>docker-ce为社区免费版本</p>
+</li>
+</ul>
+<h2 id="2-3-启动docker"><a href="#2-3-启动docker" class="headerlink" title="2.3 启动docker"></a>2.3 启动docker</h2><ul>
+<li><p>Docker应用需要用到各种端口，逐一去修改防火墙设置</p>
+</li>
+<li><p>非常麻烦，因此建议直接关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">关闭</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁止开机启动防火墙</span></span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过命令启动docker：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker  # 启动docker服务</span><br><span class="line"></span><br><span class="line">systemctl stop docker  # 停止docker服务</span><br><span class="line"></span><br><span class="line">systemctl restart docker  # 重启docker服务</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后输入命令，可以查看docker版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-4-配置镜像加速"><a href="#2-4-配置镜像加速" class="headerlink" title="2.4 配置镜像加速"></a>2.4 配置镜像加速</h2><ul>
+<li>docker官方镜像仓库网速较差，需要设置国内镜像服务</li>
+<li>参考阿里云的镜像加速文档：<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></li>
+</ul>
+<h1 id="3-相关命令"><a href="#3-相关命令" class="headerlink" title="3.相关命令"></a>3.相关命令</h1><h2 id="3-1-服务"><a href="#3-1-服务" class="headerlink" title="3.1 服务"></a>3.1 服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker  <span class="comment">#启动</span></span><br><span class="line"></span><br><span class="line">systemctl status docker  <span class="comment">#状态</span></span><br><span class="line"></span><br><span class="line">systemctl stop docker  <span class="comment">#停止</span></span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> docker  <span class="comment">#开机自启动</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-镜像"><a href="#3-2-镜像" class="headerlink" title="3.2 镜像"></a>3.2 镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker images <span class="comment">#查看所有镜像</span></span><br><span class="line"></span><br><span class="line">docker images -q <span class="comment">#查看所有镜像ID</span></span><br><span class="line"></span><br><span class="line">docker search 镜像名</span><br><span class="line"></span><br><span class="line">docker pull 镜像名:版本号</span><br><span class="line"></span><br><span class="line">docker rmi 镜像名:版本号 <span class="comment"># 或者：docker rmi 镜像ID</span></span><br><span class="line"></span><br><span class="line">docker rmi `docker images -q` <span class="comment">#删除所有镜像</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-容器"><a href="#3-3-容器" class="headerlink" title="3.3 容器"></a>3.3 容器</h2><table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Mean</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-i</td>
+<td>保持容器运行。通常与-t同时使用。加入it这两个参数后，容器创建后自动进入容器中，退出容器后，容器自动关闭</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>为容器重新分配一个伪输入终端，通常与 -i 同时使用</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>以守护（后台）模式运行容器。创建一个容器在后台运行，需要使用docker exec进入容器。退出后，容器不会关闭</td>
+</tr>
+<tr>
+<td>–name</td>
+<td>容器名字</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>环境变量配置</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>端口映射</td>
+</tr>
+<tr>
+<td>–restart&#x3D;always</td>
+<td>在重启docker时，自动启动该容器</td>
+</tr>
+<tr>
+<td>–privileged&#x3D;true</td>
+<td>容器内权限为root用户权限，否则只是普通用户</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>挂载数据卷</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -it创建的容器一般称为交互式容器，-id创建的容器一般称为守护式容器</span></span><br><span class="line">docker run -it  --name redis  redis:latest bash <span class="comment">#通过-it创建的容器，exit退出后，容器自动停止</span></span><br><span class="line"></span><br><span class="line">docker run -<span class="built_in">id</span>  --name redis  redis:latest bash <span class="comment">#通过-id创建的容器，exit退出后，容器继续运行</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> -it 容器名 bash  <span class="comment">#进入容器</span></span><br><span class="line"></span><br><span class="line">eixt <span class="comment">#退出容器</span></span><br><span class="line"></span><br><span class="line">docker ps <span class="comment">#查看正在运行的容器</span></span><br><span class="line"></span><br><span class="line">docker ps -a <span class="comment">#查看所有容器</span></span><br><span class="line"></span><br><span class="line">docker stop 容器名</span><br><span class="line"></span><br><span class="line">docker start 容器名</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> 容器名</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">rm</span> `docker <span class="built_in">rm</span> ps -aq` <span class="comment">#删除所有容器</span></span><br><span class="line"></span><br><span class="line">docker inspect 容器名 <span class="comment">#查看容器信息</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="4-容器数据卷"><a href="#4-容器数据卷" class="headerlink" title="4.容器数据卷"></a>4.容器数据卷</h1><h2 id="4-1-数据卷概念"><a href="#4-1-数据卷概念" class="headerlink" title="4.1 数据卷概念"></a>4.1 数据卷概念</h2><ul>
+<li>思考：<ul>
+<li>Docker 容器删除后，在容器中产生的数据也会随之销毁</li>
+<li>Docker 容器和外部机器可以直接交换文件吗</li>
+<li>容器之间想要进行数据交互</li>
+</ul>
+</li>
+<li>数据卷<ul>
+<li>数据卷是宿主机中的一个目录或文件</li>
+<li>当容器目录和数据卷目录绑定后，对方的修改会立即同步</li>
+<li>一个数据卷可以被多个容器同时挂载</li>
+<li>一个容器也可以被挂载多个数据卷</li>
+</ul>
+</li>
+<li>数据卷作用<ul>
+<li>容器数据持久化</li>
+<li>外部机器和容器间接通信</li>
+<li>容器之间数据交换</li>
+</ul>
+</li>
+</ul>
+<p><img src="image-20230527144115741.png" alt="Docker/image-20230527144115741"></p>
+<h2 id="4-2-使用数据卷"><a href="#4-2-使用数据卷" class="headerlink" title="4.2 使用数据卷"></a>4.2 使用数据卷</h2><p><img src="image-20230527144320900.png" alt="Docker/image-20230527144320900"></p>
+<ul>
+<li><p>创建启动容器时，使用 –v 参数 设置数据卷</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run ... -v 宿主机目录（文件）:容器内目录（文件）...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li>目录必须是绝对路径</li>
+<li>如果目录不存在，会自动创建</li>
+<li>可以挂载多个数据卷</li>
+</ul>
+</li>
+<li><p>多容器进行数据交换 </p>
+<ul>
+<li>多个容器挂载同一个数据卷</li>
+<li>数据卷容器</li>
+</ul>
+<p><img src="image-20230527144419136.png" alt="Docker/image-20230527144419136"></p>
+<ul>
+<li><p>配置数据卷容器 </p>
+<ul>
+<li><p>1.创建启动c3数据卷容器，使用 –v 参数 设置数据卷 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run –it --name=c3 –v /volume centos:7 /bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.创建启动 c1 c2 容器，使用 –-volumes-from 参数 设置数据卷 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run –it --name=c1 --volumes-from c3 centos:7 /bin/bash </span><br><span class="line"></span><br><span class="line">docker run –it --name=c2 --volumes-from c3 centos:7 /bin/bash </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-Dockerfile"><a href="#5-Dockerfile" class="headerlink" title="5.Dockerfile"></a>5.Dockerfile</h1><h2 id="5-1-Docker镜像原理"><a href="#5-1-Docker镜像原理" class="headerlink" title="5.1 Docker镜像原理"></a>5.1 Docker镜像原理</h2><ul>
+<li><p>思考：</p>
+<ul>
+<li>Docker 镜像本质是什么</li>
+<li>Docker 中一个centos镜像为什么只有200MB，而一个 centos操作系统的iso文件要几个个G</li>
+<li>Docker 中一个tomcat镜像为什么有500MB，而一个 tomcat安装包只有70多MB</li>
+</ul>
+<p><img src="image-20230527145842920.png" alt="Docker/image-20230527145842920"></p>
+</li>
+<li><p>操作系统组成部分：</p>
+<ul>
+<li>进程调度子系统</li>
+<li>进程通信子系统</li>
+<li>内存管理子系统</li>
+<li>设备管理子系统</li>
+<li><strong>文件管理子系统</strong></li>
+<li>网络通信子系统</li>
+<li>作业控制子系统</li>
+</ul>
+</li>
+<li><p>Linux文件系统由bootfs和rootfs两部分组成</p>
+<ul>
+<li>bootfs：包含bootloader（引导加载程序）和 kernel（内核）</li>
+<li>rootfs： root文件系统，包含的就是典型 Linux 系统中的&#x2F;dev， &#x2F;proc，&#x2F;bin，&#x2F;etc等标准目录和文件</li>
+<li>不同的linux发行版，bootfs基本一样，而rootfs不同，如ubuntu ，centos等</li>
+</ul>
+</li>
+</ul>
+<p><img src="image-20230527150115376.png" alt="Docker/image-20230527150115376"></p>
+<ul>
+<li>思考：<ul>
+<li>Docker 镜像本质是什么<ul>
+<li><strong>是一个分层文件系统</strong></li>
+</ul>
+</li>
+<li>Docker 中一个centos镜像为什么只有200MB，而一个centos操作系统的iso文件要几个个G<ul>
+<li>Centos的iso镜像文件包含bootfs和rootfs，而docker的centos镜像复用操作系统的bootfs，只有rootfs和其他镜像层</li>
+</ul>
+</li>
+<li>Docker 中一个tomcat镜像为什么有500MB，而一个tomcat安装包只有70多MB<ul>
+<li>由于docker中镜像是分层的，tomcat虽然只有70多MB，但他需要依赖于父镜像和基础镜像，所有整个对外暴露的 tomcat镜像大小500多MB</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-2-镜像制作"><a href="#5-2-镜像制作" class="headerlink" title="5.2 镜像制作"></a>5.2 镜像制作</h2><blockquote>
+<p>方式一：容器转镜像</p>
+</blockquote>
+<ul>
+<li><strong>挂载的文件不会被保存到新的镜像中，其它文件会被保存到新镜像</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker commit 容器<span class="built_in">id</span> 镜像名称:版本号</span><br><span class="line"></span><br><span class="line">docker save -o 压缩文件名称 镜像名称:版本号</span><br><span class="line"></span><br><span class="line">docker load –i 压缩文件名称</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方式二：dockerfile</p>
+</blockquote>
+<ul>
+<li><p>Dockerfile 概念：</p>
+<ul>
+<li>Dockerfile 是一个文本文件</li>
+<li>包含了一条条的指令</li>
+<li>每一条指令构建一层，基于基础镜像，最终构建出一个新的镜像</li>
+<li>对于开发人员：可以为开发团队提供一个完全一致的开发环境</li>
+<li>对于测试人员：可以直接拿开发时所构建的镜像或者通过Dockerfile文件 构建一个新的镜像开始工作了</li>
+<li>对于运维人员：在部署时，可以实现应用的无缝移植</li>
+</ul>
+<p><img src="image-20230527152210730.png" alt="Docker/image-20230527152210730"></p>
+</li>
+<li><p>例如centos7镜像：</p>
+<p><img src="image-20230527152606817.png" alt="Docker/image-20230527152606817"></p>
+<p><img src="image-20230527152657463.png" alt="Docker/image-20230527152657463"></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> centos-7-x86_64-docker.tar.xz /</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> \</span></span><br><span class="line"><span class="language-bash">    org.label-schema.schema-version=<span class="string">&quot;1.0&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.label-schema.name=<span class="string">&quot;CentOS Base Image&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.label-schema.vendor=<span class="string">&quot;CentOS&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.label-schema.license=<span class="string">&quot;GPLv2&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.label-schema.build-date=<span class="string">&quot;20201113&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.opencontainers.image.title=<span class="string">&quot;CentOS Base Image&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.opencontainers.image.vendor=<span class="string">&quot;CentOS&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.opencontainers.image.licenses=<span class="string">&quot;GPL-2.0-only&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    org.opencontainers.image.created=<span class="string">&quot;2020-11-13 00:00:00+00:00&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;/bin/bash&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>关键字：</strong></p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>作用</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>指定父镜像</td>
+<td>指定dockerfile基于那个image构建</td>
+</tr>
+<tr>
+<td>MAINTAINER</td>
+<td>作者信息</td>
+<td>用来标明这个dockerfile谁写的</td>
+</tr>
+<tr>
+<td>LABEL</td>
+<td>标签</td>
+<td>用来标明dockerfile的标签 可以使用Label代替Maintainer 最终都是在docker image基本信息中可以查看</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>执行命令</td>
+<td>执行一段命令 默认是&#x2F;bin&#x2F;sh 格式: RUN command 或者 RUN [“command” , “param1”,”param2”]</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>容器启动命令</td>
+<td>提供启动容器时候的默认命令 和ENTRYPOINT配合使用.格式 CMD command param1 param2 或者 CMD [“command” , “param1”,”param2”]</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>入口</td>
+<td>一般在制作一些执行就关闭的容器中会使用</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>复制文件</td>
+<td>build的时候复制文件到image中</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加文件</td>
+<td>build的时候添加文件到image中 不仅仅局限于当前build上下文 可以来源于远程服务</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>环境变量</td>
+<td>指定build时候的环境变量 可以在启动的容器的时候 通过-e覆盖 格式ENV name&#x3D;value</td>
+</tr>
+<tr>
+<td>ARG</td>
+<td>构建参数</td>
+<td>构建参数 只在构建的时候使用的参数 如果有ENV 那么ENV的相同名字的值始终覆盖arg的参数</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>定义外部可以挂载的数据卷</td>
+<td>指定build的image那些目录可以启动的时候挂载到文件系统中 启动容器的时候使用 -v 绑定 格式 VOLUME [“目录”]</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>暴露端口</td>
+<td>定义容器运行的时候监听的端口 启动容器的使用-p来绑定暴露端口 格式: EXPOSE 8080 或者 EXPOSE 8080&#x2F;udp</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>工作目录</td>
+<td>指定容器内部的工作目录 如果没有创建则自动创建 如果指定&#x2F; 使用的是绝对地址 如果不是&#x2F;开头那么是在上一条workdir的路径的相对路径</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>指定执行用户</td>
+<td>指定build或者启动的时候 用户 在RUN CMD ENTRYPONT执行的时候的用户</td>
+</tr>
+<tr>
+<td>HEALTHCHECK</td>
+<td>健康检查</td>
+<td>指定监测当前容器的健康监测的命令 基本上没用 因为很多时候 应用本身有健康监测机制</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>触发器</td>
+<td>当存在ONBUILD关键字的镜像作为基础镜像的时候 当执行FROM完成之后 会执行 ONBUILD的命令 但是不影响当前镜像 用处也不怎么大</td>
+</tr>
+<tr>
+<td>STOPSIGNAL</td>
+<td>发送信号量到宿主机</td>
+<td>该STOPSIGNAL指令设置将发送到容器的系统调用信号以退出。</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>指定执行脚本的shell</td>
+<td>指定RUN CMD ENTRYPOINT 执行命令的时候 使用的shell</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="5-3-Dockerfile部署SpringBoot项目"><a href="#5-3-Dockerfile部署SpringBoot项目" class="headerlink" title="5.3 Dockerfile部署SpringBoot项目"></a>5.3 Dockerfile部署SpringBoot项目</h2><ul>
+<li>①定义父镜像：FROM java:8 </li>
+<li>② 定义作者信息：MAINTAINER itheima  </li>
+<li>③ 将jar包添加到容器： ADD springboot.jar app.jar </li>
+<li>④ 定义容器启动执行的命令：CMD java –jar app.jar </li>
+<li>⑤ 通过dockerfile构建镜像：docker bulid –f dockerfile文件路径 –t 镜像名称:版本</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span> </span><br><span class="line"><span class="keyword">MAINTAINER</span> yangtongyu</span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> xscjcx-0.0.1-SNAPSHOT.jar app.jar </span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> java -jar app.jar </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f springboot_dockerfile -t xscjcx-app:1.0 .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost dockerfile]<span class="comment"># ls</span></span><br><span class="line">springboot_dockerfile  xscjcx-0.0.1-SNAPSHOT.jar</span><br><span class="line">[root@localhost dockerfile]<span class="comment"># cat springboot_dockerfile</span></span><br><span class="line">FROM java:8 </span><br><span class="line">MAINTAINER yangtongyu</span><br><span class="line">ADD xscjcx-0.0.1-SNAPSHOT.jar app.jar </span><br><span class="line">CMD java–jar app.jar</span><br><span class="line">[root@localhost dockerfile]<span class="comment"># docker build -f springboot_dockerfile -t xscjcx-app:1.0 .</span></span><br><span class="line">[+] Building 0.4s (7/7) FINISHED                                                                                                 </span><br><span class="line"> =&gt; [internal] load .dockerignore                                                                                           0.0s</span><br><span class="line"> =&gt; =&gt; transferring context: 2B                                                                                             0.0s</span><br><span class="line"> =&gt; [internal] load build definition from springboot_dockerfile                                                             0.0s</span><br><span class="line"> =&gt; =&gt; transferring dockerfile: 205B                                                                                        0.0s</span><br><span class="line"> =&gt; [internal] load metadata <span class="keyword">for</span> docker.io/library/java:8                                                                   0.2s</span><br><span class="line"> =&gt; [internal] load build context                                                                                           0.0s</span><br><span class="line"> =&gt; =&gt; transferring context: 109B                                                                                           0.0s</span><br><span class="line"> =&gt; [1/2] FROM docker.io/library/java:8@sha256:c1ff613e8ba25833d2e1940da0940c3824f03f802c449f3d1815a66b7f8c0e9d             0.0s</span><br><span class="line"> =&gt; CACHED [2/2] ADD xscjcx-0.0.1-SNAPSHOT.jar app.jar                                                                      0.0s</span><br><span class="line"> =&gt; exporting to image                                                                                                      0.0s</span><br><span class="line"> =&gt; =&gt; exporting layers                                                                                                     0.0s</span><br><span class="line"> =&gt; =&gt; writing image sha256:f6424fce38b4288a7d382fe3e67a60a9d664ea61bfc6327c8b7ea351eab5fe28                                0.0s</span><br><span class="line"> =&gt; =&gt; naming to docker.io/library/xscjcx-app:1.0                                                                           0.0s</span><br><span class="line">[root@localhost dockerfile]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY         TAG            IMAGE ID       CREATED         SIZE</span><br><span class="line">xscjcx-app         1.0            f6424fce38b4   2 minutes ago   675MB</span><br><span class="line">java               latest         d23bdf5b1b1b   6 years ago     643MB</span><br><span class="line">[root@localhost dockerfile]<span class="comment"># docker run -d --name dockerfile-app -p 7001:8080 xscjcx-app:1.0</span></span><br><span class="line">9e493a7f091cdee9400170f633b6d0d6c3c96c667fe04eeda5438e407fb4c7a9</span><br><span class="line">[root@localhost dockerfile]<span class="comment"># docker exec -it dockerfile-app bash</span></span><br><span class="line">root@9e493a7f091c:/<span class="comment"># ls</span></span><br><span class="line">app.jar  bin  boot  dev  etc  home  lib  lib64	media  mnt  opt  proc  root  run  sbin	srv  sys  tmp  usr  var</span><br><span class="line">root@9e493a7f091c:/<span class="comment"># ps -ef | grep java</span></span><br><span class="line">root          1      0  0 07:57 ?        00:00:00 /bin/sh -c java -jar app.jar</span><br><span class="line">root          8      1 69 07:57 ?        00:00:44 java -jar app.jar</span><br><span class="line">root         49     25  0 07:58 pts/0    00:00:00 grep java</span><br><span class="line">root@9e493a7f091c:/var/log<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">[root@localhost dockerfile]<span class="comment"># docker ps -a</span></span><br><span class="line">CONTAINER ID   IMAGE                   COMMAND                   CREATED         STATUS         PORTS                                                                                                                                                 NAMES</span><br><span class="line">9e493a7f091c   xscjcx-app:1.0          <span class="string">&quot;/bin/sh -c &#x27;java -j…&quot;</span>   2 minutes ago   Up 2 minutes   0.0.0.0:7001-&gt;8080/tcp, :::7001-&gt;8080/tcp                                                                                                             dockerfile-app</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230527155934025.png" alt="Docker/image-20230527155934025"></p>
+<h1 id="6-Docker-Compose"><a href="#6-Docker-Compose" class="headerlink" title="6.Docker Compose"></a>6.Docker Compose</h1><ul>
+<li>问题：<ul>
+<li>微服务架构的应用系统中一般包含若干个微服务，每个微服务一般都会部署多个实例，如果每个微服务都要手动启停 ，维护的工作量会很大</li>
+<li>要从Dockerfile build image 或者去dockerhub拉取image</li>
+<li>要创建多个container</li>
+<li>要管理这些container（启动停止删除）</li>
+</ul>
+</li>
+<li><strong>Docker Compose是一个编排多容器分布式部署的工具，提供命令集管理容器化应用的完整开发周期，包括服务构建 ，启动和停止</strong></li>
+<li>使用步骤：<ul>
+<li>1.利用 Dockerfile 定义运行环境镜像</li>
+<li>2.使用 docker-compose.yml 定义组成应用的各服务</li>
+<li>3.运行 docker-compose up 启动应用</li>
+</ul>
+</li>
+</ul>
+<p><img src="image-20230527160458017.png" alt="Docker/image-20230527160458017"></p>
+<h2 id="6-1-安装Docker-Compose"><a href="#6-1-安装Docker-Compose" class="headerlink" title="6.1 安装Docker Compose"></a>6.1 安装Docker Compose</h2><ul>
+<li><p>github地址：<a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases/">https://github.com/docker/compose/releases/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux 上可以从 Github 上下载它的二进制包来使用，最新发行的版本地址：https://github.com/docker/compose/releases</span></span><br><span class="line"><span class="comment"># 运行以下命令以下载 Docker Compose 的当前稳定版本：</span></span><br><span class="line">curl -L https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-`<span class="built_in">uname</span> -s`-`<span class="built_in">uname</span> -m` &gt; /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">curl -L https://get.daocloud.io/docker/compose/releases/download/v2.18.1/docker-compose-`<span class="built_in">uname</span> -s`-`<span class="built_in">uname</span> -m` &gt; /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置文件可执行权限 </span></span><br><span class="line"><span class="built_in">chmod</span> +x /usr/local/bin/docker-compose</span><br><span class="line"><span class="comment"># 查看版本信息 </span></span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost dockerfile]<span class="comment"># curl -L https://github.com/docker/compose/releases/download/v2.18.1/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose</span></span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0</span><br><span class="line">100 52.0M  100 52.0M    0     0  23549      0  0:38:35  0:38:35 --:--:-- 14850</span><br><span class="line">[root@localhost dockerfile]<span class="comment"># chmod +x /usr/local/bin/docker-compose</span></span><br><span class="line">[root@localhost dockerfile]<span class="comment"># docker-compose --version</span></span><br><span class="line">Docker Compose version v2.18.1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="6-2-卸载Docker-Compose"><a href="#6-2-卸载Docker-Compose" class="headerlink" title="6.2 卸载Docker Compose"></a>6.2 卸载Docker Compose</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">二进制包方式安装的，删除二进制文件即可</span></span><br><span class="line">rm /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-3-使用docker-compose编排nginx-springboot项目"><a href="#6-3-使用docker-compose编排nginx-springboot项目" class="headerlink" title="6.3 使用docker compose编排nginx+springboot项目"></a>6.3 使用docker compose编排nginx+springboot项目</h2><blockquote>
+<p>1.创建docker-compose目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/docker-compose</span><br><span class="line">cd ~/docker-compose</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.编写 docker-compose.yml 文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;3&#x27;</span><br><span class="line">services:</span><br><span class="line">  ng1:</span><br><span class="line">   image: nginx:latest</span><br><span class="line">   ports:</span><br><span class="line">    - 8002:80</span><br><span class="line">   links:</span><br><span class="line">    - app</span><br><span class="line">   volumes:</span><br><span class="line">    - /root/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf</span><br><span class="line">  app:</span><br><span class="line">    image: xscjcx-app:1.0</span><br><span class="line">    expose:</span><br><span class="line">      - &quot;8080&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.创建&#x2F;root&#x2F;nginx&#x2F;conf.d目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /root/nginx/conf.d</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4.在.&#x2F;nginx&#x2F;conf.d目录下 编写default.conf文件</p>
+</blockquote>
+<ul>
+<li><p>nginx容器&#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf内默认有一个default.conf配置文件：</p>
+<p><img src="image-20230527175804433.png" alt="Docker/image-20230527175804433"></p>
+</li>
+<li><p>&#x2F;etc&#x2F;nginx&#x2F;nginx.conf配置文件中是*.conf：</p>
+<p><img src="image-20230527175609477.png" alt="Docker/image-20230527175609477"></p>
+</li>
+<li><p>所以挂载的目录中新建的配置文件可以起*.conf任意名字</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    access_log off;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">    # app:docker-compose.yml 文件中的容器名</span><br><span class="line">        proxy_pass http://app:8080;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5.在~&#x2F;docker-compose 目录下 使用docker-compose 启动容器</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>6.测试访问</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.198.134:8082</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230527175245664.png" alt="Docker/image-20230527175245664"></p>
+<blockquote>
+<p>7.关闭容器</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down <span class="comment">#删除</span></span><br><span class="line">ctrl+c  <span class="comment">#停止容器</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># docker ps -a</span></span><br><span class="line">CONTAINER ID   IMAGE                   COMMAND                   CREATED          STATUS          PORTS                                                                                                                                                 NAMES</span><br><span class="line">3949376ec133   nginx:latest            <span class="string">&quot;/docker-entrypoint.…&quot;</span>   10 seconds ago   Up 8 seconds    0.0.0.0:8002-&gt;80/tcp, :::8002-&gt;80/tcp                                                                                                                 docker-compose-ng1-1</span><br><span class="line">8eea12b11f91   xscjcx-app:1.0          <span class="string">&quot;/bin/sh -c &#x27;java -j…&quot;</span>   10 seconds ago   Up 8 seconds    8080/tcp                                                                                                                                              docker-compose-app-1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost docker-compose]<span class="comment"># docker-compose up</span></span><br><span class="line">[+] Building 0.0s (0/0)                                                                                                                                                 </span><br><span class="line">[+] Running 3/2</span><br><span class="line"> ✔ Network docker-compose_default  Created                                                                                                                         0.7s </span><br><span class="line"> ✔ Container docker-compose-app-1  Created                                                                                                                         0.1s </span><br><span class="line"> ✔ Container docker-compose-ng1-1  Created                                                                                                                         0.1s </span><br><span class="line">Attaching to docker-compose-app-1, docker-compose-ng1-1</span><br><span class="line">docker-compose-ng1-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration</span><br><span class="line">docker-compose-ng1-1  | /docker-entrypoint.sh: Looking <span class="keyword">for</span> shell scripts <span class="keyword">in</span> /docker-entrypoint.d/</span><br><span class="line">docker-compose-ng1-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh</span><br><span class="line">docker-compose-ng1-1  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf</span><br><span class="line">docker-compose-ng1-1  | 10-listen-on-ipv6-by-default.sh: info: /etc/nginx/conf.d/default.conf differs from the packaged version</span><br><span class="line">docker-compose-ng1-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh</span><br><span class="line">docker-compose-ng1-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh</span><br><span class="line">docker-compose-ng1-1  | /docker-entrypoint.sh: Configuration complete; ready <span class="keyword">for</span> start up</span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: using the &quot;epoll&quot; event method</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: nginx/1.21.5</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) </span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: OS: Linux 3.10.0-1160.el7.x86_64</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: start worker processes</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: start worker process 30</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: start worker process 31</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: start worker process 32</span></span><br><span class="line">docker-compose-ng1-1  | 2023/05/27 09:52:02 [notice] 1<span class="comment">#1: start worker process 33</span></span><br><span class="line">docker-compose-app-1  | </span><br><span class="line">docker-compose-app-1  |   .   ____          _            __ _ _</span><br><span class="line">docker-compose-app-1  |  /\\ / ___<span class="string">&#x27;_ __ _ _(_)_ __  __ _ \ \ \ \</span></span><br><span class="line"><span class="string">docker-compose-app-1  | ( ( )\___ | &#x27;</span>_ | <span class="string">&#x27;_| | &#x27;</span>_ \/ _` | \ \ \ \</span><br><span class="line">docker-compose-app-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">docker-compose-app-1  |   <span class="string">&#x27;  |____| .__|_| |_|_| |_\__, | / / / /</span></span><br><span class="line"><span class="string">docker-compose-app-1  |  =========|_|==============|___/=/_/_/_/</span></span><br><span class="line"><span class="string">docker-compose-app-1  |  :: Spring Boot ::                (v2.4.4)</span></span><br><span class="line"><span class="string">docker-compose-app-1  | </span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:04.954  INFO 7 --- [           main] com.yang.XscjcxApplication               : Starting XscjcxApplication v0.0.1-SNAPSHOT using Java 1.8.0_111 on 8eea12b11f91 with PID 7 (/app.jar started by root in /)</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:04.963  INFO 7 --- [           main] com.yang.XscjcxApplication               : No active profile set, falling back to default profiles: default</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:08.971  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:09.004  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:09.005  INFO 7 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.44]</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:09.142  INFO 7 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:09.142  INFO 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4020 ms</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:11.027  INFO 7 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : </span></span><br><span class="line"><span class="string">docker-compose-app-1  | </span></span><br><span class="line"><span class="string">docker-compose-app-1  | Using generated security password: 0871edd4-194c-4eb3-bc89-0a46fc26f8c5</span></span><br><span class="line"><span class="string">docker-compose-app-1  | </span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:11.340  INFO 7 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c711375, org.springframework.security.web.context.SecurityContextPersistenceFilter@5acf93bb, org.springframework.security.web.header.HeaderWriterFilter@48f278eb, org.springframework.security.web.authentication.logout.LogoutFilter@58695725, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@54bff557, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6cd28fa7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@66d3eec0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57cf54e1, org.springframework.security.web.session.SessionManagementFilter@a530d0a, org.springframework.security.web.access.ExceptionTranslationFilter@611889f4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c88a337]</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:11.679  INFO 7 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &#x27;</span>applicationTaskExecutor<span class="string">&#x27;</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:12.016  INFO 7 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:12.529  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path &#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:12.561  INFO 7 --- [           main] com.yang.XscjcxApplication               : Started XscjcxApplication in 9.013 seconds (JVM running for 10.46)</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:25.606  INFO 7 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet &#x27;</span>dispatcherServlet<span class="string">&#x27;</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:25.607  INFO 7 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet &#x27;</span>dispatcherServlet<span class="string">&#x27;</span></span><br><span class="line"><span class="string">docker-compose-app-1  | 2023-05-27 09:52:25.610  INFO 7 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">^CGracefully stopping... (press Ctrl+C again to force)</span></span><br><span class="line"><span class="string">Aborting on container exit...</span></span><br><span class="line"><span class="string">[+] Stopping 2/2</span></span><br><span class="line"><span class="string"> ✔ Container docker-compose-ng1-1  Stopped                                                                                                                         0.4s </span></span><br><span class="line"><span class="string"> ✔ Container docker-compose-app-1  Stopped                                                                                                                        10.4s </span></span><br><span class="line"><span class="string">canceled</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[root@localhost ~]# docker ps -a</span></span><br><span class="line"><span class="string">CONTAINER ID   IMAGE                   COMMAND                   CREATED         STATUS                        PORTS                                                                                                                                                 NAMES</span></span><br><span class="line"><span class="string">3949376ec133   nginx:latest            &quot;/docker-entrypoint.…&quot;   9 minutes ago   Exited (0) 26 seconds ago                                                                                                                                                           docker-compose-ng1-1</span></span><br><span class="line"><span class="string">8eea12b11f91   xscjcx-app:1.0          &quot;/bin/sh -c &#x27;</span>java -j…<span class="string">&quot;   9 minutes ago   Exited (137) 16 seconds ago                                                                                                                                                         docker-compose-app-1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[root@localhost docker-compose]# docker-compose down</span></span><br><span class="line"><span class="string">[+] Running 3/3</span></span><br><span class="line"><span class="string"> ✔ Container docker-compose-ng1-1  Removed                                                                                                                         0.0s </span></span><br><span class="line"><span class="string"> ✔ Container docker-compose-app-1  Removed                                                                                                                         0.0s </span></span><br><span class="line"><span class="string"> ✔ Network docker-compose_default  Removed                                                                                                                         0.5s </span></span><br><span class="line"><span class="string">[root@localhost docker-compose]# </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[root@localhost ~]# docker ps -a</span></span><br><span class="line"><span class="string">CONTAINER ID   IMAGE                   COMMAND                   CREATED        STATUS          PORTS                                                                                                                                                 NAMES</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="7-Docker私有仓库"><a href="#7-Docker私有仓库" class="headerlink" title="7.Docker私有仓库"></a>7.Docker私有仓库</h1><h2 id="7-1-私有仓库搭建"><a href="#7-1-私有仓库搭建" class="headerlink" title="7.1 私有仓库搭建"></a>7.1 私有仓库搭建</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、拉取私有仓库镜像</span> </span><br><span class="line">docker pull registry</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、启动私有仓库容器</span> </span><br><span class="line">docker run -id --name=registry -p 5000:5000 registry</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3、打开浏览器 输入地址http://192.168.198.134:5000/v2/_catalog，看到&#123;<span class="string">&quot;repositories&quot;</span>:[]&#125; 表示私有仓库 搭建成功</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4、修改daemon.json</span>   </span><br><span class="line">vim /etc/docker/daemon.json    </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在上述文件中添加一个key，保存退出。此步用于让 docker 信任私有仓库地址；注意将私有仓库服务器ip修改为自己私有仓库服务器真实ip</span> </span><br><span class="line">&quot;insecure-registries&quot;: [&quot;192.168.198.134:5000&quot;]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5、重启docker 服务</span> </span><br><span class="line">systemctl restart docker</span><br><span class="line">docker start registry</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# docker pull registry</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/registry</span><br><span class="line">79e9f2f55bf5: Pull complete </span><br><span class="line">0d96da54f60b: Pull complete </span><br><span class="line">5b27040df4a2: Pull complete </span><br><span class="line">e2ead8259a04: Pull complete </span><br><span class="line">3790aef225b9: Pull complete </span><br><span class="line">Digest: sha256:169211e20e2f2d5d115674681eb79d21a217b296b43374b8e39f97fcf866b375</span><br><span class="line">Status: Downloaded newer image for registry:latest</span><br><span class="line">docker.io/library/registry:latest</span><br><span class="line">[root@localhost bin]# cd ~</span><br><span class="line">[root@localhost ~]# docker run -id --name=registry -p 5000:5000 registry</span><br><span class="line">95f7b7813a72dc43c2d60239b3cfd6456f8d5998df7d37e3138c95c7ec49d388</span><br><span class="line">[root@localhost ~]# vim /etc/docker/daemon.json  </span><br><span class="line">还有 2 个文件等待编辑</span><br><span class="line">[root@localhost ~]# cat /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://b3y7og8v.mirror.aliyuncs.com&quot;],</span><br><span class="line">  &quot;insecure-registries&quot;: [&quot;192.168.198.134:5000&quot;]</span><br><span class="line">&#125;</span><br><span class="line">[root@localhost ~]# systemctl restart docker</span><br><span class="line">[root@localhost ~]# docker ps -a</span><br><span class="line">CONTAINER ID   IMAGE                   COMMAND                   CREATED         STATUS                      PORTS                                                                                                                                                 NAMES</span><br><span class="line">95f7b7813a72   registry                &quot;/entrypoint.sh /etc…&quot;   4 minutes ago   Exited (2) 30 seconds ago                                                                                                                                                         registry</span><br><span class="line">931c9e84c401   rabbitmq:3-management   &quot;docker-entrypoint.s…&quot;   7 hours ago     Up 7 seconds                4369/tcp, 5671/tcp, 0.0.0.0:5672-&gt;5672/tcp, :::5672-&gt;5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672-&gt;15672/tcp, :::15672-&gt;15672/tcp   rabbitmq</span><br><span class="line">1a01f58c2dac   mysql:5.7               &quot;docker-entrypoint.s…&quot;   18 hours ago    Up 8 seconds                0.0.0.0:3306-&gt;3306/tcp, :::3306-&gt;3306/tcp, 33060/tcp                                                                                                  mysql</span><br><span class="line">a7a08af3e246   kibana:7.17.10          &quot;/bin/tini -- /usr/l…&quot;   28 hours ago    Up 9 seconds                0.0.0.0:5601-&gt;5601/tcp, :::5601-&gt;5601/tcp                                                                                                             kibana</span><br><span class="line">8f7124118e28   elasticsearch:7.17.10   &quot;/bin/tini -- /usr/l…&quot;   29 hours ago    Up 9 seconds                0.0.0.0:9200-&gt;9200/tcp, :::9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp, :::9300-&gt;9300/tcp                                                                  elasticsearch</span><br><span class="line">092db24f29e4   tomcat:8.5.61           &quot;catalina.sh run&quot;         44 hours ago    Up 9 seconds                0.0.0.0:8081-&gt;8080/tcp, :::8081-&gt;8080/tcp                                                                                                             tomcat</span><br><span class="line">37462b487180   java                    &quot;/bin/bash&quot;               2 days ago      Exited (0) 29 seconds ago                                                                                                                                                         java</span><br><span class="line">5fefcfffb042   httpd:latest            &quot;httpd-foreground&quot;        3 days ago      Up 10 seconds               0.0.0.0:8080-&gt;80/tcp, :::8080-&gt;80/tcp                                                                                                                 httpd</span><br><span class="line">42dafb202bb3   nginx:latest            &quot;/docker-entrypoint.…&quot;   5 days ago      Up 9 seconds                0.0.0.0:80-&gt;80/tcp, :::80-&gt;80/tcp                                                                                                                     nginx</span><br><span class="line">839ff13331d8   redis:6.2.6             &quot;docker-entrypoint.s…&quot;   6 days ago      Up 8 seconds                0.0.0.0:6379-&gt;6379/tcp, :::6379-&gt;6379/tcp                                                                                                             redis</span><br><span class="line">[root@localhost ~]# docker start registry</span><br><span class="line">registry</span><br><span class="line">[root@localhost ~]# docker ps -a</span><br><span class="line">CONTAINER ID   IMAGE                   COMMAND                   CREATED         STATUS                          PORTS                                                                                                                                                 NAMES</span><br><span class="line">95f7b7813a72   registry                &quot;/entrypoint.sh /etc…&quot;   4 minutes ago   Up 4 seconds                    0.0.0.0:5000-&gt;5000/tcp, :::5000-&gt;5000/tcp                                                                                                             registry</span><br><span class="line">931c9e84c401   rabbitmq:3-management   &quot;docker-entrypoint.s…&quot;   7 hours ago     Up 42 seconds                   4369/tcp, 5671/tcp, 0.0.0.0:5672-&gt;5672/tcp, :::5672-&gt;5672/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 0.0.0.0:15672-&gt;15672/tcp, :::15672-&gt;15672/tcp   rabbitmq</span><br><span class="line">1a01f58c2dac   mysql:5.7               &quot;docker-entrypoint.s…&quot;   18 hours ago    Up 43 seconds                   0.0.0.0:3306-&gt;3306/tcp, :::3306-&gt;3306/tcp, 33060/tcp                                                                                                  mysql</span><br><span class="line">a7a08af3e246   kibana:7.17.10          &quot;/bin/tini -- /usr/l…&quot;   28 hours ago    Up 44 seconds                   0.0.0.0:5601-&gt;5601/tcp, :::5601-&gt;5601/tcp                                                                                                             kibana</span><br><span class="line">8f7124118e28   elasticsearch:7.17.10   &quot;/bin/tini -- /usr/l…&quot;   29 hours ago    Up 44 seconds                   0.0.0.0:9200-&gt;9200/tcp, :::9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp, :::9300-&gt;9300/tcp                                                                  elasticsearch</span><br><span class="line">092db24f29e4   tomcat:8.5.61           &quot;catalina.sh run&quot;         44 hours ago    Up 44 seconds                   0.0.0.0:8081-&gt;8080/tcp, :::8081-&gt;8080/tcp                                                                                                             tomcat</span><br><span class="line">37462b487180   java                    &quot;/bin/bash&quot;               2 days ago      Exited (0) About a minute ago                                                                                                                                                         java</span><br><span class="line">5fefcfffb042   httpd:latest            &quot;httpd-foreground&quot;        3 days ago      Up 45 seconds                   0.0.0.0:8080-&gt;80/tcp, :::8080-&gt;80/tcp                                                                                                                 httpd</span><br><span class="line">42dafb202bb3   nginx:latest            &quot;/docker-entrypoint.…&quot;   5 days ago      Up 44 seconds                   0.0.0.0:80-&gt;80/tcp, :::80-&gt;80/tcp                                                                                                                     nginx</span><br><span class="line">839ff13331d8   redis:6.2.6             &quot;docker-entrypoint.s…&quot;   6 days ago      Up 44 seconds                   0.0.0.0:6379-&gt;6379/tcp, :::6379-&gt;6379/tcp                                                                                                             redis</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-2-将镜像上传至私有仓库"><a href="#7-2-将镜像上传至私有仓库" class="headerlink" title="7.2 将镜像上传至私有仓库"></a>7.2 将镜像上传至私有仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、标记镜像为私有仓库的镜像</span>     </span><br><span class="line">docker tag centos:7 私有仓库服务器IP:5000/镜像名:版本号</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、上传标记的镜像</span>     </span><br><span class="line">docker push 私有仓库服务器IP:5000/镜像名:版本号</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY         TAG            IMAGE ID       CREATED         SIZE</span><br><span class="line">xscjcx-app         1.0            036026128f78   3 hours ago     675MB</span><br><span class="line">hectorqin/reader   latest         4fb50a35206e   4 days ago      179MB</span><br><span class="line">elasticsearch      7.17.10        a305059888ba   4 weeks ago     622MB</span><br><span class="line">kibana             7.17.10        ba4afcebad69   4 weeks ago     811MB</span><br><span class="line">nginx              latest         605c77e624dd   17 months ago   141MB</span><br><span class="line">redis              6.2.6          7614ae9453d1   17 months ago   113MB</span><br><span class="line">mysql              5.7            c20987f18b13   17 months ago   448MB</span><br><span class="line">httpd              latest         dabbfbe0c57b   17 months ago   144MB</span><br><span class="line">rabbitmq           3-management   6c3c2a225947   17 months ago   253MB</span><br><span class="line">mongo              latest         dfda7a2cf273   17 months ago   693MB</span><br><span class="line">registry           latest         b8604a3fe854   18 months ago   26.2MB</span><br><span class="line">centos             7              eeb6ee3f44bd   20 months ago   204MB</span><br><span class="line">tomcat             8.5.61         af0e2e376654   2 years ago     533MB</span><br><span class="line">docker/compose     latest         c3e188a6b38f   2 years ago     80.9MB</span><br><span class="line">java               latest         d23bdf5b1b1b   6 years ago     643MB</span><br><span class="line">[root@localhost ~]<span class="comment"># docker tag xscjcx-app:1.0 192.168.198.134:5000/xscjcx-app:1.0</span></span><br><span class="line">[root@localhost ~]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                        TAG            IMAGE ID       CREATED         SIZE</span><br><span class="line">192.168.198.134:5000/xscjcx-app   1.0            036026128f78   3 hours ago     675MB</span><br><span class="line">xscjcx-app                        1.0            036026128f78   3 hours ago     675MB</span><br><span class="line">hectorqin/reader                  latest         4fb50a35206e   4 days ago      179MB</span><br><span class="line">elasticsearch                     7.17.10        a305059888ba   4 weeks ago     622MB</span><br><span class="line">kibana                            7.17.10        ba4afcebad69   4 weeks ago     811MB</span><br><span class="line">nginx                             latest         605c77e624dd   17 months ago   141MB</span><br><span class="line">redis                             6.2.6          7614ae9453d1   17 months ago   113MB</span><br><span class="line">mysql                             5.7            c20987f18b13   17 months ago   448MB</span><br><span class="line">httpd                             latest         dabbfbe0c57b   17 months ago   144MB</span><br><span class="line">rabbitmq                          3-management   6c3c2a225947   17 months ago   253MB</span><br><span class="line">mongo                             latest         dfda7a2cf273   17 months ago   693MB</span><br><span class="line">registry                          latest         b8604a3fe854   18 months ago   26.2MB</span><br><span class="line">centos                            7              eeb6ee3f44bd   20 months ago   204MB</span><br><span class="line">tomcat                            8.5.61         af0e2e376654   2 years ago     533MB</span><br><span class="line">docker/compose                    latest         c3e188a6b38f   2 years ago     80.9MB</span><br><span class="line">java                              latest         d23bdf5b1b1b   6 years ago     643MB</span><br><span class="line">[root@localhost ~]<span class="comment"># docker push 192.168.198.134:5000/xscjcx-app:1.0</span></span><br><span class="line">The push refers to repository [192.168.198.134:5000/xscjcx-app]</span><br><span class="line">305d87543de4: Pushed </span><br><span class="line">35c20f26d188: Pushed </span><br><span class="line">c3fe59dd9556: Pushed </span><br><span class="line">6ed1a81ba5b6: Pushed </span><br><span class="line">a3483ce177ce: Pushed </span><br><span class="line">ce6c8756685b: Pushed </span><br><span class="line">30339f20ced0: Pushed </span><br><span class="line">0eb22bfb707d: Pushed </span><br><span class="line">a2ae92ffcd29: Pushed </span><br><span class="line">1.0: digest: sha256:4fa39256fc086ed529927b8f53b3a9db7532595aa0b96ad3134d83eee1f1ff7c size: 2212</span><br><span class="line">[root@localhost ~]<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230527184239002.png" alt="Docker/image-20230527184239002"></p>
+<h2 id="7-3-从私有仓库拉取镜像"><a href="#7-3-从私有仓库拉取镜像" class="headerlink" title="7.3 从私有仓库拉取镜像"></a>7.3 从私有仓库拉取镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉取镜像 </span></span><br><span class="line">docker pull 私有仓库服务器ip:5000/镜像名:版本号</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># docker rmi 192.168.198.134:5000/xscjcx-app:1.0</span></span><br><span class="line">Untagged: 192.168.198.134:5000/xscjcx-app:1.0</span><br><span class="line">Untagged: 192.168.198.134:5000/xscjcx-app@sha256:4fa39256fc086ed529927b8f53b3a9db7532595aa0b96ad3134d83eee1f1ff7c</span><br><span class="line">[root@localhost ~]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY         TAG            IMAGE ID       CREATED         SIZE</span><br><span class="line">xscjcx-app         1.0            036026128f78   3 hours ago     675MB</span><br><span class="line">hectorqin/reader   latest         4fb50a35206e   4 days ago      179MB</span><br><span class="line">elasticsearch      7.17.10        a305059888ba   4 weeks ago     622MB</span><br><span class="line">kibana             7.17.10        ba4afcebad69   4 weeks ago     811MB</span><br><span class="line">nginx              latest         605c77e624dd   17 months ago   141MB</span><br><span class="line">redis              6.2.6          7614ae9453d1   17 months ago   113MB</span><br><span class="line">mysql              5.7            c20987f18b13   17 months ago   448MB</span><br><span class="line">httpd              latest         dabbfbe0c57b   17 months ago   144MB</span><br><span class="line">rabbitmq           3-management   6c3c2a225947   17 months ago   253MB</span><br><span class="line">mongo              latest         dfda7a2cf273   17 months ago   693MB</span><br><span class="line">registry           latest         b8604a3fe854   18 months ago   26.2MB</span><br><span class="line">centos             7              eeb6ee3f44bd   20 months ago   204MB</span><br><span class="line">tomcat             8.5.61         af0e2e376654   2 years ago     533MB</span><br><span class="line">docker/compose     latest         c3e188a6b38f   2 years ago     80.9MB</span><br><span class="line">java               latest         d23bdf5b1b1b   6 years ago     643MB</span><br><span class="line">[root@localhost ~]<span class="comment"># docker pull 192.168.198.134:5000/xscjcx-app:1.0</span></span><br><span class="line">1.0: Pulling from xscjcx-app</span><br><span class="line">Digest: sha256:4fa39256fc086ed529927b8f53b3a9db7532595aa0b96ad3134d83eee1f1ff7c</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> 192.168.198.134:5000/xscjcx-app:1.0</span><br><span class="line">192.168.198.134:5000/xscjcx-app:1.0</span><br><span class="line">[root@localhost ~]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                        TAG            IMAGE ID       CREATED         SIZE</span><br><span class="line">192.168.198.134:5000/xscjcx-app   1.0            036026128f78   3 hours ago     675MB</span><br><span class="line">xscjcx-app                        1.0            036026128f78   3 hours ago     675MB</span><br><span class="line">hectorqin/reader                  latest         4fb50a35206e   4 days ago      179MB</span><br><span class="line">elasticsearch                     7.17.10        a305059888ba   4 weeks ago     622MB</span><br><span class="line">kibana                            7.17.10        ba4afcebad69   4 weeks ago     811MB</span><br><span class="line">nginx                             latest         605c77e624dd   17 months ago   141MB</span><br><span class="line">redis                             6.2.6          7614ae9453d1   17 months ago   113MB</span><br><span class="line">mysql                             5.7            c20987f18b13   17 months ago   448MB</span><br><span class="line">httpd                             latest         dabbfbe0c57b   17 months ago   144MB</span><br><span class="line">rabbitmq                          3-management   6c3c2a225947   17 months ago   253MB</span><br><span class="line">mongo                             latest         dfda7a2cf273   17 months ago   693MB</span><br><span class="line">registry                          latest         b8604a3fe854   18 months ago   26.2MB</span><br><span class="line">centos                            7              eeb6ee3f44bd   20 months ago   204MB</span><br><span class="line">tomcat                            8.5.61         af0e2e376654   2 years ago     533MB</span><br><span class="line">docker/compose                    latest         c3e188a6b38f   2 years ago     80.9MB</span><br><span class="line">java                              latest         d23bdf5b1b1b   6 years ago     643MB</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-docker容器虚拟化-与-传统虚拟机比较"><a href="#8-docker容器虚拟化-与-传统虚拟机比较" class="headerlink" title="8.docker容器虚拟化 与 传统虚拟机比较"></a>8.docker容器虚拟化 与 传统虚拟机比较</h1><p><img src="image-20230527184820673.png" alt="Docker/image-20230527184820673"></p>
+<p><img src="image-20230527184840856.png" alt="Docker/image-20230527184840856"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/02/26/Docker/" title="Docker">https://xiaguyangdie.github.io/2023/02/26/Docker/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/26/C++%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE%E5%88%B0txt%E6%96%87%E4%BB%B6/" rel="prev" title="C++输出数据到txt文件">
+      <i class="fa fa-chevron-left"></i> C++输出数据到txt文件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/26/hexo%E4%B8%BB%E9%A2%98%E4%B9%8Bnext/" rel="next" title="hexo主题之next">
+      hexo主题之next <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Docker%E7%AE%80%E4%BB%8B"><span class="nav-text">1.Docker简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Docker%E5%AE%89%E8%A3%85"><span class="nav-text">2.Docker安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%8D%B8%E8%BD%BD%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-text">2.1 卸载（可选）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85docker"><span class="nav-text">2.2 安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%90%AF%E5%8A%A8docker"><span class="nav-text">2.3 启动docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F"><span class="nav-text">2.4 配置镜像加速</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-text">3.相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%9C%8D%E5%8A%A1"><span class="nav-text">3.1 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E9%95%9C%E5%83%8F"><span class="nav-text">3.2 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%AE%B9%E5%99%A8"><span class="nav-text">3.3 容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-text">4.容器数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%8D%B7%E6%A6%82%E5%BF%B5"><span class="nav-text">4.1 数据卷概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-text">4.2 使用数据卷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Dockerfile"><span class="nav-text">5.Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Docker%E9%95%9C%E5%83%8F%E5%8E%9F%E7%90%86"><span class="nav-text">5.1 Docker镜像原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C"><span class="nav-text">5.2 镜像制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Dockerfile%E9%83%A8%E7%BD%B2SpringBoot%E9%A1%B9%E7%9B%AE"><span class="nav-text">5.3 Dockerfile部署SpringBoot项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Docker-Compose"><span class="nav-text">6.Docker Compose</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E5%AE%89%E8%A3%85Docker-Compose"><span class="nav-text">6.1 安装Docker Compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E5%8D%B8%E8%BD%BDDocker-Compose"><span class="nav-text">6.2 卸载Docker Compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E4%BD%BF%E7%94%A8docker-compose%E7%BC%96%E6%8E%92nginx-springboot%E9%A1%B9%E7%9B%AE"><span class="nav-text">6.3 使用docker compose编排nginx+springboot项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93"><span class="nav-text">7.Docker私有仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%90%AD%E5%BB%BA"><span class="nav-text">7.1 私有仓库搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E5%B0%86%E9%95%9C%E5%83%8F%E4%B8%8A%E4%BC%A0%E8%87%B3%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93"><span class="nav-text">7.2 将镜像上传至私有仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E4%BB%8E%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-text">7.3 从私有仓库拉取镜像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-docker%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96-%E4%B8%8E-%E4%BC%A0%E7%BB%9F%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%AF%94%E8%BE%83"><span class="nav-text">8.docker容器虚拟化 与 传统虚拟机比较</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

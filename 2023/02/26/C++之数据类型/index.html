@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="C++之数据类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++之数据类型">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="C++之数据类型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529151650540.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529152156651.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529164329461.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529165108854.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529173420857.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529183107114.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529183318725.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529183546361.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529184111085.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529184932724.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529193233889.png">
+<meta property="article:published_time" content="2023-02-26T08:27:30.968Z">
+<meta property="article:modified_time" content="2024-03-23T14:45:12.148Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="数据类型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/image-20220529151650540.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++之数据类型 | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++之数据类型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-26 16:27:30" itemprop="dateCreated datePublished" datetime="2023-02-26T16:27:30+08:00">2023-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-23 22:45:12" itemprop="dateModified" datetime="2024-03-23T22:45:12+08:00">2024-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-meta-item leancloud_visitors" data-flag-title="C++之数据类型" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">C++之数据类型</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-整型变量"><a href="#1-整型变量" class="headerlink" title="1.整型变量"></a>1.整型变量</h3><p>C++中能够表示整型的类型有以下几种方式，<strong>区别在于所占内存空间不同</strong>：</p>
+<table>
+<thead>
+<tr>
+<th><strong>数据类型</strong></th>
+<th><strong>占用空间</strong></th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>short(短整型)</td>
+<td>2字节</td>
+<td>(-2^15 ~ 2^15-1)</td>
+</tr>
+<tr>
+<td>int(整型)</td>
+<td>4字节</td>
+<td>(-2^31 ~ 2^31-1)</td>
+</tr>
+<tr>
+<td>long(长整形)</td>
+<td>Windows为4字节，Linux为4字节(32位)，8字节(64位)</td>
+<td>(-2^31 ~ 2^31-1)</td>
+</tr>
+<tr>
+<td>long long(长长整形)</td>
+<td>8字节</td>
+<td>(-2^63 ~ 2^63-1)</td>
+</tr>
+</tbody></table>
+<h4 id="1-1-常量与变量"><a href="#1-1-常量与变量" class="headerlink" title="1.1 常量与变量"></a>1.1 常量与变量</h4><h5 id="1-1-1-变量"><a href="#1-1-1-变量" class="headerlink" title="1.1.1 变量"></a>1.1.1 变量</h5><p><strong>作用</strong>：给一段指定的内存空间起名，方便操作这段内存</p>
+<p><strong>语法</strong>：<code>数据类型 变量名 = 初始值;</code></p>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//变量的定义</span></span><br><span class="line"> <span class="comment">//语法：数据类型 变量名 = 初始值</span></span><br><span class="line"></span><br><span class="line"> <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：C++在创建变量时，必须给变量一个初始值，否则会报错</p>
+</blockquote>
+<h5 id="1-1-2-常量"><a href="#1-1-2-常量" class="headerlink" title="1.1.2 常量"></a>1.1.2 常量</h5><p><strong>作用</strong>：用于记录程序中不可更改的数据</p>
+<p>C++定义常量两种方式</p>
+<ol>
+<li><strong>#define</strong> 宏常量： <code>#define 常量名 常量值</code><ul>
+<li>通常在文件上方定义，表示一个常量</li>
+</ul>
+</li>
+<li><strong>const</strong>修饰的变量 <code>const 数据类型 常量名 = 常量值</code><ul>
+<li>通常在变量定义前加关键字const，修饰该变量为常量，不可修改</li>
+<li>必须初始化</li>
+</ul>
+</li>
+</ol>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、宏常量</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> day 7</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;一周里总共有 &quot;</span> &lt;&lt; day &lt;&lt; <span class="string">&quot; 天&quot;</span> &lt;&lt; endl;</span><br><span class="line"> <span class="comment">//day = 8;  //报错，宏常量不可以修改</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//2、const修饰变量</span></span><br><span class="line"> <span class="type">const</span> <span class="type">int</span> month = <span class="number">12</span>;</span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;一年里总共有 &quot;</span> &lt;&lt; month &lt;&lt; <span class="string">&quot; 个月份&quot;</span> &lt;&lt; endl;</span><br><span class="line"> <span class="comment">//month = 24; //报错，常量是不可以修改的</span></span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-整形常量"><a href="#1-2-整形常量" class="headerlink" title="1.2 整形常量"></a>1.2 整形常量</h4><p><img src="image-20220529151650540.png" alt="C++之数据类型/image-20220529151650540"></p>
+<h4 id="1-3-整型变量"><a href="#1-3-整型变量" class="headerlink" title="1.3 整型变量"></a>1.3 整型变量</h4><p><img src="image-20220529152156651.png" alt="C++之数据类型/image-20220529152156651"></p>
+<h4 id="1-4-整型变量的初始化"><a href="#1-4-整型变量的初始化" class="headerlink" title="1.4 整型变量的初始化"></a>1.4 整型变量的初始化</h4><p>变量的初始化：在定义变量的时候，给变量赋值叫初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">10</span>; <span class="comment">//初始化</span></span><br><span class="line"><span class="type">int</span> data;</span><br><span class="line">data = <span class="number">10</span>;<span class="comment">//不是初始化，仅仅是赋值操作</span></span><br></pre></td></tr></table></figure>
+
+<p>全局变量如果不初始化，内容为0</p>
+<p>局部变量如果不初始化，内容为不确定（随机）</p>
+<blockquote>
+<p>变量要初始化，一般初始化为0</p>
+</blockquote>
+<h4 id="1-5-整型变量的使用"><a href="#1-5-整型变量的使用" class="headerlink" title="1.5 整型变量的使用"></a>1.5 整型变量的使用</h4><p>变量的使用：读（取值） 写（赋值）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">0</span>;</span><br><span class="line">num = <span class="number">100</span>;<span class="comment">//写操作</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> data = <span class="number">0</span>;</span><br><span class="line">data = num;<span class="comment">//num读  data写</span></span><br><span class="line">cout&lt;&lt;data&lt;&lt;endl;<span class="comment">//读操作</span></span><br><span class="line"></span><br><span class="line">data++;<span class="comment">//读写</span></span><br></pre></td></tr></table></figure>
+
+<p>变量的声明：对变量名以及类型提前说明，不会为该变量开辟空间</p>
+<p>场景：先使用变量  后定义变量  必须事先对该变量进行声明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//提前告诉编译器有这个变量，防止报错：变量声明  需要加extern修饰</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> data;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//先使用</span></span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;data=&quot;</span>&lt;&lt;data&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//后定义</span></span><br><span class="line"><span class="type">int</span> data = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>变量的定义：创建变量名 系统为变量开辟空间</p>
+<p>变量的声明：对变量的类型和名称事先说明，不会为变量开辟空间</p>
+<p>变量的使用：对已经存在的变量的读写操作</p>
+<h4 id="1-6-键盘给变量赋值"><a href="#1-6-键盘给变量赋值" class="headerlink" title="1.6 键盘给变量赋值"></a>1.6 键盘给变量赋值</h4><p><strong>作用：用于从键盘获取数据</strong></p>
+<p><strong>关键字：</strong>cin</p>
+<p><strong>语法：</strong> <code>cin &gt;&gt; 变量 </code></p>
+<p>cin根据变量的类型自动判断输入</p>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//整型输入</span></span><br><span class="line"> <span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;请输入整型变量：&quot;</span> &lt;&lt; endl;</span><br><span class="line">	cin &gt;&gt; a;</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//浮点型输入</span></span><br><span class="line"> <span class="type">double</span> d = <span class="number">0</span>;</span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;请输入浮点型变量：&quot;</span> &lt;&lt; endl;</span><br><span class="line"> cin &gt;&gt; d;</span><br><span class="line"> cout &lt;&lt; d &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">//字符串型输入</span></span><br><span class="line">	string str;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;请输入字符串型变量：&quot;</span> &lt;&lt; endl;</span><br><span class="line">	cin &gt;&gt; str;</span><br><span class="line">	cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//布尔类型输入</span></span><br><span class="line"> <span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;请输入布尔型变量：&quot;</span> &lt;&lt; endl;</span><br><span class="line">	cin &gt;&gt; flag;</span><br><span class="line">	cout &lt;&lt; flag &lt;&lt; endl;</span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"> <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输入给多个变量：空格隔开  或者回车</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> data = <span class="number">0</span>;</span><br><span class="line">cout&lt;&lt;<span class="string">&quot;请输入两个int数据:&quot;</span>;</span><br><span class="line">cin&gt;&gt;num&gt;&gt;data;</span><br><span class="line">cout&lt;&lt;<span class="string">&quot;num = &quot;</span>&lt;&lt;num&lt;&lt;<span class="string">&quot;data = &quot;</span>&lt;&lt;data&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-字符类型"><a href="#2-字符类型" class="headerlink" title="2.字符类型"></a>2.字符类型</h3><p><strong>作用：</strong>字符型变量用于显示单个字符</p>
+<p><strong>语法：</strong><code>char ch = &#39;a&#39;;</code></p>
+<blockquote>
+<p>注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引号</p>
+</blockquote>
+<blockquote>
+<p>注意2：单引号内只能有一个字符，不可以是字符串</p>
+</blockquote>
+<ul>
+<li>C和C++中字符型变量只占用1个字节。</li>
+<li>字符型变量并不是把字符本身放到内存中存储，而是将对应的ASCII编码放入到存储单元</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">cout &lt;&lt; ch &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//ch = &quot;abcde&quot;; //错误，不可以用双引号</span></span><br><span class="line"> <span class="comment">//ch = &#x27;abcde&#x27;; //错误，单引号内只能引用一个字符</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (<span class="type">int</span>)ch &lt;&lt; endl;  <span class="comment">//查看字符a对应的ASCII码</span></span><br><span class="line">ch = <span class="number">97</span>; <span class="comment">//可以直接用ASCII给字符型变量赋值</span></span><br><span class="line">cout &lt;&lt; ch &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ASCII码表格：</p>
+<table>
+<thead>
+<tr>
+<th><strong>ASCII</strong>值</th>
+<th><strong>控制字符</strong></th>
+<th><strong>ASCII</strong>值</th>
+<th><strong>字符</strong></th>
+<th><strong>ASCII</strong>值</th>
+<th><strong>字符</strong></th>
+<th><strong>ASCII</strong>值</th>
+<th><strong>字符</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>NUT</td>
+<td>32</td>
+<td>(space)</td>
+<td>64</td>
+<td>@</td>
+<td>96</td>
+<td>、</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SOH</td>
+<td>33</td>
+<td>!</td>
+<td>65</td>
+<td>A</td>
+<td>97</td>
+<td>a</td>
+</tr>
+<tr>
+<td>2</td>
+<td>STX</td>
+<td>34</td>
+<td>“</td>
+<td>66</td>
+<td>B</td>
+<td>98</td>
+<td>b</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ETX</td>
+<td>35</td>
+<td>#</td>
+<td>67</td>
+<td>C</td>
+<td>99</td>
+<td>c</td>
+</tr>
+<tr>
+<td>4</td>
+<td>EOT</td>
+<td>36</td>
+<td>$</td>
+<td>68</td>
+<td>D</td>
+<td>100</td>
+<td>d</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ENQ</td>
+<td>37</td>
+<td>%</td>
+<td>69</td>
+<td>E</td>
+<td>101</td>
+<td>e</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ACK</td>
+<td>38</td>
+<td>&amp;</td>
+<td>70</td>
+<td>F</td>
+<td>102</td>
+<td>f</td>
+</tr>
+<tr>
+<td>7</td>
+<td>BEL</td>
+<td>39</td>
+<td>,</td>
+<td>71</td>
+<td>G</td>
+<td>103</td>
+<td>g</td>
+</tr>
+<tr>
+<td>8</td>
+<td>BS</td>
+<td>40</td>
+<td>(</td>
+<td>72</td>
+<td>H</td>
+<td>104</td>
+<td>h</td>
+</tr>
+<tr>
+<td>9</td>
+<td>HT</td>
+<td>41</td>
+<td>)</td>
+<td>73</td>
+<td>I</td>
+<td>105</td>
+<td>i</td>
+</tr>
+<tr>
+<td>10</td>
+<td>LF</td>
+<td>42</td>
+<td>*</td>
+<td>74</td>
+<td>J</td>
+<td>106</td>
+<td>j</td>
+</tr>
+<tr>
+<td>11</td>
+<td>VT</td>
+<td>43</td>
+<td>+</td>
+<td>75</td>
+<td>K</td>
+<td>107</td>
+<td>k</td>
+</tr>
+<tr>
+<td>12</td>
+<td>FF</td>
+<td>44</td>
+<td>,</td>
+<td>76</td>
+<td>L</td>
+<td>108</td>
+<td>l</td>
+</tr>
+<tr>
+<td>13</td>
+<td>CR</td>
+<td>45</td>
+<td>-</td>
+<td>77</td>
+<td>M</td>
+<td>109</td>
+<td>m</td>
+</tr>
+<tr>
+<td>14</td>
+<td>SO</td>
+<td>46</td>
+<td>.</td>
+<td>78</td>
+<td>N</td>
+<td>110</td>
+<td>n</td>
+</tr>
+<tr>
+<td>15</td>
+<td>SI</td>
+<td>47</td>
+<td>&#x2F;</td>
+<td>79</td>
+<td>O</td>
+<td>111</td>
+<td>o</td>
+</tr>
+<tr>
+<td>16</td>
+<td>DLE</td>
+<td>48</td>
+<td>0</td>
+<td>80</td>
+<td>P</td>
+<td>112</td>
+<td>p</td>
+</tr>
+<tr>
+<td>17</td>
+<td>DCI</td>
+<td>49</td>
+<td>1</td>
+<td>81</td>
+<td>Q</td>
+<td>113</td>
+<td>q</td>
+</tr>
+<tr>
+<td>18</td>
+<td>DC2</td>
+<td>50</td>
+<td>2</td>
+<td>82</td>
+<td>R</td>
+<td>114</td>
+<td>r</td>
+</tr>
+<tr>
+<td>19</td>
+<td>DC3</td>
+<td>51</td>
+<td>3</td>
+<td>83</td>
+<td>S</td>
+<td>115</td>
+<td>s</td>
+</tr>
+<tr>
+<td>20</td>
+<td>DC4</td>
+<td>52</td>
+<td>4</td>
+<td>84</td>
+<td>T</td>
+<td>116</td>
+<td>t</td>
+</tr>
+<tr>
+<td>21</td>
+<td>NAK</td>
+<td>53</td>
+<td>5</td>
+<td>85</td>
+<td>U</td>
+<td>117</td>
+<td>u</td>
+</tr>
+<tr>
+<td>22</td>
+<td>SYN</td>
+<td>54</td>
+<td>6</td>
+<td>86</td>
+<td>V</td>
+<td>118</td>
+<td>v</td>
+</tr>
+<tr>
+<td>23</td>
+<td>TB</td>
+<td>55</td>
+<td>7</td>
+<td>87</td>
+<td>W</td>
+<td>119</td>
+<td>w</td>
+</tr>
+<tr>
+<td>24</td>
+<td>CAN</td>
+<td>56</td>
+<td>8</td>
+<td>88</td>
+<td>X</td>
+<td>120</td>
+<td>x</td>
+</tr>
+<tr>
+<td>25</td>
+<td>EM</td>
+<td>57</td>
+<td>9</td>
+<td>89</td>
+<td>Y</td>
+<td>121</td>
+<td>y</td>
+</tr>
+<tr>
+<td>26</td>
+<td>SUB</td>
+<td>58</td>
+<td>:</td>
+<td>90</td>
+<td>Z</td>
+<td>122</td>
+<td>z</td>
+</tr>
+<tr>
+<td>27</td>
+<td>ESC</td>
+<td>59</td>
+<td>;</td>
+<td>91</td>
+<td>[</td>
+<td>123</td>
+<td>{</td>
+</tr>
+<tr>
+<td>28</td>
+<td>FS</td>
+<td>60</td>
+<td>&lt;</td>
+<td>92</td>
+<td>&#x2F;</td>
+<td>124</td>
+<td>|</td>
+</tr>
+<tr>
+<td>29</td>
+<td>GS</td>
+<td>61</td>
+<td>&#x3D;</td>
+<td>93</td>
+<td>]</td>
+<td>125</td>
+<td>}</td>
+</tr>
+<tr>
+<td>30</td>
+<td>RS</td>
+<td>62</td>
+<td>&gt;</td>
+<td>94</td>
+<td>^</td>
+<td>126</td>
+<td>&#96;</td>
+</tr>
+<tr>
+<td>31</td>
+<td>US</td>
+<td>63</td>
+<td>?</td>
+<td>95</td>
+<td>_</td>
+<td>127</td>
+<td>DEL</td>
+</tr>
+</tbody></table>
+<p>ASCII 码大致由以下<strong>两部分组</strong>成：</p>
+<ul>
+<li>ASCII 非打印控制字符： ASCII 表上的数字 <strong>0-31</strong> 分配给了控制字符，用于控制像打印机等一些外围设备。</li>
+<li>ASCII 打印字符：数字 <strong>32-126</strong> 分配给了能在键盘上找到的字符，当查看或打印文档时就会出现。</li>
+</ul>
+<h4 id="2-1-字符常量"><a href="#2-1-字符常量" class="headerlink" title="2.1 字符常量"></a>2.1 字符常量</h4><p><img src="image-20220529164329461.png" alt="C++之数据类型/image-20220529164329461"></p>
+<h4 id="2-2-字符变量"><a href="#2-2-字符变量" class="headerlink" title="2.2 字符变量"></a>2.2 字符变量</h4><p><img src="image-20220529165108854.png" alt="C++之数据类型/image-20220529165108854"></p>
+<blockquote>
+<p>‘\0’的ASCII码值就是0</p>
+</blockquote>
+<p>‘\0’:字符常量（char) ASCII为0</p>
+<p>数值0:整型常量（int) 内存的存储值为0</p>
+<p>‘0’:字符常量（char） ASCII为48</p>
+<h4 id="2-3-键盘给字符变量赋值"><a href="#2-3-键盘给字符变量赋值" class="headerlink" title="2.3 键盘给字符变量赋值"></a>2.3 键盘给字符变量赋值</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符型输入</span></span><br><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入字符型变量：&quot;</span> &lt;&lt; endl;</span><br><span class="line"><span class="comment">//cin会判断ch的类型为char 一次只能获取一个字符</span></span><br><span class="line"><span class="comment">//cin会跳过起始的空格和回车</span></span><br><span class="line">cin &gt;&gt; ch;</span><br><span class="line">cout &lt;&lt; ch &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-字符大小写转换"><a href="#2-4-字符大小写转换" class="headerlink" title="2.4 字符大小写转换"></a>2.4 字符大小写转换</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span> - <span class="number">32</span>;<span class="comment">//A</span></span><br><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;A&#x27;</span> + <span class="number">32</span>;<span class="comment">//a</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-字符常量和字符串常量区别"><a href="#2-5-字符常量和字符串常量区别" class="headerlink" title="2.5 字符常量和字符串常量区别"></a>2.5 字符常量和字符串常量区别</h4><p><img src="image-20220529173420857.png" alt="C++之数据类型/image-20220529173420857"></p>
+<h3 id="3-实型-浮点型"><a href="#3-实型-浮点型" class="headerlink" title="3.实型(浮点型)"></a>3.实型(浮点型)</h3><p><strong>作用</strong>：用于表示小数</p>
+<p>浮点型变量分为两种：</p>
+<ol>
+<li>单精度float</li>
+<li>双精度double</li>
+</ol>
+<p>两者的<strong>区别</strong>在于表示的有效数字范围不同。</p>
+<table>
+<thead>
+<tr>
+<th><strong>数据类型</strong></th>
+<th><strong>占用空间</strong></th>
+<th><strong>有效数字范围</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float</td>
+<td>4字节</td>
+<td>7位有效数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8字节</td>
+<td>15～16位有效数字</td>
+</tr>
+</tbody></table>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="type">float</span> f1 = <span class="number">3.14f</span>;</span><br><span class="line"> <span class="type">double</span> d1 = <span class="number">3.14</span>;</span><br><span class="line"></span><br><span class="line"> cout &lt;&lt; f1 &lt;&lt; endl;</span><br><span class="line"> cout &lt;&lt; d1&lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;float  sizeof = &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(f1) &lt;&lt; endl;</span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;double sizeof = &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(d1) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//科学计数法</span></span><br><span class="line"> <span class="type">float</span> f2 = <span class="number">3e2</span>; <span class="comment">// 3 * 10 ^ 2 </span></span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;f2 = &quot;</span> &lt;&lt; f2 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> <span class="type">float</span> f3 = <span class="number">3e-2</span>;  <span class="comment">// 3 * 0.1 ^ 2</span></span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;f3 = &quot;</span> &lt;&lt; f3 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-1-实型常量"><a href="#3-1-实型常量" class="headerlink" title="3.1 实型常量"></a>3.1 实型常量</h4><p>不以f结尾的实型常量为double类型 如：3.14</p>
+<p>以f结尾的实型常量为float类型 如：3.14f</p>
+<p>指数形式：123e3代表123*10的3次方      123e-3代表0.123</p>
+<h4 id="3-2-实型变量"><a href="#3-2-实型变量" class="headerlink" title="3.2 实型变量"></a>3.2 实型变量</h4><p>单精度实型变量：float f;占4字节 以f结尾的实型变量初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> f = <span class="number">0.0f</span>;</span><br></pre></td></tr></table></figure>
+
+<p>双精度实型变量：double d;占8字节 不以f结尾的实型变量初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> d = <span class="number">0.0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-有符号数和无符号数"><a href="#4-有符号数和无符号数" class="headerlink" title="4.有符号数和无符号数"></a>4.有符号数和无符号数</h3><h4 id="4-1-有符号数"><a href="#4-1-有符号数" class="headerlink" title="4.1 有符号数"></a>4.1 有符号数</h4><p>数据二进制的最高位为符号位 其它为数据位</p>
+<p>最高位为1 表示负数</p>
+<p>最高位为0 表示正数</p>
+<p>以一字节为例：xddd dddd </p>
+<p>1111 1111-1000 0000     -127~-0</p>
+<p>0000 0000- 0111 1111     +0~127</p>
+<p>将-0看成-128</p>
+<p>-128~127</p>
+<h4 id="4-2-无符号数"><a href="#4-2-无符号数" class="headerlink" title="4.2 无符号数"></a>4.2 无符号数</h4><p>所有位都是数据位</p>
+<p>0000 0000 - 1111 1111</p>
+<p>0 ~255</p>
+<h4 id="4-3-定义有符号变量"><a href="#4-3-定义有符号变量" class="headerlink" title="4.3 定义有符号变量"></a>4.3 定义有符号变量</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方式一：默认方式（推荐）</span></span><br><span class="line"><span class="type">int</span> num;<span class="comment">//num为有符号数</span></span><br><span class="line"><span class="comment">//方式二：使用关键字signed显示说明</span></span><br><span class="line"><span class="type">signed</span> <span class="type">int</span> num;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-定义无符号变量"><a href="#4-4-定义无符号变量" class="headerlink" title="4.4 定义无符号变量"></a>4.4 定义无符号变量</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> num;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-转义字符"><a href="#5-转义字符" class="headerlink" title="5. 转义字符"></a>5. 转义字符</h3><p><strong>作用：</strong>用于表示一些不能显示出来的ASCII字符</p>
+<p>现阶段我们常用的转义字符有：<code> \n \\ \t</code></p>
+<table>
+<thead>
+<tr>
+<th><strong>转义字符</strong></th>
+<th><strong>含义</strong></th>
+<th><strong>ASCII</strong>码值（十进制）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\a</td>
+<td>警报</td>
+<td>007</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>退格(BS) ，将当前位置移到前一列</td>
+<td>008</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页(FF)，将当前位置移到下页开头</td>
+<td>012</td>
+</tr>
+<tr>
+<td><strong>\n</strong></td>
+<td><strong>换行(LF) ，将当前位置移到下一行开头</strong></td>
+<td><strong>010</strong></td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车(CR) ，将当前位置移到本行开头</td>
+<td>013</td>
+</tr>
+<tr>
+<td><strong>\t</strong></td>
+<td><strong>水平制表(HT) （跳到下一个TAB位置）</strong></td>
+<td><strong>009</strong></td>
+</tr>
+<tr>
+<td>\v</td>
+<td>垂直制表(VT)</td>
+<td>011</td>
+</tr>
+<tr>
+<td>*<em>\*</em></td>
+<td><strong>代表一个反斜线字符””</strong></td>
+<td><strong>092</strong></td>
+</tr>
+<tr>
+<td>‘</td>
+<td>代表一个单引号（撇号）字符</td>
+<td>039</td>
+</tr>
+<tr>
+<td>“</td>
+<td>代表一个双引号字符</td>
+<td>034</td>
+</tr>
+<tr>
+<td>?</td>
+<td>代表一个问号</td>
+<td>063</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>数字0</td>
+<td>000</td>
+</tr>
+<tr>
+<td>\ddd</td>
+<td>8进制转义字符，d范围0~7</td>
+<td>3位8进制</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>16进制转义字符，h范围09，af，A~F</td>
+<td>3位16进制</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\\&quot;</span> &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\tHello&quot;</span> &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\n&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"> 	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">	 <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-布尔类型-bool"><a href="#6-布尔类型-bool" class="headerlink" title="6.布尔类型 bool"></a>6.布尔类型 bool</h3><p><strong>作用：</strong>布尔数据类型代表真或假的值</p>
+<p>bool类型只有两个值：</p>
+<ul>
+<li>true — 真（本质是1）</li>
+<li>false — 假（本质是0）</li>
+</ul>
+<p><strong>bool类型占1个字节大小</strong></p>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="type">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line"> cout &lt;&lt; flag &lt;&lt; endl; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"> flag = <span class="literal">false</span>;</span><br><span class="line"> cout &lt;&lt; flag &lt;&lt; endl; <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;size of bool = &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">bool</span>) &lt;&lt; endl; <span class="comment">//1</span></span><br><span class="line"> </span><br><span class="line"> <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-其他关键字"><a href="#7-其他关键字" class="headerlink" title="7.其他关键字"></a>7.其他关键字</h3><h4 id="7-1-const-修饰普通变量"><a href="#7-1-const-修饰普通变量" class="headerlink" title="7.1 const 修饰普通变量"></a>7.1 const 修饰普通变量</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//const 修饰data为只读变量  data本质是变量</span></span><br><span class="line"><span class="comment">//只读变量  只能被初始化  不能被赋值</span></span><br><span class="line">onst <span class="type">int</span> data;</span><br><span class="line"><span class="comment">//data = 10;error</span></span><br></pre></td></tr></table></figure>
+
+<p>如果以<strong>常量</strong>初始化const修饰的只读变量 那么只读变量的值 事先存放在“<u>符号常量表</u>”中，不会立即给data开辟空间</p>
+<p><img src="image-20220529183107114.png" alt="C++之数据类型/image-20220529183107114"></p>
+<p>当给data<strong>取地址</strong>时，才会给data开辟空间</p>
+<p><img src="image-20220529183318725.png" alt="C++之数据类型/image-20220529183318725"></p>
+<p><img src="image-20220529183546361.png" alt="C++之数据类型/image-20220529183546361"></p>
+<p>如果以<strong>变量</strong>初始化const修饰的只读变量 那么只读变量会立即开辟空间（没有符号常量表）</p>
+<p><img src="image-20220529184111085.png" alt="C++之数据类型/image-20220529184111085"></p>
+<p>const修饰<strong>自定义类型变量</strong> 立即开辟空间  没有符号常量表</p>
+<h4 id="7-2-register修饰寄存器变量"><a href="#7-2-register修饰寄存器变量" class="headerlink" title="7.2 register修饰寄存器变量"></a>7.2 register修饰寄存器变量</h4><p>如果变量被高频率的使用 会自动将变量存储到寄存器中 目的：提高访问效率</p>
+<p>如果用户想要将变量直接存入到寄存器中 可以加register修饰</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">register</span> <span class="type">int</span> data = <span class="number">0</span>;<span class="comment">//data将放入到寄存器中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//register修饰的变量 只是尽量放入到寄存器中</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20220529184932724.png" alt="C++之数据类型/image-20220529184932724"></p>
+<blockquote>
+<p>不能对寄存器变量进行取地址操作 &amp;data失败</p>
+</blockquote>
+<h4 id="7-3-volatile-关键字"><a href="#7-3-volatile-关键字" class="headerlink" title="7.3 volatile 关键字"></a>7.3 volatile 关键字</h4><p>强制访问内存</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> <span class="type">int</span> data = <span class="number">0</span>;<span class="comment">//对data的访问 必须对内存访问</span></span><br></pre></td></tr></table></figure>
+
+<p>防止编译器优化</p>
+<h4 id="7-4-sizeof测量类型的大小"><a href="#7-4-sizeof测量类型的大小" class="headerlink" title="7.4 sizeof测量类型的大小"></a>7.4 sizeof测量类型的大小</h4><p><strong>作用：</strong>利用sizeof关键字可以统计数据类型所占内存大小</p>
+<p><strong>语法：</strong> <code>sizeof( 数据类型 / 变量)</code></p>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;short 类型所占内存空间为： &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">short</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;int 类型所占内存空间为： &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">int</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;long 类型所占内存空间为： &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">long</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;long long 类型所占内存空间为： &quot;</span> &lt;&lt; <span class="built_in">sizeof</span>(<span class="type">long</span> <span class="type">long</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>整型结论</strong>：short &lt; int &lt;&#x3D; long &lt;&#x3D; long long</p>
+</blockquote>
+<h4 id="7-5-typedef给已有的类型重新取个名"><a href="#7-5-typedef给已有的类型重新取个名" class="headerlink" title="7.5 typedef给已有的类型重新取个名"></a>7.5 typedef给已有的类型重新取个名</h4><p>不能创建新类型</p>
+<p>将长且复杂的类型名 取一个短小的名称</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//INT32就是int类型的别名</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> INT32;</span><br><span class="line"></span><br><span class="line">INT32 data;</span><br><span class="line"><span class="type">int</span> num;<span class="comment">//已有的类型也有效</span></span><br></pre></td></tr></table></figure>
+
+<p>案例一：给int arr[5]取个别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> MYARRAY[<span class="number">5</span>];</span><br><span class="line">MYARRAY arr;</span><br></pre></td></tr></table></figure>
+
+<p>案例二：给int*取个别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> *MYP;</span><br><span class="line">MYP p;<span class="comment">//p的类型就是int*类型</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-类型转换"><a href="#8-类型转换" class="headerlink" title="8.类型转换"></a>8.类型转换</h3><p>转换的两种方式</p>
+<ul>
+<li><p>自动转换</p>
+<p>遵循一定的规则，由编译系统自动完</p>
+</li>
+<li><p>强制类型转换</p>
+</li>
+</ul>
+<p>​       把表达式的运算结果强制转换成所需的数据类型</p>
+<h4 id="8-1-自动类型转换原则"><a href="#8-1-自动类型转换原则" class="headerlink" title="8.1 自动类型转换原则"></a>8.1 自动类型转换原则</h4><p>1.占用内存字节数少（值域小）的类型，向占用内存字节数多（值域大）的类型转换，以保证精度不降低</p>
+<p>2.转换方向：由低到高</p>
+<ul>
+<li><p>无符号和有符号参加运算 需要将有符号转换为无符号</p>
+</li>
+<li><p>int和double参加运算 会将int转换为double</p>
+</li>
+<li><p>char和short类型参加运算 都会将自己转换为int类型</p>
+</li>
+</ul>
+<h4 id="8-2-强制类型转换"><a href="#8-2-强制类型转换" class="headerlink" title="8.2 强制类型转换"></a>8.2 强制类型转换</h4><p>(类型说明符)(表达式)</p>
+<p>功能：</p>
+<p>​	把表达式的运算结果强制转换为类型说明符表示的类型</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="type">int</span>)p+<span class="number">1</span> 对p强制转换为<span class="type">int</span>类型 然后再加<span class="number">1</span></span><br><span class="line">(<span class="type">int</span>)(p+<span class="number">1</span>)对p+<span class="number">1</span>强制转换为<span class="type">int</span>类型</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20220529193233889.png" alt="C++之数据类型/image-20220529193233889"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/02/26/C++%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="C++之数据类型">https://xiaguyangdie.github.io/2023/02/26/C++之数据类型/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i> 数据类型</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/26/C++%E4%B9%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/" rel="prev" title="C++之控制语句">
+      <i class="fa fa-chevron-left"></i> C++之控制语句
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/26/C++%E4%B9%8B%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="next" title="C++之文件操作">
+      C++之文件操作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B4%E5%9E%8B%E5%8F%98%E9%87%8F"><span class="nav-text">1.整型变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%B8%B8%E9%87%8F%E4%B8%8E%E5%8F%98%E9%87%8F"><span class="nav-text">1.1 常量与变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-1-%E5%8F%98%E9%87%8F"><span class="nav-text">1.1.1 变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-2-%E5%B8%B8%E9%87%8F"><span class="nav-text">1.1.2 常量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%95%B4%E5%BD%A2%E5%B8%B8%E9%87%8F"><span class="nav-text">1.2 整形常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%95%B4%E5%9E%8B%E5%8F%98%E9%87%8F"><span class="nav-text">1.3 整型变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E6%95%B4%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">1.4 整型变量的初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E6%95%B4%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">1.5 整型变量的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-%E9%94%AE%E7%9B%98%E7%BB%99%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="nav-text">1.6 键盘给变量赋值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="nav-text">2.字符类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%AD%97%E7%AC%A6%E5%B8%B8%E9%87%8F"><span class="nav-text">2.1 字符常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%AD%97%E7%AC%A6%E5%8F%98%E9%87%8F"><span class="nav-text">2.2 字符变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E9%94%AE%E7%9B%98%E7%BB%99%E5%AD%97%E7%AC%A6%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="nav-text">2.3 键盘给字符变量赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E5%AD%97%E7%AC%A6%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-text">2.4 字符大小写转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E5%AD%97%E7%AC%A6%E5%B8%B8%E9%87%8F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E5%8C%BA%E5%88%AB"><span class="nav-text">2.5 字符常量和字符串常量区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%9E%E5%9E%8B-%E6%B5%AE%E7%82%B9%E5%9E%8B"><span class="nav-text">3.实型(浮点型)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%AE%9E%E5%9E%8B%E5%B8%B8%E9%87%8F"><span class="nav-text">3.1 实型常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%AE%9E%E5%9E%8B%E5%8F%98%E9%87%8F"><span class="nav-text">3.2 实型变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">4.有符号数和无符号数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">4.1 有符号数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-text">4.2 无符号数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E5%AE%9A%E4%B9%89%E6%9C%89%E7%AC%A6%E5%8F%B7%E5%8F%98%E9%87%8F"><span class="nav-text">4.3 定义有符号变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E5%AE%9A%E4%B9%89%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8F%98%E9%87%8F"><span class="nav-text">4.4 定义无符号变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="nav-text">5. 转义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B-bool"><span class="nav-text">6.布尔类型 bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%85%B6%E4%BB%96%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">7.其他关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-const-%E4%BF%AE%E9%A5%B0%E6%99%AE%E9%80%9A%E5%8F%98%E9%87%8F"><span class="nav-text">7.1 const 修饰普通变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-register%E4%BF%AE%E9%A5%B0%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%98%E9%87%8F"><span class="nav-text">7.2 register修饰寄存器变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-volatile-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">7.3 volatile 关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-4-sizeof%E6%B5%8B%E9%87%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-text">7.4 sizeof测量类型的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-5-typedef%E7%BB%99%E5%B7%B2%E6%9C%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E9%87%8D%E6%96%B0%E5%8F%96%E4%B8%AA%E5%90%8D"><span class="nav-text">7.5 typedef给已有的类型重新取个名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">8.类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="nav-text">8.1 自动类型转换原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">8.2 强制类型转换</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

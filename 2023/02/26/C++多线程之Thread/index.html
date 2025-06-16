@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="C++多线程之Thread">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++多线程之Thread">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="C++多线程之Thread">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/image-20220625150115976.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/image-20220625150959213.png">
+<meta property="article:published_time" content="2023-02-26T08:27:30.997Z">
+<meta property="article:modified_time" content="2024-03-23T14:39:32.488Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="多线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/image-20220625150115976.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++多线程之Thread | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++多线程之Thread
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-26 16:27:30" itemprop="dateCreated datePublished" datetime="2023-02-26T16:27:30+08:00">2023-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-23 22:39:32" itemprop="dateModified" datetime="2024-03-23T22:39:32+08:00">2024-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/" class="post-meta-item leancloud_visitors" data-flag-title="C++多线程之Thread" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">C++多线程之Thread</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-thread类的功能"><a href="#1-thread类的功能" class="headerlink" title="1.thread类的功能"></a>1.thread类的功能</h3><p><code>thread类</code>是C++中表示<code>执行线程</code>的类，位于头文件<code>&lt;thread&gt;</code>中。我们创建一个thread对象就会立即执行一个对应的线程。通过thread类的成员函数，我们可以标识线程或对线程进行控制。</p>
+<h3 id="2-线程创建方式"><a href="#2-线程创建方式" class="headerlink" title="2.线程创建方式"></a>2.线程创建方式</h3><p>构造一个thread类的对象，就会立即执行一个与该thread对象对应的线程。通常我们会向thread类的构造函数传递一个<code>可调用对象</code>，新创建的线程就会执行这个可调用对象。<strong>可调用对象</strong>可以是<code>函数</code>、<code>函数指针</code>、<code>lambda表达式</code>或<code>function对象</code></p>
+<blockquote>
+<p>无参</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span><br><span class="line">            temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::<span class="built_in">number</span>(i++)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">void</span> (*myThread_ptr)(<span class="type">void</span>) = myThread;</span><br><span class="line">function&lt;<span class="type">void</span>(<span class="type">void</span>)&gt; myThread_obj = myThread;</span><br><span class="line"><span class="comment">//方式一：函数</span></span><br><span class="line"><span class="comment">//class thread th1(myThread);</span></span><br><span class="line"><span class="comment">//方式二：函数指针</span></span><br><span class="line"><span class="comment">//class thread th2(myThread_ptr);</span></span><br><span class="line"><span class="comment">//方式三：function对象</span></span><br><span class="line"><span class="comment">//class thread th3(myThread_obj);</span></span><br><span class="line"><span class="comment">//方式四：lambda表达式</span></span><br><span class="line"><span class="function"><span class="keyword">class</span> thread <span class="title">th4</span><span class="params">([]&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">qDebug()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="type">int</span> i=<span class="number">0</span>;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">if</span> (flag) &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">usleep(<span class="number">1000</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">qDebug()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span></span></span><br><span class="line"><span class="params"><span class="function">temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::number(i++)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>有参</p>
+</blockquote>
+<p>thread类的构造函数可以接受一个可调用对象，要想可调用对象传递参数，只需要将参数和可调用对象一并放入thread类的构造函数的参数列表中即可：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">myThread</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span><br><span class="line">            temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::<span class="built_in">number</span>(i++)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b+<span class="string">&quot;===&quot;</span>+str;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">void</span> (*myThread_ptr)(QString) = myThread;</span><br><span class="line">function&lt;<span class="type">void</span>(QString)&gt; myThread_obj = myThread;</span><br><span class="line"><span class="comment">//方式一：函数</span></span><br><span class="line"><span class="comment">//class thread th1(myThread,&quot;test1&quot;);</span></span><br><span class="line"><span class="comment">//方式二：函数指针</span></span><br><span class="line"><span class="comment">//class thread th2(myThread_ptr,&quot;test2&quot;);</span></span><br><span class="line"><span class="comment">//方式三：function对象</span></span><br><span class="line"><span class="comment">//class thread th3(myThread_obj,&quot;test3&quot;);</span></span><br><span class="line"><span class="comment">//方式四：lambda表达式</span></span><br><span class="line"><span class="function"><span class="keyword">class</span> thread <span class="title">th4</span><span class="params">([](QString str)&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">qDebug()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="type">int</span> i=<span class="number">0</span>;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">if</span> (flag) &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">usleep(<span class="number">1000</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">qDebug()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span></span></span><br><span class="line"><span class="params"><span class="function">temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::number(i++)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b+<span class="string">&quot;===&quot;</span>+str;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;,<span class="string">&quot;test4&quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>thread类的构造函数可以接受任意多的额外的参数，只需要传入的参数与可调用对象的参数列表一一对应即可。</li>
+</ul>
+<h3 id="3-线程启动"><a href="#3-线程启动" class="headerlink" title="3.线程启动"></a>3.线程启动</h3><blockquote>
+<p>方式一：join()</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">th1.<span class="built_in">join</span>()</span><br><span class="line"><span class="comment">//调用该函数会阻塞当前线程（主调线程）。阻塞调用者(caller)所在的线程（主调线程）直至被join的std::thread对象标识的线程（被调线程）执行结束</span></span><br><span class="line"><span class="comment">//join()函数是一个等待线程完成函数，主线程需要等待子线程运行结束了才可以结束</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>方式二：detach()</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">th2.<span class="built_in">detach</span>()</span><br><span class="line"><span class="comment">//将当前线程对象所代表的执行实例与该线程对象分离，使得线程的执行可以单独进行。一旦线程执行完毕，它所分配的资源将会被释放</span></span><br><span class="line"><span class="comment">//称为分离线程函数，使用detach()函数会让线程在后台运行，即说明主线程不会等待子线程运行结束才结束。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>区别</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//join表示加入，汇合，即加入进程</span></span><br><span class="line"><span class="comment">//设想一下，一个进程可以包含多个线程，但只有一个主线程，主线</span></span><br><span class="line"><span class="comment">//程执行完毕，进程也就结束了，所以传统多线程编程中，是让主线程等待其它线程执行完毕，然后主线程才能结束</span></span><br><span class="line"><span class="comment">//不然，主线程都结束了，该进程也就结束了，但是那些未结束的其他线程，怎么办？比如其他线程也在往进程输入</span></span><br><span class="line"><span class="comment">//输出,而进程都结束了，肯定会出错，抛出异常，主线程都执行完毕了，而子线程和主线程都属于进程，进程都结束了</span></span><br><span class="line"><span class="comment">//但是子线程还在执行，比如子线程要访问进程中的资源(屏幕，文件等)，这样的程序肯定是不合格的！</span></span><br><span class="line"><span class="comment">//join简单来说，就是告诉主线程，我们是相关的，有关联的，属于同一进程的，你，必须等我执行完毕，才能继续执行</span></span><br><span class="line"><span class="comment">//因为属于同一进程</span></span><br><span class="line"><span class="comment">//一旦join，那么main函数一旦执行完join，就会等待thread1执行完毕再继续执行</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-Thread其他成员函数"><a href="#4-Thread其他成员函数" class="headerlink" title="4.Thread其他成员函数"></a>4.Thread其他成员函数</h3><blockquote>
+<p>~Thread()</p>
+</blockquote>
+<ul>
+<li>用来销毁thread对象，但是调用析构函数的前提必须是该thread对象是不可连接的，否则不可以。</li>
+</ul>
+<blockquote>
+<p>joinable()</p>
+</blockquote>
+<ul>
+<li>调用这个函数来判断该thread对象是否可连接，可以返回真，否则返回假。</li>
+<li><strong>在调用join()和detach()调用joinable来防止多次调用join()和detach()</strong></li>
+<li><strong>只有不可连接的thread对象才可以通过调用析构函数来回收，否则将抛出异常</strong></li>
+</ul>
+<blockquote>
+<p><strong>operator&#x3D;</strong></p>
+</blockquote>
+<ul>
+<li>移动指定线程，&#x3D;在thread类中被重载了。只有当对象不可连接的时候才可以使用，调用后，获得被移动对象的线程，被移动对象将不在执行任何线程。如果是可连接的，会抛出异常。<strong>注意，被移动的thread对象需要用std::move()转换为右值。</strong></li>
+</ul>
+<blockquote>
+<p><strong>swap()</strong></p>
+</blockquote>
+<ul>
+<li>交换两个thread对象</li>
+</ul>
+<blockquote>
+<p><strong>get_id()</strong></p>
+</blockquote>
+<ul>
+<li><strong>获取线程ID</strong>，返回一个类型为std::thread::id的对象。</li>
+</ul>
+<blockquote>
+<p>thread::id</p>
+</blockquote>
+<ul>
+<li><code>thread::id</code>表示线程ID，定义了在运行时操作系统内唯一能够标识该线程的标识符，同时其值还能指示所标识的线程的状态</li>
+<li>在C++中用<code>thread::id类</code>来标识线程。对于<code>可连接线程</code>，可以通过<code>get_id</code>成员函数获得标识该thread对象的thread::id对象，每个thread对象的id唯一</li>
+<li>对于<code>不可连接线程</code>，调用get_id会返回<code>默认构造的thread_id对象</code>，所有不可连接线程的id相等</li>
+<li>通过调用<code>命名空间this_thread</code>中的<code>静态函数get_id</code>可以获得当前线程的线程id</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;th1.<span class="built_in">get_id</span>()&lt;&lt;endl;<span class="comment">//thread::id of a non-executing thread</span></span><br><span class="line">cout&lt;&lt;this_thread::<span class="built_in">get_id</span>()&lt;&lt;endl;<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>native_handle()</strong></p>
+</blockquote>
+<ul>
+<li>返回线程句柄</li>
+</ul>
+<blockquote>
+<p><strong>hardware_concurrency()</strong></p>
+</blockquote>
+<ul>
+<li>静态成员函数</li>
+<li>获取硬件支持的并发线程数。正常返回支持的并发线程数，若值非良定义或不可计算，则返回 0</li>
+</ul>
+<blockquote>
+<p>this_thread的命名空间</p>
+</blockquote>
+<ul>
+<li>this_thread命名空间提供了访问当前线程的一些函数，除了上文提到的<code>get_id</code>外，还有<code>yield</code>、<code>sleep_until</code>和<code>sleep_for</code></li>
+</ul>
+<blockquote>
+<p>yield</p>
+</blockquote>
+<ul>
+<li>调用yield函数可以让出当前线程，让操作系统调度同一进程的其他线程。</li>
+</ul>
+<blockquote>
+<p>sleep_until</p>
+</blockquote>
+<ul>
+<li>sleep_until可以阻塞调用线程直至某个时间点。函数原型为：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Clock</span>, <span class="keyword">class</span> <span class="title class_">Duration</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sleep_until</span> <span class="params">(<span class="type">const</span> chrono::time_point&lt;Clock,Duration&gt;&amp; abs_time)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sleep_for</p>
+</blockquote>
+<ul>
+<li>sleep_for可以在制定的时间跨度内阻塞线程的执行。函数原型为：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">Rep</span>, <span class="keyword">class</span> <span class="title class_">Period</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sleep_for</span> <span class="params">(<span class="type">const</span> chrono::duration&lt;Rep,Period&gt;&amp; rel_time)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-demo代码"><a href="#5-demo代码" class="headerlink" title="5.demo代码"></a>5.demo代码</h3><blockquote>
+<p>widget.h</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> WIDGET_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WIDGET_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QWidget&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QDebug&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span><span class="comment">//Sleep</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QTimer&gt;</span></span></span><br><span class="line"></span><br><span class="line">QT_BEGIN_NAMESPACE</span><br><span class="line"><span class="keyword">namespace</span> Ui &#123; <span class="keyword">class</span> <span class="title class_">Widget</span>; &#125;</span><br><span class="line">QT_END_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Widget</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line">    QTimer mTime;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_pushButton_clicked</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">lineEdit_a_receive</span><span class="params">(QString str)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">lineEdit_b_receive</span><span class="params">(QString str)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">put_ui_message</span><span class="params">()</span></span>;</span><br><span class="line">signals:</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::Widget *ui;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// WIDGET_H</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>widget.cpp</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_widget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//全局变量，方便子线程和ui线程互通</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line">QString temp = <span class="literal">NULL</span>;</span><br><span class="line">QString a;</span><br><span class="line">QString b;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span><br><span class="line">            temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::<span class="built_in">number</span>(i++)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Widget::<span class="built_in">Widget</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QWidget</span>(parent)</span><br><span class="line">    , <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Widget)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_a_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit_2,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_b_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(&amp;mTime,<span class="built_in">SIGNAL</span>(<span class="built_in">timeout</span>()),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">put_ui_message</span>()));</span><br><span class="line">    mTime.<span class="built_in">start</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">void</span> (*myThread_ptr)(<span class="type">void</span>) = myThread;</span><br><span class="line">    function&lt;<span class="type">void</span>(<span class="type">void</span>)&gt; myThread_obj = myThread;</span><br><span class="line">    <span class="comment">//方式一：函数</span></span><br><span class="line">    <span class="function"><span class="keyword">class</span> thread <span class="title">th1</span><span class="params">(myThread)</span></span>;</span><br><span class="line">    <span class="comment">//方式二：函数指针</span></span><br><span class="line">    <span class="comment">//class thread th2(myThread_ptr);</span></span><br><span class="line">    <span class="comment">//方式三：function对象</span></span><br><span class="line">    <span class="comment">//class thread th3(myThread_obj);</span></span><br><span class="line">    <span class="comment">//方式四：lambda表达式</span></span><br><span class="line"><span class="comment">//    class thread th4([]&#123;</span></span><br><span class="line"><span class="comment">//        qDebug()&lt;&lt;&quot;jkhkk&quot;;</span></span><br><span class="line"><span class="comment">//        int i=0;</span></span><br><span class="line"><span class="comment">//        while(1)&#123;</span></span><br><span class="line"><span class="comment">//            if (flag) &#123;</span></span><br><span class="line"><span class="comment">//                usleep(1000);</span></span><br><span class="line"><span class="comment">//                qDebug()&lt;&lt;&quot;hgbhk&quot;&lt;&lt;i++&lt;&lt;&quot;===&quot;&lt;&lt;a&lt;&lt;&quot;===&quot;&lt;&lt;b;</span></span><br><span class="line"><span class="comment">//                temp = &quot;子线程 =&gt; &quot;+QString::number(i++)+&quot;===&quot;+a+&quot;===&quot;+b;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;);</span></span><br><span class="line">    th1.<span class="built_in">detach</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Widget::~<span class="built_in">Widget</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_a_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a = str;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_b_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    flag=!flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::put_ui_message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;lineEdit_3-&gt;<span class="built_in">setText</span>(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line">QString temp = <span class="literal">NULL</span>;</span><br><span class="line">QString a;</span><br><span class="line">QString b;</span><br><span class="line">thread *th1;</span><br><span class="line"><span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;jkhkk&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hgbhk&quot;</span>&lt;&lt;i++&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;===&quot;</span>&lt;&lt;b;</span><br><span class="line">            temp = <span class="string">&quot;子线程 =&gt; &quot;</span>+QString::<span class="built_in">number</span>(i)+<span class="string">&quot;===&quot;</span>+a+<span class="string">&quot;===&quot;</span>+b;</span><br><span class="line">            c = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//关闭线程</span></span><br><span class="line">        <span class="keyword">if</span>(!flag &amp;&amp; c == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> th1;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Widget::<span class="built_in">Widget</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QWidget</span>(parent)</span><br><span class="line">    , <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Widget)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_a_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;lineEdit_2,<span class="built_in">SIGNAL</span>(<span class="built_in">textChanged</span>(QString)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">lineEdit_b_receive</span>(QString)));</span><br><span class="line">    <span class="built_in">connect</span>(&amp;mTime,<span class="built_in">SIGNAL</span>(<span class="built_in">timeout</span>()),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">put_ui_message</span>()));</span><br><span class="line">    mTime.<span class="built_in">start</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">void</span> (*myThread_ptr)(<span class="type">void</span>) = myThread;</span><br><span class="line">    function&lt;<span class="type">void</span>(<span class="type">void</span>)&gt; myThread_obj = myThread;</span><br><span class="line">    <span class="comment">//方式一：函数</span></span><br><span class="line">    th1 = <span class="keyword">new</span> <span class="keyword">class</span> <span class="built_in">thread</span>(myThread);</span><br><span class="line">    th1-&gt;<span class="built_in">detach</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Widget::~<span class="built_in">Widget</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_a_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    a = str;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::lineEdit_b_receive</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    flag=!flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::put_ui_message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;lineEdit_3-&gt;<span class="built_in">setText</span>(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>widget.ui</p>
+</blockquote>
+<p><img src="image-20220625150115976.png" alt="C++多线程之Thread/image-20220625150115976"></p>
+<p><img src="image-20220625150959213.png" alt="C++多线程之Thread/image-20220625150959213"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/02/26/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread/" title="C++多线程之Thread">https://xiaguyangdie.github.io/2023/02/26/C++多线程之Thread/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 多线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/26/C++%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="C++内存管理">
+      <i class="fa fa-chevron-left"></i> C++内存管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/26/C++%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8F%8B%E5%85%83/" rel="next" title="C++类和对象之友元">
+      C++类和对象之友元 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-thread%E7%B1%BB%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">1.thread类的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">2.线程创建方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BA%BF%E7%A8%8B%E5%90%AF%E5%8A%A8"><span class="nav-text">3.线程启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Thread%E5%85%B6%E4%BB%96%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-text">4.Thread其他成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-demo%E4%BB%A3%E7%A0%81"><span class="nav-text">5.demo代码</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

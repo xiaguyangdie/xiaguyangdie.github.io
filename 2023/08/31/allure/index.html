@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="allure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="allure">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/08/31/allure/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="allure">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831001908305.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831002002355.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831002158806.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831002246165.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831002548509.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831002700779.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831002813162.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250419164347606.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250419164520331.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250419164552261.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250420153958920.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250420154909443.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250420173713914.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250420173840439.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250420192120270.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20250419150427598.png">
+<meta property="article:published_time" content="2023-08-30T16:15:24.756Z">
+<meta property="article:modified_time" content="2025-04-20T16:24:47.887Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/08/31/allure/image-20230831001908305.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/08/31/allure/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>allure | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/08/31/allure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          allure
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-31 00:15:24" itemprop="dateCreated datePublished" datetime="2023-08-31T00:15:24+08:00">2023-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-21 00:24:47" itemprop="dateModified" datetime="2025-04-21T00:24:47+08:00">2025-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/08/31/allure/" class="post-meta-item leancloud_visitors" data-flag-title="allure" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/08/31/allure/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/31/allure/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+            <div class="post-description">allure</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h1><ul>
+<li><p>官方文档：<a target="_blank" rel="noopener" href="https://allurereport.org/docs/">https://allurereport.org/docs/</a></p>
+</li>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://qameta.io/allure-report">https://qameta.io/allure-report</a></p>
+<p><img src="image-20230831001908305.png" alt="allure/image-20230831001908305"></p>
+</li>
+<li><p>下载</p>
+<p><img src="image-20230831002002355.png" alt="allure/image-20230831002002355"></p>
+<p><img src="image-20230831002158806.png" alt="allure/image-20230831002158806"></p>
+<p><img src="image-20230831002246165.png" alt="allure/image-20230831002246165"></p>
+</li>
+<li><p>解压</p>
+<p><img src="image-20230831002548509.png" alt="allure/image-20230831002548509"></p>
+</li>
+<li><p>配置环境变量</p>
+<p><img src="image-20230831002700779.png" alt="allure/image-20230831002700779"></p>
+</li>
+<li><p>测试安装成功</p>
+<p><img src="image-20230831002813162.png" alt="allure/image-20230831002813162"></p>
+</li>
+</ul>
+<h1 id="2-HelloWorld"><a href="#2-HelloWorld" class="headerlink" title="2.HelloWorld"></a>2.HelloWorld</h1><ul>
+<li>测试框架：testng</li>
+<li>测试报告：allure</li>
+</ul>
+<blockquote>
+<p>1.pom.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Allure TestNG --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.testng<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>testng<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.qameta.allure<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>allure-testng<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.17.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.编写测试用例</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang;</span><br><span class="line"><span class="keyword">import</span> io.qameta.allure.Feature;</span><br><span class="line"><span class="keyword">import</span> io.qameta.allure.Story;</span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.testng.Assert.assertEquals;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExampleTest</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Feature(&quot;模块名称&quot;)</span></span><br><span class="line">    <span class="meta">@Story(&quot;用例名称&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exampleTest</span><span class="params">()</span> &#123;</span><br><span class="line">        assertEquals(<span class="number">2</span>, <span class="number">1</span> + <span class="number">1</span>, <span class="string">&quot;One plus one should equal two&quot;</span>); <span class="comment">// 测试逻辑和断言</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.生成 <code>allure-results</code> 数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean test</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250419164347606.png" alt="image-20250419164347606"></p>
+<blockquote>
+<p>4.生成临时报告并启动本地服务器</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allure serve allure-results</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250419164520331.png" alt="image-20250419164520331"></p>
+<p><img src="image-20250419164552261.png" alt="image-20250419164552261"></p>
+<h1 id="3-allure命令和注解"><a href="#3-allure命令和注解" class="headerlink" title="3.allure命令和注解"></a>3.allure命令和注解</h1><h2 id="3-1-命令"><a href="#3-1-命令" class="headerlink" title="3.1 命令"></a>3.1 命令</h2><blockquote>
+<p>常用命令</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+<th align="center">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>mvn clean test</code></td>
+<td align="center">清理项目并运行测试，生成 <code>allure-results</code> 数据</td>
+<td align="center">每次代码变更后执行测试</td>
+</tr>
+<tr>
+<td align="center"><code>allure serve [path]</code></td>
+<td align="center">从指定路径生成临时报告并启动本地服务器</td>
+<td align="center">快速查看最新测试结果</td>
+</tr>
+<tr>
+<td align="center"><code>allure generate [path]</code></td>
+<td align="center">生成静态 HTML 报告到指定目录（默认 <code>allure-report</code>）</td>
+<td align="center">归档报告或集成到 CI&#x2F;CD</td>
+</tr>
+<tr>
+<td align="center"><code>allure open [path]</code></td>
+<td align="center">打开已生成的报告目录（需先执行 <code>generate</code>）</td>
+<td align="center">本地查看历史报告</td>
+</tr>
+<tr>
+<td align="center"><code>allure plugin</code></td>
+<td align="center">管理 Allure 插件</td>
+<td align="center">安装&#x2F;卸载插件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>命令参数</p>
+</blockquote>
+<ul>
+<li><p><code>allure generate</code> 参数详解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allure generate [options] &lt;结果目录&gt; -o &lt;报告输出目录&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>常用参数</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>--clean</code></strong></td>
+<td align="center">清空输出目录（如果存在）</td>
+<td align="center"><code>allure generate results --clean -o report</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>-o</code> 或 <code>--output</code></strong></td>
+<td align="center">指定报告输出目录（默认为 <code>allure-report</code>）</td>
+<td align="center"><code>allure generate -o custom-report</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>--config</code></strong></td>
+<td align="center">指定 <code>allure.yml</code> 配置文件路径</td>
+<td align="center"><code>allure generate --config ./config/allure.yml</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>--profile</code></strong></td>
+<td align="center">使用配置文件中指定的环境配置（需提前在 <code>allure.yml</code> 中定义）</td>
+<td align="center"><code>allure generate --profile staging</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>--report-dir</code></strong></td>
+<td align="center">同 <code>-o</code>，指定输出目录（旧版本兼容）</td>
+<td align="center"><code>allure generate --report-dir report</code></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理旧报告并生成到指定目录</span></span><br><span class="line">allure generate ./allure-results --clean -o ./allure-report --config ./allure.yml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>allure serve</code> 参数详解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allure serve [options] &lt;结果目录&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>常用参数</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>-h</code> 或 <code>--host</code></strong></td>
+<td align="center">指定服务器监听的 IP 地址（默认 <code>0.0.0.0</code>）</td>
+<td align="center"><code>allure serve -h 127.0.0.1</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>-p</code> 或 <code>--port</code></strong></td>
+<td align="center">指定服务器端口（默认 <code>0</code> 随机端口）</td>
+<td align="center"><code>allure serve -p 8080</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>--config</code></strong></td>
+<td align="center">指定配置文件路径（同 <code>generate</code>）</td>
+<td align="center"><code>allure serve --config ./allure.yml</code></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定端口和配置文件</span></span><br><span class="line">allure serve ./allure-results -p 9999 --config ./allure.yml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>allure open</code> 参数详解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allure open [options] &lt;已生成的报告目录&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>常用参数</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>-h</code> 或 <code>--host</code></strong></td>
+<td align="center">同 <code>serve</code>，指定 IP 地址</td>
+<td align="center"><code>allure open -h localhost</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>-p</code> 或 <code>--port</code></strong></td>
+<td align="center">同 <code>serve</code>，指定端口</td>
+<td align="center"><code>allure open -p 8080</code></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开指定目录的报告</span></span><br><span class="line">allure open ./allure-report -p 8888</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>allure plugin</code> 参数详解</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>allure plugin list</code></td>
+<td align="center">列出已安装插件</td>
+<td align="center"><code>allure plugin list</code></td>
+</tr>
+<tr>
+<td align="center"><code>allure plugin install</code></td>
+<td align="center">安装插件</td>
+<td align="center"><code>allure plugin install allure-team</code></td>
+</tr>
+<tr>
+<td align="center"><code>allure plugin uninstall</code></td>
+<td align="center">卸载插件</td>
+<td align="center"><code>allure plugin uninstall allure-team</code></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>常用环境变量</p>
+<table>
+<thead>
+<tr>
+<th align="center">变量名</th>
+<th align="center">作用</th>
+<th align="center">示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>ALLURE_CONFIG</code></strong></td>
+<td align="center">指定默认 <code>allure.yml</code> 配置文件路径</td>
+<td align="center"><code>export ALLURE_CONFIG=./config/allure.yml</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>ALLURE_RESULTS_DIR</code></strong></td>
+<td align="center">默认结果目录（替代命令行参数）</td>
+<td align="center"><code>export ALLURE_RESULTS_DIR=./results</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>ALLURE_REPORT_DIR</code></strong></td>
+<td align="center">默认报告输出目录（替代 <code>-o</code>）</td>
+<td align="center"><code>export ALLURE_REPORT_DIR=./report</code></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="3-2-注解"><a href="#3-2-注解" class="headerlink" title="3.2 注解"></a>3.2 注解</h2><h3 id="3-2-1-常用注解"><a href="#3-2-1-常用注解" class="headerlink" title="3.2.1 常用注解"></a>3.2.1 常用注解</h3><blockquote>
+<p>1.测试分层注解（三个层级）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">作用描述</th>
+<th align="center">层级定位</th>
+<th align="center">使用频率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>@Epic</code>、<code>@Epics</code></td>
+<td align="center">描述系统或产品的核心功能模块，通常对应<strong>业务需求</strong>中的“史诗级”功能</td>
+<td align="center"><strong>最高层级</strong>（宏观模块）</td>
+<td align="center">每个 Epic 对应多个 Feature</td>
+</tr>
+<tr>
+<td align="center"><code>@Feature</code>、<code>@Features</code></td>
+<td align="center">定义 Epic 下的具体<strong>功能模块</strong>，对应产品需求文档中的“功能点”</td>
+<td align="center"><strong>中间层级</strong>（功能模块）</td>
+<td align="center">每个 Feature 对应多个 Story</td>
+</tr>
+<tr>
+<td align="center"><code>@Story</code>、<code>@Stories</code></td>
+<td align="center">描述用户故事或具体<strong>使用场景</strong>，对应敏捷开发中的“用户故事”（User Story）</td>
+<td align="center"><strong>最底层级</strong>（用户场景）</td>
+<td align="center">每个 Story 对应多个测试用例</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang;</span><br><span class="line"><span class="keyword">import</span> io.qameta.allure.*;</span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.testng.Assert.assertEquals;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Epics(&#123;@Epic(&quot;Epic1&quot;), @Epic(&quot;Epic2&quot;)&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LayerAnntationTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Feature(&quot;Feature1&quot;)</span></span><br><span class="line">    <span class="meta">@Stories(&#123;@Story(&quot;Story1&quot;), @Story(&quot;Story2&quot;)&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">LayerTest1</span><span class="params">()</span>&#123;</span><br><span class="line">        assertEquals(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;1==1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Feature(&quot;Feature2&quot;)</span></span><br><span class="line">    <span class="meta">@Story(&quot;Story2&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">LayerTest2</span><span class="params">()</span>&#123;</span><br><span class="line">        assertEquals(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;1==1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Feature(&quot;Feature1&quot;)</span></span><br><span class="line">    <span class="meta">@Story(&quot;Story3&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">LayerTest3</span><span class="params">()</span>&#123;</span><br><span class="line">        assertEquals(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;1==1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250420153958920.png" alt="image-20250420153958920"></p>
+<blockquote>
+<p>2.描述与优先级</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>@Description</code></td>
+<td align="center">添加测试用例描述</td>
+<td align="center"><code>@Description(&quot;验证正常登录流程&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><code>@Severity</code></td>
+<td align="center">标记测试优先级</td>
+<td align="center"><code>@Severity(SeverityLevel.CRITICAL)</code>，默认normal</td>
+</tr>
+<tr>
+<td align="center"><code>@Flaky</code></td>
+<td align="center">标记不稳定的测试</td>
+<td align="center"><code>@Flaky</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.qameta.allure.*;</span><br><span class="line"><span class="keyword">import</span> org.testng.Assert;</span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DescAndPrTest</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Story(&quot;描述与优先级&quot;)</span></span><br><span class="line">    <span class="meta">@Description(&quot;测试描述与优先级&quot;)</span></span><br><span class="line">    <span class="meta">@Severity(SeverityLevel.TRIVIAL)</span></span><br><span class="line">    <span class="meta">@Flaky</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exampleTest</span><span class="params">()</span> &#123;</span><br><span class="line">        Assert.assertEquals(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;1==1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250420154909443.png" alt="image-20250420154909443"></p>
+<blockquote>
+<p>3.步骤与附件</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>@Step</code></td>
+<td align="center">定义测试步骤</td>
+<td align="center"><code>@Step(&quot;输入用户名 &#123;username&#125;&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><code>@Attachment</code></td>
+<td align="center">添加附件（截图、日志等）</td>
+<td align="center"><code>@Attachment(value=&quot;截图&quot;, type=&quot;image/png&quot;)</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p><code>@Step</code> 依赖 AspectJ 动态织入字节码，缺少依赖或配置错误会导致失效</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1. 添加 aspectjweaver 依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 2. 配置 maven-surefire-plugin --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">argLine</span>&gt;</span></span><br><span class="line">            -javaagent:&quot;$&#123;settings.localRepository&#125;/org/aspectj/aspectjweaver/1.9.7/aspectjweaver-1.9.7.jar&quot;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">argLine</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.qameta.allure.*;</span><br><span class="line"><span class="keyword">import</span> org.testng.Assert;</span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StepAndAttachTest</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Story(&quot;步骤与附件&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exampleTest</span><span class="params">()</span> &#123;</span><br><span class="line">        printName(<span class="string">&quot;峡谷杨爹&quot;</span>,<span class="string">&quot;男&quot;</span>);</span><br><span class="line">        printAge(<span class="number">18</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//@Step(&quot;操作步骤2：姓名=&gt;&#123;&#123;username&#125;&#125;,性别=&gt;&#123;sex&#125;&quot;)</span></span><br><span class="line">    <span class="meta">@Step(&quot;操作步骤1：姓名=&gt;&#123;0&#125;,性别=&gt;&#123;1&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">printName</span><span class="params">(String username,String sex)</span> &#123;</span><br><span class="line">        System.out.println(username+sex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Step(&quot;操作步骤2：打印年龄&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">printAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        System.out.println(age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Story(&quot;步骤与附件&quot;)</span></span><br><span class="line">    <span class="meta">@Step(&quot;展示图片&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">attachPic</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 假设你有一个方法可以获取截图，这里使用文件路径模拟截图获取</span></span><br><span class="line">        <span class="type">File</span> <span class="variable">pic</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;./imgs/火影忍者.png&quot;</span>);</span><br><span class="line">        <span class="type">byte</span>[] picture = Files.readAllBytes(Paths.get(pic.getPath()));</span><br><span class="line">        printPic(picture);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Attachment(value = &quot;火影忍者&quot;,type = &quot;image/png&quot;,fileExtension = &quot;.png&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">byte</span>[] printPic(<span class="type">byte</span>[] picture) &#123;</span><br><span class="line">        <span class="keyword">return</span> picture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250420173713914.png" alt="image-20250420173713914"></p>
+<p><img src="image-20250420173840439.png" alt="image-20250420173840439"></p>
+<blockquote>
+<p>4.链接与跟踪</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+<th align="center">典型关联系统</th>
+<th align="center">是否支持自定义名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>@Link</code>、<code>@Links</code></td>
+<td align="center">通用链接（文档、需求、API等）</td>
+<td align="center"><code>@Link(name=&quot;需求文档&quot;, url=&quot;https://...&quot;)</code></td>
+<td align="center">无限制</td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center"><code>@Issue</code>、<code>@Issues</code></td>
+<td align="center">关联缺陷管理系统（Bug 单）</td>
+<td align="center"><code>@Issue(&quot;BUG-123&quot;)</code></td>
+<td align="center">Jira、Bugzilla</td>
+<td align="center">否（默认显示 ID）</td>
+</tr>
+<tr>
+<td align="center"><code>@TmsLink</code>、<code>@TmsLinks</code></td>
+<td align="center">关联测试用例管理系统（测试用例）</td>
+<td align="center"><code>@TmsLink(&quot;TC-456&quot;)</code></td>
+<td align="center">TestRail、Zephyr</td>
+<td align="center">否（默认显示 ID）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>@Link：通用链接</p>
+<ul>
+<li><p><strong>用途</strong>：关联任意外部资源（需求文档、技术文档、API 参考等）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Link(name = &quot;链接名称&quot;, url = &quot;https://...&quot;)</span>  <span class="comment">// 自定义名称和链接</span></span><br><span class="line"><span class="meta">@Link(&quot;https://...&quot;)</span>                         <span class="comment">// 仅填写 URL（名称默认显示 URL）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Link(name = &quot;支付接口文档&quot;, url = &quot;https://api.example.com/payment&quot;)</span></span><br><span class="line"><span class="meta">@Link(&quot;https://wiki.example.com/login-spec&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPayment</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>@Issue：关联缺陷（Bug 单）</p>
+</li>
+<li><p><strong>用途</strong>：标记测试用例关联的缺陷 ID，常用于失败用例与 Bug 单的追踪</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Issue(&quot;缺陷ID&quot;)</span>  <span class="comment">// 如 Jira 的 KEY-123</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Issue(&quot;PAY-456&quot;)</span>  <span class="comment">// 关联 Jira 缺陷 PAY-456</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFailedPayment</span><span class="params">()</span> &#123; </span><br><span class="line">    <span class="comment">// 测试逻辑（假设失败）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置（在allure.yml中映射链接模板）</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">allure:</span></span><br><span class="line">  <span class="attr">links:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">issue</span></span><br><span class="line">      <span class="attr">url-template:</span> <span class="string">https://jira.example.com/browse/%s</span>  <span class="comment"># %s 会替换为 @Issue 的值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@TmsLink：关联测试用例</p>
+<ul>
+<li><p><strong>用途</strong>：将自动化测试与测试管理系统中的用例 ID 关联，便于跟踪覆盖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TmsLink(&quot;测试用例ID&quot;)</span>  <span class="comment">// 如 TestRail 的 C123</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@TmsLink(&quot;C789&quot;)</span>  <span class="comment">// 关联 TestRail 用例 C789</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testLogin</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置（在allure.yml中映射链接模板）</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">allure:</span></span><br><span class="line">  <span class="attr">links:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">tms</span></span><br><span class="line">      <span class="attr">url-template:</span> <span class="string">https://testrail.example.com/index.php?/cases/view/%s</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.qameta.allure.*;</span><br><span class="line"><span class="keyword">import</span> org.testng.annotations.Test;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Link(name = &quot;需求文档&quot;,url = &quot;https://www.baidu.com&quot;)</span></span><br><span class="line"><span class="meta">@Issue(&quot;BUG-1&quot;)</span></span><br><span class="line"><span class="meta">@TmsLink(&quot;testCase1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LinkAndIssuesTest</span> &#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Story(&quot;链接与跟踪&quot;)</span></span><br><span class="line">    <span class="meta">@Link(name = &quot;API文档&quot;,url = &quot;https://www.douyin.com/&quot;)</span></span><br><span class="line">    <span class="meta">@Issue(&quot;BUG-2&quot;)</span></span><br><span class="line">    <span class="meta">@TmsLink(&quot;testCase2&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">LinkTest</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Story(&quot;链接与跟踪&quot;)</span></span><br><span class="line">    <span class="meta">@Links(&#123;@Link(name = &quot;抖音&quot;,url = &quot;https://www.douyin.com/&quot;),@Link(name = &quot;爱奇艺&quot;,url = &quot;https://www.iqiyi.com/&quot;)&#125;)</span></span><br><span class="line">    <span class="meta">@Issues(&#123;@Issue(&quot;BUG-2&quot;),@Issue(&quot;BUG-3&quot;)&#125;)</span></span><br><span class="line">    <span class="meta">@TmsLinks(&#123;@TmsLink(&quot;testCase2&quot;),@TmsLink(&quot;testCase3&quot;)&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">LinkTest2</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250420192120270.png" alt="image-20250420192120270"></p>
+<blockquote>
+<blockquote>
+<p>问题：</p>
+<p>allure generate allure-results –config allure.yml –clean</p>
+<p>Could not load config file allure.yml. Using the empty configuration</p>
+</blockquote>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">allure:</span></span><br><span class="line">  <span class="attr">links:</span></span><br><span class="line">    <span class="comment"># 1. 配置缺陷管理系统（Jira 示例）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">issue</span></span><br><span class="line">      <span class="comment"># url-template: https://jira.example.com/browse/%s  # %s 会被 @Issue(&quot;BUG-123&quot;) 替换</span></span><br><span class="line">      <span class="attr">url-template:</span> <span class="string">https://jira.example.com/index.php?/cases/view/%s</span>  <span class="comment"># %s 会被 @Issue(&quot;BUG-123&quot;) 替换</span></span><br><span class="line">      <span class="attr">name-template:</span> <span class="string">&quot;缺陷追踪: &#123;link&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 配置测试用例管理系统（TestRail 示例）</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">tms</span></span><br><span class="line">      <span class="attr">url-template:</span> <span class="string">https://testrail.example.com/index.php?/cases/view/%s</span>  <span class="comment"># %s 被 @TmsLink(&quot;C456&quot;) 替换</span></span><br><span class="line">      <span class="attr">name-template:</span> <span class="string">&quot;用例管理: &#123;link&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>5.标记</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">作用场景</th>
+<th align="center">典型使用位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>@AllureId</strong></td>
+<td align="center">唯一标识测试用例（关联外部系统）</td>
+<td align="center">测试方法&#x2F;测试类</td>
+</tr>
+<tr>
+<td align="center"><strong>@Owner</strong></td>
+<td align="center">标记测试用例的直接负责人</td>
+<td align="center">测试方法&#x2F;测试类</td>
+</tr>
+<tr>
+<td align="center"><strong>@Lead</strong></td>
+<td align="center">标记模块&#x2F;项目的负责人（高层级）</td>
+<td align="center">测试类&#x2F;测试套件</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>@AllureId：唯一用例标识</p>
+<ul>
+<li><p><strong>用途</strong>：将测试用例与外部系统（如 Jira、TestRail）的 ID 关联，便于双向追踪</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@AllureId(&quot;TC-123&quot;)</span>  <span class="comment">// 对应 TestRail 或 TestOps 中的用例 ID</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testLogin</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>@Owner：用例负责人</p>
+</li>
+<li><p><strong>用途</strong>：标记负责维护或验证该测试用例的团队成员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Owner(&quot;张三&quot;)</span>  <span class="comment">// 用例责任人</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testPayment</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@：模块负责人</p>
+<ul>
+<li><p><strong>用途</strong>：标记模块或项目的整体负责人（更高层级）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Lead(&quot;李四&quot;)</span>  <span class="comment">// 模块负责人</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testCreditCard</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>问题：@Lead、@AllureId未生效</p>
+</blockquote>
+</blockquote>
+<h3 id="3-2-2-其它注解"><a href="#3-2-2-其它注解" class="headerlink" title="3.2.2 其它注解"></a>3.2.2 其它注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Param</span></span><br><span class="line"><span class="meta">@Muted</span></span><br><span class="line"><span class="meta">@LinkAnnotation</span></span><br><span class="line"><span class="meta">@LinkAnnotations</span></span><br><span class="line"><span class="meta">@LabelAnnotation</span></span><br><span class="line"><span class="meta">@LabelAnnotations</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-动态注解API"><a href="#3-3-动态注解API" class="headerlink" title="3.3 动态注解API"></a>3.3 动态注解API</h2><blockquote>
+<p>1.步骤控制</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>Allure.step(String name)</code></strong></td>
+<td align="center">创建简单步骤</td>
+<td align="center"><code>Allure.step(&quot;点击登录按钮&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.step(String name, Runnable step)</code></strong></td>
+<td align="center">创建带逻辑的步骤（代码块）</td>
+<td align="center"><code>Allure.step(&quot;输入用户名&quot;, () -&gt; inputUsername(&quot;testuser&quot;))</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.step(StepContext step)</code></strong></td>
+<td align="center">嵌套步骤（支持子步骤）</td>
+<td align="center">详见下方完整示例</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol start="2">
+<li>参数与数据</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>Allure.parameter(String name, Object value)</code></strong></td>
+<td align="center">添加参数到报告</td>
+<td align="center"><code>Allure.parameter(&quot;城市&quot;, &quot;北京&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.parameter(String group, String name, Object value)</code></strong></td>
+<td align="center">分组参数（如用户信息组）</td>
+<td align="center"><code>Allure.parameter(&quot;用户信息&quot;, &quot;角色&quot;, &quot;管理员&quot;)</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol start="3">
+<li>标签与分类</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>Allure.label(String name, String value)</code></strong></td>
+<td align="center">添加自定义标签</td>
+<td align="center"><code>Allure.label(&quot;模块&quot;, &quot;支付&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.epic(String epic)</code></strong></td>
+<td align="center">动态设置史诗</td>
+<td align="center"><code>Allure.epic(&quot;用户管理模块&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.feature(String feature)</code></strong></td>
+<td align="center">动态设置功能模块</td>
+<td align="center"><code>Allure.feature(&quot;登录功能&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.story(String story)</code></strong></td>
+<td align="center">动态设置用户故事</td>
+<td align="center"><code>Allure.story(&quot;手机号快捷登录&quot;)</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol start="4">
+<li>附件管理</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>Allure.addAttachment(String name, String content)</code></strong></td>
+<td align="center">添加文本附件</td>
+<td align="center"><code>Allure.addAttachment(&quot;日志&quot;, &quot;用户登录成功&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.addAttachment(String name, String type, InputStream stream, String extension)</code></strong></td>
+<td align="center">添加流式附件</td>
+<td align="center"><code>Allure.addAttachment(&quot;截图&quot;, &quot;image/png&quot;, inputStream, &quot;.png&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.addAttachment(String name, String type, byte[] content, String extension)</code></strong></td>
+<td align="center">添加字节数组附件</td>
+<td align="center"><code>Allure.addAttachment(&quot;截图&quot;, &quot;image/png&quot;, screenshotBytes, &quot;.png&quot;)</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol start="5">
+<li>链接与追踪</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">作用</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong><code>Allure.link(String name, String url)</code></strong></td>
+<td align="center">添加通用链接</td>
+<td align="center"><code>Allure.link(&quot;需求文档&quot;, &quot;https://doc.example.com&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.issue(String id, String url)</code></strong></td>
+<td align="center">关联缺陷（需配置模板）</td>
+<td align="center"><code>Allure.issue(&quot;BUG-123&quot;, &quot;https://jira.example.com/BUG-123&quot;)</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>Allure.tms(String id, String url)</code></strong></td>
+<td align="center">关联测试用例（需配置模板）</td>
+<td align="center"><code>Allure.tms(&quot;TC-456&quot;, &quot;https://testrail.example.com/TC-456&quot;)</code></td>
+</tr>
+</tbody></table>
+<h1 id="4-生成中文测试报文"><a href="#4-生成中文测试报文" class="headerlink" title="4.生成中文测试报文"></a>4.生成中文测试报文</h1><h1 id="5-其它"><a href="#5-其它" class="headerlink" title="5.其它"></a>5.其它</h1><h2 id="5-1-修改报告标题"><a href="#5-1-修改报告标题" class="headerlink" title="5.1 修改报告标题"></a>5.1 修改报告标题</h2><h2 id="5-2-测试用例名称"><a href="#5-2-测试用例名称" class="headerlink" title="5.2 测试用例名称"></a>5.2 测试用例名称</h2><h1 id="6-测试项目组成"><a href="#6-测试项目组成" class="headerlink" title="6.测试项目组成"></a>6.测试项目组成</h1><p><img src="image-20250419150427598.png" alt="image-20250419150427598"></p>
+<h1 id="7-allure-junit5"><a href="#7-allure-junit5" class="headerlink" title="7.allure+junit5"></a>7.allure+junit5</h1><ul>
+<li><p>新建maven项目</p>
+</li>
+<li><p>pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.yang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>AllureHelloworld<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--allure测试报告中文乱码--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.seleniumhq.selenium<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>selenium-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.qameta.allure<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>allure-junit5<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.23.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.13.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-nop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- Maven Surefire Plugin --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0-M5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 配置生成 Allure 报告 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">testFailureIgnore</span>&gt;</span>true<span class="tag">&lt;/<span class="name">testFailureIgnore</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 配置 Allure 测试结果目录 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">argLine</span>&gt;</span>-Dallure.results.directory=target/allure-results<span class="tag">&lt;/<span class="name">argLine</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="8-allure-testng"><a href="#8-allure-testng" class="headerlink" title="8.allure+testng"></a>8.allure+testng</h1><h1 id="9-Jenkins-allure-testng"><a href="#9-Jenkins-allure-testng" class="headerlink" title="9.Jenkins+allure+testng"></a>9.Jenkins+allure+testng</h1>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/08/31/allure/" title="allure">https://xiaguyangdie.github.io/2023/08/31/allure/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/18/Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6/" rel="prev" title="Docker安装常用的软件">
+      <i class="fa fa-chevron-left"></i> Docker安装常用的软件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/02/selenium/" rel="next" title="selenium">
+      selenium <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85"><span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-HelloWorld"><span class="nav-text">2.HelloWorld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-allure%E5%91%BD%E4%BB%A4%E5%92%8C%E6%B3%A8%E8%A7%A3"><span class="nav-text">3.allure命令和注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%91%BD%E4%BB%A4"><span class="nav-text">3.1 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E6%B3%A8%E8%A7%A3"><span class="nav-text">3.2 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="nav-text">3.2.1 常用注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E5%85%B6%E5%AE%83%E6%B3%A8%E8%A7%A3"><span class="nav-text">3.2.2 其它注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%8A%A8%E6%80%81%E6%B3%A8%E8%A7%A3API"><span class="nav-text">3.3 动态注解API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%94%9F%E6%88%90%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95%E6%8A%A5%E6%96%87"><span class="nav-text">4.生成中文测试报文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%85%B6%E5%AE%83"><span class="nav-text">5.其它</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E4%BF%AE%E6%94%B9%E6%8A%A5%E5%91%8A%E6%A0%87%E9%A2%98"><span class="nav-text">5.1 修改报告标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%90%8D%E7%A7%B0"><span class="nav-text">5.2 测试用例名称</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE%E7%BB%84%E6%88%90"><span class="nav-text">6.测试项目组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-allure-junit5"><span class="nav-text">7.allure+junit5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-allure-testng"><span class="nav-text">8.allure+testng</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Jenkins-allure-testng"><span class="nav-text">9.Jenkins+allure+testng</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

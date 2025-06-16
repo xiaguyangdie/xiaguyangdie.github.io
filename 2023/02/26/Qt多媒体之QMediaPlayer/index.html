@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Qt多媒体之QMediaPlayer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt多媒体之QMediaPlayer">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="Qt多媒体之QMediaPlayer">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/image-20220630210422304.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/image-20220630210447905.png">
+<meta property="article:published_time" content="2023-02-26T08:27:31.106Z">
+<meta property="article:modified_time" content="2024-04-13T03:06:06.904Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="多媒体">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/image-20220630210422304.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Qt多媒体之QMediaPlayer | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Qt多媒体之QMediaPlayer
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-26 16:27:31" itemprop="dateCreated datePublished" datetime="2023-02-26T16:27:31+08:00">2023-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-13 11:06:06" itemprop="dateModified" datetime="2024-04-13T11:06:06+08:00">2024-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/" class="post-meta-item leancloud_visitors" data-flag-title="Qt多媒体之QMediaPlayer" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+            <div class="post-description">Qt多媒体之QMediaPlayer</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><ul>
+<li>QMediaPlayer是Qt自带的多媒体播放器，该播放器可以使用各种编解码器播放音视频文件</li>
+<li>涉及到的类有QMediaPlayer、QMediaPlaylist、QVideoWidget等</li>
+<li>使用<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1lWn-i-of2U-v0O2U9kVbqQ?pwd=gm24">LAVF Filters解码器：</a> 提取码: gm24</li>
+</ul>
+<h3 id="2-QMediaPlayer"><a href="#2-QMediaPlayer" class="headerlink" title="2.QMediaPlayer"></a>2.QMediaPlayer</h3><blockquote>
+<p> QMediaPlayer类的player播放状态：State</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>状态枚举名称</th>
+<th>枚举值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>StoppedState</td>
+<td>0</td>
+<td>播放停止状态</td>
+</tr>
+<tr>
+<td>PlayingState</td>
+<td>1</td>
+<td>播放状态</td>
+</tr>
+<tr>
+<td>PausedState</td>
+<td>2</td>
+<td>播放暂停状态</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>QMediaPlayer类的媒体状态：MediaStatus</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>状态枚举名称</th>
+<th>枚举值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UnknownMediaStatus</td>
+<td>0</td>
+<td>未知状态</td>
+</tr>
+<tr>
+<td>NoMedia</td>
+<td>1</td>
+<td>无媒体文件，player处于StoppedState</td>
+</tr>
+<tr>
+<td>LoadingMedia</td>
+<td>2</td>
+<td>媒体文件加载中，player可以处于任何状态</td>
+</tr>
+<tr>
+<td>LoadedMedia</td>
+<td>3</td>
+<td>媒体文件已加载，player处于StoppedState</td>
+</tr>
+<tr>
+<td>StalledMedia</td>
+<td>4</td>
+<td>媒体处于延迟或者暂时的中断状态，palyer处于 PlayingState或者PausedState</td>
+</tr>
+<tr>
+<td>BufferingMedia</td>
+<td>5</td>
+<td>媒体正在缓冲数据，palyer处于 PlayingState或者PausedState</td>
+</tr>
+<tr>
+<td>BufferedMedia</td>
+<td>6</td>
+<td>媒体缓冲数据完成，palyer处于 PlayingState或者PausedState</td>
+</tr>
+<tr>
+<td>EndOfMedia</td>
+<td>7</td>
+<td>媒体结束，player处于StoppedState</td>
+</tr>
+<tr>
+<td>InvalidMedia</td>
+<td>8</td>
+<td>非法的媒体文件，player处于StoppedState</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>QMediaPlayer类的player播放标志位：Flags</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>状态枚举名称</th>
+<th>枚举值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LowLatency</td>
+<td>1</td>
+<td>播放未压缩的音频数据，播放表现为低延时，主要播放beeps, ringtones等</td>
+</tr>
+<tr>
+<td>StreamPlayback</td>
+<td>2</td>
+<td>播放基于 QIODevice构建的媒体文件，QMediaPlayer或自动选择支持的流进行播放</td>
+</tr>
+<tr>
+<td>VideoSurface</td>
+<td>4</td>
+<td>渲染视频到QAbstractVideoSurface output</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>QMediaPlayer类的player错误标志位：Error</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>状态枚举名称</th>
+<th>枚举值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NoError</td>
+<td>0</td>
+<td>无错误</td>
+</tr>
+<tr>
+<td>ResourceError</td>
+<td>1</td>
+<td>媒体源错误</td>
+</tr>
+<tr>
+<td>FormatError</td>
+<td>2</td>
+<td>格式错误，播放可能会丢失音频或者视频</td>
+</tr>
+<tr>
+<td>NetworkError</td>
+<td>3</td>
+<td>网络错误</td>
+</tr>
+<tr>
+<td>AccessDeniedError</td>
+<td>4</td>
+<td>访问权限错误</td>
+</tr>
+<tr>
+<td>ServiceMissingError</td>
+<td>5</td>
+<td>服务丢失错误</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>QMediaPlayer类的属性：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>取值类型</th>
+<th>说明</th>
+<th>访问函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>audioAvailable</td>
+<td>const bool</td>
+<td>音频是否可用，audioAvailableChanged信号函数用于监控其状态</td>
+<td>bool isAudioAvailable() const</td>
+</tr>
+<tr>
+<td>audioRole</td>
+<td>QAudio::Role</td>
+<td>音频流播放role</td>
+<td>QAudio::Role audioRole() const，void setAudioRole(QAudio::Role audioRole)</td>
+</tr>
+<tr>
+<td>bufferStatus</td>
+<td>const int</td>
+<td>缓冲数据的百分比，在开始播放或者回复播放之前</td>
+<td>int bufferStatus() const， void bufferStatusChanged(int percentFilled)</td>
+</tr>
+<tr>
+<td>currentMedia</td>
+<td>const QMediaContent</td>
+<td>当前激活的媒体，在使用Playlist时，可能与mdia属性不同</td>
+<td>QMediaContent currentMedia() const， void currentMediaChanged(const QMediaContent &amp;media)</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>const qint64</td>
+<td>currentMedia的播放时长，单位ms</td>
+<td>qint64 duration() const， void durationChanged(qint64 duration)</td>
+</tr>
+<tr>
+<td>media</td>
+<td>QMediaContent</td>
+<td>激活的并被使用的媒体源</td>
+<td>QMediaContent media() const， void setMedia(const QMediaContent &amp;media, QIODevice *stream &#x3D; nullptr)， void mediaChanged(const QMediaContent &amp;media)</td>
+</tr>
+<tr>
+<td>playbackRate</td>
+<td>qreal</td>
+<td>当前媒体的播放速度，默认为1.0</td>
+<td>qreal playbackRate() const， void setPlaybackRate(qreal rate)， void playbackRateChanged(qreal rate)</td>
+</tr>
+<tr>
+<td>playlist</td>
+<td>QMediaPlaylist*</td>
+<td>播放列表</td>
+<td>QMediaPlaylist * playlist() const， void setPlaylist(QMediaPlaylist *playlist)，</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>int</td>
+<td>音量，取值范围0—100</td>
+<td>int volume() const， void setVolume(int volume)， void volumeChanged(int volume</td>
+</tr>
+</tbody></table>
+<h4 id="2-1-播放音频步骤"><a href="#2-1-播放音频步骤" class="headerlink" title="2.1 播放音频步骤"></a>2.1 播放音频步骤</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//播放器对象</span></span><br><span class="line">player = <span class="keyword">new</span> QMediaPlayer;</span><br><span class="line"><span class="comment">/*从本地读取*/</span></span><br><span class="line">player-&gt;<span class="built_in">setMedia</span>(<span class="built_in">QUrl</span>(<span class="string">&quot;C:/Users/**/Desktop/test/王天阳 - 借月.flac&quot;</span>));</span><br><span class="line">player-&gt;<span class="built_in">setMedia</span>(<span class="built_in">QMediaContent</span>(QUrl::<span class="built_in">fromLocalFile</span>(<span class="string">&quot;C:/Users/**/Desktop/test/王天阳 - 借月.flac&quot;</span>)));</span><br><span class="line"><span class="comment">//player-&gt;setMedia(QUrl(&quot;qrc:/static/王天阳 - 借月.flac&quot;));</span></span><br><span class="line"><span class="comment">/*网络读取*/</span></span><br><span class="line"><span class="comment">//player-&gt;setMedia(QMediaContent(QUrl(&quot;https://m704.music.126.net/20220626160545/7efb2faf65926669b778d7b2293182ff/jdyyaac/565b/0e58/5508/a156fa6e5a926f8173b9bb7317981f92.m4a?authSecret=000001819ef4b1d613060aaba51f1a59&quot;)));</span></span><br><span class="line"><span class="comment">//设置音量</span></span><br><span class="line">player-&gt;<span class="built_in">setVolume</span>(<span class="number">50</span>);</span><br><span class="line"><span class="comment">//播放</span></span><br><span class="line">player-&gt;<span class="built_in">play</span>();</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-播放视频频步骤"><a href="#2-2-播放视频频步骤" class="headerlink" title="2.2 播放视频频步骤"></a>2.2 播放视频频步骤</h4><p><code>QMediaPlayer</code>要播放视频需要使用辅助类<code>QVideoWidget</code>、<code>QGraphicsVideoItem</code>，将辅助类对象设置为<code>QMediaPlayer</code>的视频输出窗口，就可以播放视频。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//播放器对象，播放队列对象，显示器对象</span></span><br><span class="line">player = <span class="keyword">new</span> QMediaPlayer;</span><br><span class="line">playerList = <span class="keyword">new</span> QMediaPlaylist;</span><br><span class="line">qVideoWidget = <span class="keyword">new</span> <span class="built_in">QVideoWidget</span>();</span><br><span class="line"></span><br><span class="line">playerList-&gt;<span class="built_in">addMedia</span>(<span class="built_in">QUrl</span>(<span class="string">&quot;C:/Users/**/Desktop/test/张靓颖-故长安 (《将夜》古风品质大剧主题曲)(蓝光).mp4&quot;</span>));</span><br><span class="line">playerList-&gt;<span class="built_in">addMedia</span>(<span class="built_in">QUrl</span>(<span class="string">&quot;C:/Users/**/Desktop/test/徐怀钰-踏浪(标清).mp4&quot;</span>));</span><br><span class="line">playerList-&gt;<span class="built_in">addMedia</span>(<span class="built_in">QUrl</span>(<span class="string">&quot;C:/Users/**/Desktop/test/杨丞琳-年轮说(蓝光).mp4&quot;</span>));</span><br><span class="line"></span><br><span class="line">playerList-&gt;<span class="built_in">setCurrentIndex</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">player-&gt;<span class="built_in">setPlaylist</span>(playerList);</span><br><span class="line">player-&gt;<span class="built_in">setVideoOutput</span>(qVideoWidget);</span><br><span class="line">qVideoWidget-&gt;<span class="built_in">show</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置音量</span></span><br><span class="line">player-&gt;<span class="built_in">setVolume</span>(<span class="number">50</span>);</span><br><span class="line"><span class="comment">//播放</span></span><br><span class="line">player-&gt;<span class="built_in">play</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-QMediaPlaylist"><a href="#3-QMediaPlaylist" class="headerlink" title="3.QMediaPlaylist"></a>3.QMediaPlaylist</h3><ul>
+<li>QMediaPlaylist类，可以为QMediaPlayer提供一个播放列表，它其实是QMediaContent对象的列表，</li>
+<li>QMediaPlayer通过函数setPlayList来设置一个播放列表</li>
+<li>QMediaPlaylist通过函数addMedia想播放列表添加一个媒体文件</li>
+</ul>
+<blockquote>
+<p>QMediaPlaylist类的播放模式：PlaybackMode</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>状态枚举名称</th>
+<th>枚举值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CurrentItemOnce</td>
+<td>0</td>
+<td>当前选中的媒体文件仅播放一次</td>
+</tr>
+<tr>
+<td>CurrentItemInLoop</td>
+<td>1</td>
+<td>当前选中的媒体文件循环播放</td>
+</tr>
+<tr>
+<td>Sequential</td>
+<td>2</td>
+<td>从当前选中的媒体文件开始，列表中的文件顺序播放一次直到最后一个文件</td>
+</tr>
+<tr>
+<td>Loop</td>
+<td>3</td>
+<td>列表中的文件顺序循环播放</td>
+</tr>
+<tr>
+<td>Random</td>
+<td>4</td>
+<td>列表中的文件随机播放</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QMediaPlaylist</code>属性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>currentIndex</td>
+<td>int</td>
+<td>当前播放的媒体文件在列表中的索引</td>
+</tr>
+<tr>
+<td>currentMedia</td>
+<td>const QMediaContent</td>
+<td>当前选中的媒体文件</td>
+</tr>
+<tr>
+<td>palybackMode</td>
+<td>QMediaPlaylist::PlaybackMode</td>
+<td>从当前选中的媒体文件开始，列表中的文件顺序播放一次直到最后一个文件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QMediaPlaylist</code>函数</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>返回值类型</th>
+<th>函数名称</th>
+<th>描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td>addMedia(const QMediaContent &amp;content)</td>
+<td>Public Functions，列表添加单个媒体文件</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>addMedia(const QList &amp;items)</td>
+<td>Public Functions，列表添加多个媒体文件</td>
+</tr>
+<tr>
+<td>int</td>
+<td>currentIndex() const</td>
+<td>获得当前播放媒体的索引</td>
+</tr>
+<tr>
+<td>QMediaContent</td>
+<td>currentMedia() const</td>
+<td>获得当前播放的媒体文件</td>
+</tr>
+<tr>
+<td>QMediaPlaylist::Error</td>
+<td>error() const</td>
+<td>列表错误状态</td>
+</tr>
+<tr>
+<td>QString</td>
+<td>errorString() const</td>
+<td>播放列表错误字符串信息</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>insertMedia(int pos, const QMediaContent &amp;content)</td>
+<td>向播放列表插入一个媒体文件</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>insertMedia(int pos, const QList &amp;items)</td>
+<td>向播放列表插入多个媒体文件</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>isEmpty() const</td>
+<td>清空列表</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>isReadOnly() const</td>
+<td>清空列表</td>
+</tr>
+<tr>
+<td>void</td>
+<td>load(const QNetworkRequest &amp;request, const char *format &#x3D; nullptr)</td>
+<td>加载网络媒体</td>
+</tr>
+<tr>
+<td>void</td>
+<td>load(const QUrl &amp;location, const char *format &#x3D; nullptr)</td>
+<td>加载本地媒体文件</td>
+</tr>
+<tr>
+<td>void</td>
+<td>load(QIODevice *device, const char *format &#x3D; nullptr)</td>
+<td>加载IO设备文件</td>
+</tr>
+<tr>
+<td>QMediaContent</td>
+<td>media(int index) const</td>
+<td>获得指定索引的媒体文件</td>
+</tr>
+<tr>
+<td>int</td>
+<td>mediaCount() const</td>
+<td>统计播放列表的文件数量</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>moveMedia(int from, int to)</td>
+<td>根据位置参数移动媒体文件</td>
+</tr>
+<tr>
+<td>int</td>
+<td>nextIndex(int steps &#x3D; 1) const</td>
+<td>当前播放文件的下一个文件索引</td>
+</tr>
+<tr>
+<td>PlaybackMode</td>
+<td>playbackMode() const</td>
+<td>获取列表播放模式</td>
+</tr>
+<tr>
+<td>int</td>
+<td>previousIndex(int steps &#x3D; 1) const</td>
+<td>当前播放文件的上一个文件索引</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>removeMedia(int pos)</td>
+<td>删除列表中指定位置的文件</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>removeMedia(int start, int end)</td>
+<td>删除列表中start到end之间的文件</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>save(const QUrl &amp;location, const char *format &#x3D; nullptr)</td>
+<td>保存列表QUrl 指定位置</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>save(QIODevice *device, const char *format)</td>
+<td>保存列表到IO设备</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setPlaybackMode(QMediaPlaylist::PlaybackMode mode)</td>
+<td>设置列表播放模式</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QMediaPlaylist</code>槽</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>返回值类型</th>
+<th>函数名称</th>
+<th>描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>next()</td>
+<td>下一个文件</td>
+</tr>
+<tr>
+<td>void</td>
+<td>previous()</td>
+<td>上一个文件</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setCurrentIndex(int playlistPosition)</td>
+<td>设置当前播放媒体的索引</td>
+</tr>
+<tr>
+<td>void</td>
+<td>shuffle()</td>
+<td>媒体顺序洗牌，重建媒体的索引</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QMediaPlaylist</code>信号</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>返回值类型</th>
+<th>函数名称</th>
+<th>描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>currentIndexChanged(int position)</td>
+<td>当前索引改变信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>currentMediaChanged(const QMediaContent &amp;content)</td>
+<td>当前媒体文件改变信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>loadFailed()</td>
+<td>加载失败信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>loaded()</td>
+<td>加载完成信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>mediaAboutToBeInserted(int start, int end)</td>
+<td>媒体即将被插入信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>mediaAboutToBeRemoved(int start, int end)</td>
+<td>媒体即将被删除信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>mediaChanged(int start, int end)</td>
+<td>媒体文件改变信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>mediaInserted(int start, int end)</td>
+<td>媒体文件插入信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>mediaRemoved(int start, int end)</td>
+<td>媒体文件删除信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>playbackModeChanged(QMediaPlaylist::PlaybackMode mode)</td>
+<td>列表播放模式改变信号</td>
+</tr>
+</tbody></table>
+<h3 id="4-QVideoWidget"><a href="#4-QVideoWidget" class="headerlink" title="4.QVideoWidget"></a>4.QVideoWidget</h3><p><code>QVideoWidget</code>是一个用来展示视频的类，需要先定义一个<code>QMediaPlayer</code>对象，然后将<code>QMediaPlayer</code>的<code>VideoOutput</code>设置为<code>QVideoWidget</code>对象即可</p>
+<blockquote>
+<p><code>QVideoWidget</code>属性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>aspectRatioMode :</td>
+<td>Qt::AspectRatioMode</td>
+<td>屏幕高宽比</td>
+</tr>
+<tr>
+<td>brightness</td>
+<td>int</td>
+<td>亮度</td>
+</tr>
+<tr>
+<td>contrast</td>
+<td>int</td>
+<td>对比度</td>
+</tr>
+<tr>
+<td>fullScreen</td>
+<td>bool</td>
+<td>是否全屏</td>
+</tr>
+<tr>
+<td>hue</td>
+<td>int</td>
+<td>色调</td>
+</tr>
+<tr>
+<td>mediaObject</td>
+<td>QMediaObject* const</td>
+<td>视频媒体对象</td>
+</tr>
+<tr>
+<td>saturation</td>
+<td>int</td>
+<td>饱和度</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QVideoWidget</code>函数</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>返回值类型</th>
+<th>函数名称</th>
+<th>描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qt::AspectRatioMode</td>
+<td>aspectRatioMode() const</td>
+<td>获取视频画面宽高比</td>
+</tr>
+<tr>
+<td>int</td>
+<td>saturation() const</td>
+<td>获取饱和度</td>
+</tr>
+<tr>
+<td>int</td>
+<td>brightness() const</td>
+<td>获取亮度</td>
+</tr>
+<tr>
+<td>int</td>
+<td>contrast() const</td>
+<td>获取对比度</td>
+</tr>
+<tr>
+<td>int</td>
+<td>hue() const</td>
+<td>获取色调</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>isFullScreen() const</td>
+<td>获取全屏状态</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QVideoWidget</code>槽</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>返回值类型</th>
+<th>函数名称</th>
+<th>描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>setAspectRatioMode(Qt::AspectRatioMode mode)</td>
+<td>设置宽高比</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setBrightness(int brightness)</td>
+<td>设置亮度</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setContrast(int contrast)</td>
+<td>设置对比度</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setFullScreen(bool fullScreen)</td>
+<td>设置全屏状态</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setHue(int hue)</td>
+<td>设置色调</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setSaturation(int saturation)</td>
+<td>设置饱和度</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>QMediaPlaylist</code>信号</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>返回值类型</th>
+<th>函数名称</th>
+<th>描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void</td>
+<td>brightnessChanged(int brightness)</td>
+<td>亮度改变信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>contrastChanged(int contrast)</td>
+<td>对比度改变信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>fullScreenChanged(bool fullScreen)</td>
+<td>全屏状态信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>hueChanged(int hue)</td>
+<td>色调改变信号</td>
+</tr>
+<tr>
+<td>void</td>
+<td>saturationChanged(int saturation)</td>
+<td>饱和度改变信号</td>
+</tr>
+</tbody></table>
+<h3 id="5-demo"><a href="#5-demo" class="headerlink" title="5.demo"></a>5.demo</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在工程文件中添加，QT += multimedia （多媒体），QT += multimediawidgets</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>widget.h</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> WIDGET_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WIDGET_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QWidget&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtDebug&gt;</span></span></span><br><span class="line"><span class="comment">//音视频类</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QString&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMediaPlayer&gt;</span> <span class="comment">//多媒体播放器</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMediaPlaylist&gt;</span>   <span class="comment">//播放队列</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QVideoWidget&gt;</span> <span class="comment">//视频窗口</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QFileDialog&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMessageBox&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Ui &#123;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Widget</span><span class="params">(QWidget *parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line">    <span class="function">QStringList <span class="title">getFileNames</span><span class="params">(<span class="type">const</span> QString &amp;path)</span></span>;</span><br><span class="line">    <span class="function">QString <span class="title">secondsToTime</span><span class="params">(ulong ulSeconds)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert_pic</span><span class="params">(<span class="type">int</span> index)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">readLyricsFile</span><span class="params">(QString lyricsPath)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">analysisLyricsFile</span><span class="params">(QString line)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_pushButton_clicked</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_pushButton_4_clicked</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_pushButton_2_clicked</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_pushButton_3_clicked</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_listWidget_clicked</span><span class="params">(<span class="type">const</span> QModelIndex &amp;index)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_pushButton_5_clicked</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_horizontalSlider_valueChanged</span><span class="params">(<span class="type">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onDurationChanged</span><span class="params">(qint64 dur)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onPlayerPositionChanged</span><span class="params">(qint64 pos)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onSliderMoved</span><span class="params">(<span class="type">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">on_horizontalSlider_3_valueChanged</span><span class="params">(<span class="type">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onChangeListWidgetIndex</span><span class="params">(<span class="type">int</span> index)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onChangeLyrics</span><span class="params">(<span class="type">int</span> index)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::Widget *ui;</span><br><span class="line">    QMediaPlayer* player;</span><br><span class="line">    QMediaPlaylist* playerList;</span><br><span class="line">    QVideoWidget* qVideoWidget;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// WIDGET_H</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>widget.cpp</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;widget.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ui_widget.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> row = <span class="number">0</span>;</span><br><span class="line">qint64 long_v = <span class="number">0</span>;</span><br><span class="line"><span class="type">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">QVector&lt;QString&gt; listLyricsText;</span><br><span class="line">QVector&lt;<span class="type">int</span>&gt; listLyricsTime;</span><br><span class="line">QString filePath;</span><br><span class="line"><span class="type">int</span> lyricsID = <span class="number">0</span>;</span><br><span class="line">QString new_lyrci;</span><br><span class="line">Widget::<span class="built_in">Widget</span>(QWidget *parent) :</span><br><span class="line">    <span class="built_in">QWidget</span>(parent),</span><br><span class="line">    <span class="built_in">ui</span>(<span class="keyword">new</span> Ui::Widget)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    ui-&gt;lineEdit-&gt;<span class="built_in">setText</span>(<span class="string">&quot;暂无歌词/台词&quot;</span>);</span><br><span class="line">    <span class="comment">//播放器对象，播放队列对象，显示器对象</span></span><br><span class="line">    player = <span class="keyword">new</span> QMediaPlayer;</span><br><span class="line">    playerList = <span class="keyword">new</span> QMediaPlaylist;</span><br><span class="line">    qVideoWidget = <span class="keyword">new</span> <span class="built_in">QVideoWidget</span>(ui-&gt;widget_2);</span><br><span class="line">    qVideoWidget-&gt;<span class="built_in">resize</span>(ui-&gt;widget_2-&gt;<span class="built_in">size</span>());<span class="comment">//为播放器指定大小;</span></span><br><span class="line"></span><br><span class="line">    player-&gt;<span class="built_in">setPlaybackRate</span>(<span class="number">1</span>);</span><br><span class="line">    playerList-&gt;<span class="built_in">setPlaybackMode</span>(QMediaPlaylist::Loop);</span><br><span class="line">    player-&gt;<span class="built_in">setPlaylist</span>(playerList);</span><br><span class="line">    player-&gt;<span class="built_in">setVideoOutput</span>(qVideoWidget);</span><br><span class="line">    qVideoWidget-&gt;<span class="built_in">show</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置音量</span></span><br><span class="line">    player-&gt;<span class="built_in">setVolume</span>(<span class="number">50</span>);</span><br><span class="line">    ui-&gt;label_3-&gt;<span class="built_in">setText</span>(<span class="string">&quot;50&quot;</span>);</span><br><span class="line"></span><br><span class="line">    ui-&gt;widget_2-&gt;<span class="built_in">styleSheet</span>().<span class="built_in">repeated</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//ui-&gt;listWidget-&gt;addItem(&quot;暂无资源&quot;);</span></span><br><span class="line">    <span class="comment">//播放资源变化，导致时长变化，接受新的资源的时长</span></span><br><span class="line">    <span class="built_in">connect</span>(player, <span class="built_in">SIGNAL</span>(<span class="built_in">durationChanged</span>(qint64)), <span class="keyword">this</span>, <span class="built_in">SLOT</span>(<span class="built_in">onDurationChanged</span>(qint64)));</span><br><span class="line">    <span class="comment">//进度条位置改变，打印出来</span></span><br><span class="line">    <span class="built_in">connect</span>(player,<span class="built_in">SIGNAL</span>(<span class="built_in">positionChanged</span>(qint64)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">onPlayerPositionChanged</span>(qint64)));</span><br><span class="line">    <span class="comment">//拖动进度条，改变视频的进度</span></span><br><span class="line">    <span class="built_in">connect</span>(ui-&gt;horizontalSlider_2,<span class="built_in">SIGNAL</span>(<span class="built_in">sliderMoved</span>(<span class="type">int</span>)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">onSliderMoved</span>(<span class="type">int</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//播放内容变化，播放列表选择对应资源</span></span><br><span class="line">    <span class="built_in">connect</span>(playerList,<span class="built_in">SIGNAL</span>(<span class="built_in">currentIndexChanged</span>(<span class="type">int</span>)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">onChangeListWidgetIndex</span>(<span class="type">int</span>)));</span><br><span class="line">    <span class="comment">//选择对应的歌词</span></span><br><span class="line">    <span class="built_in">connect</span>(playerList,<span class="built_in">SIGNAL</span>(<span class="built_in">currentIndexChanged</span>(<span class="type">int</span>)),<span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">onChangeLyrics</span>(<span class="type">int</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Widget::~<span class="built_in">Widget</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加图片</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::insert_pic</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QString str = ui-&gt;listWidget-&gt;<span class="built_in">item</span>(index)-&gt;<span class="built_in">text</span>();</span><br><span class="line">    <span class="type">int</span> index_i = str.<span class="built_in">lastIndexOf</span>(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">    QString index_str = str.<span class="built_in">mid</span>(<span class="number">0</span>,index_i);</span><br><span class="line">    QString img_url = filePath+<span class="string">&quot;/img/&quot;</span>+index_str+<span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line">    <span class="function">QFile <span class="title">file</span><span class="params">(img_url)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!file.<span class="built_in">open</span>(QIODevice::ReadOnly))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//默认背景图片</span></span><br><span class="line">        ui-&gt;widget_2-&gt;<span class="built_in">setStyleSheet</span>(<span class="string">&quot;border-image: url(:/new/prefix1/about.webp);&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        ui-&gt;widget_2-&gt;<span class="built_in">setStyleSheet</span>(<span class="string">&quot;border-image: url(&quot;</span>+img_url+<span class="string">&quot;);&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">QString <span class="title">Widget::secondsToTime</span><span class="params">(ulong ulSeconds)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ulSeconds = ulSeconds / <span class="number">1000</span>;</span><br><span class="line">    ulong ulHour = ulSeconds / <span class="number">3600</span>;</span><br><span class="line">    ulong ulMinute = (ulSeconds - ulHour * <span class="number">3600</span>) / <span class="number">60</span>;</span><br><span class="line">    ulong ulSecond = (ulSeconds - ulHour * <span class="number">3600</span> - ulMinute * <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    QString strTime = <span class="built_in">QString</span>(<span class="string">&quot;%1:%2:%3&quot;</span>).<span class="built_in">arg</span>(ulHour).<span class="built_in">arg</span>(ulMinute).<span class="built_in">arg</span>(ulSecond);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strTime;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//播放资源变化，时长变化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::onDurationChanged</span><span class="params">(qint64 dur)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    long_v = dur;</span><br><span class="line">    ui-&gt;label_5-&gt;<span class="built_in">setText</span>(<span class="built_in">secondsToTime</span>(dur));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//根据播放进度修改进度条，并显示歌词</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::onPlayerPositionChanged</span><span class="params">(qint64 pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;horizontalSlider_2-&gt;<span class="built_in">setValue</span>((pos/(<span class="type">double</span>)long_v)*<span class="number">100</span>);</span><br><span class="line">    ui-&gt;label_4-&gt;<span class="built_in">setText</span>(<span class="built_in">secondsToTime</span>(pos));</span><br><span class="line">    <span class="keyword">if</span>(listLyricsTime.<span class="built_in">isEmpty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(lyricsID == listLyricsTime.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(listLyricsTime.<span class="built_in">at</span>(lyricsID) &lt;= player-&gt;<span class="built_in">position</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//qDebug()&lt;&lt;listLyricsTime.at(lyricsID);</span></span><br><span class="line">        ui-&gt;lineEdit-&gt;<span class="built_in">setText</span>(listLyricsText.<span class="built_in">at</span>(lyricsID));</span><br><span class="line">        lyricsID++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::onSliderMoved</span><span class="params">(<span class="type">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;label_4-&gt;<span class="built_in">setText</span>(<span class="built_in">secondsToTime</span>(((player-&gt;<span class="built_in">duration</span>())/<span class="number">100</span>)*value));</span><br><span class="line">    player-&gt;<span class="built_in">setPosition</span>(((<span class="type">double</span>)long_v/<span class="number">100</span>)*value);  <span class="comment">//视频跟着进度条变</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::onChangeListWidgetIndex</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ui-&gt;listWidget-&gt;<span class="built_in">setCurrentRow</span>(index);</span><br><span class="line">    lyricsID = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//播放/暂停</span></span><br><span class="line">    <span class="keyword">if</span>(flag)</span><br><span class="line">    &#123;</span><br><span class="line">        flag = !flag;</span><br><span class="line">        player-&gt;<span class="built_in">play</span>();</span><br><span class="line">        ui-&gt;pushButton-&gt;<span class="built_in">setText</span>(<span class="string">&quot;暂停&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        flag = !flag;</span><br><span class="line">        player-&gt;<span class="built_in">pause</span>();</span><br><span class="line">        ui-&gt;pushButton-&gt;<span class="built_in">setText</span>(<span class="string">&quot;播放&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ui-&gt;listWidget-&gt;<span class="built_in">setCurrentRow</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">    <span class="built_in">insert_pic</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//上</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_2_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    playerList-&gt;<span class="built_in">previous</span>();</span><br><span class="line">    ui-&gt;listWidget-&gt;<span class="built_in">setCurrentRow</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">    ui-&gt;label_5-&gt;<span class="built_in">setText</span>(<span class="built_in">secondsToTime</span>(player-&gt;<span class="built_in">duration</span>()));</span><br><span class="line">    <span class="built_in">insert_pic</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_3_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    playerList-&gt;<span class="built_in">next</span>();</span><br><span class="line">    ui-&gt;listWidget-&gt;<span class="built_in">setCurrentRow</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">    ui-&gt;label_5-&gt;<span class="built_in">setText</span>(<span class="built_in">secondsToTime</span>(player-&gt;<span class="built_in">duration</span>()));</span><br><span class="line">    <span class="built_in">insert_pic</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加一个资源</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_4_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//文件查找框</span></span><br><span class="line">    QString fileName = QFileDialog::<span class="built_in">getOpenFileName</span>(<span class="keyword">this</span>,<span class="string">&quot;文件选择&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="string">&quot;allfiles(*.*);;&quot;</span></span><br><span class="line">                                                                   <span class="string">&quot;mp3(*.mp3);;&quot;</span></span><br><span class="line">                                                                   <span class="string">&quot;mp4(*.mp4);;&quot;</span>);</span><br><span class="line">    <span class="comment">//添加文件</span></span><br><span class="line">    <span class="function">QUrl <span class="title">url</span><span class="params">(fileName)</span></span>;</span><br><span class="line">    playerList-&gt;<span class="built_in">addMedia</span>(url);</span><br><span class="line">    <span class="type">int</span> a = fileName.<span class="built_in">lastIndexOf</span>(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">    QString path_v = fileName.<span class="built_in">mid</span>(a+<span class="number">1</span>);</span><br><span class="line">    ui-&gt;listWidget-&gt;<span class="built_in">addItem</span>(path_v);</span><br><span class="line">    player-&gt;<span class="built_in">play</span>();</span><br><span class="line">    ui-&gt;pushButton-&gt;<span class="built_in">setText</span>(<span class="string">&quot;暂停&quot;</span>);</span><br><span class="line">    <span class="built_in">insert_pic</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//点击播放列表，播放对应资源</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_listWidget_clicked</span><span class="params">(<span class="type">const</span> QModelIndex &amp;index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    playerList-&gt;<span class="built_in">setCurrentIndex</span>(index.<span class="built_in">row</span>());</span><br><span class="line">    player-&gt;<span class="built_in">play</span>();</span><br><span class="line">    <span class="built_in">insert_pic</span>(index.<span class="built_in">row</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">QStringList <span class="title">Widget::getFileNames</span><span class="params">(<span class="type">const</span> QString &amp;path)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QDir <span class="title">dir</span><span class="params">(path)</span></span>;</span><br><span class="line">    QStringList nameFilters;</span><br><span class="line">    nameFilters &lt;&lt; <span class="string">&quot;*.mp4&quot;</span> &lt;&lt; <span class="string">&quot;*.flac&quot;</span>&lt;&lt;<span class="string">&quot;*.mp3&quot;</span>&lt;&lt;<span class="string">&quot;*.mgg&quot;</span>;</span><br><span class="line">    QStringList files = dir.<span class="built_in">entryList</span>(nameFilters, QDir::Files|QDir::Readable, QDir::Name);</span><br><span class="line">    <span class="keyword">return</span> files;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取资源</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_pushButton_5_clicked</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    filePath = QFileDialog::<span class="built_in">getExistingDirectory</span>(<span class="keyword">this</span>, <span class="string">&quot;choose src Directory&quot;</span>,<span class="string">&quot;/&quot;</span>);</span><br><span class="line">    QStringList temp = <span class="built_in">getFileNames</span>(filePath);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; temp.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        QString patn_v = filePath+<span class="string">&quot;/&quot;</span>+temp.<span class="built_in">at</span>(i);</span><br><span class="line">        playerList-&gt;<span class="built_in">addMedia</span>(<span class="built_in">QUrl</span>(patn_v));</span><br><span class="line">        ui-&gt;listWidget-&gt;<span class="built_in">addItem</span>(temp.<span class="built_in">at</span>(i));</span><br><span class="line">    &#125;</span><br><span class="line">    player-&gt;<span class="built_in">play</span>();</span><br><span class="line">    <span class="built_in">insert_pic</span>(playerList-&gt;<span class="built_in">currentIndex</span>());</span><br><span class="line">    ui-&gt;pushButton-&gt;<span class="built_in">setText</span>(<span class="string">&quot;暂停&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//调整音量</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_horizontalSlider_valueChanged</span><span class="params">(<span class="type">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    player-&gt;<span class="built_in">setVolume</span>(value);</span><br><span class="line">    ui-&gt;label_3-&gt;<span class="built_in">setText</span>(QString::<span class="built_in">number</span>(value));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变播放进度</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::on_horizontalSlider_3_valueChanged</span><span class="params">(<span class="type">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    player-&gt;<span class="built_in">setPlaybackRate</span>(value);</span><br><span class="line">    ui-&gt;label_8-&gt;<span class="built_in">setText</span>(QString::<span class="built_in">number</span>(value));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取歌词</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Widget::readLyricsFile</span><span class="params">(QString lyricsPath)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QFile <span class="title">file</span><span class="params">(lyricsPath)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!file.<span class="built_in">open</span>(QIODevice::ReadOnly | QIODevice::Text))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    QString line=<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span>((line=file.<span class="built_in">readLine</span>())&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">//qDebug()&lt;&lt;line;</span></span><br><span class="line">        <span class="built_in">analysisLyricsFile</span>(line);<span class="comment">//解析歌词文件内容</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//递归解析每句歌词</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">(QString str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QRegularExpression <span class="title">rEx</span><span class="params">(<span class="string">&quot;\\[(\\d+)?:(\\d+)?(\\.\\d+)?\\]&quot;</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(str.<span class="built_in">contains</span>(rEx))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">QRegularExpression <span class="title">regularExpression</span><span class="params">(<span class="string">&quot;\\[(\\d+)?:(\\d+)?(\\.\\d+)?\\](.*)?&quot;</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line">        QRegularExpressionMatch match;</span><br><span class="line">        match = regularExpression.<span class="built_in">match</span>(str, index);</span><br><span class="line">        QString currentText =QString::<span class="built_in">fromStdString</span>(match.<span class="built_in">captured</span>(<span class="number">4</span>).<span class="built_in">toStdString</span>());</span><br><span class="line">        new_lyrci += currentText.<span class="built_in">mid</span>(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">test</span>(currentText.<span class="built_in">mid</span>(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        new_lyrci += str;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Widget::analysisLyricsFile</span><span class="params">(QString line)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(line == <span class="literal">NULL</span> || line.<span class="built_in">isEmpty</span>())&#123;</span><br><span class="line">        <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;thie line is empty!&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">QRegularExpression <span class="title">regularExpression</span><span class="params">(<span class="string">&quot;\\[(\\d+)?:(\\d+)?(\\.\\d+)?\\](.*)?&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//QString line = &quot;[02:49.69]与[02:50.07]你[02:50.45]慢[02:50.77]慢[02:51.46]讲[02:53.27]&quot;;</span></span><br><span class="line">        <span class="comment">//QString line = &quot;[02:49.69]与你慢慢讲&quot;;</span></span><br><span class="line">        <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line">        QRegularExpressionMatch match;</span><br><span class="line">        match = regularExpression.<span class="built_in">match</span>(line, index);</span><br><span class="line">        <span class="keyword">if</span>(match.<span class="built_in">hasMatch</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> totalTime;</span><br><span class="line">            totalTime = match.<span class="built_in">captured</span>(<span class="number">1</span>).<span class="built_in">toInt</span>() * <span class="number">60000</span> + match.<span class="built_in">captured</span>(<span class="number">2</span>).<span class="built_in">toInt</span>() * <span class="number">1000</span>;  <span class="comment">/*计算该时间点毫秒数*/</span></span><br><span class="line">            QString currentText =QString::<span class="built_in">fromStdString</span>(match.<span class="built_in">captured</span>(<span class="number">4</span>).<span class="built_in">toStdString</span>());</span><br><span class="line">            <span class="built_in">test</span>(currentText.<span class="built_in">mid</span>(<span class="number">1</span>));</span><br><span class="line">            listLyricsText.<span class="built_in">push_back</span>(currentText.<span class="built_in">mid</span>(<span class="number">0</span>,<span class="number">1</span>).<span class="built_in">append</span>(new_lyrci));</span><br><span class="line">            listLyricsTime.<span class="built_in">push_back</span>(totalTime);</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;totalTime;</span><br><span class="line">            <span class="built_in">qDebug</span>()&lt;&lt;currentText.<span class="built_in">mid</span>(<span class="number">0</span>,<span class="number">1</span>).<span class="built_in">append</span>(new_lyrci);</span><br><span class="line">            new_lyrci = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Widget::onChangeLyrics</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QString temp_name = ui-&gt;listWidget-&gt;<span class="built_in">item</span>(index)-&gt;<span class="built_in">text</span>();</span><br><span class="line">    <span class="type">int</span> index_i = temp_name.<span class="built_in">lastIndexOf</span>(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">    QString name = temp_name.<span class="built_in">mid</span>(<span class="number">0</span>,index_i);</span><br><span class="line">    lyricsID = <span class="number">0</span>;</span><br><span class="line">    listLyricsText.<span class="built_in">clear</span>();</span><br><span class="line">    listLyricsTime.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">readLyricsFile</span>(filePath+<span class="string">&quot;/Lyrics/&quot;</span>+name+<span class="string">&quot;.lrc&quot;</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        ui-&gt;lineEdit-&gt;<span class="built_in">setText</span>(<span class="string">&quot;找到&quot;</span>+name+<span class="string">&quot;的歌词文件&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        ui-&gt;lineEdit-&gt;<span class="built_in">setText</span>(<span class="string">&quot;没找到&quot;</span>+name+<span class="string">&quot;的歌词文件&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20220630210422304.png" alt="Qt多媒体之QMediaPlayer/image-20220630210422304"></p>
+<p><img src="image-20220630210447905.png" alt="Qt多媒体之QMediaPlayer/image-20220630210447905"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/02/26/Qt%E5%A4%9A%E5%AA%92%E4%BD%93%E4%B9%8BQMediaPlayer/" title="Qt多媒体之QMediaPlayer">https://xiaguyangdie.github.io/2023/02/26/Qt多媒体之QMediaPlayer/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Qt/" rel="tag"><i class="fa fa-tag"></i> Qt</a>
+              <a href="/tags/%E5%A4%9A%E5%AA%92%E4%BD%93/" rel="tag"><i class="fa fa-tag"></i> 多媒体</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/26/Qt%E4%BD%BF%E7%94%A8OpenCV%E4%B9%8BMat/" rel="prev" title="Qt使用OpenCV之Mat">
+      <i class="fa fa-chevron-left"></i> Qt使用OpenCV之Mat
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/26/Qt%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BQtConcurrent/" rel="next" title="Qt多线程之QtConcurrent">
+      Qt多线程之QtConcurrent <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-text">1.简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-QMediaPlayer"><span class="nav-text">2.QMediaPlayer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%92%AD%E6%94%BE%E9%9F%B3%E9%A2%91%E6%AD%A5%E9%AA%A4"><span class="nav-text">2.1 播放音频步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%E9%A2%91%E6%AD%A5%E9%AA%A4"><span class="nav-text">2.2 播放视频频步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-QMediaPlaylist"><span class="nav-text">3.QMediaPlaylist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-QVideoWidget"><span class="nav-text">4.QVideoWidget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-demo"><span class="nav-text">5.demo</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

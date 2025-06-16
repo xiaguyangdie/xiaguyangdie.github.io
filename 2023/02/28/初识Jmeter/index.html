@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="初识Jmeter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Jmeter">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="初识Jmeter">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228161451374.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228161835986.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228161935048.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228162014787.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228161617358.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228161654434.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228235450926.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228235554702.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301000442154.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301000549428.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301000612312.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301000649748.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301000757382.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302111814943.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302111930007.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302111948853.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302112106500.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302112123688.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302112254963.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302112311620.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302112331146.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302112727665.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301121447604.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301121949383.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301122004947.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301122231047.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301122435477.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301125019126.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301125203740.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301125358051.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301194833322.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301194930934.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301200005504.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301200118386.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301200252457.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301200504369.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301200530378.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301202033714.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301202144973.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301202231231.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301202300863.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301202416162.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301203126176.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301203627115.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301203602667.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301203651372.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301203757959.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301203831043.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204128089.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204215878.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204245429.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204307275.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204353599.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204408962.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204548621.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301204610395.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301205041381.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301205204139.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301205324003.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301205452046.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301205512727.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301210258432.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301210659566.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301210802257.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301210948632.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301211637455.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301211701315.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301211726568.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301213647505.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301213847749.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301213904869.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301213959735.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301214400709.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301214414310.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301214429374.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301214441490.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301214521941.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301232851080.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301222442536.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301222501113.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301222539954.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301222940442.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301223105267.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301223159450.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301232807075.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301235426184.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301235848187.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230301235956458.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302000103171.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001301091.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001320518.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302002915998.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001351295.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001435454.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001656996.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001725524.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302001820690.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302002331539.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302002039115.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302002501692.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302003017042.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302093738031.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302093750660.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302093639945.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302094309204.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302094354560.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302094530706.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302094647636.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302094751005.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302095650923.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302095514837.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302095543211.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302095747854.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302102253358.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230302102743396.png">
+<meta property="article:published_time" content="2023-02-28T04:43:38.266Z">
+<meta property="article:modified_time" content="2025-04-20T16:25:22.815Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/image-20230228161451374.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>初识Jmeter | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          初识Jmeter
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-28 12:43:38" itemprop="dateCreated datePublished" datetime="2023-02-28T12:43:38+08:00">2023-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-21 00:25:22" itemprop="dateModified" datetime="2025-04-21T00:25:22+08:00">2025-04-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/" class="post-meta-item leancloud_visitors" data-flag-title="初识Jmeter" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+            <div class="post-description">初识Jmeter</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-介绍与安装"><a href="#1-介绍与安装" class="headerlink" title="1.介绍与安装"></a>1.介绍与安装</h1><h2 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h2><ul>
+<li>Jmeter是Apache组织使用Java开发的一款测试工具<ul>
+<li>1.可以用于对服务器、网络或对象模拟巨大的负载</li>
+<li>2.通过创建带有断言的脚本文件来验证程序是否能返回期望的结果</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>1.开源、免费</li>
+<li>2.跨平台</li>
+<li>3.支持多协议</li>
+<li>4.小巧</li>
+<li>5.功能强大</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>1.不支持IP欺骗</li>
+<li>2.使用Jmeter无法验证JS程序，也无法验证页面UI，所以要和Selenium配合来完成Web2.0应用的测试</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2-安装"><a href="#1-2-安装" class="headerlink" title="1.2 安装"></a>1.2 安装</h2><ul>
+<li><p>官方地址：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/download_jmeter.cgi">https://jmeter.apache.org/download_jmeter.cgi</a></p>
+<p><img src="image-20230228161451374.png" alt="初识Jmeter/image-20230228161451374"></p>
+</li>
+<li><p>下载完成后，直接解压</p>
+<p><img src="image-20230228161835986.png" alt="初识Jmeter/image-20230228161835986"></p>
+</li>
+<li><p>修改配置文件，界面中文化</p>
+<p><img src="image-20230228161935048.png" alt="初识Jmeter/image-20230228161935048"></p>
+<p><img src="image-20230228162014787.png" alt="初识Jmeter/image-20230228162014787"></p>
+</li>
+<li><p>即可使用</p>
+<p><img src="image-20230228161617358.png" alt="初识Jmeter/image-20230228161617358"></p>
+<p><img src="image-20230228161654434.png" alt="初识Jmeter/image-20230228161654434"></p>
+</li>
+</ul>
+<h1 id="2-入门使用"><a href="#2-入门使用" class="headerlink" title="2.入门使用"></a>2.入门使用</h1><blockquote>
+<p>1.测试计划–右键–线程–添加线程组</p>
+</blockquote>
+<p><img src="image-20230228235450926.png" alt="初识Jmeter/image-20230228235450926"></p>
+<blockquote>
+<p>2.线程组–右键–取样器–http请求</p>
+</blockquote>
+<p><img src="image-20230228235554702.png" alt="初识Jmeter/image-20230228235554702"></p>
+<blockquote>
+<p>3.线程组–右键–添加监听器–查看结果树</p>
+</blockquote>
+<p><img src="image-20230301000442154.png" alt="初识Jmeter/image-20230301000442154"></p>
+<blockquote>
+<p>4.配置http请求信息</p>
+</blockquote>
+<p><img src="image-20230301000549428.png" alt="初识Jmeter/image-20230301000549428"></p>
+<blockquote>
+<p>5.点击运行，查看结果</p>
+</blockquote>
+<p><img src="image-20230301000612312.png" alt="初识Jmeter/image-20230301000612312"></p>
+<p><img src="image-20230301000649748.png" alt="初识Jmeter/image-20230301000649748"></p>
+<blockquote>
+<p>6.保存</p>
+</blockquote>
+<p><img src="image-20230301000757382.png" alt="初识Jmeter/image-20230301000757382"></p>
+<h1 id="3-具体构成"><a href="#3-具体构成" class="headerlink" title="3.具体构成"></a>3.具体构成</h1><h2 id="3-1-线程组"><a href="#3-1-线程组" class="headerlink" title="3.1 线程组"></a>3.1 线程组</h2><h3 id="3-1-1-并发和顺序执行"><a href="#3-1-1-并发和顺序执行" class="headerlink" title="3.1.1 并发和顺序执行"></a>3.1.1 并发和顺序执行</h3><ul>
+<li><p>并发执行：多个线程同时执行</p>
+<p><img src="image-20230302111814943.png" alt="初识Jmeter/image-20230302111814943"></p>
+</li>
+<li><p>顺序执行：多个线程顺序执行</p>
+<p><img src="image-20230302111930007.png" alt="初识Jmeter/image-20230302111930007"></p>
+<p><img src="image-20230302111948853.png" alt="初识Jmeter/image-20230302111948853"></p>
+</li>
+</ul>
+<h3 id="3-1-2-两个特殊的线程组"><a href="#3-1-2-两个特殊的线程组" class="headerlink" title="3.1.2 两个特殊的线程组"></a>3.1.2 两个特殊的线程组</h3><blockquote>
+<p>setUp线程组：最优先执行的线程组</p>
+</blockquote>
+<p><img src="image-20230302112106500.png" alt="初识Jmeter/image-20230302112106500"></p>
+<blockquote>
+<p>tearDown线程组：最后执行的线程组</p>
+</blockquote>
+<p><img src="image-20230302112123688.png" alt="初识Jmeter/image-20230302112123688"></p>
+<p><img src="image-20230302112254963.png" alt="初识Jmeter/image-20230302112254963"></p>
+<p><img src="image-20230302112311620.png" alt="初识Jmeter/image-20230302112311620"></p>
+<p><img src="image-20230302112331146.png" alt="初识Jmeter/image-20230302112331146"></p>
+<h3 id="3-1-3-线程组设置细节"><a href="#3-1-3-线程组设置细节" class="headerlink" title="3.1.3 线程组设置细节"></a>3.1.3 线程组设置细节</h3><p><img src="image-20230302112727665.png" alt="初识Jmeter/image-20230302112727665"></p>
+<h2 id="3-2-Http请求"><a href="#3-2-Http请求" class="headerlink" title="3.2 Http请求"></a>3.2 Http请求</h2><h3 id="3-2-1-Http请求默认值"><a href="#3-2-1-Http请求默认值" class="headerlink" title="3.2.1 Http请求默认值"></a>3.2.1 Http请求默认值</h3><p><img src="image-20230301121447604.png" alt="初识Jmeter/image-20230301121447604"></p>
+<p><img src="image-20230301121949383.png" alt="初识Jmeter/image-20230301121949383"></p>
+<p><img src="image-20230301122004947.png" alt="初识Jmeter/image-20230301122004947"></p>
+<h3 id="3-2-2-Http信息头管理器"><a href="#3-2-2-Http信息头管理器" class="headerlink" title="3.2.2 Http信息头管理器"></a>3.2.2 Http信息头管理器</h3><p><img src="image-20230301122231047.png" alt="初识Jmeter/image-20230301122231047"></p>
+<p><img src="image-20230301122435477.png" alt="初识Jmeter/image-20230301122435477"></p>
+<h2 id="3-3参数化"><a href="#3-3参数化" class="headerlink" title="3.3参数化"></a>3.3参数化</h2><ul>
+<li><p>定义：动态的获取、设置或生成数据，是一种由程序驱动代替人工驱动的数据设计方案，提高脚本的编写效率以及编写的质量</p>
+</li>
+<li><p>以下四种方式实现参数化：</p>
+<ul>
+<li>1.用户定义变量</li>
+<li>2.CSV数据文件设置</li>
+<li>3.用户参数</li>
+<li>4.函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-1-用户定义变量"><a href="#3-3-1-用户定义变量" class="headerlink" title="3.3.1 用户定义变量"></a>3.3.1 用户定义变量</h3><p><img src="image-20230301125019126.png" alt="初识Jmeter/image-20230301125019126"></p>
+<p><img src="image-20230301125203740.png" alt="初识Jmeter/image-20230301125203740"></p>
+<blockquote>
+<p>调用格式：${变量名}</p>
+</blockquote>
+<p><img src="image-20230301125358051.png" alt="初识Jmeter/image-20230301125358051"></p>
+<h3 id="3-3-2-CSV数据文件设置"><a href="#3-3-2-CSV数据文件设置" class="headerlink" title="3.3.2 CSV数据文件设置"></a>3.3.2 CSV数据文件设置</h3><ul>
+<li>CSV：逗号分隔值，是一种简洁且常见的数据存储格式</li>
+<li>实现步骤：<ul>
+<li>1.使用CSV文件存储测试数据</li>
+<li>2.编写脚本（编码集使用UTF-8无BOM格式）</li>
+<li>3.关联脚本与数据（将文件数据导入脚本）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-3-用户参数"><a href="#3-3-3-用户参数" class="headerlink" title="3.3.3 用户参数"></a>3.3.3 用户参数</h3><ul>
+<li>实现步骤：<ul>
+<li>编写被复用的脚本模板</li>
+<li>使用用户参数存储测试数据</li>
+<li>将数据导入脚本模板</li>
+<li>设置执行次数</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-4-函数"><a href="#3-3-4-函数" class="headerlink" title="3.3.4 函数"></a>3.3.4 函数</h3><ul>
+<li>常见的函数：<ul>
+<li>_counter计数器函数：TRUE（每个用户都有自己的计数器）、FALSE（所有用户共用一个计数器）</li>
+<li>_Random随机数函数：参数1（取值范围最小值（包含））、参数2（取值范围最大值（包含））</li>
+<li>_time获取当前时间的函数：无参，获取的是距离<code>1970/01/01 00:00:00</code>的毫秒数；参数1（<code>yyyyMM_dd HH:mm:ss</code> 格式化成 年\月_日 时:分:秒 格式）</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4-直连数据库"><a href="#3-4-直连数据库" class="headerlink" title="3.4 直连数据库"></a>3.4 直连数据库</h2><ul>
+<li><p>通过直连数据库让程序代替接口访问数据库，如果二者预期结果不一致，就找到了程序的缺陷</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>Jmeter不具备直连数据库功能，必须整合第三方（jar包）实现</p>
+<p><img src="image-20230301194833322.png" alt="初识Jmeter/image-20230301194833322"></p>
+</li>
+<li><p>配置数据库的连接</p>
+<p><img src="image-20230301194930934.png" alt="初识Jmeter/image-20230301194930934"></p>
+<p><img src="image-20230301200005504.png" alt="初识Jmeter/image-20230301200005504"></p>
+</li>
+<li><p>通过JDBC Request请求向数据库发送SQL语句并接收提取响应结果</p>
+<p><img src="image-20230301200118386.png" alt="初识Jmeter/image-20230301200118386"></p>
+<p><img src="image-20230301200252457.png" alt="初识Jmeter/image-20230301200252457"></p>
+<p><img src="image-20230301200504369.png" alt="初识Jmeter/image-20230301200504369"></p>
+<p><img src="image-20230301200530378.png" alt="初识Jmeter/image-20230301200530378"></p>
+</li>
+<li><p>结果获取规则可以通过Debug Sampler组件查看</p>
+<p><img src="image-20230301202033714.png" alt="初识Jmeter/image-20230301202033714"></p>
+<p><img src="image-20230301202144973.png" alt="初识Jmeter/image-20230301202144973"></p>
+<p><img src="image-20230301202231231.png" alt="初识Jmeter/image-20230301202231231"></p>
+<p><img src="image-20230301202300863.png" alt="初识Jmeter/image-20230301202300863"></p>
+</li>
+<li><p>将提取的响应结果，在百度上</p>
+<p><img src="image-20230301202416162.png" alt="初识Jmeter/image-20230301202416162"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-5-断言"><a href="#3-5-断言" class="headerlink" title="3.5 断言"></a>3.5 断言</h2><ul>
+<li>断言：让程序代替人工判断响应结果是否符合预期</li>
+<li>分类：<ul>
+<li>响应断言 &#x3D; 断言状态码和响应体</li>
+<li>大小断言 &#x3D; 判断响应内容的字节长度</li>
+<li>断言持续时间 &#x3D; 判断响应时间</li>
+</ul>
+</li>
+<li>步骤：<ul>
+<li>按照之前的实现编写测试脚本</li>
+<li>为被判断的取样器添加断言组件</li>
+<li>直接运行查看结果，断言通过：无提示；断言失败：给出错误</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-5-1-响应断言"><a href="#3-5-1-响应断言" class="headerlink" title="3.5.1 响应断言"></a>3.5.1 响应断言</h3><p><img src="image-20230301203126176.png" alt="初识Jmeter/image-20230301203126176"></p>
+<blockquote>
+<p>响应文本</p>
+</blockquote>
+<p><img src="image-20230301203627115.png" alt="初识Jmeter/image-20230301203627115"></p>
+<p><img src="image-20230301203602667.png" alt="初识Jmeter/image-20230301203602667"></p>
+<ul>
+<li><p>通过</p>
+<p><img src="image-20230301203651372.png" alt="初识Jmeter/image-20230301203651372"></p>
+</li>
+<li><p>没通过</p>
+<p><img src="image-20230301203757959.png" alt="初识Jmeter/image-20230301203757959"></p>
+<p><img src="image-20230301203831043.png" alt="初识Jmeter/image-20230301203831043"></p>
+</li>
+</ul>
+<blockquote>
+<p>响应代码：即状态码</p>
+</blockquote>
+<ul>
+<li><p>通过</p>
+<p><img src="image-20230301204128089.png" alt="初识Jmeter/image-20230301204128089"></p>
+<p><img src="image-20230301204215878.png" alt="初识Jmeter/image-20230301204215878"></p>
+</li>
+<li><p>没通过</p>
+<p><img src="image-20230301204245429.png" alt="初识Jmeter/image-20230301204245429"></p>
+<p><img src="image-20230301204307275.png" alt="初识Jmeter/image-20230301204307275"></p>
+</li>
+<li><p>或者</p>
+<p><img src="image-20230301204353599.png" alt="初识Jmeter/image-20230301204353599"></p>
+<p><img src="image-20230301204408962.png" alt="初识Jmeter/image-20230301204408962"></p>
+</li>
+</ul>
+<h3 id="3-5-2-大小断言"><a href="#3-5-2-大小断言" class="headerlink" title="3.5.2 大小断言"></a>3.5.2 大小断言</h3><p><img src="image-20230301204548621.png" alt="初识Jmeter/image-20230301204548621"></p>
+<p><img src="image-20230301204610395.png" alt="初识Jmeter/image-20230301204610395"></p>
+<p><img src="image-20230301205041381.png" alt="初识Jmeter/image-20230301205041381"></p>
+<p><img src="image-20230301205204139.png" alt="初识Jmeter/image-20230301205204139"></p>
+<h3 id="3-5-3-断言持续时间"><a href="#3-5-3-断言持续时间" class="headerlink" title="3.5.3 断言持续时间"></a>3.5.3 断言持续时间</h3><p><img src="image-20230301205324003.png" alt="初识Jmeter/image-20230301205324003"></p>
+<p><img src="image-20230301205452046.png" alt="初识Jmeter/image-20230301205452046"></p>
+<p><img src="image-20230301205512727.png" alt="初识Jmeter/image-20230301205512727"></p>
+<h1 id="4-性能测试"><a href="#4-性能测试" class="headerlink" title="4.性能测试"></a>4.性能测试</h1><p><img src="image-20230301210258432.png" alt="初识Jmeter/image-20230301210258432"></p>
+<h2 id="4-1-逻辑控制器"><a href="#4-1-逻辑控制器" class="headerlink" title="4.1 逻辑控制器"></a>4.1 逻辑控制器</h2><h3 id="4-1-1-if逻辑控制器"><a href="#4-1-1-if逻辑控制器" class="headerlink" title="4.1.1 if逻辑控制器"></a>4.1.1 if逻辑控制器</h3><p><img src="image-20230301210659566.png" alt="初识Jmeter/image-20230301210659566"></p>
+<p><img src="image-20230301210802257.png" alt="初识Jmeter/image-20230301210802257"></p>
+<p><img src="image-20230301210948632.png" alt="初识Jmeter/image-20230301210948632"></p>
+<p><img src="image-20230301211637455.png" alt="初识Jmeter/image-20230301211637455"></p>
+<p><img src="image-20230301211701315.png" alt="初识Jmeter/image-20230301211701315"></p>
+<p><img src="image-20230301211726568.png" alt="初识Jmeter/image-20230301211726568"></p>
+<h3 id="4-1-2-foreach逻辑控制器"><a href="#4-1-2-foreach逻辑控制器" class="headerlink" title="4.1.2 foreach逻辑控制器"></a>4.1.2 foreach逻辑控制器</h3><p><img src="image-20230301213647505.png" alt="初识Jmeter/image-20230301213647505"></p>
+<p><img src="image-20230301213847749.png" alt="初识Jmeter/image-20230301213847749"></p>
+<p><img src="image-20230301213904869.png" alt="初识Jmeter/image-20230301213904869"></p>
+<p><img src="image-20230301213959735.png" alt="初识Jmeter/image-20230301213959735"></p>
+<h3 id="4-1-3-循环逻辑控制器"><a href="#4-1-3-循环逻辑控制器" class="headerlink" title="4.1.3 循环逻辑控制器"></a>4.1.3 循环逻辑控制器</h3><p><img src="image-20230301214400709.png" alt="初识Jmeter/image-20230301214400709"></p>
+<p><img src="image-20230301214414310.png" alt="初识Jmeter/image-20230301214414310"></p>
+<p><img src="image-20230301214429374.png" alt="初识Jmeter/image-20230301214429374"></p>
+<p><img src="image-20230301214441490.png" alt="初识Jmeter/image-20230301214441490"></p>
+<p><img src="image-20230301214521941.png" alt="初识Jmeter/image-20230301214521941"></p>
+<h2 id="4-2-关联操作"><a href="#4-2-关联操作" class="headerlink" title="4.2 关联操作"></a>4.2 关联操作</h2><p><img src="image-20230301232851080.png" alt="初识Jmeter/image-20230301232851080"></p>
+<h3 id="4-2-1-xpath提取器"><a href="#4-2-1-xpath提取器" class="headerlink" title="4.2.1 xpath提取器"></a>4.2.1 xpath提取器</h3><ul>
+<li><p>需求：两个http请求，请求A访问传智播客官网，请求B访问百度，请求A将传智播客官网源码中的title标签的值去除，传递给请求B，在请求B中作为关键字搜索这个title值</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>搭框架，编写两个请求，传智播客+百度搜索</p>
+<p><img src="image-20230301222442536.png" alt="初识Jmeter/image-20230301222442536"></p>
+</li>
+<li><p>核心：取出传智播客页面源码的title值</p>
+<p><img src="image-20230301222501113.png" alt="初识Jmeter/image-20230301222501113"></p>
+<p><img src="image-20230301222539954.png" alt="初识Jmeter/image-20230301222539954"></p>
+<p><img src="image-20230301222940442.png" alt="初识Jmeter/image-20230301222940442"></p>
+</li>
+<li><p>传递给百度：${变量名}的方式传值</p>
+<p><img src="image-20230301223105267.png" alt="初识Jmeter/image-20230301223105267"></p>
+<p><img src="image-20230301223159450.png" alt="初识Jmeter/image-20230301223159450"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-2-正则表达式提取器"><a href="#4-2-2-正则表达式提取器" class="headerlink" title="4.2.2 正则表达式提取器"></a>4.2.2 正则表达式提取器</h3><p><img src="image-20230301232807075.png" alt="初识Jmeter/image-20230301232807075"></p>
+<p><img src="image-20230301235426184.png" alt="初识Jmeter/image-20230301235426184"></p>
+<p><img src="image-20230301235848187.png" alt="初识Jmeter/image-20230301235848187"></p>
+<p><img src="image-20230301235956458.png" alt="初识Jmeter/image-20230301235956458"></p>
+<p><img src="image-20230302000103171.png" alt="初识Jmeter/image-20230302000103171"></p>
+<h2 id="4-3-跨越线程组关联"><a href="#4-3-跨越线程组关联" class="headerlink" title="4.3 跨越线程组关联"></a>4.3 跨越线程组关联</h2><ul>
+<li>变量作用域局限于<strong>当前线程组</strong>，其它线程组不可以直接调用</li>
+<li>可以将请求A中提取的结果导出到<strong>公共空间</strong>（可以被不同线程组共享），请求B再从公共空间调用该变量，<strong>相当于全局变量</strong></li>
+</ul>
+<blockquote>
+<p>原来的操作，线程组之间无法访问其它线程组的局部变量</p>
+</blockquote>
+<p><img src="image-20230302001301091.png" alt="初识Jmeter/image-20230302001301091"></p>
+<p><img src="image-20230302001320518.png" alt="初识Jmeter/image-20230302001320518"></p>
+<p><img src="image-20230302002915998.png" alt="初识Jmeter/image-20230302002915998"></p>
+<p><img src="image-20230302001351295.png" alt="初识Jmeter/image-20230302001351295"></p>
+<p><img src="image-20230302001435454.png" alt="初识Jmeter/image-20230302001435454"></p>
+<blockquote>
+<p>利用函数设置全局变量</p>
+</blockquote>
+<p><img src="image-20230302001656996.png" alt="初识Jmeter/image-20230302001656996"></p>
+<p><img src="image-20230302001725524.png" alt="初识Jmeter/image-20230302001725524"></p>
+<p><img src="image-20230302001820690.png" alt="初识Jmeter/image-20230302001820690"></p>
+<p><img src="image-20230302002331539.png" alt="初识Jmeter/image-20230302002331539"></p>
+<p><img src="image-20230302002039115.png" alt="初识Jmeter/image-20230302002039115"></p>
+<p><img src="image-20230302002501692.png" alt="初识Jmeter/image-20230302002501692"></p>
+<p><img src="image-20230302003017042.png" alt="初识Jmeter/image-20230302003017042"></p>
+<h2 id="4-4-高并发"><a href="#4-4-高并发" class="headerlink" title="4.4 高并发"></a>4.4 高并发</h2><ul>
+<li><p>Jmeter中内置了<strong>定时器</strong>，可以实现时间模式相关的<strong>性能测试</strong></p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>1.搭框架，测试计划，线程组，取样器，结果树（局限性），<strong>指定线程组的线程数属性值</strong></p>
+<p><img src="image-20230302093738031.png" alt="初识Jmeter/image-20230302093738031"></p>
+<p><img src="image-20230302093750660.png" alt="初识Jmeter/image-20230302093750660"></p>
+</li>
+<li><p>2.添加定时器<code>synchronizing timer</code>（集合点组件）</p>
+<p><img src="image-20230302093639945.png" alt="初识Jmeter/image-20230302093639945"></p>
+<p><img src="image-20230302094309204.png" alt="初识Jmeter/image-20230302094309204"></p>
+<p><img src="image-20230302094354560.png" alt="初识Jmeter/image-20230302094354560"></p>
+</li>
+<li><p>3.运行并查看结果：<strong>聚合报告组件</strong>可以对结果汇总分析</p>
+<p><img src="image-20230302094530706.png" alt="初识Jmeter/image-20230302094530706"></p>
+<p><img src="image-20230302094647636.png" alt="初识Jmeter/image-20230302094647636"></p>
+<p><img src="image-20230302094751005.png" alt="初识Jmeter/image-20230302094751005"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-5-高频率"><a href="#4-5-高频率" class="headerlink" title="4.5 高频率"></a>4.5 高频率</h2><ul>
+<li><p>需求：一个用户以20QPS（&#x3D;&#x3D;20次&#x2F;s）的频率访问系统服务器，持续15秒，统计服务器的平均响应时间</p>
+</li>
+<li><p>QPS：<code>Query per Seconds</code>每秒查询数（查询率），<strong>每秒访问多少次服务器</strong></p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>1.搭框架，测试计划，线程组，取样器，聚合报告，计算数据：<strong>循环次数 &#x3D; 访问频率 * 持续时间</strong></p>
+<p><img src="image-20230302095650923.png" alt="初识Jmeter/image-20230302095650923"></p>
+</li>
+<li><p>2.添加QPS访问频率控制的相关组件：<strong>每秒钟访问次数 &#x3D; 访问频率 * 60</strong></p>
+<p><img src="image-20230302095514837.png" alt="初识Jmeter/image-20230302095514837"></p>
+<p><img src="image-20230302095543211.png" alt="初识Jmeter/image-20230302095543211"></p>
+<p><img src="image-20230302095747854.png" alt="初识Jmeter/image-20230302095747854"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-6-分布式管理"><a href="#4-6-分布式管理" class="headerlink" title="4.6 分布式管理"></a>4.6 分布式管理</h2><ul>
+<li><p>多台机器协作，以集群的方式完成测试任务，可以提高测试效率</p>
+</li>
+<li><p>角色划分：</p>
+<ul>
+<li>控制机 &#x3D; 负责任务分配</li>
+<li>执行机 &#x3D; 负责任务实现</li>
+</ul>
+</li>
+<li><p>工作流程：</p>
+<ul>
+<li>1.控制机需要制定测试任务，并下发到执行机</li>
+<li>执行机执行任务并将结果返回给控制机</li>
+<li>控制机做结果汇总</li>
+</ul>
+</li>
+<li><p>环境搭建：</p>
+<ul>
+<li><p>1.不同测试机上安装Jmeter</p>
+</li>
+<li><p>2.配置基础环境（统一操作系统、JDK、Jmeter …）</p>
+</li>
+<li><p>3.核心：控制机如何与执行机通信？关键点：端口号</p>
+</li>
+<li><p>4.控制机中设置执行机的IP</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%JMETER_HOME%/bin/jmeter.properties ---&gt; remote_hosts=执行机A的IP:端口号，执行机B的IP:端口号 ...</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20230302102253358.png" alt="初识Jmeter/image-20230302102253358"></p>
+</li>
+<li><p>5.控制机和执行机都得设置远程访问相关属性</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.rmi.ssl.disable</span>=<span class="string">true   #设置允许远程访问</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="image-20230302102743396.png" alt="初识Jmeter/image-20230302102743396"></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/02/28/%E5%88%9D%E8%AF%86Jmeter/" title="初识Jmeter">https://xiaguyangdie.github.io/2023/02/28/初识Jmeter/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/26/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B9%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="prev" title="虚拟机之环境搭建">
+      <i class="fa fa-chevron-left"></i> 虚拟机之环境搭建
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/28/JVM/" rel="next" title="JVM">
+      JVM <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-text">1.介绍与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%BB%8B%E7%BB%8D"><span class="nav-text">1.1 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%AE%89%E8%A3%85"><span class="nav-text">1.2 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8"><span class="nav-text">2.入门使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%85%B7%E4%BD%93%E6%9E%84%E6%88%90"><span class="nav-text">3.具体构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">3.1 线程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-%E5%B9%B6%E5%8F%91%E5%92%8C%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C"><span class="nav-text">3.1.1 并发和顺序执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E4%B8%A4%E4%B8%AA%E7%89%B9%E6%AE%8A%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%BB%84"><span class="nav-text">3.1.2 两个特殊的线程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-%E7%BA%BF%E7%A8%8B%E7%BB%84%E8%AE%BE%E7%BD%AE%E7%BB%86%E8%8A%82"><span class="nav-text">3.1.3 线程组设置细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Http%E8%AF%B7%E6%B1%82"><span class="nav-text">3.2 Http请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-Http%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-text">3.2.1 Http请求默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-Http%E4%BF%A1%E6%81%AF%E5%A4%B4%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-text">3.2.2 Http信息头管理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3%E5%8F%82%E6%95%B0%E5%8C%96"><span class="nav-text">3.3参数化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-text">3.3.1 用户定义变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-CSV%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E8%AE%BE%E7%BD%AE"><span class="nav-text">3.3.2 CSV数据文件设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-%E7%94%A8%E6%88%B7%E5%8F%82%E6%95%B0"><span class="nav-text">3.3.3 用户参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-%E5%87%BD%E6%95%B0"><span class="nav-text">3.3.4 函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E7%9B%B4%E8%BF%9E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">3.4 直连数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E6%96%AD%E8%A8%80"><span class="nav-text">3.5 断言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-%E5%93%8D%E5%BA%94%E6%96%AD%E8%A8%80"><span class="nav-text">3.5.1 响应断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-%E5%A4%A7%E5%B0%8F%E6%96%AD%E8%A8%80"><span class="nav-text">3.5.2 大小断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-%E6%96%AD%E8%A8%80%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="nav-text">3.5.3 断言持续时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-text">4.性能测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">4.1 逻辑控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-if%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">4.1.1 if逻辑控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-foreach%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">4.1.2 foreach逻辑控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-%E5%BE%AA%E7%8E%AF%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-text">4.1.3 循环逻辑控制器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%85%B3%E8%81%94%E6%93%8D%E4%BD%9C"><span class="nav-text">4.2 关联操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-xpath%E6%8F%90%E5%8F%96%E5%99%A8"><span class="nav-text">4.2.1 xpath提取器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%99%A8"><span class="nav-text">4.2.2 正则表达式提取器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E8%B7%A8%E8%B6%8A%E7%BA%BF%E7%A8%8B%E7%BB%84%E5%85%B3%E8%81%94"><span class="nav-text">4.3 跨越线程组关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E9%AB%98%E5%B9%B6%E5%8F%91"><span class="nav-text">4.4 高并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E9%AB%98%E9%A2%91%E7%8E%87"><span class="nav-text">4.5 高频率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E5%88%86%E5%B8%83%E5%BC%8F%E7%AE%A1%E7%90%86"><span class="nav-text">4.6 分布式管理</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

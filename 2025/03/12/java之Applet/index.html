@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="java之Applet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java之Applet">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2025/03/12/java%E4%B9%8BApplet/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="java之Applet">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-12T15:09:09.000Z">
+<meta property="article:modified_time" content="2025-03-23T04:42:05.385Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="javase">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2025/03/12/java%E4%B9%8BApplet/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>java之Applet | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2025/03/12/java%E4%B9%8BApplet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java之Applet
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-03-12 23:09:09" itemprop="dateCreated datePublished" datetime="2025-03-12T23:09:09+08:00">2025-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-23 12:42:05" itemprop="dateModified" datetime="2025-03-23T12:42:05+08:00">2025-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2025/03/12/java%E4%B9%8BApplet/" class="post-meta-item leancloud_visitors" data-flag-title="java之Applet" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2025/03/12/java%E4%B9%8BApplet/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2025/03/12/java%E4%B9%8BApplet/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>20k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+            <div class="post-description">java之Applet</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><h2 id="1-1-Applet"><a href="#1-1-Applet" class="headerlink" title="1.1 Applet"></a>1.1 Applet</h2><blockquote>
+<p>什么是 Java Applet？</p>
+</blockquote>
+<p>Java Applet 是一种用 Java 编写的小程序（应用程序小程序)，通常用于在支持 Java 的网页中嵌入动态内容。Applet 通过 <code>&lt;applet&gt;</code> 标签或 <code>&lt;object&gt;</code> 标签嵌入到 HTML 页面中，当用户访问包含 Applet 的网页时，浏览器会下载并执行该 Applet</p>
+<blockquote>
+<p>Java Applet 的工作原理</p>
+</blockquote>
+<ol>
+<li><strong>嵌入网页</strong>：开发者在 HTML 页面中使用 <code>&lt;applet&gt;</code> 或 <code>&lt;object&gt;</code> 标签嵌入 Applet</li>
+<li><strong>下载 Applet</strong>：当用户访问该网页时，浏览器会从服务器下载 Applet 的 <code>.class</code> 文件</li>
+<li><strong>执行 Applet</strong>：浏览器通过 Java 插件加载并执行 Applet</li>
+<li><strong>与网页交互</strong>：Applet 可以与网页中的其他元素（如 JavaScript）进行交互，提供动态和交互性的功能</li>
+</ol>
+<h2 id="1-2-GUI"><a href="#1-2-GUI" class="headerlink" title="1.2 GUI"></a>1.2 GUI</h2><p><strong>GUI（Graphical User Interface，图形用户界面）</strong> 是指通过图形化的元素（如窗口、按钮、图标、菜单、文本框等）来与用户进行交互的界面。相对于早期的命令行界面（CLI，Command Line Interface），GUI 提供了更直观、易用和友好的用户体验，使得用户无需记忆复杂的命令语法，只需通过鼠标点击或触摸屏幕即可操作计算机</p>
+<blockquote>
+<p>GUI 的主要特点</p>
+</blockquote>
+<ol>
+<li><strong>可视化元素</strong>：使用图形化的组件，如按钮、文本框、列表框、图标等，使用户能够直观地理解和操作</li>
+<li><strong>用户友好</strong>：界面设计注重用户体验，操作简便，适合各种技术水平的用户</li>
+<li><strong>交互性强</strong>：支持鼠标、键盘、触摸等多种输入方式，提供即时反馈，增强用户互动</li>
+<li><strong>多窗口支持</strong>：允许同时打开多个窗口，方便用户在不同任务之间切换和管理</li>
+</ol>
+<blockquote>
+<p>GUI 的组成部分</p>
+</blockquote>
+<ol>
+<li><strong>窗口（Window）</strong>：应用程序的主界面区域，可以包含其他组件</li>
+<li><strong>按钮（Button）</strong>：用户点击以执行特定操作的控件</li>
+<li><strong>文本框（Textbox）</strong>：允许用户输入和编辑文本信息</li>
+<li><strong>标签（Label）</strong>：用于显示静态文本，提供信息说明</li>
+<li><strong>列表框（Listbox）和组合框（Combobox）</strong>：用于展示选项供用户选择</li>
+<li><strong>菜单（Menu）和工具栏（Toolbar）</strong>：提供访问各种功能和命令的快捷方式</li>
+<li><strong>图标（Icon）</strong>：代表应用程序、文件或其他对象的图形符号</li>
+<li><strong>对话框（Dialog Box）</strong>：用于显示消息、警告或获取用户输入的弹出窗口</li>
+</ol>
+<h2 id="1-3-Application"><a href="#1-3-Application" class="headerlink" title="1.3 Application"></a>1.3 Application</h2><p><strong>Application（应用程序）</strong>是指为了完成特定任务或提供特定功能而设计的软件程序。应用程序通常是为用户在特定环境下（如桌面、移动设备、网页浏览器等）执行特定操作而开发的。与系统软件（如操作系统）不同，应用程序直接面向用户，提供各种实用功能和服务</p>
+<blockquote>
+<p>应用程序的主要特点</p>
+</blockquote>
+<ol>
+<li><strong>用户导向</strong>：应用程序旨在满足用户的具体需求，如办公、娱乐、教育、通信等</li>
+<li><strong>功能专一</strong>：每个应用程序通常专注于完成某一类任务，例如文字处理、图像编辑、视频播放等</li>
+<li><strong>交互性强</strong>：应用程序通常具有友好的用户界面，允许用户通过图形界面或命令行与程序进行交互</li>
+<li><strong>独立性</strong>：许多应用程序可以独立运行，不依赖于其他软件（当然，有些应用可能需要特定的系统环境或依赖库）</li>
+</ol>
+<blockquote>
+<p>应用程序的分类</p>
+</blockquote>
+<ol>
+<li>桌面应用程序</li>
+</ol>
+<ul>
+<li><strong>定义</strong>：在个人计算机（如Windows、macOS、Linux）上运行的应用程序</li>
+<li>示例<ul>
+<li><strong>办公软件</strong>：Microsoft Office、WPS Office</li>
+<li><strong>图像编辑</strong>：Adobe Photoshop、GIMP</li>
+<li><strong>浏览器</strong>：Google Chrome、Mozilla Firefox</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>移动应用程序</li>
+</ol>
+<ul>
+<li><strong>定义</strong>：在移动设备（如智能手机、平板电脑）上运行的应用程序，通常通过应用商店下载安装</li>
+<li>示例<ul>
+<li><strong>社交应用</strong>：微信、Facebook</li>
+<li><strong>游戏</strong>：王者荣耀、Candy Crush</li>
+<li><strong>工具类应用</strong>：地图导航（如高德地图）、健康管理（如Keep）</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>网页应用程序</li>
+</ol>
+<ul>
+<li><strong>定义</strong>：通过网页浏览器访问和使用的应用程序，无需安装，通常基于Web技术（HTML、CSS、JavaScript）开发</li>
+<li>示例<ul>
+<li><strong>在线办公</strong>：Google Docs、Microsoft Office Online</li>
+<li><strong>社交媒体</strong>：Twitter、LinkedIn</li>
+<li><strong>电子商务</strong>：淘宝、Amazon</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>服务器端应用程序</li>
+</ol>
+<ul>
+<li><strong>定义</strong>：在服务器上运行的应用程序，提供数据存储、处理和管理服务，常用于网站后台、数据库管理、云计算等</li>
+<li>示例<ul>
+<li><strong>Web服务器</strong>：Apache HTTP Server、Nginx</li>
+<li><strong>数据库管理系统</strong>：MySQL、PostgreSQL</li>
+<li><strong>云服务平台</strong>：AWS、Microsoft Azure</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>嵌入式应用程序</li>
+</ol>
+<ul>
+<li><strong>定义</strong>：嵌入在硬件设备中的应用程序，通常用于控制和管理设备的功能</li>
+<li>示例<ul>
+<li><strong>智能家居设备</strong>：智能恒温器（如Nest）、智能音箱（如Amazon Echo）</li>
+<li><strong>车载系统</strong>：导航系统、娱乐系统</li>
+<li><strong>工业控制系统</strong>：PLC（可编程逻辑控制器）软件</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-4-Applet与GUI区别"><a href="#1-4-Applet与GUI区别" class="headerlink" title="1.4 Applet与GUI区别"></a>1.4 Applet与GUI区别</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>方面</strong></th>
+<th align="center"><strong>Applet</strong></th>
+<th align="center"><strong>GUI</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>定义</strong></td>
+<td align="center">嵌入在网页中的小程序，用于增加网页的交互性</td>
+<td align="center">用户与程序交互的图形界面，独立于浏览器运行</td>
+</tr>
+<tr>
+<td align="center"><strong>运行环境</strong></td>
+<td align="center">需要在支持 Java 的浏览器中运行，依赖浏览器插件</td>
+<td align="center">独立运行在操作系统上，通过 Java 虚拟机（JVM）执行</td>
+</tr>
+<tr>
+<td align="center"><strong>启动方式</strong></td>
+<td align="center"><strong>由浏览器加载和启动，通常通过 <code>&lt;applet&gt;</code> 标签嵌入网页</strong></td>
+<td align="center"><strong>通过命令行、双击 JAR 文件或在 IDE 中运行主类启动</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>生命周期</strong></td>
+<td align="center"><strong>有特定的生命周期方法（<code>init()</code>、<code>start()</code>、<code>stop()</code>、<code>destroy()</code>）</strong></td>
+<td align="center"><strong>没有固定的生命周期，依据应用程序的需求管理</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>安全性</strong></td>
+<td align="center">运行在沙箱环境中，安全性受限，需通过数字签名等方式提升权限</td>
+<td align="center">安全性依赖于程序的设计和实现，通常拥有更高的权限</td>
+</tr>
+<tr>
+<td align="center"><strong>用途</strong></td>
+<td align="center">主要用于网页中的动态内容和交互，如在线游戏、动画等</td>
+<td align="center">创建桌面应用程序的用户界面，如文本编辑器、图像处理软件等</td>
+</tr>
+<tr>
+<td align="center"><strong>依赖库</strong></td>
+<td align="center"><strong>基于 Java 的 AWT 或 Swing 库，但主要用于网页嵌入</strong></td>
+<td align="center"><strong>使用 AWT、Swing、JavaFX 等库构建独立的应用程序界面</strong></td>
+</tr>
+</tbody></table>
+<h2 id="1-5-Applet与Application区别"><a href="#1-5-Applet与Application区别" class="headerlink" title="1.5 Applet与Application区别"></a>1.5 Applet与Application区别</h2><blockquote>
+<ol>
+<li>运行环境</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li><strong>运行平台</strong>：主要用于在支持 Java 的网页浏览器中运行</li>
+<li><strong>依赖环境</strong>：依赖于浏览器提供的 Java 插件，通过浏览器加载和执行</li>
+</ul>
+</li>
+<li>Application<ul>
+<li><strong>运行平台</strong>：作为独立的程序在操作系统上运行，不依赖于浏览器</li>
+<li><strong>依赖环境</strong>：只需要安装 Java 运行环境（JRE）即可运行</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="2">
+<li>启动方式</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li>由浏览器通过 <code>&lt;applet&gt;</code> 标签或 <code>&lt;object&gt;</code> 标签嵌入网页中启动</li>
+<li>浏览器加载网页时，自动加载并执行 Applet</li>
+</ul>
+</li>
+<li>Application<ul>
+<li>通过命令行（如 <code>java</code> 命令）或集成开发环境（IDE）直接运行主类（包含 <code>main</code> 方法的类）启动</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="3">
+<li>生命周期管理</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li>具有特定的生命周期方法，包括 <code>init()</code>、<code>start()</code>、<code>stop()</code> 和 <code>destroy()</code>，用于管理 Applet 的初始化、启动、暂停和销毁</li>
+</ul>
+</li>
+<li>Application<ul>
+<li>通常只有一个入口点 <code>main</code> 方法，程序的生命周期由开发者自行管理，没有固定的生命周期方法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="4">
+<li>用户界面</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li>主要通过图形用户界面（GUI）与用户交互，通常嵌入在网页中，显示在网页的特定区域</li>
+<li>使用 AWT 或 Swing 等 GUI 组件库创建界面</li>
+</ul>
+</li>
+<li>Application<ul>
+<li>可以有各种形式的用户界面，包括命令行界面（CLI）、图形用户界面（GUI）等</li>
+<li>GUI 应用程序同样使用 AWT、Swing、JavaFX 等库创建界面</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="5">
+<li>安全性</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li>运行在浏览器的沙箱环境中，受到严格的安全限制，无法访问本地文件系统或执行某些敏感操作，除非用户授予特定权限（通过数字签名等方式）</li>
+</ul>
+</li>
+<li>Application<ul>
+<li>作为独立的程序运行，拥有更高的权限，可以访问本地资源、文件系统和其他系统功能，安全性依赖于程序的设计和实现</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="6">
+<li>交互性</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li>与网页内容紧密结合，可以与 JavaScript 等网页脚本进行交互，增强网页的动态性和互动性</li>
+</ul>
+</li>
+<li>Application<ul>
+<li>通常独立于浏览器，交互性主要体现在程序自身的用户界面和功能上，不直接与网页内容交互</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol start="7">
+<li>部署方式</li>
+</ol>
+</blockquote>
+<ul>
+<li>Applet<ul>
+<li>通过将 <code>.class</code> 文件嵌入网页中，用户访问网页时自动下载并执行 Applet</li>
+<li>可以使用 JAR 文件打包多个类文件和相关资源，提高加载效率</li>
+</ul>
+</li>
+<li>Application<ul>
+<li>通过分发可执行的 JAR 文件或安装包，用户自行下载并运行程序</li>
+<li>可以包含独立的启动脚本或安装程序，方便用户安装和使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-6-applet标签和object标签"><a href="#1-6-applet标签和object标签" class="headerlink" title="1.6 applet标签和object标签"></a>1.6 applet标签和object标签</h2><blockquote>
+<p>java</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：com.yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：applet_study</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-13 23:52</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：HelloApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        g.drawString(<span class="string">&quot;Hello Applet!&quot;</span>,<span class="number">100</span>,<span class="number">80</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>HTML applet标签</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>applet标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">applet</span> <span class="attr">code</span>=<span class="string">&quot;HelloApplet&quot;</span> <span class="attr">width</span>=<span class="string">&quot;500&quot;</span> <span class="attr">height</span>=<span class="string">&quot;500&quot;</span>&gt;</span></span><br><span class="line">  Applet无法加载，请安装Java插件！</span><br><span class="line"><span class="tag">&lt;/<span class="name">applet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>HTML object标签</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>object标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">type</span>=<span class="string">&quot;application/x-java-applet&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;code&quot;</span> <span class="attr">value</span>=<span class="string">&quot;HelloApplet&quot;</span>&gt;</span></span><br><span class="line">    Applet无法加载，请安装Java插件！</span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>object标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">type</span>=<span class="string">&quot;application/x-java-applet&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">code</span>=<span class="string">&quot;HelloApplet&quot;</span>&gt;</span></span><br><span class="line">    Applet无法加载，请安装Java插件！</span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>本地调试</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appletviewer xxx.html</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-7-Hello-Applet"><a href="#1-7-Hello-Applet" class="headerlink" title="1.7 Hello Applet"></a>1.7 Hello Applet</h2><blockquote>
+<p>Applet</p>
+</blockquote>
+<p>通过继承 <code>Applet</code> 类并重写其中的方法来定义 Applet 的行为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：com.yang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：applet_study</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-13 23:52</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：HelloApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        g.drawString(<span class="string">&quot;Hello Applet!&quot;</span>,<span class="number">100</span>,<span class="number">80</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>JApplet</p>
+</blockquote>
+<p><code>JApplet</code> 是 <code>Applet</code> 的子类，基于 Swing 组件库，提供了更丰富的图形界面功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.swing.JApplet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-14 22:25</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：JAppletTEST</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JAppletTEST</span> <span class="keyword">extends</span> <span class="title class_">JApplet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        g.drawString(<span class="string">&quot;Hello JApplet!&quot;</span>,<span class="number">100</span>,<span class="number">80</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-生命周期"><a href="#2-生命周期" class="headerlink" title="2.生命周期"></a>2.生命周期</h1><blockquote>
+<p>使用生命周期方法管理 Applet 行为</p>
+</blockquote>
+<ul>
+<li><code>init()</code>：在 Applet 被加载时调用，用于初始化 Applet</li>
+<li><code>start()</code>：在 Applet 启动时调用，通常在 <code>init()</code> 之后或用户返回包含 Applet 的页面时调用</li>
+<li><code>stop()</code>：在 Applet 停止时调用，通常在用户离开包含 Applet 的页面时调用</li>
+<li><code>destroy()</code>：在 Applet 被卸载时调用，用于释放资源</li>
+</ul>
+<blockquote>
+<p>Applet（应用程序小程序）的生命周期指的是从 Applet 被加载到浏览器中开始，到最终被卸载的整个过程。理解 Applet 的生命周期对于正确地初始化资源、处理用户交互以及释放资源非常重要。Applet 的生命周期主要由以下几个阶段组成，每个阶段都对应着特定的方法</p>
+</blockquote>
+<ol>
+<li>加载（Loading）</li>
+</ol>
+<ul>
+<li>当浏览器加载包含 Applet 的网页时，会加载 Applet 类。这一过程通常由浏览器自动完成，开发者无需干预</li>
+</ul>
+<ol start="2">
+<li>初始化（Initialization）</li>
+</ol>
+<ul>
+<li><strong>方法</strong>: <code>init()</code></li>
+<li><strong>描述</strong>: 这是 Applet 的第一个生命周期方法。在 Applet 被加载后，浏览器会调用 <code>init()</code> 方法。在这里，开发者可以进行一次性的初始化操作，如设置初始变量、加载资源、初始化界面组件等</li>
+<li><strong>调用次数</strong>: 仅调用一次</li>
+</ul>
+<ol start="3">
+<li>启动（Start）</li>
+</ol>
+<ul>
+<li><strong>方法</strong>: <code>start()</code></li>
+<li><strong>描述</strong>: 在 <code>init()</code> 方法执行完毕后，或者当用户从其他页面返回当前包含 Applet 的页面时，浏览器会调用 <code>start()</code> 方法</li>
+<li><strong>调用次数</strong>: 每次 Applet 变得可见时调用，可能多次调用</li>
+</ul>
+<ol start="4">
+<li>绘制（Painting）</li>
+</ol>
+<ul>
+<li><strong>方法</strong>: <code>paint(Graphics g)</code></li>
+<li><strong>描述</strong>: <code>paint()</code> 方法用于绘制 Applet 的图形界面。每当 Applet 需要重新绘制时（如窗口被覆盖后重新显示），浏览器会调用此方法</li>
+<li><strong>调用次数</strong>: 根据需要多次调用</li>
+</ul>
+<ol start="5">
+<li>停止（Stop）</li>
+</ol>
+<ul>
+<li><strong>方法</strong>: <code>stop()</code></li>
+<li><strong>描述</strong>: 当用户离开包含 Applet 的页面，或者浏览器窗口被最小化时，浏览器会调用 <code>stop()</code> 方法</li>
+<li><strong>调用次数</strong>: 每次 Applet 变得不可见时调用，可能多次调用</li>
+</ul>
+<ol start="6">
+<li>销毁（Destruction）</li>
+</ol>
+<ul>
+<li><strong>方法</strong>: <code>destroy()</code></li>
+<li><strong>描述</strong>: 当浏览器关闭或者 Applet 被卸载时，浏览器会调用 <code>destroy()</code> 方法</li>
+<li><strong>调用次数</strong>: 仅调用一次</li>
+</ul>
+<blockquote>
+<p>生命周期流程图</p>
+</blockquote>
+<ol>
+<li><strong>加载</strong> → <strong>初始化 (<code>init()</code>)</strong> → <strong>启动 (<code>start()</code>)</strong> → <strong>绘制 (<code>paint()</code>)</strong></li>
+<li>当 Applet 不可见时：<strong>停止 (<code>stop()</code>)</strong></li>
+<li>当 Applet 再次可见时：<strong>启动 (<code>start()</code>)</strong> → <strong>绘制 (<code>paint()</code>)</strong></li>
+<li>当 Applet 被卸载或浏览器关闭时：<strong>销毁 (<code>destroy()</code>)</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.Graphics;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LifecycleApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Applet 初始化 (init)&quot;</span>);</span><br><span class="line">        <span class="comment">// 初始化变量、加载资源等</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">start</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Applet 启动 (start)&quot;</span>);</span><br><span class="line">        <span class="comment">// 启动动画、播放音乐、恢复线程等</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        <span class="comment">// 绘制图形</span></span><br><span class="line">        g.drawString(<span class="string">&quot;Hello, Applet 生命周期!&quot;</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Applet 绘制 (paint)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">stop</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Applet 停止 (stop)&quot;</span>);</span><br><span class="line">        <span class="comment">// 暂停动画、停止音乐、暂停线程等</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Applet 销毁 (destroy)&quot;</span>);</span><br><span class="line">        <span class="comment">// 释放资源，如关闭文件、断开网络连接等</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">F:\Java\Project\JavaSE\GUI\src&gt;appletviewer Lifecycle.html</span><br><span class="line">Applet 初始化 (init)</span><br><span class="line">Applet 启动 (start)</span><br><span class="line">Applet 绘制 (paint)</span><br><span class="line">Applet 停止 (stop)</span><br><span class="line">Applet 启动 (start)</span><br><span class="line">Applet 绘制 (paint)</span><br><span class="line">Applet 停止 (stop)</span><br><span class="line">Applet 启动 (start)</span><br><span class="line">Applet 绘制 (paint)</span><br><span class="line">Applet 停止 (stop)</span><br><span class="line">Applet 销毁 (destroy)</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-参数获取与处理"><a href="#3-参数获取与处理" class="headerlink" title="3.参数获取与处理"></a>3.参数获取与处理</h1><ul>
+<li><p>在 Java Applet 中，参数的获取与处理是通过 HTML 标签中的 <code>&lt;param&gt;</code> 元素来实现的</p>
+</li>
+<li><p>在 HTML 中嵌入 Applet 时，可以使用 <code>&lt;param&gt;</code> 标签为 Applet 传递参数。每个 <code>&lt;param&gt;</code> 标签包含两个属性：</p>
+<ul>
+<li><code>name</code>：参数的名称</li>
+<li><code>value</code>：参数的值</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Java Applet 参数传递示例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Java Applet 参数传递示例<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">type</span>=<span class="string">&quot;application/x-java-applet&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;code&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ParamApplet&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">value</span>=<span class="string">&quot;传递123&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;color&quot;</span> <span class="attr">value</span>=<span class="string">&quot;#FFD700&quot;</span>&gt;</span></span><br><span class="line">  Applet无法加载，请安装Java插件！</span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java Applet 提供了 <code>getParameter(String name)</code> 方法用于获取传递的参数值。该方法返回指定名称的参数值，如果未找到则返回 <code>null</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-16 12:47</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：ParamApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ParamApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    <span class="keyword">private</span> Color color;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        msg = getParameter(<span class="string">&quot;msg&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">colorName</span> <span class="operator">=</span> getParameter(<span class="string">&quot;color&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (msg == <span class="literal">null</span>)&#123;</span><br><span class="line">            msg = <span class="string">&quot;默认值&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (colorName != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                color = Color.decode(colorName);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">                color = Color.blue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;msg = &quot;</span>+msg);</span><br><span class="line">        System.out.println(<span class="string">&quot;color = &quot;</span>+color);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        g.setColor(color);</span><br><span class="line">        g.drawString(msg,<span class="number">80</span>,<span class="number">80</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="4-事件处理"><a href="#4-事件处理" class="headerlink" title="4.事件处理"></a>4.事件处理</h1><ul>
+<li>Java Applet 使用 <strong>AWT（Abstract Window Toolkit）</strong> 事件模型来处理事件。该模型基于以下几个核心概念：<ul>
+<li><strong>事件源（Event Source）</strong>：产生事件的组件，如按钮、窗口、键盘等</li>
+<li><strong>事件对象（Event Object）</strong>：描述事件的详细信息，如事件类型、发生位置等</li>
+<li><strong>事件监听器（Event Listener）</strong>：负责接收并处理事件的对象，必须实现相应的监听器接口</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>常见的 Java Applet 事件类型</p>
+</blockquote>
+<ol>
+<li><strong>动作事件（Action Events）</strong></li>
+<li><strong>鼠标事件（Mouse Events）</strong></li>
+<li><strong>键盘事件（Keyboard Events）</strong></li>
+<li><strong>窗口事件（Window Events）</strong></li>
+<li><strong>组件事件（Component Events）</strong></li>
+<li><strong>焦点事件（Focus Events）</strong></li>
+<li><strong>输入法事件（Input Method Events）</strong></li>
+</ol>
+<h2 id="4-1-动作事件（Action-Events）"><a href="#4-1-动作事件（Action-Events）" class="headerlink" title="4.1 动作事件（Action Events）"></a>4.1 动作事件（Action Events）</h2><ul>
+<li><p><strong>描述</strong>：动作事件通常与用户的操作相关，如按钮点击、菜单选择等</p>
+</li>
+<li><p><strong>监听器接口</strong>：<code>ActionListener</code></p>
+</li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><code>actionPerformed(ActionEvent e)</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-16 21:42</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：ActionApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 在 Applet 中实现 ActionListener</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ActionApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> <span class="keyword">implements</span> <span class="title class_">ActionListener</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Button button;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        button = <span class="keyword">new</span> <span class="title class_">Button</span>(<span class="string">&quot;点击按钮&quot;</span>);</span><br><span class="line">        button.addActionListener(<span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">this</span>.add(button);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">actionPerformed</span><span class="params">(ActionEvent e)</span> &#123;</span><br><span class="line">        <span class="comment">// 处理按钮点击事件</span></span><br><span class="line">        System.out.println(<span class="string">&quot;触发动作事件&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-鼠标事件（Mouse-Events）"><a href="#4-2-鼠标事件（Mouse-Events）" class="headerlink" title="4.2 鼠标事件（Mouse Events）"></a>4.2 鼠标事件（Mouse Events）</h2><ul>
+<li><strong>描述</strong>：鼠标事件涉及鼠标的各种操作，如点击、进入、离开、拖动等</li>
+<li><strong>监听器接口</strong>：<code>MouseListener</code> 和 <code>MouseMotionListener</code></li>
+<li><strong>常用方法</strong>：<ul>
+<li><strong>MouseListener</strong><ul>
+<li><code>mouseClicked(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当用户点击（按下并释放）鼠标按钮时触发</li>
+<li><strong>常用场景</strong>：计数点击次数、选择项目等</li>
+</ul>
+</li>
+<li><code>mousePressed(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当用户按下鼠标按钮时触发</li>
+<li><strong>常用场景</strong>：开始拖拽操作、游戏中的动作触发等</li>
+</ul>
+</li>
+<li><code>mouseReleased(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当用户释放鼠标按钮时触发</li>
+<li><strong>常用场景</strong>：结束拖拽操作、确认选择等</li>
+</ul>
+</li>
+<li><code>mouseEntered(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当鼠标指针进入组件区域时触发</li>
+<li><strong>常用场景</strong>：显示提示信息、高亮显示等</li>
+</ul>
+</li>
+<li><code>mouseExited(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当鼠标指针离开组件区域时触发</li>
+<li><strong>常用场景</strong>：隐藏提示信息、取消高亮显示等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>MouseMotionListener</strong><ul>
+<li><code>mouseDragged(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当用户按下鼠标按钮并移动鼠标时触发</li>
+<li><strong>常用场景</strong>：绘图应用中的画图、拖拽操作等</li>
+</ul>
+</li>
+<li><code>mouseMoved(MouseEvent e)</code><ul>
+<li><strong>描述</strong>：当用户移动鼠标指针时触发</li>
+<li><strong>常用场景</strong>：实现光标跟随、实时绘图等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseListener;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseMotionListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-16 21:52</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：MouseApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MouseApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> <span class="keyword">implements</span> <span class="title class_">MouseListener</span>, MouseMotionListener &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        addMouseListener(<span class="built_in">this</span>);</span><br><span class="line">        addMouseMotionListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseClicked</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标在 (&quot;</span> + e.getX() + <span class="string">&quot;, &quot;</span> + e.getY() + <span class="string">&quot;) 被点击&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mousePressed</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标按下在 (&quot;</span> + e.getX() + <span class="string">&quot;, &quot;</span> + e.getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseReleased</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标释放于 (&quot;</span> + e.getX() + <span class="string">&quot;, &quot;</span> + e.getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseEntered</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标进入区域&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseExited</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标离开区域&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseDragged</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标拖拽到 (&quot;</span> + e.getX() + <span class="string">&quot;, &quot;</span> + e.getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseMoved</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;鼠标移动到 (&quot;</span> + e.getX() + <span class="string">&quot;, &quot;</span> + e.getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-键盘事件（Keyboard-Events）"><a href="#4-3-键盘事件（Keyboard-Events）" class="headerlink" title="4.3 键盘事件（Keyboard Events）"></a>4.3 键盘事件（Keyboard Events）</h2><ul>
+<li><p><strong>描述</strong>：键盘事件涉及用户的键盘输入，如按键按下、释放、键入等</p>
+</li>
+<li><p><strong>监听器接口</strong>：<code>Listener</code></p>
+</li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><code>keyTyped(KeyEvent e)</code><ul>
+<li><strong>描述</strong>：当用户键入一个字符时触发。例如，按下并释放一个字母或数字键</li>
+<li><strong>常用场景</strong>：处理文本输入、字符验证等</li>
+</ul>
+</li>
+<li><code>keyPressed(KeyEvent e)</code><ul>
+<li><strong>描述</strong>：当用户按下任意键时触发，包括功能键、控制键等</li>
+<li><strong>常用场景</strong>：游戏中的按键控制、快捷键处理等</li>
+</ul>
+</li>
+<li><code>keyReleased(KeyEvent e)</code><ul>
+<li><strong>描述</strong>：当用户释放之前按下的键时触发</li>
+<li><strong>常用场景</strong>：检测按键释放以触发特定动作，如射击游戏中的开火</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>为了确保 Applet 能够接收到键盘事件，必须确保它具有焦点。可以通过以下方法实现：</p>
+<ul>
+<li>**<code>setFocusable(true)</code>**：使 Applet 可以获得焦点</li>
+<li>**<code>requestFocus()</code>**：请求焦点</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.KeyEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.KeyListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-16 22:06</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：KeyApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KeyApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> <span class="keyword">implements</span> <span class="title class_">KeyListener</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;请按键...&quot;</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        setBackground(Color.WHITE);</span><br><span class="line">        setForeground(Color.BLACK);</span><br><span class="line">        setFocusable(<span class="literal">true</span>); <span class="comment">// 确保 Applet 可以获得焦点</span></span><br><span class="line">        requestFocus();      <span class="comment">// 请求焦点</span></span><br><span class="line">        addKeyListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.paint(g);</span><br><span class="line">        g.drawString(message, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">keyTyped</span><span class="params">(KeyEvent e)</span> &#123;</span><br><span class="line">        <span class="type">char</span> <span class="variable">typedChar</span> <span class="operator">=</span> e.getKeyChar();</span><br><span class="line">        message = <span class="string">&quot;键入字符: &quot;</span> + typedChar;</span><br><span class="line">        repaint();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">keyPressed</span><span class="params">(KeyEvent e)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">keyCode</span> <span class="operator">=</span> e.getKeyCode();</span><br><span class="line">        message = <span class="string">&quot;按下键: &quot;</span> + KeyEvent.getKeyText(keyCode);</span><br><span class="line">        repaint();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">keyReleased</span><span class="params">(KeyEvent e)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">keyCode</span> <span class="operator">=</span> e.getKeyCode();</span><br><span class="line">        message = <span class="string">&quot;释放键: &quot;</span> + KeyEvent.getKeyText(keyCode);</span><br><span class="line">        repaint();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4-窗口事件（Window-Events）"><a href="#4-4-窗口事件（Window-Events）" class="headerlink" title="4.4 窗口事件（Window Events）"></a>4.4 窗口事件（Window Events）</h2><ul>
+<li><p><strong>描述</strong>：窗口事件涉及窗口的操作，如打开、关闭、最小化、调整大小等</p>
+</li>
+<li><p><strong>监听器接口</strong>：<code>WindowListener</code></p>
+</li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><code>windowOpened(WindowEvent e)</code></li>
+<li><code>windowClosing(WindowEvent e)</code></li>
+<li><code>windowClosed(WindowEvent e)</code></li>
+<li><code>windowIconified(WindowEvent e)</code></li>
+<li><code>windowDeiconified(WindowEvent e)</code></li>
+<li><code>windowActivated(WindowEvent e)</code></li>
+<li><code>windowDeactivated(WindowEvent e)</code></li>
+</ul>
+</li>
+<li><p><strong>注意</strong>：在 Applet 中直接处理窗口事件较少见，通常由浏览器或容器管理</p>
+</li>
+</ul>
+<h2 id="4-5-组件事件（Component-Events）"><a href="#4-5-组件事件（Component-Events）" class="headerlink" title="4.5 组件事件（Component Events）"></a>4.5 组件事件（Component Events）</h2><ul>
+<li><p><strong>描述</strong>：组件事件涉及组件的大小、位置变化等</p>
+</li>
+<li><p><strong>监听器接口</strong>：<code>ComponentListener</code></p>
+</li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><code>componentResized(ComponentEvent e)</code><ul>
+<li><strong>触发条件</strong>：当组件的大小被调整时触发，例如用户拖动窗口边框改变大小</li>
+<li>常用属性：<ul>
+<li><code>e.getComponent()</code>：获取发生事件的组件</li>
+<li><code>getWidth()</code> 和 <code>getHeight()</code>：获取组件的新宽度和高度</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>动态调整布局以适应新的组件大小</li>
+<li>重新绘制图形或图像以匹配新的尺寸</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>componentMoved(ComponentEvent e)</code><ul>
+<li><strong>触发条件</strong>：当组件的位置发生变化时触发，例如窗口被拖动到新的位置</li>
+<li>常用属性：<ul>
+<li><code>e.getComponent()</code>：获取发生事件的组件</li>
+<li><code>getX()</code> 和 <code>getY()</code>：获取组件的新位置坐标</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>跟踪组件的位置以进行特定的交互，如拖拽操作</li>
+<li>更新界面元素的位置信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>componentShown(ComponentEvent e)</code><ul>
+<li><strong>触发条件</strong>：当组件被显示时触发，例如窗口从隐藏状态变为可见</li>
+<li>常用属性：<ul>
+<li><code>e.getComponent()</code>：获取发生事件的组件</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>初始化显示内容，如加载数据或启动动画</li>
+<li>启动定时器或后台任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>componentHidden(ComponentEvent e)</code><ul>
+<li><strong>触发条件</strong>：当组件被隐藏时触发，例如窗口被最小化或覆盖</li>
+<li>常用属性：<ul>
+<li><code>e.getComponent()</code>：获取发生事件的组件</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>暂停动画或后台任务以节省资源</li>
+<li>保存当前状态或数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ComponentEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ComponentListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-17 0:01</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：ComponentApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComponentApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> <span class="keyword">implements</span> <span class="title class_">ComponentListener</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        addComponentListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">componentResized</span><span class="params">(ComponentEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;大小调整: &quot;</span> + getWidth() + <span class="string">&quot;x&quot;</span> + getHeight());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">componentMoved</span><span class="params">(ComponentEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;位置移动: (&quot;</span> + getX() + <span class="string">&quot;, &quot;</span> + getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">componentShown</span><span class="params">(ComponentEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;显示: (&quot;</span> + getX() + <span class="string">&quot;, &quot;</span> + getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">componentHidden</span><span class="params">(ComponentEvent e)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;隐藏: (&quot;</span> + getX() + <span class="string">&quot;, &quot;</span> + getY() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-6-焦点事件（Focus-Events）"><a href="#4-6-焦点事件（Focus-Events）" class="headerlink" title="4.6 焦点事件（Focus Events）"></a>4.6 焦点事件（Focus Events）</h2><ul>
+<li><p><strong>描述</strong>：焦点事件涉及组件获得或失去输入焦点</p>
+</li>
+<li><p><strong>监听器接口</strong>：<code>FocusListener</code></p>
+</li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><code>focusGained(FocusEvent e)</code><ul>
+<li><strong>触发条件</strong>：当组件获得输入焦点时触发，例如用户点击文本框或使用 Tab 键导航到该组件</li>
+<li>常用属性：<ul>
+<li><code>e.getComponent()</code>：获取获得焦点的组件</li>
+<li><code>e.isTemporary()</code>：判断焦点变化是否为临时性的（例如弹出菜单时）</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>显示输入提示或光标。</li>
+<li>启用特定的输入验证或自动完成功能</li>
+<li>改变组件的视觉样式以指示当前焦点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>focusLost(FocusEvent e)</code><ul>
+<li><strong>触发条件</strong>：当组件失去输入焦点时触发，例如用户点击其他组件或按下 Tab 键导航到其他组件</li>
+<li>常用属性：<ul>
+<li><code>e.getComponent()</code>：获取失去焦点的组件</li>
+<li><code>e.isTemporary()</code>：判断焦点变化是否为临时性的</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>验证用户输入的数据是否正确</li>
+<li>保存用户输入的数据</li>
+<li>恢复组件的默认视觉样式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.FocusEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.FocusListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-17 0:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：FocusApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FocusApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> <span class="keyword">implements</span> <span class="title class_">FocusListener</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> TextField textField;</span><br><span class="line">    <span class="keyword">private</span> Label statusLabel;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        setBackground(Color.LIGHT_GRAY);</span><br><span class="line">        setLayout(<span class="keyword">new</span> <span class="title class_">FlowLayout</span>());</span><br><span class="line"></span><br><span class="line">        textField = <span class="keyword">new</span> <span class="title class_">TextField</span>(<span class="number">20</span>);</span><br><span class="line">        statusLabel = <span class="keyword">new</span> <span class="title class_">Label</span>(<span class="string">&quot;等待输入...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加 FocusListener</span></span><br><span class="line">        textField.addFocusListener(<span class="built_in">this</span>);</span><br><span class="line"></span><br><span class="line">        add(textField);</span><br><span class="line">        add(statusLabel);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">focusGained</span><span class="params">(FocusEvent e)</span> &#123;</span><br><span class="line">        statusLabel.setText(<span class="string">&quot;文本框获得焦点&quot;</span>);</span><br><span class="line">        textField.setBackground(Color.YELLOW); <span class="comment">// 高亮显示</span></span><br><span class="line">        System.out.println(e.getComponent()+<span class="string">&quot;===&quot;</span>+e.isTemporary());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">focusLost</span><span class="params">(FocusEvent e)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">input</span> <span class="operator">=</span> textField.getText();</span><br><span class="line">        <span class="keyword">if</span> (input.isEmpty()) &#123;</span><br><span class="line">            statusLabel.setText(<span class="string">&quot;文本框为空！&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            statusLabel.setText(<span class="string">&quot;输入内容: &quot;</span> + input);</span><br><span class="line">        &#125;</span><br><span class="line">        textField.setBackground(Color.WHITE); <span class="comment">// 恢复默认背景色</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-7-输入法事件（Input-Method-Events）"><a href="#4-7-输入法事件（Input-Method-Events）" class="headerlink" title="4.7 输入法事件（Input Method Events）"></a>4.7 输入法事件（Input Method Events）</h2><p><strong>描述</strong>：输入法事件涉及输入法相关的操作，如输入法文本转换</p>
+<p><strong>监听器接口</strong>：<code>InputMethodListener</code></p>
+<p><strong>常用方法</strong>：</p>
+<ul>
+<li><code>inputMethodTextChanged(InputMethodEvent e)</code><ul>
+<li><strong>触发条件</strong>：当输入法文本发生变化时触发，例如用户在输入过程中选择了不同的候选词或完成了文本转换</li>
+<li>常用属性：<ul>
+<li><code>e.getText()</code>：获取输入法提供的文本内容</li>
+<li><code>e.getCommittedText()</code>：获取已提交的文本内容</li>
+<li><code>e.getInsertedText()</code>：获取插入的文本内容</li>
+<li><code>e.getRemovedText()</code>：获取被移除的文本内容</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>实时显示和处理用户的输入过程，如候选词选择</li>
+<li>记录用户的输入历史或进行实时校验</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>caretPositionChanged(InputMethodEvent e)</code><ul>
+<li><strong>触发条件</strong>：当插入符号（光标）的位置在输入过程中发生变化时触发</li>
+<li>常用属性：<ul>
+<li><code>e.getCaret()</code>：获取当前的插入符号（光标）对象</li>
+<li><code>e.getDot()</code>：获取插入符号的位置</li>
+<li><code>e.getMark()</code>：获取标记位置（通常与选择范围相关）</li>
+</ul>
+</li>
+<li>示例用途：<ul>
+<li>更新界面以反映当前的插入符号位置，如实时显示光标位置</li>
+<li>实现与插入符号位置相关的动态效果，如跟随光标的提示信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.InputMethodEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.InputMethodListener;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-17 1:12</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：InputMethodApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InputMethodApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> <span class="keyword">implements</span> <span class="title class_">InputMethodListener</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;请使用输入法输入文本...&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> TextArea textArea;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        setBackground(Color.LIGHT_GRAY);</span><br><span class="line">        setForeground(Color.BLACK);</span><br><span class="line"></span><br><span class="line">        textArea = <span class="keyword">new</span> <span class="title class_">TextArea</span>(<span class="number">10</span>, <span class="number">30</span>);</span><br><span class="line">        textArea.setFont(<span class="keyword">new</span> <span class="title class_">Font</span>(<span class="string">&quot;Serif&quot;</span>, Font.PLAIN, <span class="number">16</span>));</span><br><span class="line">        textArea.addInputMethodListener(<span class="built_in">this</span>);</span><br><span class="line"></span><br><span class="line">        add(<span class="keyword">new</span> <span class="title class_">Label</span>(<span class="string">&quot;输入法事件示例:&quot;</span>));</span><br><span class="line">        add(textArea);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.paint(g);</span><br><span class="line">        g.drawString(message, <span class="number">10</span>, <span class="number">150</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// InputMethodListener 方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">inputMethodTextChanged</span><span class="params">(InputMethodEvent e)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取输入法文本</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> textArea.getText();</span><br><span class="line">        message = <span class="string">&quot;输入法文本变化: &quot;</span> + text;</span><br><span class="line">        repaint();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">caretPositionChanged</span><span class="params">(InputMethodEvent e)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">caretPosition</span> <span class="operator">=</span> textArea.getCaretPosition();</span><br><span class="line">        message = <span class="string">&quot;插入符号位置变化: &quot;</span> + caretPosition;</span><br><span class="line">        repaint();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-8-事件适配器类"><a href="#4-8-事件适配器类" class="headerlink" title="4.8 事件适配器类"></a>4.8 事件适配器类</h2><p>Java 提供了多种 <strong>适配器类（Adapter Classes）</strong>，这些类实现了监听器接口，并为所有方法提供了空实现。可以通过继承适配器类并重写需要的方法，减少需要实现的方法数量，从而简化代码</p>
+<p><strong>常用适配器类</strong>：</p>
+<ul>
+<li><code>MouseAdapter</code></li>
+<li><code>KeyAdapter</code></li>
+<li><code>ComponentAdapter</code></li>
+<li><code>FocusAdapter</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.applet.Applet;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：GUI</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-03-18 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：AdapterApplet</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AdapterApplet</span> <span class="keyword">extends</span> <span class="title class_">Applet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> TextField textField;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        textField = <span class="keyword">new</span> <span class="title class_">TextField</span>(<span class="number">20</span>);</span><br><span class="line">        textField.setEnabled(<span class="literal">true</span>);</span><br><span class="line">        add(textField);</span><br><span class="line"></span><br><span class="line">        addMouseListener(<span class="keyword">new</span> <span class="title class_">MouseAdapter</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseClicked</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">                textField.setFocusable(<span class="literal">false</span>);</span><br><span class="line">                message = <span class="string">&quot;点击鼠标&quot;</span>;</span><br><span class="line">                repaint();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        textField.addMouseListener(<span class="keyword">new</span> <span class="title class_">MouseAdapter</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mouseClicked</span><span class="params">(MouseEvent e)</span> &#123;</span><br><span class="line">                textField.setFocusable(<span class="literal">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        addKeyListener(<span class="keyword">new</span> <span class="title class_">KeyAdapter</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">keyPressed</span><span class="params">(KeyEvent e)</span> &#123;</span><br><span class="line">                System.out.println(e.getKeyCode());</span><br><span class="line">                <span class="keyword">if</span> (e.getKeyCode() == KeyEvent.VK_SPACE)&#123;</span><br><span class="line">                    textField.setFocusable(<span class="literal">false</span>);</span><br><span class="line">                    message = <span class="string">&quot;按下空格键&quot;</span>;</span><br><span class="line">                    repaint();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        addComponentListener(<span class="keyword">new</span> <span class="title class_">ComponentAdapter</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">componentResized</span><span class="params">(ComponentEvent e)</span> &#123;</span><br><span class="line">                message = <span class="string">&quot;改变大小 ===&gt; &quot;</span>+getWidth()+<span class="string">&quot;=====&quot;</span>+getHeight();</span><br><span class="line">                textField.setFocusable(<span class="literal">false</span>);</span><br><span class="line">                repaint();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        textField.addFocusListener(<span class="keyword">new</span> <span class="title class_">FocusAdapter</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">focusGained</span><span class="params">(FocusEvent e)</span> &#123;</span><br><span class="line">                message = <span class="string">&quot;焦点&quot;</span>;</span><br><span class="line">                repaint();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        g.drawString(message,<span class="number">50</span>,<span class="number">50</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2025/03/12/java%E4%B9%8BApplet/" title="java之Applet">https://xiaguyangdie.github.io/2025/03/12/java之Applet/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/javase/" rel="tag"><i class="fa fa-tag"></i> javase</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/29/Jmeter%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD/" rel="prev" title="Jmeter基本功能">
+      <i class="fa fa-chevron-left"></i> Jmeter基本功能
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-text">1.简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Applet"><span class="nav-text">1.1 Applet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-GUI"><span class="nav-text">1.2 GUI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Application"><span class="nav-text">1.3 Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Applet%E4%B8%8EGUI%E5%8C%BA%E5%88%AB"><span class="nav-text">1.4 Applet与GUI区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Applet%E4%B8%8EApplication%E5%8C%BA%E5%88%AB"><span class="nav-text">1.5 Applet与Application区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-applet%E6%A0%87%E7%AD%BE%E5%92%8Cobject%E6%A0%87%E7%AD%BE"><span class="nav-text">1.6 applet标签和object标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Hello-Applet"><span class="nav-text">1.7 Hello Applet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">2.生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96%E4%B8%8E%E5%A4%84%E7%90%86"><span class="nav-text">3.参数获取与处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-text">4.事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%8A%A8%E4%BD%9C%E4%BA%8B%E4%BB%B6%EF%BC%88Action-Events%EF%BC%89"><span class="nav-text">4.1 动作事件（Action Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6%EF%BC%88Mouse-Events%EF%BC%89"><span class="nav-text">4.2 鼠标事件（Mouse Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6%EF%BC%88Keyboard-Events%EF%BC%89"><span class="nav-text">4.3 键盘事件（Keyboard Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E7%AA%97%E5%8F%A3%E4%BA%8B%E4%BB%B6%EF%BC%88Window-Events%EF%BC%89"><span class="nav-text">4.4 窗口事件（Window Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E7%BB%84%E4%BB%B6%E4%BA%8B%E4%BB%B6%EF%BC%88Component-Events%EF%BC%89"><span class="nav-text">4.5 组件事件（Component Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E7%84%A6%E7%82%B9%E4%BA%8B%E4%BB%B6%EF%BC%88Focus-Events%EF%BC%89"><span class="nav-text">4.6 焦点事件（Focus Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-%E8%BE%93%E5%85%A5%E6%B3%95%E4%BA%8B%E4%BB%B6%EF%BC%88Input-Method-Events%EF%BC%89"><span class="nav-text">4.7 输入法事件（Input Method Events）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-%E4%BA%8B%E4%BB%B6%E9%80%82%E9%85%8D%E5%99%A8%E7%B1%BB"><span class="nav-text">4.8 事件适配器类</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

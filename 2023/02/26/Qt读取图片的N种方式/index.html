@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaguyangdie.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="Qt读取图片的N种方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt读取图片的N种方式">
+<meta property="og:url" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="峡谷杨爹的个人博客">
+<meta property="og:description" content="Qt读取图片的N种方式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
+<meta property="article:published_time" content="2023-02-26T08:27:31.125Z">
+<meta property="article:modified_time" content="2024-04-13T03:06:00.326Z">
+<meta property="article:author" content="峡谷杨爹">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="图片操作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/image-20220619155707144.png">
+
+<link rel="canonical" href="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Qt读取图片的N种方式 | 峡谷杨爹的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">峡谷杨爹的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习使我快乐，游戏使我疯狂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/xiaguyangdie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%8D%9A%E5%AE%A2.webp">
+      <meta itemprop="name" content="峡谷杨爹">
+      <meta itemprop="description" content="write less, do more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="峡谷杨爹的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Qt读取图片的N种方式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-26 16:27:31" itemprop="dateCreated datePublished" datetime="2023-02-26T16:27:31+08:00">2023-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-13 11:06:00" itemprop="dateModified" datetime="2024-04-13T11:06:00+08:00">2024-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="Qt读取图片的N种方式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">评论次数：</span>
+    
+    <a title="valine" href="/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">Qt读取图片的N种方式</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>Qt提供四个类来处理图像数据：QImage、QPixmap、QBitmap和QPicture。</p>
+<p>（1）QImage：针对I&#x2F;O和直接像素访问和操作进行设计和优化的类。</p>
+<p>（2）QPixmap：针对屏幕上显示的图像进行设计和优化的类。</p>
+<p>（3）QBitmap：一个继承自QPixmap的便捷类，确保深度为1。</p>
+<p>（4）QPicture：该类是一个绘画设备，可以记录和回放QPainter命令。</p>
+<h3 id="2-QImage类"><a href="#2-QImage类" class="headerlink" title="2.QImage类"></a>2.QImage类</h3><h4 id="2-1-QImage简介"><a href="#2-1-QImage简介" class="headerlink" title="2.1 QImage简介"></a>2.1 QImage简介</h4><ul>
+<li><p>QImage类提供了一个独立于硬件的图像表示，允许开发者直接访问像素数据，并且该类可以用作绘图设备。</p>
+</li>
+<li><p>因为QImage是QPaintDevice的子类，所以可以使用QPainter直接在QImage上绘图。在QImage上使用QPainter时，可在当前GUI线程之外的线程中执行绘制操作。</p>
+</li>
+<li><p>QImage类支持由Format enum描述的几种图像格式。包括：单色、8位、32位和字母混合的图像。</p>
+</li>
+<li><p>QImage提供了一组函数，可用于获取图像的各种信息。还有几个函数可以实现图像的转换。</p>
+</li>
+<li><p>QImage对象可以通过值传递，因为QImage类使用隐式数据共享。QImage对象也可以流化和比较。</p>
+</li>
+<li><p>注意：不支持在<code>QImage::Format_Indexed8</code>格式的QImage上绘图。</p>
+</li>
+</ul>
+<h4 id="2-2-使用QImage读取图像文件"><a href="#2-2-使用QImage读取图像文件" class="headerlink" title="2.2 使用QImage读取图像文件"></a>2.2 使用QImage读取图像文件</h4><ul>
+<li><p>QImage提供了三种加载图像文件的方法：</p>
+</li>
+<li><p>方法一：可以在构造QImage对象时加载图像文件。</p>
+</li>
+<li><p>方法二：使用<code>load()</code>或<code>loadFromData()</code>函数加载图像文件。</p>
+</li>
+<li><p>方法三：QImage提供了静态<code>fromData()</code>函数，从给定的数据构造QImage对象。</p>
+</li>
+<li><p>注：加载图像文件时，图像文件的名称可以是磁盘上的实际文件路径，也可以引用应用程序的资源文件。</p>
+</li>
+</ul>
+<h4 id="2-3-使用QImage进行图像写入"><a href="#2-3-使用QImage进行图像写入" class="headerlink" title="2.3 使用QImage进行图像写入"></a>2.3 使用QImage进行图像写入</h4><ul>
+<li><p>使用<code>save()</code>函数来保存QImage对象。</p>
+</li>
+<li><p>QImage支持的文件格式可以通过<code>QImageReader::supportedImageFormats()</code>和<code>QImageWriter::supportedImageFormats()</code>函数获得。新的文件格式可以作为插件添加。默认情况下Qt支持以下图片格式：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">格式</th>
+<th align="center">描述</th>
+<th align="center">Qt支持的操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">BMP</td>
+<td align="center">Windows位图</td>
+<td align="center">读&#x2F;写</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">GIF</td>
+<td align="center">Graphic Interchange Format</td>
+<td align="center">读</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">JPG</td>
+<td align="center">Joint Photographic Experts Group</td>
+<td align="center">读&#x2F;写</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">JPEG</td>
+<td align="center">Joint Photographic Experts Group</td>
+<td align="center">读&#x2F;写</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">PNG</td>
+<td align="center">可移动的网络图片</td>
+<td align="center">读</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">PBM</td>
+<td align="center">可移动的位图</td>
+<td align="center">读</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">PGM</td>
+<td align="center">Portable Graymap</td>
+<td align="center">读</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">PPM</td>
+<td align="center">Portable Pixmap</td>
+<td align="center">读&#x2F;写</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">XBM</td>
+<td align="center">X11 位图</td>
+<td align="center">读&#x2F;写</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">XPM</td>
+<td align="center">X11Pixmap</td>
+<td align="center">读&#x2F;写</td>
+</tr>
+</tbody></table>
+<h4 id="2-4-获取图像信息"><a href="#2-4-获取图像信息" class="headerlink" title="2.4 获取图像信息"></a>2.4 获取图像信息</h4><h5 id="2-4-1-获取Geometry信息"><a href="#2-4-1-获取Geometry信息" class="headerlink" title="2.4.1 获取Geometry信息"></a>2.4.1 获取Geometry信息</h5><ul>
+<li><code>size()、width()、height()、dotsPerMeterX()和dotsPerMeterY()</code>函数提供关于图像大小和宽高比的信息</li>
+<li><code>rect()</code>函数返回图像的外围矩形。</li>
+<li><code>valid()</code>函数检测一个给定的坐标对是否在这个矩形内。</li>
+<li><code>offset()</code>函数返回图像相对于其他图像定位时的偏移像素数，也可以使用setOffset()函数对其进行操作。</li>
+</ul>
+<h5 id="2-4-2-获取颜色信息"><a href="#2-4-2-获取颜色信息" class="headerlink" title="2.4.2 获取颜色信息"></a>2.4.2 获取颜色信息</h5><ul>
+<li>可以通过将像素坐标传递给<code>pixel()</code>函数来检索像素的颜色。<code>pixel()</code>函数的作用是：以QRgb值形式返回与图像格式无关的颜色。</li>
+<li>对于单色和8位图像，<code>colorCount()</code>和<code>colorTable()</code>函数提供了用于存储图像数据的颜色组件信息：colorTable()函数返回图像的颜色表。如果要获取单个条目，需使用<code>pixelIndex()</code>函数来检索给定坐标对的像素索引，然后使用<code>color()</code>函数来检索颜色。（注意，如果手动创建一个8位图像，还必须在图像上设置一个有效的颜色表）。</li>
+<li><code>hasalphchannel()</code>函数检测图像格式是否遵守alpha通道。</li>
+<li><code>allGray()和isGrayscale()</code>函数检测图像颜色是否都是灰色。</li>
+</ul>
+<h5 id="2-4-3-获取文本信息"><a href="#2-4-3-获取文本信息" class="headerlink" title="2.4.3 获取文本信息"></a>2.4.3 获取文本信息</h5><ul>
+<li><code>text()</code>函数的作用是：返回与给定文本键相关联的图像文本。可以使用<code>textKeys()</code>函数检索图像的文本键。使用<code>setText()</code>函数来修改图像的文本。</li>
+</ul>
+<h5 id="2-4-4-获取图像底层信息"><a href="#2-4-4-获取图像底层信息" class="headerlink" title="2.4.4 获取图像底层信息"></a>2.4.4 获取图像底层信息</h5><ul>
+<li><code>depth()</code>函数的作用是：返回图像的深度，支持的深度为1(单色)、8、16、24和32位。调用<code>bitPlaneCount()</code>函数可以知道图像使用了多少位。</li>
+<li><code>format()、bytesPerLine()和sizeInBytes()</code>函数提供关于存储在图像中的数据的低级信息。bytesPerLine()函数返回每个图像扫描行的字节。<code>sizeInBytes()</code>函数返回以字节为单位的图像数据大小。<code>cacheKey()</code>函数返回一个唯一标识QImage对象内容的数字。</li>
+</ul>
+<h4 id="2-5-操作图像像素"><a href="#2-5-操作图像像素" class="headerlink" title="2.5 操作图像像素"></a>2.5 操作图像像素</h4><p> 用于操作图像像素的函数依赖于图像格式。原因是单色和8位图像是基于索引的，使用颜色查找表。而32位图像直接存储ARGB值。</p>
+<p>（1）对于32位图像，可以使用<code>setPixel()</code>函数将给定坐标下像素的颜色更改为ARGB四联体指定的任何颜色。要生成一个合适的QRgb值，可以使用QRgb()(在给定的RGB值中添加一个默认alpha组件，即创建一个不透明的颜色)或<code>qRgba()</code>函数。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(<span class="number">3</span>,<span class="number">3</span>,QImage::Format_RGB32)</span></span>;</span><br><span class="line">QRgb value;</span><br><span class="line"></span><br><span class="line">value = <span class="built_in">qRgb</span>(<span class="number">189</span>,<span class="number">149</span>,<span class="number">39</span>);</span><br><span class="line">image.<span class="built_in">setPixmel</span>(<span class="number">1</span>,<span class="number">1</span>,value);</span><br></pre></td></tr></table></figure>
+
+<p>（2）对于8位和单色图像，像素值只是图像颜色表中的一个索引。因此，<code>setPixel()</code>函数只能从图像的color表中将给定坐标处的像素颜色更改为预定义的颜色，即只能更改像素的索引值。若要更改或向图像的颜色表添加颜色，需使用<code>setColor()</code>函数。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(<span class="number">3</span>,<span class="number">3</span>,QImage::Format_Indexed8)</span></span>;</span><br><span class="line">QRgb value;</span><br><span class="line"></span><br><span class="line">value = <span class="built_in">qRgb</span>(<span class="number">122</span>,<span class="number">163</span>,<span class="number">39</span>);</span><br><span class="line">image.<span class="built_in">setColor</span>(<span class="number">0</span>,value);</span><br></pre></td></tr></table></figure>
+
+<p> 对于每个颜色通道超过8位的图像。可以使用<code>setPixelColor()和pixelColor()</code>方法设置和获取QColor值。</p>
+<h4 id="2-6-图像格式"><a href="#2-6-图像格式" class="headerlink" title="2.6 图像格式"></a>2.6 图像格式</h4><p> 存储在QImage中的每个像素都由一个整数表示。整数的大小取决于格式。QImage支持由enum <code>QImage::Format</code>描述的几种图像格式。</p>
+<p> 单色图像使用1位索引存储到一个最多包含两种颜色的颜色表中。单色图像有两种不同的类型：大端(MSB优先)和小端(LSB优先)位顺序。</p>
+<p> 8位图像使用8位索引存储到颜色表中，即每个像素有一个字节。color表是一个QVector， QRgb类型定义相当于一个无符号int，包含格式0xAARRGGBB上的ARGB四联符。</p>
+<p> 32位图像没有颜色表；相反，每个像素包含一个QRgb值。有三种不同类型的32位映像分别存储RGB(即0xffRRGGBB)、ARGB和预乘ARGB值。在预乘格式中，红、绿、蓝通道乘以alpha分量除以255。</p>
+<p> 可以使用<code>format()</code>函数检索图像的格式。使用<code>convertToFormat()</code>函数将图像转换为另一种格式。<code>allGray()</code>和<code>isGrayscale()</code>函数检测是否可以安全地将彩色图像转换为灰度图像。</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">格式</th>
+<th align="center">Value</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">QImage::Format_Invalid</td>
+<td align="center">0</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">QImage::Format_Mono</td>
+<td align="center">1</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">QImage::Format_MonoLSB</td>
+<td align="center">2</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">QImage::Format_Indexed8</td>
+<td align="center">3</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">QImage::Format_RGB32</td>
+<td align="center">4</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">QImage::Format_ARGB32</td>
+<td align="center">5</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">QImage::Format_ARGB32_Premultiplied</td>
+<td align="center">6</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">QImage::Format_RGB16</td>
+<td align="center">7</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">QImage::Format_ARGB8565_Premultiplied</td>
+<td align="center">8</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">QImage::Format_RGB666</td>
+<td align="center">9</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">QImage::Format_ARGB6666_Premultiplied</td>
+<td align="center">10</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">QImage::Format_RGB555</td>
+<td align="center">11</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">QImage::Format_ARGB8555_Premultiplied</td>
+<td align="center">12</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">QImage::Format_RGB888</td>
+<td align="center">13</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">QImage::Format_RGB444</td>
+<td align="center">14</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">16</td>
+<td align="center">QImage::Format_ARGB4444_Premultiplied</td>
+<td align="center">15</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="center">QImage::Format_RGBX8888</td>
+<td align="center">16</td>
+<td align="center">Qt5.2</td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="center">QImage::Format_RGBA8888</td>
+<td align="center">17</td>
+<td align="center">Qt5.2</td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="center">QImage::Format_RGBA8888_Premultiplied</td>
+<td align="center">18</td>
+<td align="center">Qt5.2</td>
+</tr>
+<tr>
+<td align="center">20</td>
+<td align="center">QImage::Format_BGR30</td>
+<td align="center">19</td>
+<td align="center">Qt5.4</td>
+</tr>
+<tr>
+<td align="center">21</td>
+<td align="center">QImage::Format_A2BGR30_Premultiplied</td>
+<td align="center">20</td>
+<td align="center">Qt5.4</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center">QImage::Format_RGB30</td>
+<td align="center">21</td>
+<td align="center">Qt5.4</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">QImage::Format_A2RGB30_Premultiplied</td>
+<td align="center">22</td>
+<td align="center">Qt5.4</td>
+</tr>
+<tr>
+<td align="center">24</td>
+<td align="center">QImage::Format_Alpha8</td>
+<td align="center">23</td>
+<td align="center">Qt5.5</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">QImage::Format_Grayscale8</td>
+<td align="center">24</td>
+<td align="center">Qt5.5</td>
+</tr>
+<tr>
+<td align="center">26</td>
+<td align="center">QImage::Format_Grayscale16</td>
+<td align="center">28</td>
+<td align="center">Qt5.13</td>
+</tr>
+<tr>
+<td align="center">27</td>
+<td align="center">QImage::Format_RGBX64</td>
+<td align="center">25</td>
+<td align="center">Qt5.12</td>
+</tr>
+<tr>
+<td align="center">28</td>
+<td align="center">QImage::Format_BGR888</td>
+<td align="center">29</td>
+<td align="center">Qt5.14</td>
+</tr>
+<tr>
+<td align="center">29</td>
+<td align="center">QImage::Format_RGBA64</td>
+<td align="center">26</td>
+<td align="center">Qt 5.12</td>
+</tr>
+<tr>
+<td align="center">30</td>
+<td align="center">QImage::Format_RGBA64_Premultiplied</td>
+<td align="center">27</td>
+<td align="center">Qt 5.12</td>
+</tr>
+</tbody></table>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">QImage</span>::Format</span><br><span class="line">QImage::Format_Invalid              	<span class="comment">//图像无效</span></span><br><span class="line">QImage::Format_Mono                 	<span class="comment">//存储使用1位每像素的图像，字节填充最重要位第一</span></span><br><span class="line">QImage::Format_MonoLSB 					<span class="comment">//存储使用1位每像素的图像，字节填充不显著位第一</span></span><br><span class="line">QImage::Format_Indexed8 				<span class="comment">//图像存储使用8位指标转化成Colormap</span></span><br><span class="line"></span><br><span class="line">QImage::Format_Grayscale8 				<span class="comment">//图像是使用一个8位灰度格式存储</span></span><br><span class="line">QImage::Format_Grayscale16				<span class="comment">//图像是使用一个16位灰度格式存储</span></span><br><span class="line"></span><br><span class="line">QImage::Format_RGB16 					<span class="comment">//图像存储使用5-6-5 16位RGB格式</span></span><br><span class="line">QImage::Format_RGB30 					<span class="comment">//存储使用32位RGB格式（x-10-10-10）的的图像</span></span><br><span class="line">QImage::Format_RGB32 					<span class="comment">//存储使用32位RGB格式的图像(0xffrrggbb)</span></span><br><span class="line">QImage::Format_RGB444 					<span class="comment">//图像存储使用16位RGB格式（4-4-4）未使用的位始终为零</span></span><br><span class="line">QImage::Format_RGB555 					<span class="comment">//图像存储使用16位RGB格式（5-5-5），位置用的最重要的始终为零</span></span><br><span class="line">QImage::Format_RGB666 					<span class="comment">//图像存储使用6-6-6 24位RGB格式，未使用的最重要的位总是为零</span></span><br><span class="line">QImage::Format_RGB888 					<span class="comment">//图像存储使用8-8-8 24位RGB格式</span></span><br><span class="line"></span><br><span class="line">QImage::Format_RGBA8888 				<span class="comment">//存储使用32位字节命令RGBA格式（8-8-8-8）的的图像</span></span><br><span class="line">QImage::Format_RGBA8888_Premultiplied 	<span class="comment">//图像存储使用一个自左乘32位字节命令RGBA格式8-8-8-8</span></span><br><span class="line">QImage::Format_RGBX8888 				<span class="comment">//图像存储使用32位字节命令RGB（x）格式8-8-8-8</span></span><br><span class="line"></span><br><span class="line">QImage::Format_ARGB32 					<span class="comment">//存储使用32为ARGB格式的图像(0xaarrggbb)</span></span><br><span class="line">QImage::Format_ARGB32_Premultiplied 	<span class="comment">//图像存储使用一个自左乘32位ARGB格式</span></span><br><span class="line">QImage::Format_ARGB4444_Premultiplied 	<span class="comment">//图像存储使用一个自左乘16位ARGB格式4-4-4-4</span></span><br><span class="line">QImage::Format_ARGB6666_Premultiplied 	<span class="comment">//图像存储使用一个自左乘24位ARGB格式6-6-6-6</span></span><br><span class="line">QImage::Format_ARGB8555_Premultiplied 	<span class="comment">//图像存储使用一个自左乘24位ARGB格式8-5-5-5</span></span><br><span class="line">QImage::Format_ARGB8565_Premultiplied 	<span class="comment">//图像存储使用一个自左乘24位ARGB格式8-5-6-5</span></span><br><span class="line"></span><br><span class="line">QImage::Format_BGR30 					<span class="comment">//存储使用32位BGR格式（x-10-10-10）的的图像</span></span><br><span class="line"></span><br><span class="line">QImage::Format_A2BGR30_Premultiplied 	<span class="comment">//图像存储使用32位自左乘abgr格式2-10-10-10</span></span><br><span class="line"></span><br><span class="line">QImage::Format_A2RGB30_Premultiplied 	<span class="comment">//图像存储使用2-10-10-10 32位自左乘ARGB格式</span></span><br><span class="line"></span><br><span class="line">QImage::Format_Alpha8 					<span class="comment">//该图像是使用一个8位的阿尔法格式存储</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-6-1-RGB转BGR"><a href="#2-6-1-RGB转BGR" class="headerlink" title="2.6.1 RGB转BGR"></a>2.6.1 RGB转BGR</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(fileName)</span></span>;</span><br><span class="line">QImage bgr = image.<span class="built_in">rgbSwapped</span>();</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-6-2-彩色图转灰度图"><a href="#2-6-2-彩色图转灰度图" class="headerlink" title="2.6.2 彩色图转灰度图"></a>2.6.2 彩色图转灰度图</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(fileName)</span></span>;</span><br><span class="line">QImage gray = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale8);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-7-显示和保存图像"><a href="#2-7-显示和保存图像" class="headerlink" title="2.7 显示和保存图像"></a>2.7 显示和保存图像</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QImage <span class="title">image</span><span class="params">(<span class="string">&quot;C:\\Users\\***\\Desktop\\test.png&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;image.format();</span><br><span class="line">QImage gray_8 = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale8);</span><br><span class="line">QImage gray_16 = image.<span class="built_in">convertToFormat</span>(QImage::Format_Grayscale16);</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_8.format();</span><br><span class="line">gray_8.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray_8.png&quot;</span>);</span><br><span class="line">gray_16.<span class="built_in">save</span>(<span class="string">&quot;C:\\Users\\***\\Desktop\\test_gray_16.png&quot;</span>);</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_8.<span class="built_in">depth</span>();</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;gray_16.<span class="built_in">depth</span>();</span><br><span class="line">ui-&gt;imagelabel2-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(image));</span><br><span class="line">ui-&gt;imagelabel-&gt;<span class="built_in">setPixmap</span>(QPixmap::<span class="built_in">fromImage</span>(gray_16));</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20220619155707144.png" alt="Qt读取图片的N种方式/image-20220619155707144"></p>
+<h3 id="3-QPixmap类"><a href="#3-QPixmap类" class="headerlink" title="3.QPixmap类"></a>3.QPixmap类</h3><h4 id="3-1-QPixmap简介"><a href="#3-1-QPixmap简介" class="headerlink" title="3.1 QPixmap简介"></a>3.1 QPixmap简介</h4><ul>
+<li><p>QPixmap类是一个屏幕外的图像表示，可以用作绘图设备。</p>
+</li>
+<li><p>使用QLabel或QAbstractButton的一个子类(如QPushButton和QToolButton)可以很容易地在屏幕上显示QPixmap。QLabel有一个pixmap属性，而QAbstractButton有一个icon属性。</p>
+</li>
+<li><p>QPixmap对象可以通过值传递，因为QPixmap类使用隐式数据共享。</p>
+</li>
+<li><p>注意，pixmap中的像素数据是内部的，由底层窗口系统管理。因为QPixmapQPaintDevice子类，所以可以使用QPainter直接在pixmap上绘图。像素只能通过QPainter函数或将QPixmap转换为QImage来访问。不过，fill()函数可用来初始化给定颜色的整个像素映射。</p>
+</li>
+<li><p>可以在QImage和QPixmap之间转换。通常，在将QImage对象转换为要显示在屏幕上的QPixmap之前，QImage类用于加载图像文件，也可以操作图像数据。另外，如果不需要操作，可以将图像文件直接加载到QPixmap中。</p>
+</li>
+<li><p>QPixmap提供了一组函数，可用于获取有关pixmap的各种信息。此外，还有几个函数支持pixmap的转换。</p>
+</li>
+</ul>
+<h4 id="3-2-使用QPixmap读取图像文件"><a href="#3-2-使用QPixmap读取图像文件" class="headerlink" title="3.2 使用QPixmap读取图像文件"></a>3.2 使用QPixmap读取图像文件</h4><ul>
+<li>QPixmap提供了几种读取图像文件的方法：可以在构建QPixmap对象时加载文件，或者使用load()或<code>loadFromData()</code>函数加载文件。加载图像时，文件名可以引用磁盘上的实际文件，也可以引用应用程序的图像资源。</li>
+</ul>
+<h4 id="3-3-使用QPixmap进行图像数据写入"><a href="#3-3-使用QPixmap进行图像数据写入" class="headerlink" title="3.3 使用QPixmap进行图像数据写入"></a>3.3 使用QPixmap进行图像数据写入</h4><ul>
+<li>与QImage一样，调用<code>save()</code>函数来保存QPixmap对象。</li>
+</ul>
+<h4 id="3-4-获取图像信息"><a href="#3-4-获取图像信息" class="headerlink" title="3.4 获取图像信息"></a>3.4 获取图像信息</h4><h5 id="3-4-1-获取Geometry信息"><a href="#3-4-1-获取Geometry信息" class="headerlink" title="3.4.1 获取Geometry信息"></a>3.4.1 获取Geometry信息</h5><ul>
+<li><code>size()， width()和height()</code>函数提供了关于位图大小的信息。<br><code>rect()</code>函数的作用是：返回图像的外围矩形。</li>
+</ul>
+<h5 id="3-4-2-获取Alpha信息"><a href="#3-4-2-获取Alpha信息" class="headerlink" title="3.4.2 获取Alpha信息"></a>3.4.2 获取Alpha信息</h5><ul>
+<li>如果位图的格式支持alpha通道，则<code>hasAlphaChannel()</code>函数返回true，否则返回false。<br><code>hasAlpha()， setMask()和mask()</code>函数是低版本Qt遗留下来的，不应该使用。因为它们可能比较慢。高版本的Qt中有高性能的替代函数：<code>createHeuristicMask()</code>函数为该位图创建并返回1-bpp启发式掩码(即QBitmap)。它的工作原理是：从一个角落选择一种颜色，然后从所有的边缘开始去除该颜色的像素。<code>createMaskFromColor()</code>函数创建并返回基于给定颜色的位图的遮罩(即QBitmap)。</li>
+</ul>
+<h5 id="3-4-3-获取底层信息"><a href="#3-4-3-获取底层信息" class="headerlink" title="3.4.3 获取底层信息"></a>3.4.3 获取底层信息</h5><ul>
+<li><code>depth()</code>函数的作用是：返回位图的深度。</li>
+<li><code>defaultDepth()</code>函数返回默认的深度，即应用程序在给定屏幕上使用的深度。</li>
+<li><code>cacheKey()</code>函数返回一个唯一标识QPixmap对象内容的数字。</li>
+</ul>
+<h4 id="3-5-QPixmap转换"><a href="#3-5-QPixmap转换" class="headerlink" title="3.5 QPixmap转换"></a>3.5 QPixmap转换</h4><ul>
+<li>可以使用<code>toImage()</code>函数将QPixmap对象转换为QImage。可以使用<code>fromImage()</code>将QImage转换为QPixmap。如果这个操作比较占用资源，可以使用<code>QBitmap::fromImage()</code>。</li>
+</ul>
+<h4 id="3-6-QPixmap变换"><a href="#3-6-QPixmap变换" class="headerlink" title="3.6 QPixmap变换"></a>3.6 QPixmap变换</h4><ul>
+<li><p><code>scale()、scaledToWidth()和scaledToHeight()</code>函数返回按比例缩放的像素映射副本，而<code>copy()</code>函数创建的QPixmap是原始像素映射的普通副本。</p>
+</li>
+<li><p><code>transform()</code>函数返回，用给定的变换矩阵和变换模式变换后的像素图的副本：调整变换矩阵以补偿不需要的平移，即<code>transform()</code>返回包含原像素图所有变换点的最小像素图。函数的作用是：返回用于转换位图的实际矩阵。</p>
+</li>
+</ul>
+<h3 id="4-QBitmap类"><a href="#4-QBitmap类" class="headerlink" title="4.QBitmap类"></a>4.QBitmap类</h3><ul>
+<li><p>QBitmap类是一个单色的屏幕外绘制设备，主要用于创建自定义QCursor和QBrush对象，构造QRegion对象，以及设置pixmap和QWidget的遮罩。</p>
+</li>
+<li><p>除了深度为0的空对象外，QBitmap是一个确保深度为1的QPixmap子类。如果将深度大于1的位图分配给位图，位图将自动抖动。</p>
+</li>
+<li><p>QBitmap类提供了<code>transform()</code>函数，该函数返回位图的转换副本；使用QTransform参数来平移、缩放、剪切和旋转位图。此外，QBitmap提供静态<code>fromData()</code>函数，该函数返回由给定uchar数据构造的位图，而静态<code>fromImage()</code>函数返回QImage对象的转换副本。</p>
+</li>
+</ul>
+<h3 id="5-QPicture类"><a href="#5-QPicture类" class="headerlink" title="5.QPicture类"></a>5.QPicture类</h3><ul>
+<li><p>QPicture可以在不同的设备上显示 (例如svg、pdf、ps、打印机和屏幕)，这些看起来都是一样的。</p>
+</li>
+<li><p>注：每次对<code>QPainter:begin()</code>函数调用都会重置painter命令列表。</p>
+</li>
+<li><p>注：也可以使用<code>paly()</code>绘制图片。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>峡谷杨爹
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaguyangdie.github.io/2023/02/26/Qt%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E7%9A%84N%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="Qt读取图片的N种方式">https://xiaguyangdie.github.io/2023/02/26/Qt读取图片的N种方式/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Qt/" rel="tag"><i class="fa fa-tag"></i> Qt</a>
+              <a href="/tags/%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C/" rel="tag"><i class="fa fa-tag"></i> 图片操作</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/26/Qt%E6%B7%BB%E5%8A%A0%E8%BD%AF%E4%BB%B6%E5%9B%BE%E6%A0%87/" rel="prev" title="Qt添加软件图标">
+      <i class="fa fa-chevron-left"></i> Qt添加软件图标
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/26/Redis/" rel="next" title="Redis">
+      Redis <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-text">1.简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-QImage%E7%B1%BB"><span class="nav-text">2.QImage类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-QImage%E7%AE%80%E4%BB%8B"><span class="nav-text">2.1 QImage简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BD%BF%E7%94%A8QImage%E8%AF%BB%E5%8F%96%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6"><span class="nav-text">2.2 使用QImage读取图像文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E4%BD%BF%E7%94%A8QImage%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%86%99%E5%85%A5"><span class="nav-text">2.3 使用QImage进行图像写入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E8%8E%B7%E5%8F%96%E5%9B%BE%E5%83%8F%E4%BF%A1%E6%81%AF"><span class="nav-text">2.4 获取图像信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-1-%E8%8E%B7%E5%8F%96Geometry%E4%BF%A1%E6%81%AF"><span class="nav-text">2.4.1 获取Geometry信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-2-%E8%8E%B7%E5%8F%96%E9%A2%9C%E8%89%B2%E4%BF%A1%E6%81%AF"><span class="nav-text">2.4.2 获取颜色信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-3-%E8%8E%B7%E5%8F%96%E6%96%87%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-text">2.4.3 获取文本信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-4-%E8%8E%B7%E5%8F%96%E5%9B%BE%E5%83%8F%E5%BA%95%E5%B1%82%E4%BF%A1%E6%81%AF"><span class="nav-text">2.4.4 获取图像底层信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E6%93%8D%E4%BD%9C%E5%9B%BE%E5%83%8F%E5%83%8F%E7%B4%A0"><span class="nav-text">2.5 操作图像像素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E5%9B%BE%E5%83%8F%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.6 图像格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-1-RGB%E8%BD%ACBGR"><span class="nav-text">2.6.1 RGB转BGR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-2-%E5%BD%A9%E8%89%B2%E5%9B%BE%E8%BD%AC%E7%81%B0%E5%BA%A6%E5%9B%BE"><span class="nav-text">2.6.2 彩色图转灰度图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-%E6%98%BE%E7%A4%BA%E5%92%8C%E4%BF%9D%E5%AD%98%E5%9B%BE%E5%83%8F"><span class="nav-text">2.7 显示和保存图像</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-QPixmap%E7%B1%BB"><span class="nav-text">3.QPixmap类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-QPixmap%E7%AE%80%E4%BB%8B"><span class="nav-text">3.1 QPixmap简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E4%BD%BF%E7%94%A8QPixmap%E8%AF%BB%E5%8F%96%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6"><span class="nav-text">3.2 使用QPixmap读取图像文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E4%BD%BF%E7%94%A8QPixmap%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5"><span class="nav-text">3.3 使用QPixmap进行图像数据写入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E8%8E%B7%E5%8F%96%E5%9B%BE%E5%83%8F%E4%BF%A1%E6%81%AF"><span class="nav-text">3.4 获取图像信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-1-%E8%8E%B7%E5%8F%96Geometry%E4%BF%A1%E6%81%AF"><span class="nav-text">3.4.1 获取Geometry信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-2-%E8%8E%B7%E5%8F%96Alpha%E4%BF%A1%E6%81%AF"><span class="nav-text">3.4.2 获取Alpha信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-3-%E8%8E%B7%E5%8F%96%E5%BA%95%E5%B1%82%E4%BF%A1%E6%81%AF"><span class="nav-text">3.4.3 获取底层信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-QPixmap%E8%BD%AC%E6%8D%A2"><span class="nav-text">3.5 QPixmap转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-QPixmap%E5%8F%98%E6%8D%A2"><span class="nav-text">3.6 QPixmap变换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-QBitmap%E7%B1%BB"><span class="nav-text">4.QBitmap类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-QPicture%E7%B1%BB"><span class="nav-text">5.QPicture类</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="峡谷杨爹"
+      src="/images/%E5%8D%9A%E5%AE%A2.webp">
+  <p class="site-author-name" itemprop="name">峡谷杨爹</p>
+  <div class="site-description" itemprop="description">write less, do more</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaguyangdie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaguyangdie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:424793597@qq.com" title="E-Mail → mailto:424793597@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+	</div>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=7450004106&auto=0&height=430"></iframe>  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">峡谷杨爹</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">3.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">46:18</span>
+</div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz","app_key":"yDHjFefMRYGX7YloQFcPnw78","server_url":null,"security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'jc38mXtIY9GP4HNtOg9qT7Fo-gzGzoHsz',
+      appKey     : 'yDHjFefMRYGX7YloQFcPnw78',
+      placeholder: "说说",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
