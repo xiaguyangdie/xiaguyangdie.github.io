@@ -29,11 +29,25 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="jacoco+arthas">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713010439506.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713012448690.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250712231926101.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713004332035.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713004806252.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713190917458.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713190937875.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713170143089.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713171338532.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713171951275.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713163326366.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713231950847.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713233500215.png">
 <meta property="article:published_time" content="2025-07-12T04:17:06.353Z">
-<meta property="article:modified_time" content="2025-07-12T04:17:18.626Z">
+<meta property="article:modified_time" content="2025-07-13T15:52:23.100Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713010439506.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/">
 
@@ -217,10 +231,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-07-12 12:17:06 / 修改时间：12:17:18" itemprop="dateCreated datePublished" datetime="2025-07-12T12:17:06+08:00">2025-07-12</time>
+              <time title="创建时间：2025-07-12 12:17:06" itemprop="dateCreated datePublished" datetime="2025-07-12T12:17:06+08:00">2025-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-07-13 23:52:23" itemprop="dateModified" datetime="2025-07-13T23:52:23+08:00">2025-07-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -258,14 +278,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>8.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>8 分钟</span>
             </span>
             <div class="post-description">jacoco+arthas</div>
 
@@ -278,7 +298,526 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="1-jacoco"><a href="#1-jacoco" class="headerlink" title="1.jacoco"></a>1.jacoco</h1><h1 id="2-arthas"><a href="#2-arthas" class="headerlink" title="2.arthas"></a>2.arthas</h1><p>定位和诊断运行的java项目代码</p>
+<h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><blockquote>
+<p>卸载：直接删除2个文件夹：.arthas和logs</p>
+</blockquote>
+<blockquote>
+<p>linux</p>
+</blockquote>
+<ul>
+<li><p>1.在线安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mkdir -p arthas</span></span><br><span class="line"><span class="comment"># cd arthas</span></span><br><span class="line">curl -O https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line"><span class="comment"># 启动arthas(前首次执行即自动安装，后续启动直接复用)</span></span><br><span class="line"><span class="comment"># 前提：必须要有java进程在运行</span></span><br><span class="line">java -jar arthas-boot.jar</span><br><span class="line"><span class="comment"># 默认安装目录 arthas home: /root/.arthas/lib/版本号/arthas</span></span><br><span class="line"><span class="comment"># 日志和缓存目录 arthas home: /root/logs</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# cd arthas/</span><br><span class="line">[root@master arthas]# curl -O https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line"><span class="meta prompt_">  % </span><span class="language-bash">Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100  141k  100  141k    0     0  10987      0  0:00:13  0:00:13 --:--:-- 22609</span><br><span class="line">[root@master arthas]# java -jar arthas-boot.jar</span><br><span class="line">[INFO] JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64/jre</span><br><span class="line">[INFO] arthas-boot version: 4.0.5</span><br><span class="line">[INFO] Can not find java process. Try to run `jps` command lists the instrumented Java HotSpot VMs on the target system.</span><br><span class="line">Please select an available pid.</span><br><span class="line">[root@master arthas]# java -jar arthas-boot.jar</span><br><span class="line">[INFO] JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64/jre</span><br><span class="line">[INFO] arthas-boot version: 4.0.5</span><br><span class="line">[INFO] Found existing java process, please choose one and input the serial number of the process, eg : 1. Then hit ENTER.</span><br><span class="line">* [1]: 3375 xscjcx-0.0.1-SNAPSHOT.jar</span><br><span class="line">1</span><br><span class="line">[INFO] Start download arthas from remote server: https://arthas.aliyun.com/download/4.0.5?mirror=aliyun</span><br><span class="line">[INFO] File size: 13.75 MB, downloaded size: 3.36 MB, downloading ...</span><br><span class="line">[INFO] File size: 13.75 MB, downloaded size: 8.09 MB, downloading ...</span><br><span class="line">[INFO] Download arthas success.</span><br><span class="line">[INFO] arthas home: /root/.arthas/lib/4.0.5/arthas</span><br><span class="line">[INFO] Try to attach process 3375</span><br><span class="line">Picked up JAVA_TOOL_OPTIONS: </span><br><span class="line">[INFO] Attach process 3375 success.</span><br><span class="line">[INFO] arthas-client connect 127.0.0.1 3658</span><br><span class="line">  ,---.  ,------. ,--------.,--.  ,--.  ,---.   ,---.                           </span><br><span class="line"> /  O  \ |  .--. &#x27;&#x27;--.  .--&#x27;|  &#x27;--&#x27;  | /  O  \ &#x27;   .-&#x27;                          </span><br><span class="line">|  .-.  ||  &#x27;--&#x27;.&#x27;   |  |   |  .--.  ||  .-.  |`.  `-.                          </span><br><span class="line">|  | |  ||  |\  \    |  |   |  |  |  ||  | |  |.-&#x27;    |                         </span><br><span class="line">`--&#x27; `--&#x27;`--&#x27; &#x27;--&#x27;   `--&#x27;   `--&#x27;  `--&#x27;`--&#x27; `--&#x27;`-----&#x27;                          </span><br><span class="line"></span><br><span class="line">wiki        https://arthas.aliyun.com/doc                                       </span><br><span class="line">tutorials   https://arthas.aliyun.com/doc/arthas-tutorials.html                 </span><br><span class="line">version     4.0.5                                                               </span><br><span class="line">main_class  xscjcx-0.0.1-SNAPSHOT.jar                                           </span><br><span class="line">pid         3375                                                                </span><br><span class="line">start_time  2025-07-13 00:59:33.582                                             </span><br><span class="line">currnt_time 2025-07-13 01:01:14.012                                             </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">[arthas@3375]$ </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250713010439506.png" alt="image-20250713010439506"></p>
+</li>
+<li><p>2.离线安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载地址</span></span><br><span class="line">https://arthas.aliyun.com/download/latest_version?mirror=aliyun</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压  -d /root/arthas 解压存放路径</span></span><br><span class="line">unzip -d /root/arthas arthas-packaging-4.0.5-bin.zip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 前提：必须要有java进程在运行</span></span><br><span class="line">java -jar arthas-boot.jar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认安装目录 arthas home: /root/.arthas/lib/版本号/arthas</span></span><br><span class="line"><span class="comment"># 日志和缓存目录 arthas home: /root/logs</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250713012448690.png" alt="image-20250713012448690"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@master arthas]<span class="comment"># java -jar arthas-boot.jar</span></span><br><span class="line">[INFO] JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64/jre</span><br><span class="line">[INFO] arthas-boot version: 4.0.5</span><br><span class="line">[INFO] Can not find java process. Try to run `jps` <span class="built_in">command</span> lists the instrumented Java HotSpot VMs on the target system.</span><br><span class="line">Please select an available pid.</span><br><span class="line">[root@master arthas]<span class="comment"># java -jar arthas-boot.jar</span></span><br><span class="line">[INFO] JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64/jre</span><br><span class="line">[INFO] arthas-boot version: 4.0.5</span><br><span class="line">[INFO] Found existing java process, please choose one and input the serial number of the process, eg : 1. Then hit ENTER.</span><br><span class="line">* [1]: 4374 xscjcx-0.0.1-SNAPSHOT.jar</span><br><span class="line">1</span><br><span class="line">[INFO] arthas home: /root/arthas</span><br><span class="line">[INFO] Try to attach process 4374</span><br><span class="line">Picked up JAVA_TOOL_OPTIONS: </span><br><span class="line">[INFO] Attach process 4374 success.</span><br><span class="line">[INFO] arthas-client connect 127.0.0.1 3658</span><br><span class="line">  ,---.  ,------. ,--------.,--.  ,--.  ,---.   ,---.                           </span><br><span class="line"> /  O  \ |  .--. <span class="string">&#x27;&#x27;</span>--.  .--<span class="string">&#x27;|  &#x27;</span>--<span class="string">&#x27;  | /  O  \ &#x27;</span>   .-<span class="string">&#x27;                          </span></span><br><span class="line"><span class="string">|  .-.  ||  &#x27;</span>--<span class="string">&#x27;.&#x27;</span>   |  |   |  .--.  ||  .-.  |`.  `-.                          </span><br><span class="line">|  | |  ||  |\  \    |  |   |  |  |  ||  | |  |.-<span class="string">&#x27;    |                         </span></span><br><span class="line"><span class="string">`--&#x27;</span> `--<span class="string">&#x27;`--&#x27;</span> <span class="string">&#x27;--&#x27;</span>   `--<span class="string">&#x27;   `--&#x27;</span>  `--<span class="string">&#x27;`--&#x27;</span> `--<span class="string">&#x27;`-----&#x27;</span>                          </span><br><span class="line"></span><br><span class="line">wiki        https://arthas.aliyun.com/doc                                       </span><br><span class="line">tutorials   https://arthas.aliyun.com/doc/arthas-tutorials.html                 </span><br><span class="line">version     4.0.5                                                               </span><br><span class="line">main_class  xscjcx-0.0.1-SNAPSHOT.jar                                           </span><br><span class="line">pid         4374                                                                </span><br><span class="line">start_time  2025-07-13 02:00:20.771                                             </span><br><span class="line">currnt_time 2025-07-13 02:01:26.703 </span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>WIndows</p>
+</blockquote>
+<ul>
+<li><p>1.在线安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载arthas-boot.jar</span></span><br><span class="line">curl -O https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line"><span class="comment"># 启动arthas(前首次执行即自动安装，后续启动直接复用)</span></span><br><span class="line"><span class="comment"># 前提：必须要有java进程在运行</span></span><br><span class="line">java -jar arthas-boot.jar</span><br><span class="line"><span class="comment"># 默认安装目录arthas home: C:\Users\用户目录\.arthas\lib\版本号\arthas</span></span><br><span class="line"><span class="comment"># 日志和缓存目录 C:\Users\用户目录\logs</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250712231926101.png" alt="image-20250712231926101"></p>
+<p><img src="image-20250713004332035.png" alt="image-20250713004332035"></p>
+<p><img src="image-20250713004806252.png" alt="image-20250713004806252"></p>
+</li>
+<li><p>2.离线安装</p>
+<p>同linux一样</p>
+</li>
+</ul>
+<h2 id="2-2-常用命令"><a href="#2-2-常用命令" class="headerlink" title="2.2 常用命令"></a>2.2 常用命令</h2><h3 id="2-2-1-trace"><a href="#2-2-1-trace" class="headerlink" title="2.2.1 trace"></a>2.2.1 trace</h3><blockquote>
+<p>trace命令用于追踪方法内部调用路径，并输出方法路径上每个节点的耗时情况</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trace class-pattern method-pattern</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‌<strong>class-pattern</strong>‌</td>
+<td>类名匹配表达式（支持通配符*）</td>
+<td><code>com.example.*Service</code></td>
+<td>定位特定类的方法调用‌</td>
+</tr>
+<tr>
+<td>‌<strong>method-pattern</strong>‌</td>
+<td>方法名匹配表达式</td>
+<td><code>getUser*</code></td>
+<td>匹配特定方法‌</td>
+</tr>
+<tr>
+<td>‌<strong>condition-express</strong>‌</td>
+<td>条件过滤表达式（OGNL）</td>
+<td><code>&#39;params!=null&#39;</code></td>
+<td>按条件过滤调用‌</td>
+</tr>
+<tr>
+<td>‌**-E**‌</td>
+<td>开启正则表达式匹配</td>
+<td><code>-E</code></td>
+<td>复杂匹配场景‌</td>
+</tr>
+<tr>
+<td>‌**-n <count>**‌</count></td>
+<td>限制执行次数（默认100）</td>
+<td><code>-n 5</code></td>
+<td>避免日志刷屏‌</td>
+</tr>
+<tr>
+<td>‌**#cost**‌</td>
+<td>方法执行耗时（毫秒）</td>
+<td><code>&#39;#cost&gt;100&#39;</code></td>
+<td>筛选慢调用‌</td>
+</tr>
+<tr>
+<td>‌**-m <num>**‌</num></td>
+<td>限制匹配类数量（默认50）</td>
+<td><code>-m 10</code></td>
+<td>控制匹配范围‌</td>
+</tr>
+</tbody></table>
+<p><img src="image-20250713190917458.png" alt="image-20250713190917458"></p>
+<p><img src="image-20250713190937875.png" alt="image-20250713190937875"></p>
+<h3 id="2-2-2-watch"><a href="#2-2-2-watch" class="headerlink" title="2.2.2 watch"></a>2.2.2 watch</h3><ul>
+<li>watch命令用于动态监控Java方法的执行情况，可以实时观测方法的‌<strong>入参、返回值、异常</strong>‌以及执行耗时等关键信息‌</li>
+<li>它支持通过OGNL表达式筛选数据<ul>
+<li><strong>params</strong>‌：方法参数数组，可通过<code>params</code>访问第一个参数‌</li>
+<li>‌<strong>returnObj</strong>‌：方法返回值（仅<code>s/f</code>事件点可用）‌</li>
+<li>‌<strong>throwExp</strong>‌：异常对象（仅<code>e/f</code>事件点可用）‌</li>
+<li>‌<strong>target</strong>‌：当前对象实例（this）‌</li>
+<li>‌**#cost**‌：方法执行耗时（毫秒）‌</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">watch class-pattern method-pattern <span class="string">&quot;&#123;params,target,returnobj&#125;&quot;</span> -x 2</span><br><span class="line">watch class-pattern method-pattern <span class="string">&quot;&#123;params,target,returnobj,#cost,throwExp&#125;&quot;</span> -x 2 -f</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‌<strong>class-pattern</strong>‌</td>
+<td>类名匹配表达式（支持通配符*）</td>
+</tr>
+<tr>
+<td>‌<strong>method-pattern</strong>‌</td>
+<td>方法名匹配表达式</td>
+</tr>
+<tr>
+<td>‌<strong>express</strong>‌</td>
+<td>观察表达式（默认<code>&#123;params, target, returnObj&#125;</code>）</td>
+</tr>
+<tr>
+<td>‌<strong>condition-express</strong>‌</td>
+<td>条件过滤表达式</td>
+</tr>
+<tr>
+<td>‌**-b**‌</td>
+<td>在方法调用前观察（仅能获取入参）</td>
+</tr>
+<tr>
+<td>‌**-e**‌</td>
+<td>在方法抛出异常后观察</td>
+</tr>
+<tr>
+<td>‌**-s**‌</td>
+<td>在方法正常返回后观察</td>
+</tr>
+<tr>
+<td>‌**-f**‌</td>
+<td>默认选项，在方法结束后观察（包括正常和异常）</td>
+</tr>
+<tr>
+<td>‌**-x <n>**‌</n></td>
+<td>指定输出结果的属性遍历深度（1-4）</td>
+</tr>
+<tr>
+<td>‌**-n <count>**‌</count></td>
+<td>限制观察次数</td>
+</tr>
+<tr>
+<td>‌**-E**‌</td>
+<td>开启正则表达式匹配</td>
+</tr>
+<tr>
+<td>‌**–exclude-class-pattern**‌</td>
+<td>排除特定类</td>
+</tr>
+<tr>
+<td>‌**-m <num>**‌</num></td>
+<td>限制匹配的类数量（默认50）</td>
+</tr>
+<tr>
+<td>‌**-v**‌</td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td>‌**#cost**‌</td>
+<td>内置变量，表示方法执行耗时（毫秒）</td>
+</tr>
+</tbody></table>
+<p><img src="image-20250713170143089.png" alt="image-20250713170143089"></p>
+<p><img src="image-20250713171338532.png" alt="image-20250713171338532"></p>
+<p><img src="image-20250713171951275.png" alt="image-20250713171951275"></p>
+<h3 id="2-2-3-monitor"><a href="#2-2-3-monitor" class="headerlink" title="2.2.3 monitor"></a>2.2.3 monitor</h3><blockquote>
+<p>用来监视一个时间段中指定方法的执行次数，成功次数，失败次数，耗时等信息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">monitor [参数] class-pattern method-pattern [condition-express]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数缩写</th>
+<th>完整参数</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-b</code></td>
+<td><code>--before</code></td>
+<td>开关</td>
+<td>false</td>
+<td>‌<strong>前置条件检查</strong>‌：在方法执行前计算条件表达式（默认在方法返回后计算）</td>
+</tr>
+<tr>
+<td><code>-c</code></td>
+<td><code>--cycle</code></td>
+<td>数值</td>
+<td>60</td>
+<td>‌<strong>监控周期</strong>‌：统计结果输出间隔（秒），建议生产环境≥10秒</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--exclude-class-pattern</code></td>
+<td>字符串</td>
+<td>无</td>
+<td>‌<strong>排除类</strong>‌：使用 <code>.</code> 或 <code>/</code> 分隔的排除类名模式</td>
+</tr>
+<tr>
+<td><code>-n</code></td>
+<td><code>--limits</code></td>
+<td>数值</td>
+<td>无</td>
+<td>‌<strong>调用阈值</strong>‌：仅统计执行次数超过该值的方法</td>
+</tr>
+<tr>
+<td><code>-m</code></td>
+<td><code>--maxMatch</code></td>
+<td>数值</td>
+<td>50</td>
+<td>‌<strong>类匹配上限</strong>‌：防止匹配过多类导致性能问题</td>
+</tr>
+<tr>
+<td><code>-E</code></td>
+<td><code>--regex</code></td>
+<td>开关</td>
+<td>false</td>
+<td>‌<strong>正则模式</strong>‌：启用后 <code>class-pattern</code> 使用正则表达式匹配</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td><code>--verbose</code></td>
+<td>开关</td>
+<td>false</td>
+<td>‌<strong>详细日志</strong>‌：打印匹配的类&#x2F;方法等调试信息</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>监控项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>timestamp</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>class</td>
+<td>类</td>
+</tr>
+<tr>
+<td>method</td>
+<td>方法（构造方法、普通方法）</td>
+</tr>
+<tr>
+<td>total</td>
+<td>调用次数</td>
+</tr>
+<tr>
+<td>success</td>
+<td>成功次数</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>失败次数</td>
+</tr>
+<tr>
+<td>rt</td>
+<td>平均耗时</td>
+</tr>
+<tr>
+<td>fail-rate</td>
+<td>失败率</td>
+</tr>
+</tbody></table>
+<p><img src="image-20250713163326366.png" alt="image-20250713163326366"></p>
+<h3 id="2-2-4-stack"><a href="#2-2-4-stack" class="headerlink" title="2.2.4 stack"></a>2.2.4 stack</h3><blockquote>
+<p>输出指定方法的调用路径</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack class-pattern method-pattern [参数]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>默认值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>class-pattern</td>
+<td>类名匹配表达式</td>
+<td>无</td>
+<td><code>demo.MathGame</code></td>
+</tr>
+<tr>
+<td>method-pattern</td>
+<td>方法名匹配表达式</td>
+<td>无</td>
+<td><code>primeFactors</code></td>
+</tr>
+<tr>
+<td>condition-express</td>
+<td>OGNL条件表达式</td>
+<td>无</td>
+<td><code>params[0]&lt;0</code></td>
+</tr>
+<tr>
+<td>[E]</td>
+<td>开启正则表达式匹配</td>
+<td>通配符匹配</td>
+<td><code>-E</code></td>
+</tr>
+<tr>
+<td>[n:]</td>
+<td>执行次数限制</td>
+<td>无限制</td>
+<td><code>-n 5</code></td>
+</tr>
+<tr>
+<td>[m <arg>]</arg></td>
+<td>Class最大匹配数量</td>
+<td>50</td>
+<td><code>-m 100</code></td>
+</tr>
+<tr>
+<td>[–exclude-class-pattern]</td>
+<td>排除特定类</td>
+<td>无</td>
+<td><code>--exclude-class-pattern *Test*</code></td>
+</tr>
+<tr>
+<td>‌**#cost**‌</td>
+<td>内置变量，表示方法执行耗时（毫秒）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><img src="image-20250713231950847.png" alt="image-20250713231950847"></p>
+<h3 id="2-2-5-thread"><a href="#2-2-5-thread" class="headerlink" title="2.2.5 thread"></a>2.2.5 thread</h3><h3 id="2-2-6-tt"><a href="#2-2-6-tt" class="headerlink" title="2.2.6 tt"></a>2.2.6 tt</h3><blockquote>
+<p>提供的”时间隧道”功能，能够记录指定方法的每次调用情况，包括入参、返回值和异常信息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack [参数] [class-pattern] [method-pattern]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>默认值</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-t</td>
+<td>记录目标方法的调用</td>
+<td>无</td>
+<td><code>tt -t com.example.Test print</code></td>
+</tr>
+<tr>
+<td>-n</td>
+<td>限制记录次数</td>
+<td>无限制</td>
+<td><code>-n 5</code></td>
+</tr>
+<tr>
+<td>-m</td>
+<td>Class最大匹配数量</td>
+<td>50</td>
+<td><code>-m 100</code></td>
+</tr>
+<tr>
+<td>-l</td>
+<td>列出所有记录</td>
+<td>无</td>
+<td><code>tt -l</code></td>
+</tr>
+<tr>
+<td>-i</td>
+<td>查看指定索引的详情</td>
+<td>无</td>
+<td><code>tt -i 1000</code></td>
+</tr>
+<tr>
+<td>-p</td>
+<td>回放指定索引的调用</td>
+<td>无</td>
+<td><code>tt -p 1000</code></td>
+</tr>
+<tr>
+<td>-w</td>
+<td>条件表达式搜索</td>
+<td>无</td>
+<td><code>tt -w &#39;params[0]==null&#39;</code></td>
+</tr>
+<tr>
+<td>-d</td>
+<td>删除指定记录</td>
+<td>无</td>
+<td><code>tt -d 1000</code></td>
+</tr>
+<tr>
+<td>–exclude-class-pattern</td>
+<td>排除特定类</td>
+<td>无</td>
+<td><code>--exclude-class-pattern *Test*</code></td>
+</tr>
+</tbody></table>
+<p><img src="image-20250713233500215.png" alt="image-20250713233500215"></p>
+<h2 id="2-3-其它命令"><a href="#2-3-其它命令" class="headerlink" title="2.3 其它命令"></a>2.3 其它命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">NAME         DESCRIPTION                                                                                                                          </span><br><span class="line"> help         Display Arthas Help                                                                                                                  </span><br><span class="line"> auth         Authenticates the current session                                                                                                    </span><br><span class="line"> keymap       Display all the available keymap for the specified connection.                                                                       </span><br><span class="line"> sc           Search all the classes loaded by JVM                                                                                                 </span><br><span class="line"> sm           Search the method of classes loaded by JVM                                                                                           </span><br><span class="line"> classloader  Show classloader info                                                                                                                </span><br><span class="line"> jad          Decompile class                                                                                                                      </span><br><span class="line"> getstatic    Show the static field of a class                                                                                                     </span><br><span class="line"> monitor      Monitor method execution statistics, e.g. total/success/failure count, average rt, fail rate, etc.                                   </span><br><span class="line"> stack        Display the stack trace for the specified class and method                                                                           </span><br><span class="line"> thread       Display thread info, thread stack                                                                                                    </span><br><span class="line"> trace        Trace the execution time of specified method invocation.                                                                             </span><br><span class="line"> watch        Display the input/output parameter, return object, and thrown exception of specified method invocation                               </span><br><span class="line"> tt           Time Tunnel                                                                                                                          </span><br><span class="line"> jvm          Display the target JVM information                                                                                                   </span><br><span class="line"> memory       Display jvm memory info.                                                                                                             </span><br><span class="line"> perfcounter  Display the perf counter information.                                                                                                </span><br><span class="line"> ognl         Execute ognl expression.                                                                                                             </span><br><span class="line"> mc           Memory compiler, compiles java files into bytecode and class files in memory.                                                        </span><br><span class="line"> redefine     Redefine classes. @see Instrumentation#redefineClasses(ClassDefinition...)                                                           </span><br><span class="line"> retransform  Retransform classes. @see Instrumentation#retransformClasses(Class...)                                                               </span><br><span class="line"> dashboard    Overview of target jvm&#x27;s thread, memory, gc, vm, tomcat info.                                                                        </span><br><span class="line"> dump         Dump class byte array from JVM                                                                                                       </span><br><span class="line"> heapdump     Heap dump                                                                                                                            </span><br><span class="line"> options      View and change various Arthas options                                                                                               </span><br><span class="line"> cls          Clear the screen                                                                                                                     </span><br><span class="line"> reset        Reset all the enhanced classes                                                                                                       </span><br><span class="line"> version      Display Arthas version                                                                                                               </span><br><span class="line"> session      Display current session information                                                                                                  </span><br><span class="line"> sysprop      Display and change the system properties.                                                                                            </span><br><span class="line"> sysenv       Display the system env.                                                                                                              </span><br><span class="line"> vmoption     Display, and update the vm diagnostic options.                                                                                       </span><br><span class="line"> logger       Print logger info, and update the logger level                                                                                       </span><br><span class="line"> history      Display command history                                                                                                              </span><br><span class="line"> cat          Concatenate and print files                                                                                                          </span><br><span class="line"> base64       Encode and decode using Base64 representation                                                                                        </span><br><span class="line"> echo         write arguments to the standard output                                                                                               </span><br><span class="line"> pwd          Return working directory name                                                                                                        </span><br><span class="line"> mbean        Display the mbean information                                                                                                        </span><br><span class="line"> grep         grep command for pipes.                                                                                                              </span><br><span class="line"> tee          tee command for pipes.                                                                                                               </span><br><span class="line"> profiler     Async Profiler. https://github.com/jvm-profiling-tools/async-profiler                                                                </span><br><span class="line"> vmtool       jvm tool                                                                                                                             </span><br><span class="line"> stop         Stop/Shutdown Arthas server and exit the console.                                                                                    </span><br><span class="line"> jfr          Java Flight Recorder Command                                   </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-1-options"><a href="#2-3-1-options" class="headerlink" title="2.3.1 options"></a>2.3.1 options</h3><blockquote>
+<p>用于查看和修改Arthas的全局配置选项</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>unsafe</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否允许增强系统类</td>
+</tr>
+<tr>
+<td>json-format</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否以JSON格式输出</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否显示详细输出</td>
+</tr>
+<tr>
+<td>disable-sub-class</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否禁用子类匹配</td>
+</tr>
+<tr>
+<td>save-result</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否保存命令结果到日志</td>
+</tr>
+<tr>
+<td>sample-interval</td>
+<td>int</td>
+<td>100</td>
+<td>采样间隔时间(ms)</td>
+</tr>
+<tr>
+<td>batch-re-transform</td>
+<td>boolean</td>
+<td>true</td>
+<td>是否批量retransform类</td>
+</tr>
+<tr>
+<td>job-timeout</td>
+<td>int</td>
+<td>86400</td>
+<td>异步任务超时时间(秒)</td>
+</tr>
+<tr>
+<td>dump</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否dump增强的类</td>
+</tr>
+<tr>
+<td>support-redefine</td>
+<td>boolean</td>
+<td>true</td>
+<td>是否支持redefine功能</td>
+</tr>
+<tr>
+<td>debug-for-asm</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否输出ASM调试信息</td>
+</tr>
+<tr>
+<td>silent</td>
+<td>boolean</td>
+<td>false</td>
+<td>是否静默输出</td>
+</tr>
+<tr>
+<td>height</td>
+<td>int</td>
+<td>45</td>
+<td>终端显示高度</td>
+</tr>
+<tr>
+<td>width</td>
+<td>int</td>
+<td>80</td>
+<td>终端显示宽度</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-2-profile"><a href="#2-3-2-profile" class="headerlink" title="2.3.2 profile"></a>2.3.2 profile</h3>
     </div>
 
     
@@ -377,6 +916,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-jacoco"><span class="nav-text">1.jacoco</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-arthas"><span class="nav-text">2.arthas</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85"><span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-trace"><span class="nav-text">2.2.1 trace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-watch"><span class="nav-text">2.2.2 watch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-monitor"><span class="nav-text">2.2.3 monitor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-stack"><span class="nav-text">2.2.4 stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-thread"><span class="nav-text">2.2.5 thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-tt"><span class="nav-text">2.2.6 tt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%85%B6%E5%AE%83%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3 其它命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-options"><span class="nav-text">2.3.1 options</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-profile"><span class="nav-text">2.3.2 profile</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -460,7 +1000,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">44:49</span>
+    <span title="站点阅读时长">44:56</span>
 </div>
 
         
