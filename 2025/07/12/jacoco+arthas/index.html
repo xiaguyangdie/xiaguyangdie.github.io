@@ -42,8 +42,9 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713163326366.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713231950847.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713233500215.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250714232943833.png">
 <meta property="article:published_time" content="2025-07-12T04:17:06.353Z">
-<meta property="article:modified_time" content="2025-07-13T15:52:23.100Z">
+<meta property="article:modified_time" content="2025-07-14T15:32:31.924Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -239,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-13 23:52:23" itemprop="dateModified" datetime="2025-07-13T23:52:23+08:00">2025-07-13</time>
+                <time title="修改时间：2025-07-14 23:32:31" itemprop="dateModified" datetime="2025-07-14T23:32:31+08:00">2025-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -278,7 +279,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.6k</span>
+              <span>8.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -298,7 +299,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-jacoco"><a href="#1-jacoco" class="headerlink" title="1.jacoco"></a>1.jacoco</h1><h1 id="2-arthas"><a href="#2-arthas" class="headerlink" title="2.arthas"></a>2.arthas</h1><p>定位和诊断运行的java项目代码</p>
+        <h1 id="1-jacoco"><a href="#1-jacoco" class="headerlink" title="1.jacoco"></a>1.jacoco</h1><p>官网：<a target="_blank" rel="noopener" href="https://www.jacoco.org/jacoco/">https://www.jacoco.org/jacoco/</a></p>
+<h1 id="2-arthas"><a href="#2-arthas" class="headerlink" title="2.arthas"></a>2.arthas</h1><p>定位和诊断运行的java项目代码</p>
 <h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><blockquote>
 <p>卸载：直接删除2个文件夹：.arthas和logs</p>
 </blockquote>
@@ -344,51 +346,35 @@
 <tr>
 <th>参数</th>
 <th>说明</th>
-<th>示例</th>
-<th>适用场景</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>‌<strong>class-pattern</strong>‌</td>
+<td>‌<code>class-pattern</code></td>
 <td>类名匹配表达式（支持通配符*）</td>
-<td><code>com.example.*Service</code></td>
-<td>定位特定类的方法调用‌</td>
 </tr>
 <tr>
-<td>‌<strong>method-pattern</strong>‌</td>
+<td><code>‌method-pattern‌</code></td>
 <td>方法名匹配表达式</td>
-<td><code>getUser*</code></td>
-<td>匹配特定方法‌</td>
 </tr>
 <tr>
-<td>‌<strong>condition-express</strong>‌</td>
+<td><code>‌condition-express</code></td>
 <td>条件过滤表达式（OGNL）</td>
-<td><code>&#39;params!=null&#39;</code></td>
-<td>按条件过滤调用‌</td>
 </tr>
 <tr>
-<td>‌**-E**‌</td>
+<td><code>‌-E‌</code></td>
 <td>开启正则表达式匹配</td>
-<td><code>-E</code></td>
-<td>复杂匹配场景‌</td>
 </tr>
 <tr>
-<td>‌**-n <count>**‌</count></td>
+<td><code>‌-n &lt;count&gt;</code>‌</td>
 <td>限制执行次数（默认100）</td>
-<td><code>-n 5</code></td>
-<td>避免日志刷屏‌</td>
 </tr>
 <tr>
-<td>‌**#cost**‌</td>
+<td>‌<code>#cost‌</code></td>
 <td>方法执行耗时（毫秒）</td>
-<td><code>&#39;#cost&gt;100&#39;</code></td>
-<td>筛选慢调用‌</td>
 </tr>
 <tr>
-<td>‌**-m <num>**‌</num></td>
+<td><code>‌-m &lt;num&gt;</code>‌</td>
 <td>限制匹配类数量（默认50）</td>
-<td><code>-m 10</code></td>
-<td>控制匹配范围‌</td>
 </tr>
 </tbody></table>
 <p><img src="image-20250713190917458.png" alt="image-20250713190917458"></p>
@@ -415,63 +401,63 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>‌<strong>class-pattern</strong>‌</td>
+<td><code>‌class-pattern‌</code></td>
 <td>类名匹配表达式（支持通配符*）</td>
 </tr>
 <tr>
-<td>‌<strong>method-pattern</strong>‌</td>
+<td><code>‌method-pattern‌</code></td>
 <td>方法名匹配表达式</td>
 </tr>
 <tr>
-<td>‌<strong>express</strong>‌</td>
+<td>‌<code>express‌</code></td>
 <td>观察表达式（默认<code>&#123;params, target, returnObj&#125;</code>）</td>
 </tr>
 <tr>
-<td>‌<strong>condition-express</strong>‌</td>
+<td><code>‌condition-express‌</code></td>
 <td>条件过滤表达式</td>
 </tr>
 <tr>
-<td>‌**-b**‌</td>
+<td><code>‌-b‌</code></td>
 <td>在方法调用前观察（仅能获取入参）</td>
 </tr>
 <tr>
-<td>‌**-e**‌</td>
+<td><code>‌-e‌</code></td>
 <td>在方法抛出异常后观察</td>
 </tr>
 <tr>
-<td>‌**-s**‌</td>
+<td><code>‌-s‌</code></td>
 <td>在方法正常返回后观察</td>
 </tr>
 <tr>
-<td>‌**-f**‌</td>
+<td><code>‌-f‌</code></td>
 <td>默认选项，在方法结束后观察（包括正常和异常）</td>
 </tr>
 <tr>
-<td>‌**-x <n>**‌</n></td>
+<td><code>‌-x &lt;n&gt;</code>‌</td>
 <td>指定输出结果的属性遍历深度（1-4）</td>
 </tr>
 <tr>
-<td>‌**-n <count>**‌</count></td>
+<td><code>‌n &lt;count&gt;</code>‌</td>
 <td>限制观察次数</td>
 </tr>
 <tr>
-<td>‌**-E**‌</td>
+<td><code>‌-E‌</code></td>
 <td>开启正则表达式匹配</td>
 </tr>
 <tr>
-<td>‌**–exclude-class-pattern**‌</td>
+<td><code>‌--exclude-class-pattern</code></td>
 <td>排除特定类</td>
 </tr>
 <tr>
-<td>‌**-m <num>**‌</num></td>
+<td><code>-m &lt;num&gt;</code>‌</td>
 <td>限制匹配的类数量（默认50）</td>
 </tr>
 <tr>
-<td>‌**-v**‌</td>
+<td><code>‌-v‌</code></td>
 <td>显示详细信息</td>
 </tr>
 <tr>
-<td>‌**#cost**‌</td>
+<td>‌<code>#cost‌</code></td>
 <td>内置变量，表示方法执行耗时（毫秒）</td>
 </tr>
 </tbody></table>
@@ -599,49 +585,49 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>class-pattern</td>
+<td><code>class-pattern</code></td>
 <td>类名匹配表达式</td>
 <td>无</td>
 <td><code>demo.MathGame</code></td>
 </tr>
 <tr>
-<td>method-pattern</td>
+<td><code>method-pattern</code></td>
 <td>方法名匹配表达式</td>
 <td>无</td>
 <td><code>primeFactors</code></td>
 </tr>
 <tr>
-<td>condition-express</td>
+<td><code>condition-express</code></td>
 <td>OGNL条件表达式</td>
 <td>无</td>
 <td><code>params[0]&lt;0</code></td>
 </tr>
 <tr>
-<td>[E]</td>
+<td><code>-E</code></td>
 <td>开启正则表达式匹配</td>
 <td>通配符匹配</td>
 <td><code>-E</code></td>
 </tr>
 <tr>
-<td>[n:]</td>
+<td><code>-n</code></td>
 <td>执行次数限制</td>
 <td>无限制</td>
 <td><code>-n 5</code></td>
 </tr>
 <tr>
-<td>[m <arg>]</arg></td>
+<td><code>m &lt;arg&gt;</code></td>
 <td>Class最大匹配数量</td>
 <td>50</td>
 <td><code>-m 100</code></td>
 </tr>
 <tr>
-<td>[–exclude-class-pattern]</td>
+<td><code>--exclude-class-pattern</code></td>
 <td>排除特定类</td>
 <td>无</td>
 <td><code>--exclude-class-pattern *Test*</code></td>
 </tr>
 <tr>
-<td>‌**#cost**‌</td>
+<td>‌<code>#cost‌</code></td>
 <td>内置变量，表示方法执行耗时（毫秒）</td>
 <td></td>
 <td></td>
@@ -727,96 +713,82 @@
 <thead>
 <tr>
 <th>参数名称</th>
-<th>类型</th>
 <th>默认值</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>unsafe</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否允许增强系统类</td>
 </tr>
 <tr>
 <td>json-format</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否以JSON格式输出</td>
 </tr>
 <tr>
 <td>verbose</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否显示详细输出</td>
 </tr>
 <tr>
 <td>disable-sub-class</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否禁用子类匹配</td>
 </tr>
 <tr>
 <td>save-result</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否保存命令结果到日志</td>
 </tr>
 <tr>
 <td>sample-interval</td>
-<td>int</td>
 <td>100</td>
 <td>采样间隔时间(ms)</td>
 </tr>
 <tr>
 <td>batch-re-transform</td>
-<td>boolean</td>
 <td>true</td>
 <td>是否批量retransform类</td>
 </tr>
 <tr>
 <td>job-timeout</td>
-<td>int</td>
 <td>86400</td>
 <td>异步任务超时时间(秒)</td>
 </tr>
 <tr>
 <td>dump</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否dump增强的类</td>
 </tr>
 <tr>
 <td>support-redefine</td>
-<td>boolean</td>
 <td>true</td>
 <td>是否支持redefine功能</td>
 </tr>
 <tr>
 <td>debug-for-asm</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否输出ASM调试信息</td>
 </tr>
 <tr>
 <td>silent</td>
-<td>boolean</td>
 <td>false</td>
 <td>是否静默输出</td>
 </tr>
 <tr>
 <td>height</td>
-<td>int</td>
 <td>45</td>
 <td>终端显示高度</td>
 </tr>
 <tr>
 <td>width</td>
-<td>int</td>
 <td>80</td>
 <td>终端显示宽度</td>
 </tr>
 </tbody></table>
+<p><img src="image-20250714232943833.png" alt="image-20250714232943833"></p>
 <h3 id="2-3-2-profile"><a href="#2-3-2-profile" class="headerlink" title="2.3.2 profile"></a>2.3.2 profile</h3>
     </div>
 
