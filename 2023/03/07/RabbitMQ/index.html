@@ -30,7 +30,6 @@
 <meta property="og:description" content="RabbitMQ">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20250705194922773.png">
-<meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20230307235556079.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20250706132124216.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20250705223835410.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20230308001419928.png">
@@ -100,7 +99,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20230309172618747.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/03/07/RabbitMQ/image-20230309182816742.png">
 <meta property="article:published_time" content="2023-03-07T15:02:44.567Z">
-<meta property="article:modified_time" content="2025-07-19T14:37:11.143Z">
+<meta property="article:modified_time" content="2025-07-19T15:13:32.287Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="中间件">
 <meta name="twitter:card" content="summary">
@@ -296,7 +295,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-19 22:37:11" itemprop="dateModified" datetime="2025-07-19T22:37:11+08:00">2025-07-19</time>
+                <time title="修改时间：2025-07-19 23:13:32" itemprop="dateModified" datetime="2025-07-19T23:13:32+08:00">2025-07-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,7 +341,7 @@
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:12</span>
+              <span>1:13</span>
             </span>
             <div class="post-description">RabbitMQ</div>
 
@@ -387,10 +386,66 @@
 <li>系统复杂度提高：MQ 的加入大大增加了系统的复杂度，以前系统之间是远程调用的，现在是通过MQ 异步调用。如何保证消息没有被重复消费？如何处理消息丢失情况？如何保证消息传递的顺序性</li>
 <li>一致性问题：A 系统处理完业务，通过 MQ 给 B、C、D 三个系统发消息数据，如果 B 系统、C系统处理成功，D系统处理失败。如何保证数据处理的一致性</li>
 </ul>
-<h2 id="1-3-常见的MQ产品"><a href="#1-3-常见的MQ产品" class="headerlink" title="1.3 常见的MQ产品"></a>1.3 常见的MQ产品</h2><ul>
-<li>有很多的MQ产品，例如 RabbitMQ、RocketMQ、ActiveMQ、Kafka、ZeroMQ、MetaMQ 等，也有直接使用 Redis 充当消息队列的案例</li>
-</ul>
-<p><img src="image-20230307235556079.png" alt="RabbitMQ/image-20230307235556079"></p>
+<h2 id="1-3-常见的MQ产品"><a href="#1-3-常见的MQ产品" class="headerlink" title="1.3 常见的MQ产品"></a>1.3 常见的MQ产品</h2><table>
+<thead>
+<tr>
+<th align="center">‌</th>
+<th align="center">‌<strong>RabbitMQ</strong>‌</th>
+<th align="center">‌<strong>ActiveMQ</strong>‌</th>
+<th align="center">‌<strong>RocketMQ</strong>‌</th>
+<th align="center">‌<strong>Kafka</strong>‌</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">‌<strong>公司&#x2F;社区</strong>‌</td>
+<td align="center">Rabbit</td>
+<td align="center">Apache</td>
+<td align="center">阿里</td>
+<td align="center">Apache</td>
+</tr>
+<tr>
+<td align="center">‌<strong>开发语言</strong>‌</td>
+<td align="center">Erlang</td>
+<td align="center">Java</td>
+<td align="center">Java</td>
+<td align="center">Scala &amp; Java</td>
+</tr>
+<tr>
+<td align="center">‌<strong>协议支持</strong>‌</td>
+<td align="center">AMQP, XMPP, SMTP, STOMP</td>
+<td align="center">OpenWire, STOMP, REST, XMPP, AMQP</td>
+<td align="center">‌<strong>自定义协议</strong>‌</td>
+<td align="center">自定义协议，‌<strong>社区封装HTTP支持</strong>‌</td>
+</tr>
+<tr>
+<td align="center">‌<strong>客户端支持语言</strong>‌</td>
+<td align="center">官方: Erlang, Java, Ruby等；社区: 几乎支持所有语言</td>
+<td align="center">Java, C, C++, Python, PHP, Perl, .net等</td>
+<td align="center">Java, C++（不成熟）</td>
+<td align="center">官方: Java；社区: PHP, Python等</td>
+</tr>
+<tr>
+<td align="center">‌<strong>单机吞吐量</strong>‌</td>
+<td align="center">万级（其次）</td>
+<td align="center">万级（最差）</td>
+<td align="center">‌<strong>十万级（最好）</strong>‌</td>
+<td align="center">十万级（次之）</td>
+</tr>
+<tr>
+<td align="center">‌<strong>消息延迟</strong>‌</td>
+<td align="center">微妙级</td>
+<td align="center">毫秒级</td>
+<td align="center">毫秒级</td>
+<td align="center">‌<strong>毫秒以内</strong>‌</td>
+</tr>
+<tr>
+<td align="center">‌<strong>功能特性</strong>‌</td>
+<td align="center">并发能力强，性能极其好，延时低，社区活跃，‌<strong>管理界面丰富</strong>‌</td>
+<td align="center">老牌产品，成熟度高，文档较多</td>
+<td align="center">MQ功能完备，‌<strong>扩展性佳</strong>‌</td>
+<td align="center">主要支持MQ功能，‌<strong>针对大数据领域</strong></td>
+</tr>
+</tbody></table>
 <h2 id="1-4-RabbitMQ简介"><a href="#1-4-RabbitMQ简介" class="headerlink" title="1.4 RabbitMQ简介"></a>1.4 RabbitMQ简介</h2><ul>
 <li><p>AMQP, 即 <code>Advanced Message Queuing Protocol</code> （高级消息队列协议）， 是一个<strong>网络协议</strong>，是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同的开发语言等条件的限制</p>
 <p><img src="image-20250706132124216.png" alt="image-20250706132124216"></p>
@@ -962,7 +1017,7 @@
 <p>日志</p>
 </blockquote>
 <ul>
-<li>RabbitMQ默认日志存放路径: &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#114;&#97;&#98;&#98;&#105;&#116;&#64;&#120;&#x78;&#x78;&#46;&#108;&#x6f;&#x67;">&#114;&#97;&#98;&#98;&#105;&#116;&#64;&#120;&#x78;&#x78;&#46;&#108;&#x6f;&#x67;</a></li>
+<li>RabbitMQ默认日志存放路径: &#x2F;var&#x2F;log&#x2F;rabbitmq&#x2F;<a href="mailto:&#x72;&#97;&#x62;&#98;&#105;&#x74;&#x40;&#x78;&#120;&#120;&#46;&#108;&#111;&#103;">&#x72;&#97;&#x62;&#98;&#105;&#x74;&#x40;&#x78;&#120;&#120;&#46;&#108;&#111;&#103;</a></li>
 <li>日志包含了RabbitMQ的版本号、Erlang的版本号、RabbitMQ服务节点名称、cookie的hash值、RabbitMQ配置文件地址、内存限制、磁盘限制、默认账户guest的创建以及权限配置等等</li>
 </ul>
 <blockquote>
