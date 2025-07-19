@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/MySQL%E5%AE%89%E8%A3%85/image-20220616221048162.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/MySQL%E5%AE%89%E8%A3%85/image-20220616221248426.png">
 <meta property="article:published_time" content="2023-02-26T08:27:31.091Z">
-<meta property="article:modified_time" content="2024-03-23T15:16:57.467Z">
+<meta property="article:modified_time" content="2025-07-19T14:49:14.033Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-23 23:16:57" itemprop="dateModified" datetime="2024-03-23T23:16:57+08:00">2024-03-23</time>
+                <time title="修改时间：2025-07-19 22:49:14" itemprop="dateModified" datetime="2025-07-19T22:49:14+08:00">2025-07-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,7 +268,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -288,34 +288,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1.下载压缩包"></a>1.下载压缩包</h4><p>MySQl版本5.7.19地址：<a target="_blank" rel="noopener" href="https://cdn.mysql.com//archives/mysql-5.7/mysql-5.7.19-winx64.zip">https://cdn.mysql.com//archives/mysql-5.7/mysql-5.7.19-winx64.zip</a></p>
+        <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h1><blockquote>
+<p>1.下载压缩包</p>
+</blockquote>
+<p>MySQl版本5.7.19地址：<a target="_blank" rel="noopener" href="https://cdn.mysql.com//archives/mysql-5.7/mysql-5.7.19-winx64.zip">https://cdn.mysql.com//archives/mysql-5.7/mysql-5.7.19-winx64.zip</a></p>
 <p>解压目录：F:\Environment\mysql-5.7.19</p>
 <p><img src="image-20220616220905453.png" alt="MySQL安装/image-20220616220905453"></p>
-<h4 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2.配置环境变量"></a>2.配置环境变量</h4><p><img src="image-20220616221048162.png" alt="MySQL安装/image-20220616221048162"></p>
-<h4 id="3-MySQL目录下新建mysql配置文件my-ini"><a href="#3-MySQL目录下新建mysql配置文件my-ini" class="headerlink" title="3.MySQL目录下新建mysql配置文件my.ini"></a>3.MySQL目录下新建mysql配置文件my.ini</h4><p><img src="image-20220616221248426.png" alt="MySQL安装/image-20220616221248426"></p>
+<blockquote>
+<p>2.配置环境变量</p>
+</blockquote>
+<p><img src="image-20220616221048162.png" alt="MySQL安装/image-20220616221048162"></p>
+<blockquote>
+<p>3.MySQL目录下新建mysql配置文件my.ini</p>
+</blockquote>
+<p><img src="image-20220616221248426.png" alt="MySQL安装/image-20220616221248426"></p>
 <ul>
 <li>新建一个data文件夹</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">basedir=F:\Environment\mysql-5.7.19\</span><br><span class="line">datadir=F:\Environment\mysql-5.7.19\data\</span><br><span class="line">port=3306</span><br><span class="line">skip-grant-tables</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-运行管理员模式下的CMD-切换到mysql目录下的bin目录中-然后安装mysql服务"><a href="#4-运行管理员模式下的CMD-切换到mysql目录下的bin目录中-然后安装mysql服务" class="headerlink" title="4.运行管理员模式下的CMD, 切换到mysql目录下的bin目录中,然后安装mysql服务"></a>4.运行管理员模式下的CMD, 切换到mysql目录下的bin目录中,然后安装mysql服务</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld <span class="operator">-</span>install mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4.运行管理员模式下的CMD, 切换到mysql目录下的bin目录中,然后安装mysql服务</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld <span class="operator">-</span>install mysql</span><br></pre></td></tr></table></figure>
 
-<h4 id="5-初始化数据库文件"><a href="#5-初始化数据库文件" class="headerlink" title="5.初始化数据库文件"></a>5.初始化数据库文件</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld <span class="comment">--initialize-insecure --user=mysql </span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>5.初始化数据库文件</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld <span class="comment">--initialize-insecure --user=mysql </span></span><br></pre></td></tr></table></figure>
 
-<h4 id="6-启动mysql"><a href="#6-启动mysql" class="headerlink" title="6.启动mysql :"></a>6.启动mysql :</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net <span class="keyword">start</span> mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>6.启动mysql :</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net <span class="keyword">start</span> mysql</span><br></pre></td></tr></table></figure>
 
-<h4 id="7-输入-mysql-u-root-p-没有密码回车登录mysql"><a href="#7-输入-mysql-u-root-p-没有密码回车登录mysql" class="headerlink" title="7.输入 mysql -u root -p 没有密码回车登录mysql"></a>7.输入 mysql -u root -p 没有密码回车登录mysql</h4><h4 id="8-更改root密码-然后刷新权限-输入flush-privileges"><a href="#8-更改root密码-然后刷新权限-输入flush-privileges" class="headerlink" title="8.更改root密码, 然后刷新权限 输入flush privileges:"></a>8.更改root密码, 然后刷新权限 输入flush privileges:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string=password(&#x27;123456&#x27;) where user=&#x27;root&#x27; and Host =&#x27;localhost&#x27;;</span><br><span class="line"></span><br><span class="line"># 8.0以上版本用下面</span><br><span class="line">alter user &#x27;root@localhost&#x27; identified by &#x27;123456&#x27;; </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>7.输入 mysql -u root -p 没有密码回车登录mysql</p>
+</blockquote>
+<blockquote>
+<p>8.更改root密码, 然后刷新权限 输入flush privileges:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string=password(&#x27;123456&#x27;) where user=&#x27;root&#x27; and Host =&#x27;localhost&#x27;;</span><br><span class="line"></span><br><span class="line"># 8.0以上版本用下面</span><br><span class="line">alter user &#x27;root@localhost&#x27; identified by &#x27;123456&#x27;; </span><br></pre></td></tr></table></figure>
 
-<h4 id="9-退出登录exit-修改my-ini文件-删除最后一句skip-grant-tables-或者-注释掉-这样以后登录需要输入密码了"><a href="#9-退出登录exit-修改my-ini文件-删除最后一句skip-grant-tables-或者-注释掉-这样以后登录需要输入密码了" class="headerlink" title="9.退出登录exit; 修改my.ini文件,删除最后一句skip-grant-tables(或者#注释掉), 这样以后登录需要输入密码了"></a>9.退出登录exit; 修改my.ini文件,删除最后一句skip-grant-tables(或者#注释掉), 这样以后登录需要输入密码了</h4><h4 id="10-重启mysql"><a href="#10-重启mysql" class="headerlink" title="10.重启mysql:"></a>10.重启mysql:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>9.退出登录exit; 修改my.ini文件,删除最后一句skip-grant-tables(或者#注释掉), 这样以后登录需要输入密码了</p>
+</blockquote>
+<blockquote>
+<p>10.重启mysql:</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
 
-<h4 id="注意：二次安装"><a href="#注意：二次安装" class="headerlink" title="注意：二次安装"></a>注意：二次安装</h4><p>只需要将之前解压的，使用的MySQL5.7.19放到自己的环境目录，然后执行第二步和第四步，修改my.ini的路径</p>
-<h4 id="11-可视化操作界面SQLyog"><a href="#11-可视化操作界面SQLyog" class="headerlink" title="11.可视化操作界面SQLyog"></a>11.可视化操作界面SQLyog</h4><p>1.下载链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1F9brpaLeuNPZfnt5YUyD9g?pwd=imim">https://pan.baidu.com/s/1F9brpaLeuNPZfnt5YUyD9g?pwd=imim</a> </p>
+<p><font color="red"><strong>注意：二次安装</strong></font></p>
+<p>只需要将之前解压的，使用的MySQL5.7.19放到自己的环境目录，然后执行第二步和第四步，修改my.ini的路径</p>
+<blockquote>
+<p>11.可视化操作界面SQLyog</p>
+</blockquote>
+<p>1.下载链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1F9brpaLeuNPZfnt5YUyD9g?pwd=imim">https://pan.baidu.com/s/1F9brpaLeuNPZfnt5YUyD9g?pwd=imim</a> </p>
 <p>2.解压，一直下一步安装（可以修改安装路径）</p>
 <p>3.注册密钥</p>
 <p>​	名称：luoye2562</p>
 <p>​	证书密钥：8d8120df-a5c3-4989-8f47-5afc79c56e7c</p>
 <p>4.点击新建，创建新连接</p>
-
+<h1 id="2-MySQL彻底卸载"><a href="#2-MySQL彻底卸载" class="headerlink" title="2.MySQL彻底卸载"></a>2.MySQL彻底卸载</h1>
     </div>
 
     
@@ -355,8 +389,8 @@
       <i class="fa fa-chevron-left"></i> MySQL提升篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/02/26/MySQL%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BD/" rel="next" title="MySQL彻底卸载">
-      MySQL彻底卸载 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/02/26/Ot%E7%BB%98%E5%9B%BE%E4%B9%8BCustomPlot/" rel="next" title="Qt绘图之CustomPlot">
+      Qt绘图之CustomPlot <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -417,7 +451,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="nav-text">1.下载压缩包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text">2.配置环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MySQL%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%96%B0%E5%BB%BAmysql%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6my-ini"><span class="nav-text">3.MySQL目录下新建mysql配置文件my.ini</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BF%90%E8%A1%8C%E7%AE%A1%E7%90%86%E5%91%98%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84CMD-%E5%88%87%E6%8D%A2%E5%88%B0mysql%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84bin%E7%9B%AE%E5%BD%95%E4%B8%AD-%E7%84%B6%E5%90%8E%E5%AE%89%E8%A3%85mysql%E6%9C%8D%E5%8A%A1"><span class="nav-text">4.运行管理员模式下的CMD, 切换到mysql目录下的bin目录中,然后安装mysql服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6"><span class="nav-text">5.初始化数据库文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%90%AF%E5%8A%A8mysql"><span class="nav-text">6.启动mysql :</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E8%BE%93%E5%85%A5-mysql-u-root-p-%E6%B2%A1%E6%9C%89%E5%AF%86%E7%A0%81%E5%9B%9E%E8%BD%A6%E7%99%BB%E5%BD%95mysql"><span class="nav-text">7.输入 mysql -u root -p 没有密码回车登录mysql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E6%9B%B4%E6%94%B9root%E5%AF%86%E7%A0%81-%E7%84%B6%E5%90%8E%E5%88%B7%E6%96%B0%E6%9D%83%E9%99%90-%E8%BE%93%E5%85%A5flush-privileges"><span class="nav-text">8.更改root密码, 然后刷新权限 输入flush privileges:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E9%80%80%E5%87%BA%E7%99%BB%E5%BD%95exit-%E4%BF%AE%E6%94%B9my-ini%E6%96%87%E4%BB%B6-%E5%88%A0%E9%99%A4%E6%9C%80%E5%90%8E%E4%B8%80%E5%8F%A5skip-grant-tables-%E6%88%96%E8%80%85-%E6%B3%A8%E9%87%8A%E6%8E%89-%E8%BF%99%E6%A0%B7%E4%BB%A5%E5%90%8E%E7%99%BB%E5%BD%95%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81%E4%BA%86"><span class="nav-text">9.退出登录exit; 修改my.ini文件,删除最后一句skip-grant-tables(或者#注释掉), 这样以后登录需要输入密码了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E9%87%8D%E5%90%AFmysql"><span class="nav-text">10.重启mysql:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A%E4%BA%8C%E6%AC%A1%E5%AE%89%E8%A3%85"><span class="nav-text">注意：二次安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2SQLyog"><span class="nav-text">11.可视化操作界面SQLyog</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85"><span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-MySQL%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BD"><span class="nav-text">2.MySQL彻底卸载</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -433,7 +467,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
