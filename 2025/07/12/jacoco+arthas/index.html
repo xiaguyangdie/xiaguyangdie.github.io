@@ -29,6 +29,16 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="jacoco+arthas">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719190337077.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719163854459.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719163913776.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719164005438.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719174214866.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719174937930.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719175046341.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719175331789.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719204921809.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719200236841.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713010439506.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713012448690.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250712231926101.png">
@@ -43,12 +53,13 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713231950847.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713233500215.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250714232943833.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250716223359067.png">
 <meta property="article:published_time" content="2025-07-12T04:17:06.353Z">
-<meta property="article:modified_time" content="2025-07-14T15:32:31.924Z">
+<meta property="article:modified_time" content="2025-07-19T14:14:43.055Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250713010439506.png">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/image-20250719190337077.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2025/07/12/jacoco+arthas/">
 
@@ -240,7 +251,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-14 23:32:31" itemprop="dateModified" datetime="2025-07-14T23:32:31+08:00">2025-07-14</time>
+                <time title="修改时间：2025-07-19 22:14:43" itemprop="dateModified" datetime="2025-07-19T22:14:43+08:00">2025-07-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,14 +290,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.4k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>12 分钟</span>
             </span>
             <div class="post-description">jacoco+arthas</div>
 
@@ -299,8 +310,208 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-jacoco"><a href="#1-jacoco" class="headerlink" title="1.jacoco"></a>1.jacoco</h1><p>官网：<a target="_blank" rel="noopener" href="https://www.jacoco.org/jacoco/">https://www.jacoco.org/jacoco/</a></p>
-<h1 id="2-arthas"><a href="#2-arthas" class="headerlink" title="2.arthas"></a>2.arthas</h1><p>定位和诊断运行的java项目代码</p>
+        <h1 id="1-jacoco"><a href="#1-jacoco" class="headerlink" title="1.jacoco"></a>1.jacoco</h1><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://www.jacoco.org/jacoco/">https://www.jacoco.org/jacoco/</a></p>
+</li>
+<li><p>下载解压即可直接使用</p>
+<p><img src="image-20250719190337077.png" alt="image-20250719190337077"></p>
+</li>
+</ul>
+<h2 id="1-1-命令"><a href="#1-1-命令" class="headerlink" title="1.1 命令"></a>1.1 命令</h2><blockquote>
+<p>1.启动被测应用时配置</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用于在Java应用中集成JaCoCo覆盖率统计工具，并通过TCP服务端模式收集数据，同时支持增量统计</span></span><br><span class="line">java -javaagent:/root/jacoco/jacoco/lib/jacocoagent.jar=includes=*,output=tcpserver,port=6300,address=192.168.198.173,append=<span class="literal">true</span> -jar arthas-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>‌**<code>-javaagent</code> 启动参数**‌</p>
+<ul>
+<li>路径指定：<code>/root/jacoco/jacoco/lib/jacocoagent.jar</code><br>JaCoCo代理JAR的绝对路径，需确保文件存在且可读‌</li>
+<li><code>includes=*</code><br>监控所有类（可通过<code>com.example.*</code>限定包范围）‌</li>
+<li><code>output=tcpserver</code><br>数据输出模式为TCP服务端，需配合<code>port</code>和<code>address</code>使用‌</li>
+</ul>
+</li>
+<li><p><strong>TCP服务配置</strong>‌</p>
+<ul>
+<li><code>port=6300</code><br>指定服务监听端口（需确保防火墙放行）‌</li>
+<li><code>address=192.168.198.173</code><br>允许任意192.168.198.173连接（address&#x3D;0.0.0.0，允许任意IP连接）‌</li>
+<li><code>append=true</code><br>多次运行应用时累计覆盖率数据（否则会覆盖历史数据）‌</li>
+</ul>
+</li>
+<li><p><strong>应用启动部分</strong>‌</p>
+<ul>
+<li><code>-jar arthas-1.0-SNAPSHOT.jar</code><br>目标应用的JAR文件，JaCoCo会监控其执行过程‌</li>
+</ul>
+<p><img src="image-20250719163854459.png" alt="image-20250719163854459"></p>
+</li>
+</ul>
+<blockquote>
+<p>2.通过JaCoCo CLI从TCP服务端拉取数据</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从运行中的Java应用（通过JaCoCo TCP服务端模式）拉取覆盖率数据并保存到本地文件</span></span><br><span class="line">java -jar /root/jacoco/jacoco/lib/jacococli.jar dump --address 192.168.198.173 --port 6300 --destfile coverage.exec</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>**<code>java -jar /root/jacoco/jacoco/lib/jacococli.jar</code>**‌</p>
+<ul>
+<li>指定JaCoCo命令行工具路径，需确保文件存在且可执行‌</li>
+</ul>
+</li>
+<li><p><strong><code>dump</code> 子命令</strong>‌：专用于从TCP服务端获取覆盖率数据</p>
+<ul>
+<li><code>--address 192.168.198.173</code><br>目标应用的IP地址（需与被监控应用启动时的<code>address</code>参数一致）‌</li>
+<li><code>--port 6300</code><br>目标应用的TCP服务端口（默认6300，需确保端口可连通）‌</li>
+<li><code>--destfile coverage.exec</code><br>覆盖率数据保存路径（生成<code>.exec</code>二进制文件）‌</li>
+</ul>
+<p><img src="image-20250719163913776.png" alt="image-20250719163913776"></p>
+</li>
+</ul>
+<blockquote>
+<p>3.生成报告</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用于将JaCoCo收集的覆盖率数据（.exec文件）转换为HTML格式的可视化报告</span></span><br><span class="line">java -jar /root/jacoco/jacoco/lib/jacococli.jar report coverage.exec \</span><br><span class="line">--classfiles ./jacoco_arthas/arthas/target/classes \</span><br><span class="line">--sourcefiles ./jacoco_arthas/arthas/src/main/java \</span><br><span class="line">--html ./report --encoding utf-8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 无法在线查看覆盖率报告，可以将报告直接生成到tomcat目录下</span></span><br><span class="line">java -jar /root/jacoco/jacoco/lib/jacococli.jar report coverage.exec \</span><br><span class="line">--classfiles ./jacoco_arthas/arthas/target/classes \</span><br><span class="line">--sourcefiles ./jacoco_arthas/arthas/src/main/java \</span><br><span class="line">--html /root/docker_volume/tomcat/webapps/jacoco/report --encoding utf-8</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>java -jar /root/jacoco/jacoco/lib/jacococli.jar report coverage.exec</code></p>
+<ul>
+<li>调用JaCoCo命令行工具解析二进制覆盖率文件<code>coverage.exec</code></li>
+</ul>
+</li>
+<li><p><code>--classfiles ./jacoco_arthas/arthas/target/classes</code></p>
+<ul>
+<li>指定编译后的.class文件路径（必须与生成.exec时的class版本一致）</li>
+</ul>
+</li>
+<li><p><code>--sourcefiles ./jacoco_arthas/arthas/src/main/java</code></p>
+<ul>
+<li>关联源代码路径（用于展示具体未覆盖代码行）</li>
+</ul>
+</li>
+<li><p><code>--html ./report</code></p>
+<ul>
+<li>生成HTML报告到指定目录（自动创建子目录）15</li>
+</ul>
+</li>
+<li><p><code>--encoding utf-8</code></p>
+<ul>
+<li>设置源码文件编码（避免中文乱码）</li>
+</ul>
+<p><img src="image-20250719164005438.png" alt="image-20250719164005438"></p>
+</li>
+</ul>
+<h2 id="1-2-报告"><a href="#1-2-报告" class="headerlink" title="1.2 报告"></a>1.2 报告</h2><blockquote>
+<p>报告按层级</p>
+</blockquote>
+<ul>
+<li><strong>项目总览</strong>‌<ul>
+<li>整体覆盖率概览（含所有指标）</li>
+</ul>
+</li>
+</ul>
+<p><img src="image-20250719174214866.png" alt="image-20250719174214866"></p>
+<ul>
+<li><p><strong>包&#x2F;类&#x2F;方法级</strong>‌</p>
+<ul>
+<li><p>包覆盖率 → 类覆盖率 → 方法覆盖率 → 代码行详情</p>
+<p><img src="image-20250719174937930.png" alt="image-20250719174937930"></p>
+<p><img src="image-20250719175046341.png" alt="image-20250719175046341"></p>
+</li>
+</ul>
+</li>
+<li><p>分支点显示钻石图标</p>
+<p><img src="image-20250719175331789.png" alt="image-20250719175331789"></p>
+</li>
+</ul>
+<h3 id="1-2-1-表格"><a href="#1-2-1-表格" class="headerlink" title="1.2.1 表格"></a>1.2.1 表格</h3><h3 id="1-2-2-颜色"><a href="#1-2-2-颜色" class="headerlink" title="1.2.2 颜色"></a>1.2.2 颜色</h3><table>
+<thead>
+<tr>
+<th><strong>标记类型</strong>‌</th>
+<th>‌<strong>颜色</strong>‌</th>
+<th>‌<strong>含义</strong>‌</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‌<strong>行背景色</strong>‌</td>
+<td>红色</td>
+<td>该行所有指令均未执行</td>
+</tr>
+<tr>
+<td></td>
+<td>黄色</td>
+<td>该行部分指令执行（如分支未全覆盖）</td>
+</tr>
+<tr>
+<td></td>
+<td>绿色</td>
+<td>该行所有指令已执行</td>
+</tr>
+<tr>
+<td>‌<strong>分支图标（钻石）</strong>‌</td>
+<td>红色</td>
+<td>分支全未覆盖</td>
+</tr>
+<tr>
+<td></td>
+<td>黄色</td>
+<td>分支部分覆盖</td>
+</tr>
+<tr>
+<td></td>
+<td>绿色</td>
+<td>分支全覆盖</td>
+</tr>
+</tbody></table>
+<h2 id="1-3-个性化"><a href="#1-3-个性化" class="headerlink" title="1.3 个性化"></a>1.3 个性化</h2><p>&#x2F;&#x2F;TODO 修改源码，个性化jacoco</p>
+<h2 id="1-4-定时生成"><a href="#1-4-定时生成" class="headerlink" title="1.4 定时生成"></a>1.4 定时生成</h2><blockquote>
+<p>1.新增执行的脚本并通过<code>chmod +x</code>命令添加可执行权限‌</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>command 2&gt;&amp;1 &gt;&gt; file</code></th>
+<th><code>command &gt;&gt; file 2&gt;&amp;1</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‌<strong>标准输出流向</strong>‌</td>
+<td>文件</td>
+<td>文件</td>
+</tr>
+<tr>
+<td>‌<strong>标准错误流向</strong>‌</td>
+<td>终端</td>
+<td>文件</td>
+</tr>
+<tr>
+<td>‌<strong>日志完整性</strong>‌</td>
+<td>分离（错误丢失）</td>
+<td>完整记录</td>
+</tr>
+<tr>
+<td>‌<strong>典型用途</strong>‌</td>
+<td>仅需记录正常输出时</td>
+<td>需完整日志的场景‌</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># Jacoco报告生成脚本（每30秒执行）</span></span><br><span class="line">LOG_FILE=<span class="string">&quot;/root/jacoco/jacoco_report.log&quot;</span></span><br><span class="line"></span><br><span class="line">IP=$(hostname -I | awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前主机IP: <span class="variable">$IP</span>&quot;</span> &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;===== [<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] 开始通过JaCoCo CLI从TCP服务端拉取数据&quot;</span>=====  &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line">	</span><br><span class="line">    java -jar /root/jacoco/jacoco/lib/jacococli.jar dump --address <span class="variable">$IP</span> --port 6300 \</span><br><span class="line">    --destfile /root/jacoco/coverage.exec 2&gt;&amp;1 &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;===== [<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] 拉取数据完成&quot;</span>=====  &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;===== [<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] 开始生成Jacoco报告&quot;</span>=====  &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line">  </span><br><span class="line">    java -jar /root/jacoco/jacoco/lib/jacococli.jar report /root/jacoco/coverage.exec \</span><br><span class="line">    --classfiles /root/jacoco/jacoco_arthas/arthas/target/classes \</span><br><span class="line">    --sourcefiles /root/jacoco/jacoco_arthas/arthas/src/main/java \</span><br><span class="line">    --html /root/docker_volume/tomcat/webapps/jacoco/report --encoding utf-8 2&gt;&amp;1 &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;===== [<span class="subst">$(date &#x27;+%Y-%m-%d %H:%M:%S&#x27;)</span>] 报告生成完成&quot;</span>=====  &gt;&gt; <span class="variable">$LOG_FILE</span></span><br><span class="line">    <span class="built_in">sleep</span> 30</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim generate_jacoco_report.sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x generate_jacoco_report.sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250719204921809.png" alt="image-20250719204921809"></p>
+<blockquote>
+<p>2.&#x2F;etc&#x2F;systemd&#x2F;system 目录下新增服务jacoco_report.service</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Jacoco Coverage Report Generator(jacoco覆盖率报告生成服务)</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/bin/bash /root/jacoco/generate_jacoco_report.sh</span><br><span class="line">Restart=always</span><br><span class="line">User=root</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20250719200236841.png" alt="image-20250719200236841"></p>
+<blockquote>
+<p>3.启动服务jacoco_report.service</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl start jacoco_report</span><br><span class="line"></span><br><span class="line"><span class="comment"># 先重新加载所有systemd单元文件配置（包括.service文件，再启用服务实现持久化自启</span></span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl <span class="built_in">enable</span> jacoco_report</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制终止所有同名进</span></span><br><span class="line">pkill -f 进程名 </span><br></pre></td></tr></table></figure>
+
+<h1 id="2-arthas"><a href="#2-arthas" class="headerlink" title="2.arthas"></a>2.arthas</h1><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></li>
+</ul>
+<p>定位和诊断运行的java项目代码</p>
 <h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><blockquote>
 <p>卸载：直接删除2个文件夹：.arthas和logs</p>
 </blockquote>
@@ -704,7 +915,7 @@
 </tr>
 </tbody></table>
 <p><img src="image-20250713233500215.png" alt="image-20250713233500215"></p>
-<h2 id="2-3-其它命令"><a href="#2-3-其它命令" class="headerlink" title="2.3 其它命令"></a>2.3 其它命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">NAME         DESCRIPTION                                                                                                                          </span><br><span class="line"> help         Display Arthas Help                                                                                                                  </span><br><span class="line"> auth         Authenticates the current session                                                                                                    </span><br><span class="line"> keymap       Display all the available keymap for the specified connection.                                                                       </span><br><span class="line"> sc           Search all the classes loaded by JVM                                                                                                 </span><br><span class="line"> sm           Search the method of classes loaded by JVM                                                                                           </span><br><span class="line"> classloader  Show classloader info                                                                                                                </span><br><span class="line"> jad          Decompile class                                                                                                                      </span><br><span class="line"> getstatic    Show the static field of a class                                                                                                     </span><br><span class="line"> monitor      Monitor method execution statistics, e.g. total/success/failure count, average rt, fail rate, etc.                                   </span><br><span class="line"> stack        Display the stack trace for the specified class and method                                                                           </span><br><span class="line"> thread       Display thread info, thread stack                                                                                                    </span><br><span class="line"> trace        Trace the execution time of specified method invocation.                                                                             </span><br><span class="line"> watch        Display the input/output parameter, return object, and thrown exception of specified method invocation                               </span><br><span class="line"> tt           Time Tunnel                                                                                                                          </span><br><span class="line"> jvm          Display the target JVM information                                                                                                   </span><br><span class="line"> memory       Display jvm memory info.                                                                                                             </span><br><span class="line"> perfcounter  Display the perf counter information.                                                                                                </span><br><span class="line"> ognl         Execute ognl expression.                                                                                                             </span><br><span class="line"> mc           Memory compiler, compiles java files into bytecode and class files in memory.                                                        </span><br><span class="line"> redefine     Redefine classes. @see Instrumentation#redefineClasses(ClassDefinition...)                                                           </span><br><span class="line"> retransform  Retransform classes. @see Instrumentation#retransformClasses(Class...)                                                               </span><br><span class="line"> dashboard    Overview of target jvm&#x27;s thread, memory, gc, vm, tomcat info.                                                                        </span><br><span class="line"> dump         Dump class byte array from JVM                                                                                                       </span><br><span class="line"> heapdump     Heap dump                                                                                                                            </span><br><span class="line"> options      View and change various Arthas options                                                                                               </span><br><span class="line"> cls          Clear the screen                                                                                                                     </span><br><span class="line"> reset        Reset all the enhanced classes                                                                                                       </span><br><span class="line"> version      Display Arthas version                                                                                                               </span><br><span class="line"> session      Display current session information                                                                                                  </span><br><span class="line"> sysprop      Display and change the system properties.                                                                                            </span><br><span class="line"> sysenv       Display the system env.                                                                                                              </span><br><span class="line"> vmoption     Display, and update the vm diagnostic options.                                                                                       </span><br><span class="line"> logger       Print logger info, and update the logger level                                                                                       </span><br><span class="line"> history      Display command history                                                                                                              </span><br><span class="line"> cat          Concatenate and print files                                                                                                          </span><br><span class="line"> base64       Encode and decode using Base64 representation                                                                                        </span><br><span class="line"> echo         write arguments to the standard output                                                                                               </span><br><span class="line"> pwd          Return working directory name                                                                                                        </span><br><span class="line"> mbean        Display the mbean information                                                                                                        </span><br><span class="line"> grep         grep command for pipes.                                                                                                              </span><br><span class="line"> tee          tee command for pipes.                                                                                                               </span><br><span class="line"> profiler     Async Profiler. https://github.com/jvm-profiling-tools/async-profiler                                                                </span><br><span class="line"> vmtool       jvm tool                                                                                                                             </span><br><span class="line"> stop         Stop/Shutdown Arthas server and exit the console.                                                                                    </span><br><span class="line"> jfr          Java Flight Recorder Command                                   </span><br></pre></td></tr></table></figure>
+<h3 id="2-2-7-jad"><a href="#2-2-7-jad" class="headerlink" title="2.2.7 jad"></a>2.2.7 jad</h3><h2 id="2-3-其它命令"><a href="#2-3-其它命令" class="headerlink" title="2.3 其它命令"></a>2.3 其它命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">NAME         DESCRIPTION                                                                                                                          </span><br><span class="line"> help         Display Arthas Help                                                                                                                  </span><br><span class="line"> auth         Authenticates the current session                                                                                                    </span><br><span class="line"> keymap       Display all the available keymap for the specified connection.                                                                       </span><br><span class="line"> sc           Search all the classes loaded by JVM                                                                                                 </span><br><span class="line"> sm           Search the method of classes loaded by JVM                                                                                           </span><br><span class="line"> classloader  Show classloader info                                                                                                                </span><br><span class="line"> jad          Decompile class                                                                                                                      </span><br><span class="line"> getstatic    Show the static field of a class                                                                                                     </span><br><span class="line"> monitor      Monitor method execution statistics, e.g. total/success/failure count, average rt, fail rate, etc.                                   </span><br><span class="line"> stack        Display the stack trace for the specified class and method                                                                           </span><br><span class="line"> thread       Display thread info, thread stack                                                                                                    </span><br><span class="line"> trace        Trace the execution time of specified method invocation.                                                                             </span><br><span class="line"> watch        Display the input/output parameter, return object, and thrown exception of specified method invocation                               </span><br><span class="line"> tt           Time Tunnel                                                                                                                          </span><br><span class="line"> jvm          Display the target JVM information                                                                                                   </span><br><span class="line"> memory       Display jvm memory info.                                                                                                             </span><br><span class="line"> perfcounter  Display the perf counter information.                                                                                                </span><br><span class="line"> ognl         Execute ognl expression.                                                                                                             </span><br><span class="line"> mc           Memory compiler, compiles java files into bytecode and class files in memory.                                                        </span><br><span class="line"> redefine     Redefine classes. @see Instrumentation#redefineClasses(ClassDefinition...)                                                           </span><br><span class="line"> retransform  Retransform classes. @see Instrumentation#retransformClasses(Class...)                                                               </span><br><span class="line"> dashboard    Overview of target jvm&#x27;s thread, memory, gc, vm, tomcat info.                                                                        </span><br><span class="line"> dump         Dump class byte array from JVM                                                                                                       </span><br><span class="line"> heapdump     Heap dump                                                                                                                            </span><br><span class="line"> options      View and change various Arthas options                                                                                               </span><br><span class="line"> cls          Clear the screen                                                                                                                     </span><br><span class="line"> reset        Reset all the enhanced classes                                                                                                       </span><br><span class="line"> version      Display Arthas version                                                                                                               </span><br><span class="line"> session      Display current session information                                                                                                  </span><br><span class="line"> sysprop      Display and change the system properties.                                                                                            </span><br><span class="line"> sysenv       Display the system env.                                                                                                              </span><br><span class="line"> vmoption     Display, and update the vm diagnostic options.                                                                                       </span><br><span class="line"> logger       Print logger info, and update the logger level                                                                                       </span><br><span class="line"> history      Display command history                                                                                                              </span><br><span class="line"> cat          Concatenate and print files                                                                                                          </span><br><span class="line"> base64       Encode and decode using Base64 representation                                                                                        </span><br><span class="line"> echo         write arguments to the standard output                                                                                               </span><br><span class="line"> pwd          Return working directory name                                                                                                        </span><br><span class="line"> mbean        Display the mbean information                                                                                                        </span><br><span class="line"> grep         grep command for pipes.                                                                                                              </span><br><span class="line"> tee          tee command for pipes.                                                                                                               </span><br><span class="line"> profiler     Async Profiler. https://github.com/jvm-profiling-tools/async-profiler                                                                </span><br><span class="line"> vmtool       jvm tool                                                                                                                             </span><br><span class="line"> stop         Stop/Shutdown Arthas server and exit the console.                                                                                    </span><br><span class="line"> jfr          Java Flight Recorder Command                                   </span><br></pre></td></tr></table></figure>
 
 <h3 id="2-3-1-options"><a href="#2-3-1-options" class="headerlink" title="2.3.1 options"></a>2.3.1 options</h3><blockquote>
 <p>用于查看和修改Arthas的全局配置选项</p>
@@ -723,29 +934,9 @@
 <td>是否允许增强系统类</td>
 </tr>
 <tr>
-<td>json-format</td>
+<td>dump</td>
 <td>false</td>
-<td>是否以JSON格式输出</td>
-</tr>
-<tr>
-<td>verbose</td>
-<td>false</td>
-<td>是否显示详细输出</td>
-</tr>
-<tr>
-<td>disable-sub-class</td>
-<td>false</td>
-<td>是否禁用子类匹配</td>
-</tr>
-<tr>
-<td>save-result</td>
-<td>false</td>
-<td>是否保存命令结果到日志</td>
-</tr>
-<tr>
-<td>sample-interval</td>
-<td>100</td>
-<td>采样间隔时间(ms)</td>
+<td>是否dump增强的类</td>
 </tr>
 <tr>
 <td>batch-re-transform</td>
@@ -753,43 +944,88 @@
 <td>是否批量retransform类</td>
 </tr>
 <tr>
+<td>json-format</td>
+<td>false</td>
+<td>是否以JSON格式输出</td>
+</tr>
+<tr>
+<td>disable-sub-class</td>
+<td>false</td>
+<td>是否禁用子类匹配</td>
+</tr>
+<tr>
+<td>support-default-method</td>
+<td>true</td>
+<td>是否匹配接口中的 default 方法</td>
+</tr>
+<tr>
+<td>save-result</td>
+<td>false</td>
+<td>是否保存命令结果到日志</td>
+</tr>
+<tr>
 <td>job-timeout</td>
 <td>86400</td>
 <td>异步任务超时时间(秒)</td>
 </tr>
 <tr>
-<td>dump</td>
-<td>false</td>
-<td>是否dump增强的类</td>
-</tr>
-<tr>
-<td>support-redefine</td>
+<td>print-parent-fields</td>
 <td>true</td>
-<td>是否支持redefine功能</td>
+<td>是否打印父类中的字段信息</td>
 </tr>
 <tr>
-<td>debug-for-asm</td>
+<td>verbose</td>
 <td>false</td>
-<td>是否输出ASM调试信息</td>
+<td>是否显示详细输出</td>
 </tr>
 <tr>
-<td>silent</td>
-<td>false</td>
-<td>是否静默输出</td>
-</tr>
-<tr>
-<td>height</td>
-<td>45</td>
-<td>终端显示高度</td>
-</tr>
-<tr>
-<td>width</td>
-<td>80</td>
-<td>终端显示宽度</td>
+<td>strict</td>
+<td>true</td>
+<td>是否启用严格模式</td>
 </tr>
 </tbody></table>
 <p><img src="image-20250714232943833.png" alt="image-20250714232943833"></p>
-<h3 id="2-3-2-profile"><a href="#2-3-2-profile" class="headerlink" title="2.3.2 profile"></a>2.3.2 profile</h3>
+<p><img src="image-20250716223359067.png" alt="image-20250716223359067"></p>
+<h3 id="2-3-2-profiler"><a href="#2-3-2-profiler" class="headerlink" title="2.3.2 profiler"></a>2.3.2 profiler</h3><blockquote>
+<p>基于async-profiler工具实现的性能分析功能，主要用于生成应用热点的火焰图</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">profiler action [actionArg]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>action</td>
+<td>要执行的操作(start&#x2F;stop&#x2F;list等)</td>
+</tr>
+<tr>
+<td>actionArg</td>
+<td>属性名模式</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>采样间隔(单位)，默认10ms</td>
+</tr>
+<tr>
+<td><code>-f</code></td>
+<td>输出文件路径</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>运行评测的秒数</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>要跟踪的事件类型(cpu&#x2F;alloc&#x2F;lock等)</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动profiler，默认监听CPU事件，开始采样‌</span></span><br><span class="line">profiler start</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看支持的事件类型</span></span><br><span class="line">profiler list</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取已采集样本数</span></span><br><span class="line">profiler getSamples</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看profiler状态</span></span><br><span class="line">profiler status</span><br><span class="line"></span><br><span class="line"><span class="comment">#停止并生成火焰图</span></span><br><span class="line">profiler stop --format html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定输出路径</span></span><br><span class="line">profiler start -f /tmp/output.html</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -888,7 +1124,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-jacoco"><span class="nav-text">1.jacoco</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-arthas"><span class="nav-text">2.arthas</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85"><span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-trace"><span class="nav-text">2.2.1 trace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-watch"><span class="nav-text">2.2.2 watch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-monitor"><span class="nav-text">2.2.3 monitor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-stack"><span class="nav-text">2.2.4 stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-thread"><span class="nav-text">2.2.5 thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-tt"><span class="nav-text">2.2.6 tt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%85%B6%E5%AE%83%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3 其它命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-options"><span class="nav-text">2.3.1 options</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-profile"><span class="nav-text">2.3.2 profile</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-jacoco"><span class="nav-text">1.jacoco</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%91%BD%E4%BB%A4"><span class="nav-text">1.1 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%8A%A5%E5%91%8A"><span class="nav-text">1.2 报告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E8%A1%A8%E6%A0%BC"><span class="nav-text">1.2.1 表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E9%A2%9C%E8%89%B2"><span class="nav-text">1.2.2 颜色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="nav-text">1.3 个性化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E5%AE%9A%E6%97%B6%E7%94%9F%E6%88%90"><span class="nav-text">1.4 定时生成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-arthas"><span class="nav-text">2.arthas</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85"><span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-trace"><span class="nav-text">2.2.1 trace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-watch"><span class="nav-text">2.2.2 watch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-monitor"><span class="nav-text">2.2.3 monitor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-stack"><span class="nav-text">2.2.4 stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-thread"><span class="nav-text">2.2.5 thread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-tt"><span class="nav-text">2.2.6 tt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-7-jad"><span class="nav-text">2.2.7 jad</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%85%B6%E5%AE%83%E5%91%BD%E4%BB%A4"><span class="nav-text">2.3 其它命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-options"><span class="nav-text">2.3.1 options</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-profiler"><span class="nav-text">2.3.2 profiler</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -972,7 +1208,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">44:56</span>
+    <span title="站点阅读时长">45:01</span>
 </div>
 
         
