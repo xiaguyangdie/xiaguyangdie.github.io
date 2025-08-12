@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/MySQL%E4%B9%8B%E5%85%A5%E9%97%A8/image-20220822221507886.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/MySQL%E4%B9%8B%E5%85%A5%E9%97%A8/image-20250727102423541.png">
 <meta property="article:published_time" content="2023-02-26T08:27:31.080Z">
-<meta property="article:modified_time" content="2025-07-27T10:52:12.630Z">
+<meta property="article:modified_time" content="2025-08-12T16:11:02.688Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="MySQL">
@@ -246,7 +246,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-27 18:52:12" itemprop="dateModified" datetime="2025-07-27T18:52:12+08:00">2025-07-27</time>
+                <time title="修改时间：2025-08-13 00:11:02" itemprop="dateModified" datetime="2025-08-13T00:11:02+08:00">2025-08-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,14 +285,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>26k</span>
+              <span>31k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>23 分钟</span>
+              <span>28 分钟</span>
             </span>
             <div class="post-description">MySQL入门</div>
 
@@ -1759,9 +1759,357 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">FUNCTION</span> IF <span class="keyword">EXISTS</span> 函数名;</span><br></pre></td></tr></table></figure>
 
 <h1 id="12-变量"><a href="#12-变量" class="headerlink" title="12.变量"></a>12.变量</h1><ul>
-<li>在 MySQL 数据库中，变量分为 <strong>系统变量</strong> 以及 <strong>用户自定义变量</strong></li>
+<li><p>在 MySQL 数据库中，变量分为 <strong>系统变量</strong> 、 <strong>用户自定义变量</strong> 和<strong>局部变量</strong></p>
+</li>
+<li><p><strong>系统变量又分为全局变量和会话变量</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>变量类型</strong>‌</th>
+<th>‌<strong>作用域</strong>‌</th>
+<th>‌<strong>声明方式</strong>‌</th>
+<th>‌<strong>生命周期</strong>‌</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局变量</td>
+<td>整个MySQL服务器实例</td>
+<td>配置文件或<code>SET GLOBAL</code></td>
+<td>重启失效（MySQL 8.0支持持久化‌）</td>
+</tr>
+<tr>
+<td>会话变量</td>
+<td>当前连接会话</td>
+<td><code>SET SESSION</code></td>
+<td>会话结束销毁</td>
+</tr>
+<tr>
+<td>用户定义变量（@）</td>
+<td>当前连接会话</td>
+<td><code>SET @var = ...</code></td>
+<td>会话结束销毁</td>
+</tr>
+<tr>
+<td>局部变量</td>
+<td>存储程序块内</td>
+<td><code>DECLARE</code></td>
+<td>程序块执行结束销毁</td>
+</tr>
+</tbody></table>
+</li>
 </ul>
-<h2 id="12-1-系统变量"><a href="#12-1-系统变量" class="headerlink" title="12.1 系统变量"></a>12.1 系统变量</h2><h2 id="12-2-用户变量"><a href="#12-2-用户变量" class="headerlink" title="12.2 用户变量"></a>12.2 用户变量</h2><h1 id="13-流程控制"><a href="#13-流程控制" class="headerlink" title="13.流程控制"></a>13.流程控制</h1><h1 id="14-游标"><a href="#14-游标" class="headerlink" title="14.游标"></a>14.游标</h1><h1 id="15-触发器"><a href="#15-触发器" class="headerlink" title="15.触发器"></a>15.触发器</h1><ul>
+<h2 id="12-1-系统变量"><a href="#12-1-系统变量" class="headerlink" title="12.1 系统变量"></a>12.1 系统变量</h2><blockquote>
+<p>全局变量</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> max_connections <span class="operator">=</span> <span class="number">500</span>;  <span class="comment">-- 设置全局变量</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GLOBAL</span> VARIABLES <span class="keyword">LIKE</span> <span class="string">&#x27;max_connections&#x27;</span>;  <span class="comment">-- 查看全局变量</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>会话变量</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> SESSION sql_mode <span class="operator">=</span> <span class="string">&#x27;STRICT_TRANS_TABLES&#x27;</span>;  <span class="comment">-- 设置会话变量</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>MySQL 中的系统变量以 <strong>两个“@” 开头</strong></p>
+</li>
+<li><p><code>@@global</code>仅用于标记全局系统变量</p>
+</li>
+<li><p><code>@@session</code>仅用于标记会话系统变量</p>
+</li>
+<li><p><code>@@</code>首先标记会话系统变量，如果会话系统变量不存在，则标记全局系统变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#查看指定的系统变量的值</span><br><span class="line">SELECT @@global.变量名;</span><br><span class="line"></span><br><span class="line">#查看指定的会话变量的值</span><br><span class="line">SELECT @@session.变量名;</span><br><span class="line">#或者</span><br><span class="line">SELECT @@变量名;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="12-2-用户自定义变量"><a href="#12-2-用户自定义变量" class="headerlink" title="12.2 用户自定义变量"></a>12.2 用户自定义变量</h2><ul>
+<li><p>由用户自定义，以<code>@</code>开头，仅在当前会话有效</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="variable">@user</span>_var <span class="operator">=</span> <span class="number">10</span>;  <span class="comment">-- 直接赋值</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="variable">@total</span> :<span class="operator">=</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> <span class="keyword">table</span>;  <span class="comment">-- 查询结果赋值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无需声明，直接赋值使用</p>
+</li>
+<li><p>不区分大小写（<code>@var</code>与<code>@VAR</code>等价）</p>
+</li>
+<li><p>会话结束自动销毁‌</p>
+</li>
+</ul>
+<h2 id="12-3-局部变量"><a href="#12-3-局部变量" class="headerlink" title="12.3 局部变量"></a>12.3 局部变量</h2><ul>
+<li><p>在存储程序（存储过程、函数、触发器）中定义，作用域仅限于声明它们的程序块</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> 变量名 数据类型 [<span class="keyword">DEFAULT</span> 默认值];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>必须用<code>DECLARE</code>在程序块开头声明</p>
+</li>
+<li><p>作用域仅限于所在的<code>BEGIN...END</code>块</p>
+</li>
+<li><p>常用于临时存储计算结果或控制流程</p>
+</li>
+<li><p>程序执行结束即销毁</p>
+</li>
+</ul>
+<h1 id="13-流程控制"><a href="#13-流程控制" class="headerlink" title="13.流程控制"></a>13.流程控制</h1><ul>
+<li>流程控制语句通常只能在存储程序（存储过程、函数、触发器）内部使用<ul>
+<li><strong>条件判断语句</strong> ：if 语句和 case 语句</li>
+<li><strong>循环语句</strong> ：loop、while 和 repeat 语句</li>
+<li><strong>跳转语句</strong> ：iterate 和 leave 语句</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-1-分支结构"><a href="#13-1-分支结构" class="headerlink" title="13.1 分支结构"></a>13.1 分支结构</h2><h3 id="13-1-1-if语句"><a href="#13-1-1-if语句" class="headerlink" title="13.1.1 if语句"></a>13.1.1 if语句</h3><ul>
+<li>MySQL的<code>IF</code>语句有两种主要形式：‌<strong>函数形式</strong>‌（用于查询）和‌<strong>流程控制形式</strong>‌（用于存储过程、函数或触发器）</li>
+</ul>
+<blockquote>
+<p>ifl流程控制语句</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IF <span class="keyword">condition</span> <span class="keyword">THEN</span></span><br><span class="line">    statements;</span><br><span class="line">[ELSEIF <span class="keyword">condition</span> <span class="keyword">THEN</span></span><br><span class="line">    statements;]</span><br><span class="line">[<span class="keyword">ELSE</span></span><br><span class="line">    statements;]</span><br><span class="line"><span class="keyword">END</span> IF;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>if函数</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IF(<span class="keyword">condition</span>, value_if_true, value_if_false)</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-1-2-case语句"><a href="#13-1-2-case语句" class="headerlink" title="13.1.2 case语句"></a>13.1.2 case语句</h3><ul>
+<li><strong>ELSE子句</strong>‌：若省略且无匹配项，返回NULL</li>
+<li>‌<strong>执行顺序</strong>‌：CASE语句按WHEN子句顺序执行，匹配成功后忽略后续条件</li>
+<li>‌<strong>NULL处理</strong>‌：需使用<code>IS NULL</code>判断，直接<code>WHEN NULL</code>会失效</li>
+</ul>
+<blockquote>
+<p>简单CASE表达式</p>
+</blockquote>
+<ul>
+<li><p>直接比较列或表达式与WHEN子句的值是否相等</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CASE</span> 列名<span class="operator">/</span>表达式</span><br><span class="line">    <span class="keyword">WHEN</span> 值<span class="number">1</span> <span class="keyword">THEN</span> 结果<span class="number">1</span></span><br><span class="line">    <span class="keyword">WHEN</span> 值<span class="number">2</span> <span class="keyword">THEN</span> 结果<span class="number">2</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">ELSE</span> 默认结果</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>搜索CASE表达式</p>
+</blockquote>
+<ul>
+<li><p>每个WHEN子句可包含独立的布尔表达式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CASE</span></span><br><span class="line">    <span class="keyword">WHEN</span> 条件<span class="number">1</span> <span class="keyword">THEN</span> 结果<span class="number">1</span></span><br><span class="line">    <span class="keyword">WHEN</span> 条件<span class="number">2</span> <span class="keyword">THEN</span> 结果<span class="number">2</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">ELSE</span> 默认结果</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="13-2-循环结构"><a href="#13-2-循环结构" class="headerlink" title="13.2 循环结构"></a>13.2 循环结构</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>REPEAT</th>
+<th>WHILE</th>
+<th>LOOP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>检查时机</td>
+<td>循环结束后</td>
+<td>循环开始前</td>
+<td>需显式LEAVE</td>
+</tr>
+<tr>
+<td>最少执行次数</td>
+<td>1次</td>
+<td>0次</td>
+<td>1次</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>至少执行一次</td>
+<td>条件明确循环</td>
+<td>复杂中断逻辑</td>
+</tr>
+</tbody></table>
+<h3 id="13-2-1-loop语句"><a href="#13-2-1-loop语句" class="headerlink" title="13.2.1 loop语句"></a>13.2.1 loop语句</h3><ul>
+<li>必须通过<code>LEAVE</code>语句显式退出，否则会形成死循环</li>
+<li>支持使用标签（<code>begin_label</code>）标记循环范围，便于嵌套时精准控制</li>
+<li>循环体内可包含任意有效的SQL语句</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[begin_label:] LOOP</span><br><span class="line">    <span class="comment">-- 循环体（可包含SQL语句或流程控制）</span></span><br><span class="line">    IF 退出条件 <span class="keyword">THEN</span></span><br><span class="line">        LEAVE [begin_label];  <span class="comment">-- 退出循环</span></span><br><span class="line">    <span class="keyword">END</span> IF;</span><br><span class="line">    </span><br><span class="line">    ITERATE [begin_label];    <span class="comment">-- 跳过当前迭代（可选）</span></span><br><span class="line"><span class="keyword">END</span> LOOP [end_label];</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-2-2-while语句"><a href="#13-2-2-while语句" class="headerlink" title="13.2.2 while语句"></a>13.2.2 while语句</h3><ul>
+<li>先检查条件后执行循环体，条件为<code>TRUE</code>时继续执行</li>
+<li>需通过变量修改使条件最终变为<code>FALSE</code>，否则会无限循环</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[begin_label:] WHILE 条件表达式 DO</span><br><span class="line">    <span class="comment">-- 循环体（可包含SQL语句或流程控制）</span></span><br><span class="line"><span class="keyword">END</span> WHILE [end_label]</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-2-3-repeat语句"><a href="#13-2-3-repeat语句" class="headerlink" title="13.2.3 repeat语句"></a>13.2.3 repeat语句</h3><ul>
+<li>循环体至少执行一次，执行后检查<code>UNTIL</code>后的条件表达式</li>
+<li>条件为<code>TRUE</code>时退出循环，为<code>FALSE</code>时继续执行</li>
+<li>支持使用标签（<code>begin_label</code>）标记循环范围，便于嵌套控制</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[begin_label:] REPEAT</span><br><span class="line">    <span class="comment">-- 循环体（可包含SQL语句或流程控制）</span></span><br><span class="line">UNTIL 条件表达式</span><br><span class="line"><span class="keyword">END</span> REPEAT [end_label]</span><br></pre></td></tr></table></figure>
+
+<h2 id="13-3-跳转结构"><a href="#13-3-跳转结构" class="headerlink" title="13.3 跳转结构"></a>13.3 跳转结构</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ITERATE</th>
+<th>LEAVE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‌<strong>作用</strong>‌</td>
+<td>跳过当前迭代</td>
+<td>完全退出循环</td>
+</tr>
+<tr>
+<td>‌<strong>类比</strong>‌</td>
+<td>类似<code>continue</code></td>
+<td>类似<code>break</code></td>
+</tr>
+<tr>
+<td>‌<strong>执行后</strong>‌</td>
+<td>继续下一次循环</td>
+<td>执行循环后代码</td>
+</tr>
+<tr>
+<td>‌<strong>适用场景</strong>‌</td>
+<td>需要过滤特定条件迭代</td>
+<td>满足终止条件时退出</td>
+</tr>
+</tbody></table>
+<h3 id="13-3-1-iterate语句"><a href="#13-3-1-iterate语句" class="headerlink" title="13.3.1 iterate语句"></a>13.3.1 iterate语句</h3><ul>
+<li><p>跳过当前循环体剩余代码，直接开始下一次循环迭代（类似其他语言的<code>continue</code>）</p>
+</li>
+<li><p>仅能在带标签的<code>LOOP</code>、<code>REPEAT</code>、<code>WHILE</code>循环结构内使用</p>
+</li>
+<li><p>‌必须与预定义的循环标签配合使用，且需确保循环内有终止条件避免死循环</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ITERATE 循环标签;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="13-3-2-leave语句"><a href="#13-3-2-leave语句" class="headerlink" title="13.3.2 leave语句"></a>13.3.2 leave语句</h3><ul>
+<li><p>立即终止当前循环&#x2F;块，跳转到标签后的代码继续执行（类似其他语言的<code>break</code>）</p>
+</li>
+<li><p>仅能在带标签的<code>LOOP</code>、<code>REPEAT</code>、<code>WHILE</code>循环结构内使用</p>
+</li>
+<li><p>‌必须与预定义的循环标签配合使用，且需确保循环内有终止条件避免死循环</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LEAVE 标签名;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="13-4-查询中的流程控制函数"><a href="#13-4-查询中的流程控制函数" class="headerlink" title="13.4 查询中的流程控制函数"></a>13.4 查询中的流程控制函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>语法结构</th>
+<th>核心逻辑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>IF()</code></td>
+<td><code>IF(cond,val_true,val_false)</code></td>
+<td>条件<code>cond</code>为真时返回<code>val_true</code>，否则返回<code>val_false</code></td>
+</tr>
+<tr>
+<td><code>IFNULL()</code></td>
+<td><code>IFNULL(expr1,expr2)</code></td>
+<td><code>expr1</code>为NULL时返回<code>expr2</code>，否则返回<code>expr1</code></td>
+</tr>
+<tr>
+<td><code>NULLIF()</code></td>
+<td><code>NULLIF(expr1,expr2)</code></td>
+<td><code>expr1=expr2</code>时返回NULL，否则返回<code>expr1</code></td>
+</tr>
+<tr>
+<td><code>ISNULL()</code></td>
+<td><code>ISNULL(expr)</code></td>
+<td>检测<code>expr</code>是否为NULL（是则返回1，否则返回0）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>IF</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 三元判断结构</span></span><br><span class="line">IF(expr1, expr2, expr3)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>‌<strong>参数说明</strong>‌：<ul>
+<li><code>expr1</code>：判断条件（返回TRUE&#x2F;FALSE&#x2F;NULL）</li>
+<li><code>expr2</code>：条件为真时的返回值</li>
+<li><code>expr3</code>：条件为假时的返回值</li>
+</ul>
+</li>
+<li>‌<strong>返回值规则</strong>‌：<ul>
+<li>当<code>expr1</code>为TRUE（非0且非NULL）时返回<code>expr2</code></li>
+<li>当<code>expr1</code>为FALSE或NULL时返回<code>expr3</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>IFNULL</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 空值处理</span></span><br><span class="line">IFNULL(expr1, expr2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>‌参数说明‌：</strong><ul>
+<li><code>expr1</code>：待检测的表达式</li>
+<li><code>expr2</code>：<code>expr1</code>为NULL时的替代值</li>
+</ul>
+</li>
+<li>‌<strong>返回值规则：</strong><ul>
+<li>若<code>expr1</code>非NULL → 返回<code>expr1</code>原值</li>
+<li>若<code>expr1</code>为NULL → 返回<code>expr2</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>NULLIF</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 等值返回NULL</span></span><br><span class="line"><span class="built_in">NULLIF</span>(expr1, expr2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>‌<strong>参数说明‌：</strong><ul>
+<li><code>expr1</code>：待比较的第一个表达式</li>
+<li><code>expr2</code>：待比较的第二个表达式</li>
+</ul>
+</li>
+<li><strong>返回值规则</strong>‌：<ul>
+<li>若<code>expr1 = expr2</code> → 返回<code>NULL</code></li>
+<li>若<code>expr1 ≠ expr2</code> → 返回<code>expr1</code>的原值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>ISNULL</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 空值检测</span></span><br><span class="line">ISNULL(expr)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>参数</strong>‌：任意表达式（字段、计算值等）</li>
+<li><strong>返回值：</strong><ul>
+<li><code>1</code>：当表达式为<code>NULL</code>时</li>
+<li><code>0</code>：当表达式非<code>NULL</code>时</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-5-查询中的case语句"><a href="#13-5-查询中的case语句" class="headerlink" title="13.5 查询中的case语句"></a>13.5 查询中的case语句</h2><blockquote>
+<p>简单CASE形式（值匹配）</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    [列名<span class="number">1</span>,列名<span class="number">2</span>,...]</span><br><span class="line">    <span class="keyword">CASE</span> 列名<span class="operator">/</span>表达式</span><br><span class="line">        <span class="keyword">WHEN</span> 值<span class="number">1</span> <span class="keyword">THEN</span> 结果<span class="number">1</span></span><br><span class="line">        <span class="keyword">WHEN</span> 值<span class="number">2</span> <span class="keyword">THEN</span> 结果<span class="number">2</span></span><br><span class="line">        ...</span><br><span class="line">        [<span class="keyword">ELSE</span> 默认结果]</span><br><span class="line">	<span class="keyword">END</span> [<span class="keyword">AS</span> 别名]</span><br><span class="line"><span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>搜索CASE形式（条件判断）</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    [列名<span class="number">1</span>,列名<span class="number">2</span>,...]</span><br><span class="line">    <span class="keyword">CASE</span></span><br><span class="line">        <span class="keyword">WHEN</span> 条件<span class="number">1</span> <span class="keyword">THEN</span> 结果<span class="number">1</span></span><br><span class="line">    	<span class="keyword">WHEN</span> 条件<span class="number">2</span> <span class="keyword">THEN</span> 结果<span class="number">2</span></span><br><span class="line">    	...</span><br><span class="line">    	[<span class="keyword">ELSE</span> 默认结果]</span><br><span class="line">	<span class="keyword">END</span> [<span class="keyword">AS</span> 别名]</span><br><span class="line"><span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<h1 id="14-游标"><a href="#14-游标" class="headerlink" title="14.游标"></a>14.游标</h1><ul>
+<li>游标是结果集的指针，实现逐行处理数据</li>
+<li>‌<strong>适用场景</strong>‌：存储过程&#x2F;函数中处理多行数据</li>
+</ul>
+<h2 id="14-1-游标使用的步骤"><a href="#14-1-游标使用的步骤" class="headerlink" title="14.1 游标使用的步骤"></a>14.1 游标使用的步骤</h2><blockquote>
+<p>1.声明游标</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 必须在变量和条件声明之后、处理程序之前声明</span></span><br><span class="line"><span class="comment">-- 要使用 SELECT 语句来获取数据结果集，而此时还没有开始遍历数据，SELECT 语句返回一个用于创建游标的结果集</span></span><br><span class="line"><span class="comment">-- 结果集字段数需与后续INTO变量数匹配</span></span><br><span class="line"><span class="keyword">DECLARE</span> cursor_name <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> select_statement;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.打开游标</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">OPEN</span> cursor_name;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.使用游标（从游标中逐行获取数据）</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- var1[,var2] ...必须在声明游标之前就定义好</span></span><br><span class="line"><span class="comment">-- INTO变量数需与查询结果集字段数匹配</span></span><br><span class="line"><span class="keyword">FETCH</span> cursor_name <span class="keyword">INTO</span> var1[,var2] ...;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>循环控制</strong>‌：需配合<code>CONTINUE HANDLER</code>处理结束标志</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> done <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> CONTINUE HANDLER <span class="keyword">FOR</span> <span class="keyword">NOT</span> FOUND <span class="keyword">SET</span> done <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>4.关闭游标</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CLOSE</span> cursor_name;</span><br></pre></td></tr></table></figure>
+
+<h2 id="14-2-完整流程示例"><a href="#14-2-完整流程示例" class="headerlink" title="14.2 完整流程示例"></a>14.2 完整流程示例</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `scores` (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">  `student_id` <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;学号&#x27;</span>,</span><br><span class="line">  `student_name` <span class="type">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">  `subject` <span class="type">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;科目&#x27;</span>,</span><br><span class="line">  `score` <span class="type">decimal</span>(<span class="number">5</span>,<span class="number">2</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0.00&#x27;</span> COMMENT <span class="string">&#x27;分数&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> cursor_test()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">DECLARE</span> stu_no <span class="type">VARCHAR</span>(<span class="number">50</span>);</span><br><span class="line">    <span class="keyword">DECLARE</span> stu_name <span class="type">VARCHAR</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">DECLARE</span> stu_score <span class="type">DECIMAL</span>(<span class="number">5</span>,<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;0.00&#x27;</span>;</span><br><span class="line">    <span class="keyword">DECLARE</span> done <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">DECLARE</span> cursor_name <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">SELECT</span> student_id,student_name,score <span class="keyword">FROM</span> scores;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">DECLARE</span> CONTINUE HANDLER <span class="keyword">FOR</span> <span class="keyword">NOT</span> FOUND <span class="keyword">SET</span> done <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">OPEN</span> cursor_name;</span><br><span class="line">    </span><br><span class="line">    read_loop: LOOP</span><br><span class="line">    	<span class="keyword">FETCH</span> cursor_name <span class="keyword">INTO</span> stu_no,stu_name,stu_score;</span><br><span class="line"></span><br><span class="line">      IF done <span class="keyword">THEN</span></span><br><span class="line">        LEAVE read_loop; </span><br><span class="line">      <span class="keyword">END</span> IF; </span><br><span class="line">      </span><br><span class="line">      <span class="keyword">SELECT</span> CONCAT(<span class="string">&#x27;学号：&#x27;</span>,stu_no) <span class="keyword">AS</span> 学号,CONCAT(<span class="string">&#x27;姓名：&#x27;</span>,stu_name) <span class="keyword">AS</span> 姓名,IF(stu_score <span class="operator">&gt;=</span> <span class="number">60</span> ,<span class="string">&#x27;及格&#x27;</span>,<span class="string">&#x27;不及格&#x27;</span>) <span class="keyword">AS</span> 是否及格;</span><br><span class="line">    <span class="keyword">END</span> LOOP read_loop;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">CLOSE</span> cursor_name;</span><br><span class="line"><span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CALL</span> cursor_test();</span><br></pre></td></tr></table></figure>
+
+<h1 id="15-触发器"><a href="#15-触发器" class="headerlink" title="15.触发器"></a>15.触发器</h1><ul>
 <li>嵌入MySQL的一段程序，由INSERT&#x2F;UPDATE&#x2F;DELETE事件触发执行，无需手动调用‌</li>
 <li><strong>本质：</strong>特殊的存储过程，但通过表事件触发而非CALL调用‌</li>
 </ul>
@@ -1926,7 +2274,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%88%9D%E8%AF%86MySQL"><span class="nav-text">1.初识MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.1 什么是数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB"><span class="nav-text">1.2 数据库分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-MySQL-%E7%AE%80%E4%BB%8B"><span class="nav-text">1.3 MySQL 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-MySQL-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84"><span class="nav-text">1.4 MySQL 基础架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">1.5 MySQL存储引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E5%AE%89%E8%A3%85MySQL"><span class="nav-text">1.6 安装MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.7 连接数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">2.操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">2.1 创建数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="nav-text">2.2 数据库的列类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7"><span class="nav-text">2.3 数据库的字段属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">2.4 数据表的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-text">2.5 修改和删除表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E4%B8%BB%E9%94%AE%E5%92%8C%E5%A4%96%E9%94%AE"><span class="nav-text">2.6 主键和外键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-DDL"><span class="nav-text">3.DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">3.1 数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E8%A1%A8"><span class="nav-text">3.2 表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E7%BA%A6%E6%9D%9F"><span class="nav-text">3.3 约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E7%B4%A2%E5%BC%95"><span class="nav-text">3.4 索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-DML"><span class="nav-text">4.DML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%B7%BB%E5%8A%A0"><span class="nav-text">4.1 添加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E4%BF%AE%E6%94%B9"><span class="nav-text">4.2 修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%88%A0%E9%99%A4"><span class="nav-text">4.3 删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-DQL"><span class="nav-text">5.DQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-select-%E8%AF%AD%E6%B3%95"><span class="nav-text">5.1 select 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2"><span class="nav-text">5.2 基础查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-where-%E6%9D%A1%E4%BB%B6%E5%AD%90%E5%8F%A5"><span class="nav-text">5.3 where 条件子句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-text">5.4 联表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-UNION%E4%B8%8EUNION-ALL"><span class="nav-text">5.4.1 UNION与UNION ALL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-JOIN%E8%BF%9E%E6%8E%A5"><span class="nav-text">5.4.2 JOIN连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-%E8%87%AA%E8%BF%9E%E6%8E%A5"><span class="nav-text">5.4.3 自连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-%E5%88%86%E9%A1%B5%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="nav-text">5.5 分页和排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-text">5.6 子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-%E5%88%86%E7%BB%84%E5%92%8C%E8%BF%87%E6%BB%A4"><span class="nav-text">5.7 分组和过滤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-DCL"><span class="nav-text">6.DCL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">6.1 用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-text">6.2 权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">6.3 事务控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-MySQL-%E5%87%BD%E6%95%B0"><span class="nav-text">7.MySQL 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text">7.1 常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="nav-text">7.2 聚合函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BA%A7%E5%88%AB%E7%9A%84MD5%E5%8A%A0%E5%AF%86"><span class="nav-text">7.3 数据库级别的MD5加密</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%92%8C%E5%A4%87%E4%BB%BD"><span class="nav-text">8.权限管理和和备份</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">8.1 用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-MySQL%E5%A4%87%E4%BB%BD"><span class="nav-text">8.2 MySQL备份</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E8%A7%86%E5%9B%BE"><span class="nav-text">9.视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="nav-text">9.1 创建视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-%E6%9F%A5%E7%9C%8B%E8%A7%86%E5%9B%BE"><span class="nav-text">9.2 查看视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-%E6%9B%B4%E6%96%B0%E8%A7%86%E5%9B%BE"><span class="nav-text">9.3 更新视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-%E4%BF%AE%E6%94%B9%E3%80%81%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE"><span class="nav-text">9.4 修改、删除视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">10.存储过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">10.1 创建存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">10.2 调用存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-text">10.3 查看、修改和删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="nav-text">11.存储函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="nav-text">11.1 创建存储函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="nav-text">11.2 调用存储函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-text">11.3 查看、修改和删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%E5%8F%98%E9%87%8F"><span class="nav-text">12.变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F"><span class="nav-text">12.1 系统变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-%E7%94%A8%E6%88%B7%E5%8F%98%E9%87%8F"><span class="nav-text">12.2 用户变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-text">13.流程控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E6%B8%B8%E6%A0%87"><span class="nav-text">14.游标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-text">15.触发器</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%88%9D%E8%AF%86MySQL"><span class="nav-text">1.初识MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.1 什么是数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB"><span class="nav-text">1.2 数据库分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-MySQL-%E7%AE%80%E4%BB%8B"><span class="nav-text">1.3 MySQL 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-MySQL-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84"><span class="nav-text">1.4 MySQL 基础架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-MySQL%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">1.5 MySQL存储引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E5%AE%89%E8%A3%85MySQL"><span class="nav-text">1.6 安装MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.7 连接数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">2.操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">2.1 创建数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="nav-text">2.2 数据库的列类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7"><span class="nav-text">2.3 数据库的字段属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">2.4 数据表的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-text">2.5 修改和删除表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E4%B8%BB%E9%94%AE%E5%92%8C%E5%A4%96%E9%94%AE"><span class="nav-text">2.6 主键和外键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-DDL"><span class="nav-text">3.DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">3.1 数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E8%A1%A8"><span class="nav-text">3.2 表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E7%BA%A6%E6%9D%9F"><span class="nav-text">3.3 约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E7%B4%A2%E5%BC%95"><span class="nav-text">3.4 索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-DML"><span class="nav-text">4.DML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%B7%BB%E5%8A%A0"><span class="nav-text">4.1 添加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E4%BF%AE%E6%94%B9"><span class="nav-text">4.2 修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%88%A0%E9%99%A4"><span class="nav-text">4.3 删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-DQL"><span class="nav-text">5.DQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-select-%E8%AF%AD%E6%B3%95"><span class="nav-text">5.1 select 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2"><span class="nav-text">5.2 基础查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-where-%E6%9D%A1%E4%BB%B6%E5%AD%90%E5%8F%A5"><span class="nav-text">5.3 where 条件子句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-text">5.4 联表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-UNION%E4%B8%8EUNION-ALL"><span class="nav-text">5.4.1 UNION与UNION ALL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-JOIN%E8%BF%9E%E6%8E%A5"><span class="nav-text">5.4.2 JOIN连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-%E8%87%AA%E8%BF%9E%E6%8E%A5"><span class="nav-text">5.4.3 自连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-%E5%88%86%E9%A1%B5%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="nav-text">5.5 分页和排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-text">5.6 子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-%E5%88%86%E7%BB%84%E5%92%8C%E8%BF%87%E6%BB%A4"><span class="nav-text">5.7 分组和过滤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-DCL"><span class="nav-text">6.DCL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">6.1 用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-text">6.2 权限控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6"><span class="nav-text">6.3 事务控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-MySQL-%E5%87%BD%E6%95%B0"><span class="nav-text">7.MySQL 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text">7.1 常用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="nav-text">7.2 聚合函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BA%A7%E5%88%AB%E7%9A%84MD5%E5%8A%A0%E5%AF%86"><span class="nav-text">7.3 数据库级别的MD5加密</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%92%8C%E5%A4%87%E4%BB%BD"><span class="nav-text">8.权限管理和和备份</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">8.1 用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-MySQL%E5%A4%87%E4%BB%BD"><span class="nav-text">8.2 MySQL备份</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E8%A7%86%E5%9B%BE"><span class="nav-text">9.视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="nav-text">9.1 创建视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-%E6%9F%A5%E7%9C%8B%E8%A7%86%E5%9B%BE"><span class="nav-text">9.2 查看视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-%E6%9B%B4%E6%96%B0%E8%A7%86%E5%9B%BE"><span class="nav-text">9.3 更新视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-%E4%BF%AE%E6%94%B9%E3%80%81%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE"><span class="nav-text">9.4 修改、删除视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">10.存储过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">10.1 创建存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">10.2 调用存储过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-text">10.3 查看、修改和删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="nav-text">11.存储函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="nav-text">11.1 创建存储函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="nav-text">11.2 调用存储函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-text">11.3 查看、修改和删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%E5%8F%98%E9%87%8F"><span class="nav-text">12.变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F"><span class="nav-text">12.1 系统变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-text">12.2 用户自定义变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-3-%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-text">12.3 局部变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-text">13.流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-text">13.1 分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1-1-if%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.1.1 if语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1-2-case%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.1.2 case语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-text">13.2 循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-1-loop%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.2.1 loop语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-2-while%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.2.2 while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-3-repeat%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.2.3 repeat语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-%E8%B7%B3%E8%BD%AC%E7%BB%93%E6%9E%84"><span class="nav-text">13.3 跳转结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-1-iterate%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.3.1 iterate语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-2-leave%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.3.2 leave语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-%E6%9F%A5%E8%AF%A2%E4%B8%AD%E7%9A%84%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%87%BD%E6%95%B0"><span class="nav-text">13.4 查询中的流程控制函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-%E6%9F%A5%E8%AF%A2%E4%B8%AD%E7%9A%84case%E8%AF%AD%E5%8F%A5"><span class="nav-text">13.5 查询中的case语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E6%B8%B8%E6%A0%87"><span class="nav-text">14.游标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-1-%E6%B8%B8%E6%A0%87%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-text">14.1 游标使用的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-2-%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E7%A4%BA%E4%BE%8B"><span class="nav-text">14.2 完整流程示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-text">15.触发器</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -2010,7 +2358,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">43:43</span>
+    <span title="站点阅读时长">43:47</span>
 </div>
 
         
