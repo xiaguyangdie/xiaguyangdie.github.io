@@ -30,8 +30,9 @@
 <meta property="og:description" content="日志处理工具">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20240804110814208.png">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/07/19/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7/image-20250817173615974.png">
 <meta property="article:published_time" content="2024-07-19T15:15:45.020Z">
-<meta property="article:modified_time" content="2025-05-15T14:47:02.322Z">
+<meta property="article:modified_time" content="2025-08-17T14:11:09.951Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="java日志框架">
 <meta name="twitter:card" content="summary">
@@ -227,7 +228,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-15 22:47:02" itemprop="dateModified" datetime="2025-05-15T22:47:02+08:00">2025-05-15</time>
+                <time title="修改时间：2025-08-17 22:11:09" itemprop="dateModified" datetime="2025-08-17T22:11:09+08:00">2025-08-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,14 +267,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>603</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
             <div class="post-description">日志处理工具</div>
 
@@ -287,13 +288,15 @@
 
       
         <h1 id="1-日志门面和日志框架"><a href="#1-日志门面和日志框架" class="headerlink" title="1.日志门面和日志框架"></a>1.日志门面和日志框架</h1><h2 id="1-1-日志门面"><a href="#1-1-日志门面" class="headerlink" title="1.1 日志门面"></a>1.1 日志门面</h2><ul>
-<li>Java日志门面(日志抽象层)是一种抽象层，<strong>它为不同的日志实现提供一致的API</strong>。这使得更改日志实现变得容易，因为代码库可以在不修改的情况下工作（<strong>门面模式</strong>）</li>
+<li>Java日志门面(日志抽象层)是一种抽象层，<strong>它为不同的日志实现提供一致的API</strong></li>
 <li><strong>Java日志门面的作用主要是面向接口开发，‌提供一种标准的方式来记录日志</strong></li>
 <li>通过使用日志门面，‌底层日志框架可灵活切换</li>
-<li>常见的日志门面 ：slf4j、JCL（已逐渐被 SLF4J 取代）</li>
+<li>常见的日志门面 ：SLF4J、JCL<strong>（已逐渐被 SLF4J 取代）</strong></li>
 </ul>
 <h2 id="1-2-日志框架"><a href="#1-2-日志框架" class="headerlink" title="1.2 日志框架"></a>1.2 日志框架</h2><ul>
-<li><p>常见的日志框架：JUL、Logback、log4j（最终版本为 <strong>1.2.17</strong>，已废弃）、log4j2</p>
+<li><p>常见的日志框架：JUL、Logback、<strong>Log4j（最终版本为 1.2.17，已废弃）</strong>、Log4j2</p>
+</li>
+<li><p>日志框架发展史（Log4j → Logback → Log4j2的演进）‌</p>
 </li>
 <li><p><strong>Log4j2 ≠ Log4j 1.x</strong>：两者是不同项目，Log4j2 并非 Log4j 1.x 的简单更新</p>
 </li>
@@ -314,11 +317,79 @@
 </ul>
 </li>
 </ul>
-<h1 id="2-日志门面"><a href="#2-日志门面" class="headerlink" title="2.日志门面"></a>2.日志门面</h1><h2 id="2-1-slf4j"><a href="#2-1-slf4j" class="headerlink" title="2.1 slf4j"></a>2.1 slf4j</h2><h2 id="2-2-JCL"><a href="#2-2-JCL" class="headerlink" title="2.2 JCL"></a>2.2 JCL</h2><h1 id="3-日志框架"><a href="#3-日志框架" class="headerlink" title="3.日志框架"></a>3.日志框架</h1><h2 id="3-1-SLF4J-log4j2"><a href="#3-1-SLF4J-log4j2" class="headerlink" title="3.1 SLF4J + log4j2"></a>3.1 SLF4J + log4j2</h2><ul>
+<h1 id="2-日志门面"><a href="#2-日志门面" class="headerlink" title="2.日志门面"></a>2.日志门面</h1><h2 id="2-1-SLF4J"><a href="#2-1-SLF4J" class="headerlink" title="2.1 SLF4J"></a>2.1 SLF4J</h2><h3 id="2-1-1-创建日志对象"><a href="#2-1-1-创建日志对象" class="headerlink" title="2.1.1 创建日志对象"></a>2.1.1 创建日志对象</h3><blockquote>
+<p>1.静态工厂方式（标准用法）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(ClassName.class);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>特点</strong>‌：显式声明<code>static final</code>保证线程安全，类名作为Logger名称自动映射配置层级</li>
+<li>‌<strong>变体</strong>‌：支持字符串指定Logger名称（如<code>LoggerFactory.getLogger(&quot;custom.category&quot;)</code></li>
+</ul>
+<blockquote>
+<p>2.Lombok注解简化</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span> <span class="comment">// 自动生成 private static final Logger logger = LoggerFactory.getLogger(ClassName.class);</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Slf4jAnnotationDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;xxx&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//.class</span></span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Slf4jAnnotationDemo</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(Slf4jAnnotationDemo.class);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Slf4jAnnotationDemo</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;111&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>原理</strong>‌：编译时通过AST修改插入Logger初始化代码</li>
+<li>‌<strong>扩展</strong>‌：支持<code>@Slf4j(topic=&quot;custom&quot;)</code>指定Logger名称</li>
+</ul>
+<blockquote>
+<p>3.Log4j2原生API桥接</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.LogManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LogManager.getLogger(ClassName.class); </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>场景</strong>‌：需混合使用Log4j2高级特性（如异步日志）时，需搭配<code>log4j-slf4j-impl</code>桥接包</li>
+</ul>
+<blockquote>
+<p>4.动态Logger创建</p>
+</blockquote>
+<p>&#x2F;&#x2F;TODO 待补充</p>
+<blockquote>
+<p>5.继承上下文Logger</p>
+</blockquote>
+<p>&#x2F;&#x2F;TODO 待补充</p>
+<h2 id="2-2-JCL"><a href="#2-2-JCL" class="headerlink" title="2.2 JCL"></a>2.2 JCL</h2><h3 id="2-2-1-创建日志对象"><a href="#2-2-1-创建日志对象" class="headerlink" title="2.2.1 创建日志对象"></a>2.2.1 创建日志对象</h3><blockquote>
+<p>1.静态工厂方式（标准用法）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.logging.Log;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.LogFactory;</span><br><span class="line">ClassName</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Log</span> <span class="variable">logger</span> <span class="operator">=</span> LogFactory.getLog(ClassName.class);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>特点</strong>‌：显式声明<code>static final</code>保证线程安全，类名作为Logger名称自动映射配置层级</li>
+<li>‌<strong>变体</strong>‌：支持字符串指定Logger名称（如<code>LogFactory.getLog(&quot;custom.logger.name&quot;)</code></li>
+</ul>
+<blockquote>
+<p>2.Log4j2原生API桥接</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.LogManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.logging.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LogManager.getLogger(ClassName.class); </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>场景</strong>‌：需混合使用Log4j2高级特性（如异步日志）时，需搭配<code>log4j-slf4j-impl</code>桥接包</li>
+</ul>
+<h1 id="3-日志框架"><a href="#3-日志框架" class="headerlink" title="3.日志框架"></a>3.日志框架</h1><h2 id="3-1-SLF4J-Log4j2"><a href="#3-1-SLF4J-Log4j2" class="headerlink" title="3.1 SLF4J + Log4j2"></a>3.1 SLF4J + Log4j2</h2><ul>
 <li><p>官网：<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.12.x/manual/appenders.html">https://logging.apache.org/log4j/2.12.x/manual/appenders.html</a></p>
 <p><img src="image-20240804110814208.png" alt="image-20240804110814208"></p>
 </li>
 </ul>
+<h3 id="3-1-1-pom-xml"><a href="#3-1-1-pom-xml" class="headerlink" title="3.1.1 pom.xml"></a>3.1.1 pom.xml</h3><ul>
+<li><p><code>log4j-slf4j2-impl</code>作为SLF4J与Log4j2的桥接包，其内部已声明对<code>slf4j-api</code>、<code>log4j-api</code>和<code>log4j-core</code>的依赖。Maven项目默认会传递这些依赖，因此理论上无需显式声明</p>
+<p><img src="image-20250817173615974.png" alt="image-20250817173615974"></p>
+</li>
+<li><p>若需指定特定版本（如修复安全漏洞），建议显式声明<code>slf4j-api</code>、<code>log4j-api</code>和<code>log4j-core</code>，并统一版本号以避免冲突</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Log4j2 绑定器 + 核心 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--在SLF4J和Log4j2之间充当桥梁，将SLF4J的接口调用转发到Log4j2的具体实现--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j2-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.20.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- SLF4J 门面 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--日志门面，提供统一的日志接口--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 需与 log4j-slf4j2-impl 版本匹配 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 必须与 log4j-slf4j2-impl 版本一致 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Log4j的核心组件，日志实现--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.20.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Log4j2 API --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.20.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-1-2-配置文件"><a href="#3-1-2-配置文件" class="headerlink" title="3.1.2 配置文件"></a>3.1.2 配置文件</h3><ul>
+<li><p>默认加载顺序：（需放在<code>src/main/resources</code>目录下），未找到任何配置时启用<code>DefaultConfiguration</code>（控制台输出+基础格式）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试配置（含-test前缀）优先于正式配置，同前缀下格式优先级</span></span><br><span class="line"><span class="comment">//Properties &gt; YAML &gt; JSON &gt; XML</span></span><br><span class="line"></span><br><span class="line">log4j2-test.&#123;properties|yaml|yml|json|jsn|xml&#125;  → log4j2.&#123;properties|yaml|yml|json|jsn|xml&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>支持动态加载：通过<code>monitorInterval</code>属性设置自动重载时间（单位：秒）</p>
+</li>
+</ul>
+<blockquote>
+<p>配置文件组成</p>
+</blockquote>
 <h2 id="3-2-SLF4J-Logback"><a href="#3-2-SLF4J-Logback" class="headerlink" title="3.2 SLF4J + Logback"></a>3.2 SLF4J + Logback</h2><h2 id="3-3-SLF4J-JUL"><a href="#3-3-SLF4J-JUL" class="headerlink" title="3.3 SLF4J + JUL"></a>3.3 SLF4J + JUL</h2>
     </div>
 
@@ -421,7 +492,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2%E5%92%8C%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">1.日志门面和日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-text">1.1 日志门面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">1.2 日志框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-text">2.日志门面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-slf4j"><span class="nav-text">2.1 slf4j</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-JCL"><span class="nav-text">2.2 JCL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">3.日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-SLF4J-log4j2"><span class="nav-text">3.1 SLF4J + log4j2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-SLF4J-Logback"><span class="nav-text">3.2 SLF4J + Logback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-SLF4J-JUL"><span class="nav-text">3.3 SLF4J + JUL</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2%E5%92%8C%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">1.日志门面和日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-text">1.1 日志门面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">1.2 日志框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2"><span class="nav-text">2.日志门面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-SLF4J"><span class="nav-text">2.1 SLF4J</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-%E5%88%9B%E5%BB%BA%E6%97%A5%E5%BF%97%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.1.1 创建日志对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-JCL"><span class="nav-text">2.2 JCL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E5%88%9B%E5%BB%BA%E6%97%A5%E5%BF%97%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.2.1 创建日志对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-text">3.日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-SLF4J-Log4j2"><span class="nav-text">3.1 SLF4J + Log4j2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-pom-xml"><span class="nav-text">3.1.1 pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3.1.2 配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-SLF4J-Logback"><span class="nav-text">3.2 SLF4J + Logback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-SLF4J-JUL"><span class="nav-text">3.3 SLF4J + JUL</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -505,7 +576,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">43:56</span>
+    <span title="站点阅读时长">43:59</span>
 </div>
 
         
