@@ -30,7 +30,7 @@
 <meta property="og:description" content="selenium">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-02T04:24:02.460Z">
-<meta property="article:modified_time" content="2025-04-24T14:33:09.051Z">
+<meta property="article:modified_time" content="2025-08-17T02:25:28.012Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-24 22:33:09" itemprop="dateModified" datetime="2025-04-24T22:33:09+08:00">2025-04-24</time>
+                <time title="修改时间：2025-08-17 10:25:28" itemprop="dateModified" datetime="2025-08-17T10:25:28+08:00">2025-08-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,14 +264,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.7k</span>
+              <span>15k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>14 分钟</span>
             </span>
             <div class="post-description">selenium</div>
 
@@ -293,7 +293,9 @@
 </li>
 <li><p>selenium API：<a target="_blank" rel="noopener" href="https://www.selenium.dev/selenium/docs/api/java/">https://www.selenium.dev/selenium/docs/api/java/</a></p>
 </li>
-<li><p>谷歌浏览器驱动：<a target="_blank" rel="noopener" href="https://chromedriver.storage.googleapis.com/index.html">https://chromedriver.storage.googleapis.com/index.html</a></p>
+<li><p>谷歌浏览器驱动（114之前版本）：<a target="_blank" rel="noopener" href="https://chromedriver.storage.googleapis.com/index.html">https://chromedriver.storage.googleapis.com/index.html</a></p>
+</li>
+<li><p>谷歌浏览器驱动（114之后版本）：<a target="_blank" rel="noopener" href="https://googlechromelabs.github.io/chrome-for-testing">https://googlechromelabs.github.io/chrome-for-testing</a></p>
 </li>
 </ul>
 <h1 id="1-selenium"><a href="#1-selenium" class="headerlink" title="1.selenium"></a>1.selenium</h1><ul>
@@ -301,39 +303,29 @@
 <li>WebDriver 的作用：跨浏览器控制、支持多种语言（Java&#x2F;Python&#x2F;C#等）</li>
 <li>浏览器驱动管理：ChromeDriver、GeckoDriver（Firefox）、EdgeDrive</li>
 </ul>
-<h1 id="2-Selenium-WebDriver"><a href="#2-Selenium-WebDriver" class="headerlink" title="2.Selenium WebDriver"></a>2.Selenium WebDriver</h1><h2 id="2-1-WebDriver-API"><a href="#2-1-WebDriver-API" class="headerlink" title="2.1 WebDriver API"></a>2.1 WebDriver API</h2><h2 id="2-1-1-浏览器操作"><a href="#2-1-1-浏览器操作" class="headerlink" title="2.1.1 浏览器操作"></a>2.1.1 浏览器操作</h2><blockquote>
-<p>1.配置驱动</p>
-</blockquote>
-<ul>
+<h1 id="2-Selenium-WebDriver"><a href="#2-Selenium-WebDriver" class="headerlink" title="2.Selenium WebDriver"></a>2.Selenium WebDriver</h1><h2 id="2-1-浏览器初始化"><a href="#2-1-浏览器初始化" class="headerlink" title="2.1 浏览器初始化"></a>2.1 浏览器初始化</h2><h3 id="2-1-1-配置驱动"><a href="#2-1-1-配置驱动" class="headerlink" title="2.1.1 配置驱动"></a>2.1.1 配置驱动</h3><ul>
 <li><p>手动下载和配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下载好的浏览器驱动：src/drivers/chromedriver.exe</span></span><br><span class="line"><span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(<span class="string">&quot;src&quot;</span>,<span class="string">&quot;drivers&quot;</span>,<span class="string">&quot;chromedriver.exe&quot;</span>);</span><br><span class="line">System.setProperty(<span class="string">&quot;webdriver.chrome.driver&quot;</span>,path.toAbsolutePath().toString());</span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下载好的浏览器驱动：src/drivers/chromedriver.exe</span></span><br><span class="line"><span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(<span class="string">&quot;src&quot;</span>,<span class="string">&quot;drivers&quot;</span>,<span class="string">&quot;chromedriver.exe&quot;</span>);</span><br><span class="line">System.setProperty(<span class="string">&quot;webdriver.chrome.driver&quot;</span>,path.toAbsolutePath().toString());</span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">webDriver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>();</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>自动下载和配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.bonigarcia<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>webdrivermanager<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 WebDriverManager 自动管理驱动（推荐）</span></span><br><span class="line">WebDriverManager.chromedriver().setup();</span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>();</span><br></pre></td></tr></table></figure></li>
 </ul>
-<blockquote>
-<p>2.启动&#x2F;关闭浏览器</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启动 Chrome 浏览器</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>();</span><br><span class="line"><span class="comment">// 启动 Firefox 浏览器</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FirefoxDriver</span>();</span><br><span class="line"><span class="comment">// 启动 Edge 浏览器</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">driver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EdgeDriver</span>();</span><br><span class="line">driver.quit(); <span class="comment">// 关闭所有窗口并结束 WebDriver 会话</span></span><br><span class="line">driver.close(); <span class="comment">// 仅关闭当前窗口</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-配置浏览器启动参数"><a href="#2-1-2-配置浏览器启动参数" class="headerlink" title="2.1.2 配置浏览器启动参数"></a>2.1.2 配置浏览器启动参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ChromeOptions</span> <span class="variable">options</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeOptions</span>();</span><br><span class="line">options.addArguments(<span class="string">&quot;--incognito&quot;</span>); <span class="comment">// 无痕模式</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--disable-extensions&quot;</span>); <span class="comment">// 禁用扩展</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--disable-popup-blocking&quot;</span>); <span class="comment">// 禁用弹窗拦截</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--remote-allow-origins=*&quot;</span>);<span class="comment">//允许跨域请求</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--headless&quot;</span>);<span class="comment">//配置无界面模式</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--disable-gpu&quot;</span>);<span class="comment">//禁用GPU加速</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--start-maximized&quot;</span>);<span class="comment">//启动最大化</span></span><br><span class="line">options.setExperimentalOption(<span class="string">&quot;excludeSwitches&quot;</span>, Collections.singletonList(<span class="string">&quot;enable-automation&quot;</span>));<span class="comment">//关键配置：禁用自动化控制提示</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--window-size=1920,1080&quot;</span>);<span class="comment">//自定义分辨率</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">webDriver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>(options);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-启动-x2F-关闭浏览器"><a href="#2-2-启动-x2F-关闭浏览器" class="headerlink" title="2.2 启动&#x2F;关闭浏览器"></a>2.2 启动&#x2F;关闭浏览器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启动 Chrome 浏览器</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">webDriver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>();</span><br><span class="line"><span class="comment">// 启动 Firefox 浏览器</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">webDriver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FirefoxDriver</span>();</span><br><span class="line"><span class="comment">// 启动 Edge 浏览器</span></span><br><span class="line"><span class="type">WebDriver</span> <span class="variable">webDriver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EdgeDriver</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">webDriver.quit(); <span class="comment">// 关闭所有窗口并结束 WebDriver 会话</span></span><br><span class="line">WebDriver.close(); <span class="comment">// 仅关闭当前窗口</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>3.导航URL</p>
+<p>补充</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">driver.get(<span class="string">&quot;https://www.example.com&quot;</span>); <span class="comment">// 打开指定 URL</span></span><br><span class="line">driver.navigate().to(<span class="string">&quot;https://www.example.com&quot;</span>); <span class="comment">// 等价方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回上一页</span></span><br><span class="line">driver.navigate().back();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前进到下一页</span></span><br><span class="line">driver.navigate().forward();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 刷新当前页面</span></span><br><span class="line">driver.navigate().refresh();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最大化窗口</span></span><br><span class="line">driver.manage().window().maximize();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//浏览器位置和设置窗口位置</span></span><br><span class="line"><span class="type">Point</span> <span class="variable">currentPosition</span> <span class="operator">=</span> webDriver.manage().window().getPosition();</span><br><span class="line">System.out.println(<span class="string">&quot;X坐标: &quot;</span> + currentPosition.getX());</span><br><span class="line">System.out.println(<span class="string">&quot;Y坐标: &quot;</span> + currentPosition.getY());</span><br><span class="line"></span><br><span class="line"><span class="type">Point</span> <span class="variable">position</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Point</span>(<span class="number">100</span>, <span class="number">200</span>); <span class="comment">// x=100, y=200</span></span><br><span class="line">WebDriver.manage().window().setPosition(position);</span><br><span class="line"></span><br><span class="line"><span class="comment">//浏览器窗口大小</span></span><br><span class="line"><span class="type">Dimension</span> <span class="variable">currentSize</span> <span class="operator">=</span> webDriver.manage().window().getSize();</span><br><span class="line">System.out.println(<span class="string">&quot;宽度: &quot;</span> + currentSize.getWidth());</span><br><span class="line">System.out.println(<span class="string">&quot;高度: &quot;</span> + currentSize.getHeight());</span><br><span class="line"></span><br><span class="line"><span class="type">Dimension</span> <span class="variable">size</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dimension</span>(<span class="number">1024</span>, <span class="number">768</span>); <span class="comment">// 宽度1024px，高度768px</span></span><br><span class="line">webDriver.manage().window().setSize(size);</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>4.设置浏览器选项</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ChromeOptions</span> <span class="variable">options</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ChromeOptions</span>();</span><br><span class="line">options.addArguments(<span class="string">&quot;--incognito&quot;</span>); <span class="comment">// 无痕模式</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--disable-extensions&quot;</span>); <span class="comment">// 禁用扩展</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--disable-popup-blocking&quot;</span>); <span class="comment">// 禁用弹窗拦截</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--remote-allow-origins=*&quot;</span>);<span class="comment">//允许跨域请求</span></span><br><span class="line">webDriver = <span class="keyword">new</span> <span class="title class_">ChromeDriver</span>(options);</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<ol start="5">
-<li></li>
-</ol>
-</blockquote>
-<h3 id="2-1-2-元素定位"><a href="#2-1-2-元素定位" class="headerlink" title="2.1.2 元素定位"></a>2.1.2 元素定位</h3><blockquote>
+
+<h2 id="2-3-导航URL"><a href="#2-3-导航URL" class="headerlink" title="2.3 导航URL"></a>2.3 导航URL</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">webDriver.get(<span class="string">&quot;https://www.baidu.com&quot;</span>); <span class="comment">// 打开指定URL</span></span><br><span class="line">webDriver.navigate().to(<span class="string">&quot;https://www.baidu.com&quot;</span>); <span class="comment">// 等价方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回上一页</span></span><br><span class="line">webDriver.navigate().back();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前进到下一页</span></span><br><span class="line">webDriver.navigate().forward();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 刷新当前页面</span></span><br><span class="line">webDriver.navigate().refresh();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最大化窗口</span></span><br><span class="line">webDriver.manage().window().maximize();</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取当前页面的title</span></span><br><span class="line"><span class="type">Strng</span> <span class="variable">title</span> <span class="operator">=</span> webDriverwebDriver.getTitle();</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取当前页面的url</span></span><br><span class="line"><span class="type">Strng</span> <span class="variable">currentUrl</span> <span class="operator">=</span> webDriver.getCurrentUrl();</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-元素定位"><a href="#2-4-元素定位" class="headerlink" title="2.4 元素定位"></a>2.4 元素定位</h2><blockquote>
 <p>优先使用 <code>ID</code> &gt; <code>Name</code> &gt; <code>CSS Selector</code> &gt; <code>XPath</code></p>
 </blockquote>
 <table>
@@ -394,26 +386,269 @@
 <td align="center">现代 Web 应用，优先推荐</td>
 </tr>
 </tbody></table>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 ID 定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementById</span> <span class="operator">=</span> driver.findElement(By.id(<span class="string">&quot;username&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 Name 定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByName</span> <span class="operator">=</span> driver.findElement(By.name(<span class="string">&quot;password&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过类名定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByClass</span> <span class="operator">=</span> driver.findElement(By.className(<span class="string">&quot;btn-primary&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过标签名定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByTag</span> <span class="operator">=</span> driver.findElement(By.tagName(<span class="string">&quot;a&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过通过超链接的完整文本定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">element</span> <span class="operator">=</span> driver.findElement(By.linkText(<span class="string">&quot;Click Here&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过超链接的部分文本定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">element</span> <span class="operator">=</span> driver.findElement(By.partialLinkText(<span class="string">&quot;Click&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 XPath 定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByXPath</span> <span class="operator">=</span> driver.findElement(By.xpath(<span class="string">&quot;//input[@type=&#x27;submit&#x27;]&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 CSS 选择器定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByCss</span> <span class="operator">=</span> driver.findElement(By.cssSelector(<span class="string">&quot;input.el-input__inner[type=&#x27;password&#x27;][placeholder=&#x27;请输入密码&#x27;]&quot;</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 ID 定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementById</span> <span class="operator">=</span> webDriver.findElement(By.id(<span class="string">&quot;username&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 Name 定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByName</span> <span class="operator">=</span> webDriver.findElement(By.name(<span class="string">&quot;password&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过类名定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByClass</span> <span class="operator">=</span> webDriver.findElement(By.className(<span class="string">&quot;btn-primary&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过标签名定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByTag</span> <span class="operator">=</span> webDriver.findElement(By.tagName(<span class="string">&quot;a&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过通过超链接的完整文本定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">element</span> <span class="operator">=</span> webDriver.findElement(By.linkText(<span class="string">&quot;Click Here&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过超链接的部分文本定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">element</span> <span class="operator">=</span> webDriver.findElement(By.partialLinkText(<span class="string">&quot;Click&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 XPath 定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByXPath</span> <span class="operator">=</span> webDriver.findElement(By.xpath(<span class="string">&quot;//input[@type=&#x27;submit&#x27;]&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 CSS 选择器定位</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">elementByCss</span> <span class="operator">=</span> webDriver.findElement(By.cssSelector(<span class="string">&quot;input.el-input__inner[type=&#x27;password&#x27;][placeholder=&#x27;请输入密码&#x27;]&quot;</span>));</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-1-3-Cookie-管理"><a href="#2-1-3-Cookie-管理" class="headerlink" title="2.1.3 Cookie 管理"></a>2.1.3 Cookie 管理</h3><h3 id="2-1-4-元素交互"><a href="#2-1-4-元素交互" class="headerlink" title="2.1.4 元素交互"></a>2.1.4 元素交互</h3><ul>
-<li>文本输入：<code>sendKeys()</code></li>
+<h2 id="2-5-元素交互"><a href="#2-5-元素交互" class="headerlink" title="2.5 元素交互"></a>2.5 元素交互</h2><blockquote>
+<p>点击</p>
+</blockquote>
+<ul>
 <li>点击操作：<code>click()</code></li>
 <li>提交表单：<code>submit()</code></li>
-<li>文件上传：<code>sendKeys()</code> 直接操作文件路径</li>
 </ul>
-<h3 id="2-1-5-等待机制"><a href="#2-1-5-等待机制" class="headerlink" title="2.1.5 等待机制"></a>2.1.5 等待机制</h3><ul>
-<li>显式等待：<code>WebDriverWait + ExpectedConditions</code>（推荐）</li>
-<li>隐式等待：<code>driver.manage().timeouts().implicitlyWait()</code></li>
-<li>强制等待：<code>Thread.sleep()</code>（不推荐）</li>
+<blockquote>
+<p>文本输入&#x2F;清空</p>
+</blockquote>
+<ul>
+<li>文本输入：<code>sendKeys()</code></li>
+<li>文本清空：<code>clear()</code></li>
 </ul>
-<h3 id="2-1-6-高级操作"><a href="#2-1-6-高级操作" class="headerlink" title="2.1.6 高级操作"></a>2.1.6 高级操作</h3><ul>
-<li>键盘事件：<code>Actions</code> 类（模拟组合键、拖拽）</li>
-<li>鼠标操作：右键点击、双击、悬停</li>
-<li>处理动态元素：AJAX 加载、iframe 切换、窗口切换</li>
+<blockquote>
+<p>获取元素信息</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基础属性获取</span></span><br><span class="line"><span class="type">String</span> <span class="variable">tagName</span> <span class="operator">=</span> webElement.getTagName();<span class="comment">//元素标签名</span></span><br><span class="line"><span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> webElement.getText();<span class="comment">//元素文本内容</span></span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> webElement.getAttribute(<span class="string">&quot;href&quot;</span>);<span class="comment">//属性值获取</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//状态判断</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isVisible</span> <span class="operator">=</span> webElement.isDisplayed();<span class="comment">//判断元素是否可见且宽高&gt;0</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isEnabled</span> <span class="operator">=</span> webElement.isEnabled();<span class="comment">//判断元素是否可交互</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isSelected</span> <span class="operator">=</span> webElement.isSelected();<span class="comment">//适用于复选框/单选框</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//样式与位置</span></span><br><span class="line"><span class="type">String</span> <span class="variable">color</span> <span class="operator">=</span> webElement.getCssValue(<span class="string">&quot;color&quot;</span>);  <span class="comment">// 获取CSS属性（如字体颜色）</span></span><br><span class="line"><span class="type">Rectangle</span> <span class="variable">rect</span> <span class="operator">=</span> webElement.getRect();</span><br><span class="line"><span class="type">int</span> <span class="variable">width</span> <span class="operator">=</span> rect.getWidth();<span class="comment">//元素宽度</span></span><br><span class="line"><span class="type">Point</span> <span class="variable">location</span> <span class="operator">=</span> rect.getPoint();<span class="comment">//左上角坐标</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//动态内容处理</span></span><br><span class="line"><span class="type">String</span> <span class="variable">inputText</span> <span class="operator">=</span> webElement.getAttribute(<span class="string">&quot;value&quot;</span>);<span class="comment">//获取输入框当前值</span></span><br><span class="line"></span><br><span class="line"><span class="type">Select</span> <span class="variable">select</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Select</span>(webElement);</span><br><span class="line">List&lt;WebElement&gt; options = select.getOptions();<span class="comment">//获取所有选项</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-6-等待机制"><a href="#2-6-等待机制" class="headerlink" title="2.6 等待机制"></a>2.6 等待机制</h2><blockquote>
+<p>1.显示等待：<code>WebDriverWait + ExpectedConditions</code>（推荐）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/初始化WebDriverWait：设置最长等待时间<span class="number">10</span>秒和轮询间隔（这里未设置，默认<span class="number">0.5</span>秒）</span><br><span class="line"><span class="type">WebDriverWait</span> <span class="variable">wait</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WebDriverWait</span>(webDriver, Duration.ofSeconds(<span class="number">10</span>));</span><br><span class="line"><span class="comment">//结合ExpectedConditions：通过until()方法等待条件满足</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">username</span> <span class="operator">=</span> wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(<span class="string">&quot;XXX&quot;</span>)));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>常用等待条件</p>
+<table>
+<thead>
+<tr>
+<th>条件方法</th>
+<th>作用描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>presenceOfElementLocated</code></td>
+<td>元素存在于DOM（不一定可见）</td>
+</tr>
+<tr>
+<td><code>visibilityOfElementLocated</code></td>
+<td>元素可见且宽高大于0</td>
+</tr>
+<tr>
+<td><code>elementToBeClickable</code></td>
+<td>元素可点击（存在、可见且启用）</td>
+</tr>
+<tr>
+<td><code>textToBePresentInElement</code></td>
+<td>元素包含指定文本</td>
+</tr>
+<tr>
+<td><code>alertIsPresent</code></td>
+<td>检测弹窗是否存在</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>自定义轮询间隔</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置检查条件的频率（如每1秒检查一次）</span></span><br><span class="line"><span class="type">WebDriverWait</span> <span class="variable">wait</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WebDriverWait</span>(webDriver, Duration.ofSeconds(<span class="number">10</span>), Duration.ofSeconds(<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>忽略特定异常</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过ignoring()方法忽略StaleElementReferenceException异常</span></span><br><span class="line"><span class="comment">//当元素因DOM刷新变为&quot;陈旧&quot;时不会中断测试流程</span></span><br><span class="line"><span class="type">WebDriverWait</span> <span class="variable">wait</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WebDriverWait</span>(webDriver, Duration.ofSeconds(<span class="number">10</span>))</span><br><span class="line">    .ignoring(StaleElementReferenceException.class);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>显式等待与隐式等待（<code>implicitlyWait</code>）混用可能导致不可预测的超时行为</li>
+<li>超时会抛出<code>TimeoutException</code>，需通过<code>try-catch</code>捕获处理</li>
 </ul>
-<h3 id="2-1-7-浏览器与设备模拟"><a href="#2-1-7-浏览器与设备模拟" class="headerlink" title="2.1.7 浏览器与设备模拟"></a>2.1.7 浏览器与设备模拟</h3><ul>
-<li>无头模式（Headless）：<code>ChromeOptions.setHeadless(true)</code></li>
+</li>
+</ul>
+<blockquote>
+<p>2.隐式等待：<code>webDriver.manage().timeouts().implicitlyWait()</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>‌<strong>参数</strong>‌：<code>Duration.ofSeconds(10)</code> 表示最长等待10秒</p>
+</li>
+<li><p>‌<strong>作用范围</strong>‌：对后续所有<code>findElement</code>&#x2F;<code>findElements</code>操作生效</p>
+</li>
+<li><p>‌<strong>触发条件</strong>‌：当元素未立即找到时，按设定时间轮询查找</p>
+</li>
+<li><p><strong>全局生效</strong>‌：设置后会影响整个WebDriver实例的生命周期</p>
+</li>
+<li><p>‌<strong>轮询机制</strong>‌：默认每500毫秒检查一次DOM，直到元素出现或超时</p>
+</li>
+<li><p>‌<strong>超时行为</strong>‌：超时抛出<code>NoSuchElementException</code></p>
+</li>
+<li><p>可通过设置为0取消隐式等待</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webDriver.manage().timeouts().implicitlyWait(Duration.ZERO);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>3.强制等待：<code>Thread.sleep()</code>（不推荐）</p>
+</blockquote>
+<ul>
+<li>使用<code>Thread.sleep(milliseconds)</code>方法暂停执行指定时间</li>
+<li>简单但效率低，不推荐在正式测试中使用</li>
+</ul>
+<blockquote>
+<p>4.<strong>页面加载超时</strong>‌可单独设置：<code>webDriver.manage().timeouts().pageLoadTimeout()</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置页面完全加载的最大等待时间，若超时则抛出TimeoutException</span></span><br><span class="line">webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>触发条件</strong>‌<ul>
+<li>导航到新页面（如<code>webDriver.get()</code>）</li>
+<li>页面内触发重新加载（如表单提交）</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-7-鼠标操作"><a href="#2-7-鼠标操作" class="headerlink" title="2.7 鼠标操作"></a>2.7 鼠标操作</h2><ul>
+<li><p>Selenium WebDriver 提供了 <code>Actions</code> 类来模拟各种鼠标操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openqa.selenium.interactions.Actions;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(WebDriver);</span><br><span class="line"><span class="type">WebElement</span> <span class="variable">webElement</span> <span class="operator">=</span> WebDriver.findElement(By.id(<span class="string">&quot;elementId&quot;</span>));</span><br><span class="line">actions.click(webElement).perform();<span class="comment">//在元素上单击</span></span><br><span class="line">actions.doubleClick(webElement).perform();<span class="comment">//在元素上双击</span></span><br><span class="line">actions.contextClick(webElement).perform();<span class="comment">//在元素上右键点击</span></span><br><span class="line">actions.moveToElement(webElement).perform();<span class="comment">//将鼠标移动到元素上</span></span><br><span class="line"></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">source</span> <span class="operator">=</span> WebDriver.findElement(By.id(<span class="string">&quot;source&quot;</span>));</span><br><span class="line"><span class="type">WebElement</span> <span class="variable">target</span> <span class="operator">=</span> WebDriver.findElement(By.id(<span class="string">&quot;target&quot;</span>));</span><br><span class="line">actions.dragAndDrop(source, target).perform();<span class="comment">//从源元素拖到目标元素</span></span><br><span class="line"></span><br><span class="line">actions.moveToElement(element, xOffset, yOffset).click().perform();<span class="comment">//在元素特定坐标位置点击</span></span><br><span class="line"></span><br><span class="line">actions.clickAndHold(element)  <span class="comment">// 按下鼠标左键不放</span></span><br><span class="line">      .moveToElement(anotherElement)  <span class="comment">// 移动到另一个元素</span></span><br><span class="line">      .release()  <span class="comment">// 释放鼠标</span></span><br><span class="line">      .perform();  <span class="comment">// 执行操作</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>**必须调用perform()**‌：所有Actions类的操作都需要调用<code>perform()</code>方法才会真正执行</p>
+</li>
+<li><p><strong>元素可见性</strong>‌：操作前确保元素可见且可交互</p>
+</li>
+<li><p><strong>操作链</strong>‌：可以将多个操作串联起来形成复杂交互</p>
+</li>
+<li><p><strong>浏览器兼容性</strong>‌：不同浏览器对某些鼠标事件的支持可能不同，需测试验证</p>
+</li>
+</ul>
+<h2 id="2-8-键盘事件"><a href="#2-8-键盘事件" class="headerlink" title="2.8 键盘事件"></a>2.8 键盘事件</h2><ul>
+<li>键盘事件操作主要通过<code>Actions</code>类和<code>Keys</code>枚举实现<ul>
+<li><strong>Keys枚举</strong>‌：包含所有特殊按键常量</li>
+<li>‌<strong>Actions类</strong>‌：用于构建复杂的键盘操作链，需调用<code>perform()</code>执行</li>
+</ul>
+</li>
+<li>注意：<ul>
+<li><strong>修饰键释放</strong>‌：使用<code>keyDown()</code>后必须配对<code>keyUp()</code></li>
+<li>‌<strong>执行动作</strong>‌：<code>Actions</code>操作需调用<code>perform()</code>才会生效</li>
+<li>‌<strong>元素焦点</strong>‌：部分操作需要先定位到目标元素</li>
+<li>‌<strong>延迟问题</strong>‌：连续操作建议添加<code>Thread.sleep()</code>避免时序问题</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>1.单键操作</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webDriver.findElement(By.id(<span class="string">&quot;chat-submit-button&quot;</span>)).sendKeys(Keys.ENTER);<span class="comment">//回车键</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.组合键操作</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式1：直接sendKeys组合</span></span><br><span class="line">webDriver.findElement(By.id(<span class="string">&quot;kw&quot;</span>)).sendKeys(Keys.CONTROL, <span class="string">&quot;a&quot;</span>);<span class="comment">//全选</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式2：通过Actions类（推荐）</span></span><br><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver);</span><br><span class="line">actions.keyDown(Keys.CONTROL).sendKeys(<span class="string">&quot;c&quot;</span>).keyUp(Keys.CONTROL).perform();<span class="comment">//复制</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.修饰键操作（需配对使用）</p>
+</blockquote>
+<ul>
+<li>修饰键指Shift、Ctrl、Alt等可以改变其他键行为的键</li>
+<li><strong>keyDown&#x2F;keyUp方法设计上仅适用于修饰键，直接对Enter等普通键使用会抛出该异常</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver);</span><br><span class="line">actions.keyDown(Keys.CONTROL).sendKeys(<span class="string">&quot;v&quot;</span>).keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();<span class="comment">//Ctrl + v  粘贴</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>Actions</code>类的操作对象：<strong>当前获得焦点的元素</strong></p>
+<ul>
+<li><p>1.<strong>显式指定焦点元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过WebDriver定位元素后直接作为Actions方法的参数</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">input</span> <span class="operator">=</span> webDriver.findElement(By.id(<span class="string">&quot;username&quot;</span>));</span><br><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver);</span><br><span class="line">actions.click(input).keyDown(Keys.CONTROL).sendKeys(<span class="string">&quot;v&quot;</span>).keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.‌<strong>当前焦点元素操作</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//driver.switchTo().activeElement()获取当前焦点元素</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">active</span> <span class="operator">=</span> webDriver.switchTo().activeElement();</span><br><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver);</span><br><span class="line">actions.click(active).keyDown(Keys.CONTROL).sendKeys(<span class="string">&quot;v&quot;</span>).keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.<strong>键盘事件默认焦点</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前序操作（如点击、跳转等）导致自动获得焦点的元素</span></span><br><span class="line"><span class="type">Actions</span> <span class="variable">actions</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver);</span><br><span class="line">actions.keyDown(Keys.CONTROL).sendKeys(<span class="string">&quot;v&quot;</span>).keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();<span class="comment">//Ctrl + v  粘贴</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4.<strong>复合焦点控制</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过moveToElement()移动鼠标焦点后操作</span></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">menu</span> <span class="operator">=</span> webDriver.findElement(By.className(<span class="string">&quot;dropdown&quot;</span>));</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver).moveToElement(menu).click().perform();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5.‌<strong>iframe内焦点元素</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需先切换frame上下文再操作元素</span></span><br><span class="line">webDriver.switchTo().frame(<span class="string">&quot;iframe_id&quot;</span>);</span><br><span class="line"><span class="type">WebElement</span> <span class="variable">iframeInput</span> <span class="operator">=</span> webDriver.findElement(By.name(<span class="string">&quot;inner_input&quot;</span>));</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Actions</span>(webDriver).click(iframeInput).perform();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-9-Cookie-管理"><a href="#2-9-Cookie-管理" class="headerlink" title="2.9 Cookie 管理"></a>2.9 Cookie 管理</h2><blockquote>
+<p>获取cookie</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取所有Cookie</span></span><br><span class="line">Set&lt;Cookie&gt; cookies = webDriver.manage().getCookies();</span><br><span class="line"><span class="comment">// 获取指定Cookie</span></span><br><span class="line"><span class="type">Cookie</span> <span class="variable">specificCookie</span> <span class="operator">=</span> webDriver.manage().getCookieNamed(<span class="string">&quot;session_id&quot;</span>);</span><br><span class="line"><span class="comment">//遍历cookie</span></span><br><span class="line">cookies.forEach(c -&gt; System.out.println(c.getName() + <span class="string">&quot;=&quot;</span> + c.getValue()));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>添加cookie</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">newCookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;user_token&quot;</span>, <span class="string">&quot;abc123&quot;</span>);</span><br><span class="line">webDriver.manage().addCookie(newCookie);  <span class="comment">// 需在访问目标域名后操作</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>删除cookie</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webDriver.manage().deleteCookieNamed(<span class="string">&quot;old_cookie&quot;</span>);  <span class="comment">// 删除单个</span></span><br><span class="line">webDriver.manage().deleteAllCookies();               <span class="comment">// 清空所有</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-10-异常处理"><a href="#2-10-异常处理" class="headerlink" title="2.10 异常处理"></a>2.10 异常处理</h2><table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>NoSuchElementException</code></td>
+<td>检查定位策略或增加等待时间</td>
+</tr>
+<tr>
+<td><code>StaleElementReferenceException</code></td>
+<td>重新定位元素或刷新页面</td>
+</tr>
+<tr>
+<td><code>ElementClickInterceptedException</code></td>
+<td>使用JS点击或滚动到元素可见区域</td>
+</tr>
+</tbody></table>
+<h2 id="2-11-‌截图"><a href="#2-11-‌截图" class="headerlink" title="2.11 ‌截图"></a>2.11 ‌截图</h2><blockquote>
+<p>1.基础网页截图</p>
+</blockquote>
+<ul>
+<li>使用TakesScreenshot接口捕获整个浏览器窗口16</li>
+<li>通过FileUtils保存为PNG文件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">screenshot</span> <span class="operator">=</span> ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);</span><br><span class="line">FileUtils.copyFile(screenshot, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;path/to/save.png&quot;</span>));<span class="comment">//保存截图</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.指定元素截图</p>
+</blockquote>
+<ul>
+<li><p>支持精确截取表单&#x2F;按钮等页面元</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">WebElement</span> <span class="variable">element</span> <span class="operator">=</span> webDriver.findElement(By.id(<span class="string">&quot;target&quot;</span>));</span><br><span class="line"><span class="type">File</span> <span class="variable">elementScreenshot</span> <span class="operator">=</span> element.getScreenshotAs(OutputType.FILE);</span><br><span class="line">FileUtils.copyFile(screenshot, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;path/to/save.png&quot;</span>));<span class="comment">//保存截图</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过getLocation()获取元素坐标</p>
+</li>
+<li><p>使用BufferedImage裁剪特定区域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    webDriver.manage().window().maximize();</span><br><span class="line">    webDriver.navigate().to(<span class="string">&quot;https://www.baidu.com&quot;</span>);</span><br><span class="line">    <span class="type">WebElement</span> <span class="variable">input</span> <span class="operator">=</span> webDriver.findElement(By.id(<span class="string">&quot;s-hotsearch-wrapper&quot;</span>));</span><br><span class="line">    <span class="type">File</span> <span class="variable">screen</span> <span class="operator">=</span> ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);</span><br><span class="line">    <span class="type">BufferedImage</span> <span class="variable">img</span> <span class="operator">=</span> ImageIO.read(screen);</span><br><span class="line"></span><br><span class="line">    <span class="type">Point</span> <span class="variable">point</span> <span class="operator">=</span> input.getLocation();</span><br><span class="line">    <span class="type">int</span> <span class="variable">width</span> <span class="operator">=</span> input.getSize().getWidth();</span><br><span class="line">    <span class="type">int</span> <span class="variable">height</span> <span class="operator">=</span> input.getSize().getHeight();</span><br><span class="line"></span><br><span class="line">    System.out.println(width);</span><br><span class="line">    System.out.println(height);</span><br><span class="line">    System.out.println(point);</span><br><span class="line"></span><br><span class="line">    <span class="type">BufferedImage</span> <span class="variable">dest</span> <span class="operator">=</span> img.getSubimage(point.getX(), point.getY(), width, height);</span><br><span class="line">    ImageIO.write(dest, <span class="string">&quot;png&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;imgs/裁剪特定区域.png&quot;</span>));</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>3.全屏截图</p>
+</blockquote>
+<ul>
+<li><p>适用于需要捕获浏览器外部的场景(全屏截图（Robot类）-截取整个屏幕（包括任务栏）)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Robot</span> <span class="variable">robot</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Robot</span>();</span><br><span class="line"><span class="type">BufferedImage</span> <span class="variable">screen</span> <span class="operator">=</span> robot.createScreenCapture(<span class="keyword">new</span> <span class="title class_">Rectangle</span>(Toolkit.getDefaultToolkit().getScreenSize()));</span><br><span class="line">ImageIO.write(screen, <span class="string">&quot;PNG&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;fullscreen.png&quot;</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全屏截图-截取浏览器区域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">webDriver.navigate().to(<span class="string">&quot;https://www.baidu.com&quot;</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">Point</span> <span class="variable">windowPos</span> <span class="operator">=</span> webDriver.manage().window().getPosition();</span><br><span class="line">    <span class="type">Dimension</span> <span class="variable">windowSize</span> <span class="operator">=</span> webDriver.manage().window().getSize();</span><br><span class="line">    <span class="type">Rectangle</span> <span class="variable">windowRect</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Rectangle</span>(windowPos.x, windowPos.y, windowSize.width, windowSize.height);</span><br><span class="line">    <span class="type">BufferedImage</span> <span class="variable">image</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Robot</span>().createScreenCapture(windowRect);</span><br><span class="line">    ImageIO.write(image, <span class="string">&quot;png&quot;</span>, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;imgs/浏览器区域.png&quot;</span>));</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-12-‌JavaScript执行"><a href="#2-12-‌JavaScript执行" class="headerlink" title="2.12 ‌JavaScript执行"></a>2.12 ‌JavaScript执行</h2><ul>
+<li><p><font color="red">需要将WebDriver对象转换为JavascriptExecutor接口</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">JavascriptExecutor</span> <span class="variable">js</span> <span class="operator">=</span> (JavascriptExecutor) webDriver;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-12-1-同步执行executeScript"><a href="#2-12-1-同步执行executeScript" class="headerlink" title="2.12.1 同步执行executeScript"></a>2.12.1 同步执行executeScript</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">js.executeScript(<span class="string">&quot;alert(&#x27;Hello World&#x27;);&quot;</span>);<span class="comment">//执行无返回值JS</span></span><br><span class="line"></span><br><span class="line"><span class="type">Long</span> <span class="variable">width</span> <span class="operator">=</span> (Long) js.executeScript(<span class="string">&quot;return window.screen.width;&quot;</span>);<span class="comment">//带返回值的执行JS</span></span><br><span class="line"></span><br><span class="line">js.executeScript(<span class="string">&quot;window.scrollTo(0, document.body.scrollHeight)&quot;</span>);<span class="comment">//滚动到页面底部</span></span><br><span class="line"></span><br><span class="line"><span class="type">WebElement</span> <span class="variable">button</span> <span class="operator">=</span> webDriver.findElement(By.id(<span class="string">&quot;chat-submit-button&quot;</span>));</span><br><span class="line">js.executeScript(<span class="string">&quot;arguments[0].style.border=&#x27;3px solid red&#x27;&quot;</span>, button);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-12-2-异步执行（AJAX场景）executeAsyncScript"><a href="#2-12-2-异步执行（AJAX场景）executeAsyncScript" class="headerlink" title="2.12.2 异步执行（AJAX场景）executeAsyncScript"></a>2.12.2 异步执行（AJAX场景）executeAsyncScript</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置脚本超时为10秒</span></span><br><span class="line">webDriver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;TODO 待补充</p>
+<h2 id="2-13-标签页与Frame管理"><a href="#2-13-标签页与Frame管理" class="headerlink" title="2.13 标签页与Frame管理"></a>2.13 标签页与Frame管理</h2><h3 id="2-13-1-标签页"><a href="#2-13-1-标签页" class="headerlink" title="2.13.1 标签页"></a>2.13.1 标签页</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">webDriver.get(<span class="string">&quot;https://www.baidu.com&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//方式一</span></span><br><span class="line"><span class="comment">//webDriver.switchTo().newWindow(WindowType.TAB);//新建标签页</span></span><br><span class="line"><span class="comment">//webDriver.get(&quot;https://www.baidu.com&quot;);//在新标签页打开页面</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方式二：JavascriptExecutor</span></span><br><span class="line">((JavascriptExecutor)webDriver).executeScript(<span class="string">&quot;window.open(&#x27;https://www.baidu.com&#x27;)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">mainHandle</span> <span class="operator">=</span> webDriver.getWindowHandle();<span class="comment">//获取当前标签页句柄</span></span><br><span class="line"><span class="comment">//获取所有标签页句柄</span></span><br><span class="line">ArrayList&lt;String&gt; windowHandles = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(webDriver.getWindowHandles());</span><br><span class="line">webDriver.switchTo().window(windowHandles.get(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>打开新的浏览器窗口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webDriver.switchTo().newWindow(WindowType.WINDOW);<span class="comment">//新建浏览器窗口</span></span><br><span class="line">webDriver.get(<span class="string">&quot;https://www.baidu.com&quot;</span>);<span class="comment">//在新浏览器窗口打开页面</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-13-2-Frame管理"><a href="#2-13-2-Frame管理" class="headerlink" title="2.13.2 Frame管理"></a>2.13.2 Frame管理</h3><p>&#x2F;&#x2F;TODO 待补充</p>
+<h2 id="2-14-浏览器与设备模拟"><a href="#2-14-浏览器与设备模拟" class="headerlink" title="2.14 浏览器与设备模拟"></a>2.14 浏览器与设备模拟</h2><ul>
 <li>移动端模拟：移动设备名称、分辨率设置</li>
 </ul>
 <h1 id="6-补充"><a href="#6-补充" class="headerlink" title="6.补充"></a>6.补充</h1><h2 id="6-1-Selenium-版本演进"><a href="#6-1-Selenium-版本演进" class="headerlink" title="6.1 Selenium 版本演进"></a>6.1 Selenium 版本演进</h2><blockquote>
@@ -632,7 +867,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-selenium"><span class="nav-text">1.selenium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Selenium-WebDriver"><span class="nav-text">2.Selenium WebDriver</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-WebDriver-API"><span class="nav-text">2.1 WebDriver API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="nav-text">2.1.1 浏览器操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D"><span class="nav-text">2.1.2 元素定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-Cookie-%E7%AE%A1%E7%90%86"><span class="nav-text">2.1.3 Cookie 管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-%E5%85%83%E7%B4%A0%E4%BA%A4%E4%BA%92"><span class="nav-text">2.1.4 元素交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6"><span class="nav-text">2.1.5 等待机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-6-%E9%AB%98%E7%BA%A7%E6%93%8D%E4%BD%9C"><span class="nav-text">2.1.6 高级操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-7-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A8%A1%E6%8B%9F"><span class="nav-text">2.1.7 浏览器与设备模拟</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E8%A1%A5%E5%85%85"><span class="nav-text">6.补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Selenium-%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B"><span class="nav-text">6.1 Selenium 版本演进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Selenium-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90"><span class="nav-text">6.2 Selenium 的核心组成</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-selenium"><span class="nav-text">1.selenium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Selenium-WebDriver"><span class="nav-text">2.Selenium WebDriver</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">2.1 浏览器初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-%E9%85%8D%E7%BD%AE%E9%A9%B1%E5%8A%A8"><span class="nav-text">2.1.1 配置驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-%E9%85%8D%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0"><span class="nav-text">2.1.2 配置浏览器启动参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%90%AF%E5%8A%A8-x2F-%E5%85%B3%E9%97%AD%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-text">2.2 启动&#x2F;关闭浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%AF%BC%E8%88%AAURL"><span class="nav-text">2.3 导航URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D"><span class="nav-text">2.4 元素定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E5%85%83%E7%B4%A0%E4%BA%A4%E4%BA%92"><span class="nav-text">2.5 元素交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6"><span class="nav-text">2.6 等待机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-%E9%BC%A0%E6%A0%87%E6%93%8D%E4%BD%9C"><span class="nav-text">2.7 鼠标操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="nav-text">2.8 键盘事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-Cookie-%E7%AE%A1%E7%90%86"><span class="nav-text">2.9 Cookie 管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-10-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">2.10 异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-11-%E2%80%8C%E6%88%AA%E5%9B%BE"><span class="nav-text">2.11 ‌截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-12-%E2%80%8CJavaScript%E6%89%A7%E8%A1%8C"><span class="nav-text">2.12 ‌JavaScript执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-1-%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8CexecuteScript"><span class="nav-text">2.12.1 同步执行executeScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-2-%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%EF%BC%88AJAX%E5%9C%BA%E6%99%AF%EF%BC%89executeAsyncScript"><span class="nav-text">2.12.2 异步执行（AJAX场景）executeAsyncScript</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-13-%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B8%8EFrame%E7%AE%A1%E7%90%86"><span class="nav-text">2.13 标签页与Frame管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13-1-%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="nav-text">2.13.1 标签页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13-2-Frame%E7%AE%A1%E7%90%86"><span class="nav-text">2.13.2 Frame管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-14-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A8%A1%E6%8B%9F"><span class="nav-text">2.14 浏览器与设备模拟</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E8%A1%A5%E5%85%85"><span class="nav-text">6.补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Selenium-%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B"><span class="nav-text">6.1 Selenium 版本演进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Selenium-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90"><span class="nav-text">6.2 Selenium 的核心组成</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -716,7 +951,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">43:47</span>
+    <span title="站点阅读时长">43:56</span>
 </div>
 
         
