@@ -29,6 +29,7 @@
 <meta property="og:site_name" content="峡谷杨爹的个人博客">
 <meta property="og:description" content="java基础">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20251104233634468.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20240401010240493.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20241229152339367.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20241229154905222.png">
@@ -51,11 +52,11 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20241224021131657.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20241224021714019.png">
 <meta property="article:published_time" content="2024-03-24T14:01:17.411Z">
-<meta property="article:modified_time" content="2024-12-30T06:33:15.880Z">
+<meta property="article:modified_time" content="2026-03-15T17:22:27.848Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="javase">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20240401010240493.png">
+<meta name="twitter:image" content="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/image-20251104233634468.png">
 
 <link rel="canonical" href="https://xiaguyangdie.github.io/2024/03/24/java%E5%9F%BA%E7%A1%80/">
 
@@ -247,7 +248,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-30 14:33:15" itemprop="dateModified" datetime="2024-12-30T14:33:15+08:00">2024-12-30</time>
+                <time title="修改时间：2026-03-16 01:22:27" itemprop="dateModified" datetime="2026-03-16T01:22:27+08:00">2026-03-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,14 +287,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>69k</span>
+              <span>75k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1:03</span>
+              <span>1:08</span>
             </span>
             <div class="post-description">java基础</div>
 
@@ -330,10 +331,22 @@
 <li>JRE：<strong>Java Runtime Environment</strong></li>
 <li>JVM：<strong>Java Virtual Machine</strong></li>
 </ul>
-<h2 id="4-HelloWorld"><a href="#4-HelloWorld" class="headerlink" title="4.HelloWorld"></a>4.HelloWorld</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">hello</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-HelloWorld"><a href="#4-HelloWorld" class="headerlink" title="4.HelloWorld"></a>4.HelloWorld</h2><blockquote>
+<p>编写</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac hello.java -encoding utf-8</span><br><span class="line">java hello</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译</p>
+</blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac HelloWorld.java</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>运行</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20251104233634468.png" alt="image-20251104233634468"></p>
 <h2 id="5-编译型和解释型"><a href="#5-编译型和解释型" class="headerlink" title="5.编译型和解释型"></a>5.编译型和解释型</h2><blockquote>
 <p>java程序运行机制</p>
 </blockquote>
@@ -356,7 +369,9 @@ A["源文件\n(*.java文件)"] --> B[("java编译器")] --> C>"*.class文件"] -
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 文档注释</span></span><br><span class="line"><span class="comment">* <span class="doctag">@Description</span>: hello</span></span><br><span class="line"><span class="comment">* <span class="doctag">@Author</span>: 峡谷杨爹</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="6-2-标识符和关键字"><a href="#6-2-标识符和关键字" class="headerlink" title="6.2 标识符和关键字"></a>6.2 标识符和关键字</h3><blockquote>
+<h3 id="6-2-字面量"><a href="#6-2-字面量" class="headerlink" title="6.2 字面量"></a>6.2 字面量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang.literal;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：峡谷杨爹</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span>：com.yang.literal</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Project</span>：javase</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>：2025-11-06 22:55</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>：LiteralDemo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>：常见字面量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LiteralDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 整数字面量</span></span><br><span class="line">        System.out.println(<span class="number">666</span>);           <span class="comment">// 十进制</span></span><br><span class="line">        System.out.println(<span class="number">0x1A</span>);          <span class="comment">// 十六进制：26</span></span><br><span class="line">        System.out.println(<span class="number">0b11010</span>);       <span class="comment">// 二进制：26</span></span><br><span class="line">        System.out.println(<span class="number">26L</span>);           <span class="comment">// long类型</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 浮点数字面量</span></span><br><span class="line">        System.out.println(<span class="number">99.5</span>);          <span class="comment">// double类型</span></span><br><span class="line">        System.out.println(<span class="number">3.14F</span>);         <span class="comment">// float类型</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 字符字面量</span></span><br><span class="line">        System.out.println(<span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">        System.out.println(<span class="string">&#x27;中&#x27;</span>);</span><br><span class="line">        System.out.println(<span class="string">&#x27;\n&#x27;</span>);          <span class="comment">// 换行</span></span><br><span class="line">        System.out.println(<span class="string">&#x27;\t&#x27;</span>);         <span class="comment">// 制表符</span></span><br><span class="line">        System.out.println(<span class="string">&#x27;\u0041&#x27;</span>);     <span class="comment">// Unicode转义：&#x27;A&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 字符串字面量</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我爱你中国abc&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 布尔字面量</span></span><br><span class="line">        System.out.println(<span class="literal">true</span>);</span><br><span class="line">        System.out.println(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// null字面量</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        System.out.println(str);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-标识符和关键字"><a href="#6-3-标识符和关键字" class="headerlink" title="6.3 标识符和关键字"></a>6.3 标识符和关键字</h3><blockquote>
 <p>关键字</p>
 </blockquote>
 <table>
@@ -582,7 +597,7 @@ A["源文件\n(*.java文件)"] --> B[("java编译器")] --> C>"*.class文件"] -
 <li>标识符大小写敏感</li>
 <li><strong>注意</strong>：可以使用中文命名，但不建议使用</li>
 </ul>
-<h3 id="6-3-数据类型"><a href="#6-3-数据类型" class="headerlink" title="6.3 数据类型"></a>6.3 数据类型</h3><ul>
+<h3 id="6-4-数据类型"><a href="#6-4-数据类型" class="headerlink" title="6.4 数据类型"></a>6.4 数据类型</h3><ul>
 <li><p>强类型语言</p>
 </li>
 <li><p>弱类型语言</p>
@@ -612,7 +627,7 @@ B2["引用数据类型"] --> C5["数组"]</pre></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="string">&quot;中国&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">byte</span> num2=<span class="number">11</span>;<span class="comment">//1</span></span><br><span class="line"><span class="type">short</span> num3=<span class="number">30</span>;<span class="comment">//2</span></span><br><span class="line"><span class="type">int</span> num1=<span class="number">10</span>;<span class="comment">//4  </span></span><br><span class="line"><span class="type">long</span> num4=<span class="number">100000l</span>;<span class="comment">//8</span></span><br><span class="line"><span class="type">float</span> num5=<span class="number">12.3f</span>;<span class="comment">//4</span></span><br><span class="line"><span class="type">double</span> num6=<span class="number">1.2123345566677</span>;<span class="comment">//8</span></span><br><span class="line"><span class="type">char</span> num7=<span class="string">&#x27;给&#x27;</span>;<span class="comment">//2</span></span><br><span class="line"><span class="type">boolean</span> num8=<span class="literal">true</span>;<span class="comment">//1</span></span><br><span class="line"><span class="type">boolean</span> num9=<span class="literal">false</span>;<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="6-4-拓展"><a href="#6-4-拓展" class="headerlink" title="6.4 拓展"></a>6.4 拓展</h3><blockquote>
+<h3 id="6-5-拓展"><a href="#6-5-拓展" class="headerlink" title="6.5 拓展"></a>6.5 拓展</h3><blockquote>
 <p>1.字节</p>
 </blockquote>
 <ul>
@@ -644,7 +659,7 @@ B2["引用数据类型"] --> C5["数组"]</pre></li>
 <li><p>转义字符</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;hello\nworld&quot;</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="6-5-类型转换"><a href="#6-5-类型转换" class="headerlink" title="6.5 类型转换"></a>6.5 类型转换</h3><ul>
+<h3 id="6-6-类型转换"><a href="#6-6-类型转换" class="headerlink" title="6.6 类型转换"></a>6.6 类型转换</h3><ul>
 <li><p>Java是强类型语言，所以进行运算的时候，可能需要类型转换</p>
 <pre class="mermaid">  graph LR
 A(("低"))-.->byte,short,char --> int --> long --> float --> double -.-> B(("高"))
@@ -671,11 +686,11 @@ A(("低"))-.->byte,short,char --> int --> long --> float --> double -.-> B(("高
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang.base;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo4</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//操作比较大的数的时候，注意溢出问题</span></span><br><span class="line">        <span class="comment">//JDK7特性，数字之间可以用下划线分割，而且下划线不输出</span></span><br><span class="line">        <span class="type">int</span> money=<span class="number">10_0000_0000</span>;</span><br><span class="line">        <span class="type">int</span> years=<span class="number">20</span>;</span><br><span class="line">        <span class="type">int</span> total=money*years;<span class="comment">//-1474836480计算的时候溢出了</span></span><br><span class="line">        <span class="type">long</span> total2=money*years;<span class="comment">//-1474836480</span></span><br><span class="line">        System.out.println(total);</span><br><span class="line">        System.out.println(total2);</span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> total3=money*((<span class="type">long</span>)years);<span class="comment">//先把一个数转换为long</span></span><br><span class="line">        System.out.println(total3);<span class="comment">//200000000000</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-6-变量、常量、作用域"><a href="#6-6-变量、常量、作用域" class="headerlink" title="6.6 变量、常量、作用域"></a>6.6 变量、常量、作用域</h3><h4 id="6-6-1-变量"><a href="#6-6-1-变量" class="headerlink" title="6.6.1 变量"></a>6.6.1 变量</h4><ul>
-<li><p>Java是一种强类型语言，每个变量都必须声明类型</p>
+<h3 id="6-7-变量、常量、作用域"><a href="#6-7-变量、常量、作用域" class="headerlink" title="6.7 变量、常量、作用域"></a>6.7 变量、常量、作用域</h3><h4 id="6-7-1-变量"><a href="#6-7-1-变量" class="headerlink" title="6.7.1 变量"></a>6.7.1 变量</h4><ul>
+<li><p>Java是一种<strong>强类型</strong>语言，每个变量都必须声明类型</p>
 </li>
-<li><p>Java变量是程序中最基本的存储单元，其要素包括变量名、变量类型和作用域</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type varName [=value] [&#123;,varName[-value]&#125;]</span><br><span class="line"><span class="comment">//数据类型  变量名 = 值;可以使用逗号隔开来声明多个同类型变量</span></span><br></pre></td></tr></table></figure>
+<li><p>Java变量是程序中最基本的<strong>存储单元</strong>，其要素包括变量名、变量类型和作用域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type varName [=value] [&#123;,varName[-value]&#125;]</span><br><span class="line"><span class="comment">//数据类型 数据名称 = 数据;可以使用逗号隔开来声明多个同类型变量</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>注意事项：</p>
 <ul>
@@ -698,22 +713,47 @@ A(("低"))-.->byte,short,char --> int --> long --> float --> double -.-> B(("高
 </ul>
 </li>
 </ul>
-<h4 id="6-6-2-作用域"><a href="#6-6-2-作用域" class="headerlink" title="6.6.2 作用域"></a>6.6.2 作用域</h4><ul>
+<h4 id="6-7-2-作用域"><a href="#6-7-2-作用域" class="headerlink" title="6.7.2 作用域"></a>6.7.2 作用域</h4><ul>
 <li>类变量：static修饰</li>
 <li>实例变量：从属于对象，如果不进行初始化，则默认值，0，0.0，null,false</li>
 <li>局部变量：方法内，必须声明和初始化值</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo6</span> &#123;</span><br><span class="line">    <span class="comment">//变量</span></span><br><span class="line">    <span class="comment">//实例变量：从属于对象，如果不进行初始化，则默认值，0，0.0，null,false</span></span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> sex;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//类变量  static</span></span><br><span class="line">    <span class="comment">//mian方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//局部变量,必须声明和初始化值</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">10</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="type">Demo6</span> <span class="variable">demo6</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Demo6</span>();</span><br><span class="line">        <span class="comment">//使用实例变量</span></span><br><span class="line">        System.out.println(demo6.name);</span><br><span class="line">        System.out.println(demo6.age);</span><br><span class="line">        <span class="comment">//使用类变量</span></span><br><span class="line">        System.out.println(sex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//其他方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-6-3-常量"><a href="#6-6-3-常量" class="headerlink" title="6.6.3 常量"></a>6.6.3 常量</h4><ul>
+<h4 id="6-7-3-常量"><a href="#6-7-3-常量" class="headerlink" title="6.7.3 常量"></a>6.7.3 常量</h4><ul>
 <li><p>常量：初始化后不能再改变值</p>
 </li>
 <li><p>常量名一般使用大写字符</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> 常量名 = 值;</span><br><span class="line"><span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.14</span>；</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[访问符] <span class="keyword">final</span> 数据类型 常量名 = 值;</span><br><span class="line">[访问符] <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.14</span>;<span class="comment">//实例常量</span></span><br><span class="line">    </span><br><span class="line">[访问符] <span class="keyword">static</span> <span class="keyword">final</span> 数据类型 常量名 = 值;</span><br><span class="line">[访问符] <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.14</span>;<span class="comment">//静态常量</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo7</span> &#123;</span><br><span class="line">    <span class="comment">//static  final.......修饰符不分前后</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span><span class="number">3.14</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(PI);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Demo7</span>().a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo7</span> &#123;</span><br><span class="line">    <span class="comment">//static  final.......修饰符不分前后</span></span><br><span class="line">    <span class="comment">//静态常量</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.14</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(PI);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Demo7</span>().a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-7-运算符"><a href="#6-7-运算符" class="headerlink" title="6.7 运算符"></a>6.7 运算符</h3><h4 id="6-7-1-算术运算符"><a href="#6-7-1-算术运算符" class="headerlink" title="6.7.1 算术运算符"></a>6.7.1 算术运算符</h4><ul>
+<ul>
+<li><code>static final</code> 常量是类级别的，所有对象共享，通过类名访问</li>
+<li><code>final</code> 常量是实例级别的，每个对象独立拥有，通过对象实例访问</li>
+<li>通常情况下，全局常量使用 <code>public static final</code>，而需要每个实例特定值的常量使用 <code>public final</code></li>
+</ul>
+<blockquote>
+<p>1.<code>static final 数据类型 常量名 = 值;</code></p>
+</blockquote>
+<ul>
+<li>‌<strong>static</strong>‌：表示该常量属于类本身，而不是类的实例。这意味着该常量在类加载时就存在，且所有对象共享这个常量</li>
+<li>‌<strong>访问方式</strong>‌：可以通过类名直接访问，例如 <code>ClassName.CONSTANT_NAME</code>，无需创建类的实例</li>
+<li>‌<strong>内存分配</strong>‌：该常量存储在方法区（元空间）中，只有一份拷贝</li>
+<li>‌<strong>使用场景</strong>‌：适用于需要在多个对象间共享的全局常量</li>
+</ul>
+<blockquote>
+<ol start="2">
+<li><code>public final 数据类型 常量名 = 值;</code></li>
+</ol>
+</blockquote>
+<ul>
+<li>‌<strong>非 static</strong>‌：表示该常量是类的实例变量，每个对象都有自己的常量副本</li>
+<li>‌<strong>访问方式</strong>‌：必须通过类的实例访问，例如 <code>object.CONSTANT_NAME</code></li>
+<li>‌<strong>内存分配</strong>‌：每个对象实例都会在堆内存中为该常量分配一份空间</li>
+<li>‌<strong>使用场景</strong>‌：适用于需要为每个对象设置特定值的常量</li>
+</ul>
+<h3 id="6-8-运算符"><a href="#6-8-运算符" class="headerlink" title="6.8 运算符"></a>6.8 运算符</h3><h4 id="6-8-1-算术运算符"><a href="#6-8-1-算术运算符" class="headerlink" title="6.8.1 算术运算符"></a>6.8.1 算术运算符</h4><ul>
 <li><p>+，-，*，&#x2F;，%，++，–</p>
 </li>
 <li><p>算数运算符操作数必须是<strong>数值类型</strong></p>
@@ -738,31 +778,31 @@ A(("低"))-.->byte,short,char --> int --> long --> float --> double -.-> B(("高
 <li>”++“和”–“运算符，只允许用于数值类型的变量，不允许用于表达式中</li>
 <li>“++”和”–“可以用于数值变量之前或者之后</li>
 </ul>
-<h4 id="6-7-2-关系运算符"><a href="#6-7-2-关系运算符" class="headerlink" title="6.7.2 关系运算符"></a>6.7.2 关系运算符</h4><ul>
+<h4 id="6-8-2-关系运算符"><a href="#6-8-2-关系运算符" class="headerlink" title="6.8.2 关系运算符"></a>6.8.2 关系运算符</h4><ul>
 <li>&gt;，&lt;，&gt;&#x3D;，&lt;&#x3D;，&#x3D;&#x3D;，!&#x3D;，instanceof</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//关系运算符返回值：正确，错误  布尔值</span></span><br><span class="line">        <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">        <span class="type">int</span> b=<span class="number">20</span>;</span><br><span class="line">        <span class="type">int</span> c=<span class="number">21</span>;</span><br><span class="line">        System.out.println(a&gt;b);</span><br><span class="line">        System.out.println(a&lt;b);</span><br><span class="line">        System.out.println(a==b);</span><br><span class="line">        System.out.println(a!=b);</span><br><span class="line">        <span class="comment">//取余  模运算</span></span><br><span class="line">        System.out.println(c%a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-7-3-逻辑运算符"><a href="#6-7-3-逻辑运算符" class="headerlink" title="6.7.3 逻辑运算符"></a>6.7.3 逻辑运算符</h4><ul>
+<h4 id="6-8-3-逻辑运算符"><a href="#6-8-3-逻辑运算符" class="headerlink" title="6.8.3 逻辑运算符"></a>6.8.3 逻辑运算符</h4><ul>
 <li>&amp;&amp;，||，!</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//逻辑运算符</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// &amp;&amp;    ||   !</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">a</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">b</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;a &amp;&amp; b :&quot;</span>+(a &amp;&amp; b));<span class="comment">//false</span></span><br><span class="line">        System.out.println(<span class="string">&quot;a || b :&quot;</span>+(a || b));<span class="comment">//true</span></span><br><span class="line">        System.out.println(<span class="string">&quot;!a:&quot;</span>+(!a));<span class="comment">//false</span></span><br><span class="line">        <span class="comment">//短路情况</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span><span class="number">5</span>;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">d</span> <span class="operator">=</span>(c&lt;<span class="number">4</span>)&amp;&amp;(c++&lt;<span class="number">4</span>);</span><br><span class="line">        System.out.println(c);<span class="comment">//5</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-7-4-位运算符"><a href="#6-7-4-位运算符" class="headerlink" title="6.7.4 位运算符"></a>6.7.4 位运算符</h4><ul>
+<h4 id="6-8-4-位运算符"><a href="#6-8-4-位运算符" class="headerlink" title="6.8.4 位运算符"></a>6.8.4 位运算符</h4><ul>
 <li>&amp;，|，^，~，&gt;&gt;，&lt;&lt;，&gt;&gt;&gt;</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        A=0011 1100</span></span><br><span class="line"><span class="comment">        B=0000 1101</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        A&amp;B=0000 1100</span></span><br><span class="line"><span class="comment">        A|B=0011 1101</span></span><br><span class="line"><span class="comment">        -B=1111 0010</span></span><br><span class="line"><span class="comment">        A^B=0011 0001</span></span><br><span class="line"><span class="comment">        2*8=16  2*2*2*2</span></span><br><span class="line"><span class="comment">        &lt;&lt; *2</span></span><br><span class="line"><span class="comment">         &gt;&gt;  /2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(<span class="number">2</span>&lt;&lt;<span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-7-5-条件运算符"><a href="#6-7-5-条件运算符" class="headerlink" title="6.7.5 条件运算符"></a>6.7.5 条件运算符</h4><ul>
+<h4 id="6-8-5-条件运算符"><a href="#6-8-5-条件运算符" class="headerlink" title="6.8.5 条件运算符"></a>6.8.5 条件运算符</h4><ul>
 <li>? :</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo8</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//x?y:z</span></span><br><span class="line">        <span class="type">int</span> score=<span class="number">50</span>;</span><br><span class="line">        String p=score&lt;<span class="number">60</span>?<span class="string">&quot;不及格&quot;</span>:<span class="string">&quot;及格&quot;</span>;</span><br><span class="line">        System.out.println(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-7-6-扩展赋值运算符和赋值运算符"><a href="#6-7-6-扩展赋值运算符和赋值运算符" class="headerlink" title="6.7.6 扩展赋值运算符和赋值运算符"></a>6.7.6 扩展赋值运算符和赋值运算符</h4><ul>
+<h4 id="6-8-6-扩展赋值运算符和赋值运算符"><a href="#6-8-6-扩展赋值运算符和赋值运算符" class="headerlink" title="6.8.6 扩展赋值运算符和赋值运算符"></a>6.8.6 扩展赋值运算符和赋值运算符</h4><ul>
 <li>扩展赋值运算符：+&#x3D;，-&#x3D;，*&#x3D;，&#x2F;&#x3D;</li>
 <li>赋值运算符：&#x3D;</li>
 </ul>
-<h3 id="6-8-包机制"><a href="#6-8-包机制" class="headerlink" title="6.8 包机制"></a>6.8 包机制</h3><blockquote>
+<h3 id="6-9-包机制"><a href="#6-9-包机制" class="headerlink" title="6.9 包机制"></a>6.9 包机制</h3><blockquote>
 <p>语法格式</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package pk1[.pk2[.pk3...]]</span><br></pre></td></tr></table></figure>
@@ -781,7 +821,7 @@ A(("低"))-.->byte,short,char --> int --> long --> float --> double -.-> B(("高
 <li>注意快捷键 Alt + enter 自动指出错误</li>
 <li>注意善用*号通配符</li>
 </ul>
-<h3 id="6-9-JavaDoc生成文档"><a href="#6-9-JavaDoc生成文档" class="headerlink" title="6.9 JavaDoc生成文档"></a>6.9 JavaDoc生成文档</h3><ul>
+<h3 id="6-10-JavaDoc生成文档"><a href="#6-10-JavaDoc生成文档" class="headerlink" title="6.10 JavaDoc生成文档"></a>6.10 JavaDoc生成文档</h3><ul>
 <li>javadoc命令是用来生成自己的API文档的</li>
 <li>参数信息</li>
 </ul>
@@ -982,7 +1022,7 @@ A["A"]-->B["B"]-->C["C"]</pre>
 </li>
 <li><p>2.非静态方法需要实例化类，生成对象，通过对象.方法名(实参列表)</p>
 </li>
-<li><p>3.静态方法和类一起加载，但是非静态方法只有在类实例化之后才存在，所有静态方法不能直接调用非静态方法</p>
+<li><p>3.静态方法和类一起加载，但是非静态方法只有在类实例化之后才存在，所有<strong>静态方法不能直接调用非静态方法</strong></p>
 </li>
 <li><p>4.非静态方法可以直接调用非静态方法和静态方法；静态方法不能直接调用非静态方法，但是可以直接调用静态方法</p>
 </li>
@@ -1986,6 +2026,287 @@ C1["RuntimeException"] --> D8["其它RuntimeException类及其子类"]</pre></li
 <li><strong>处理编译时异常</strong>：尽可能在代码中处理，通过<code>try-catch</code>或<code>throws</code>关键字声明，以确保程序的健壮性</li>
 <li><strong>处理运行时异常</strong>：通过改进代码逻辑来避免异常的发生，而不是依赖异常处理机制。如果必须处理，可以使用<code>try-catch</code>块</li>
 </ul>
+<h2 id="12-其它"><a href="#12-其它" class="headerlink" title="12.其它"></a>12.其它</h2><h3 id="12-1枚举"><a href="#12-1枚举" class="headerlink" title="12.1枚举"></a>12.1枚举</h3><ul>
+<li>枚举本质上是一个类，它继承自 <code>java.lang.Enum</code> 类</li>
+<li><strong>每个枚举常量都是该枚举类的一个实例，且是唯一的（单例）</strong></li>
+<li>枚举类默认继承了 <code>java.lang.Enum</code> 类，并实现了 <code>java.lang.Serializable</code> 和 <code>java.lang.Comparable</code> 两个接口</li>
+<li>枚举常量在类加载时完成初始化，且顺序固定</li>
+</ul>
+<h4 id="12-1-1-注意点"><a href="#12-1-1-注意点" class="headerlink" title="12.1.1 注意点"></a>12.1.1 注意点</h4><blockquote>
+<p><strong>枚举常量的定义</strong>‌：</p>
+</blockquote>
+<ul>
+<li>枚举常量必须在枚举类的第一行定义，每个常量之间用逗号分隔</li>
+<li>最后一个枚举常量后的分号可以省略，但如果枚举类后面还有其他内容（如方法或属性），则分号不能省略</li>
+<li>枚举常量默认修饰符 <code>static final</code></li>
+</ul>
+<blockquote>
+<p><strong>枚举类的继承与限制</strong>‌：</p>
+</blockquote>
+<ul>
+<li>枚举类默认继承自 <code>java.lang.Enum</code> 类，<strong>因此不能被其他类继承</strong></li>
+<li>枚举类是 <code>final</code> 的，不能被继承</li>
+</ul>
+<blockquote>
+<p><strong>构造器的访问修饰符</strong>‌：</p>
+</blockquote>
+<ul>
+<li>枚举类的构造器必须是 <code>private</code> 访问级别(<strong>默认</strong>)</li>
+<li>如果定义了带参数的构造器，那么每个枚举常量都必须提供对应的参数</li>
+</ul>
+<blockquote>
+<p><strong>枚举常量的实例化</strong>：</p>
+</blockquote>
+<ul>
+<li><strong>枚举常量是枚举类的静态常量实例，它们在类加载时就已经创建好</strong></li>
+<li>枚举常量的名称通常使用全大写字母</li>
+</ul>
+<blockquote>
+<p><strong>枚举类的扩展性</strong>‌：</p>
+</blockquote>
+<ul>
+<li>枚举类可以实现接口</li>
+<li>枚举类可以包含<strong>属性、方法和构造器</strong></li>
+<li>枚举类可以定义抽象方法，每个枚举常量都需要实现这些方法</li>
+</ul>
+<blockquote>
+<p><strong>枚举的不可变性</strong>‌：</p>
+</blockquote>
+<ul>
+<li>枚举常量一旦定义就不能修改</li>
+<li><strong>枚举的属性通常声明为 <code>final</code> 以保证不可变性</strong></li>
+</ul>
+<h4 id="12-1-2-案例"><a href="#12-1-2-案例" class="headerlink" title="12.1.2 案例"></a>12.1.2 案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">SecondEnum</span>&#123;</span><br><span class="line">    RED,</span><br><span class="line">    GREEN,</span><br><span class="line">    BLUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">FirstEnum</span> &#123;</span><br><span class="line">    RED(<span class="string">&quot;红色&quot;</span>, <span class="number">1</span>),</span><br><span class="line">    GREEN(<span class="string">&quot;绿色&quot;</span>, <span class="number">2</span>),</span><br><span class="line">    BLUE(<span class="string">&quot;蓝色&quot;</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String description;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> type;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Color 枚举定义了三个常量：RED、GREEN 和 BLUE</span></span><br><span class="line">    <span class="comment">// 每个常量在定义时都会调用构造函数，并传入相应的描述信息</span></span><br><span class="line">    <span class="comment">// 构造函数负责将这些信息存储在 description type字段中</span></span><br><span class="line">    FirstEnum(String description, <span class="type">int</span> type) &#123;</span><br><span class="line">        <span class="built_in">this</span>.description = description;</span><br><span class="line">        <span class="built_in">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getDescription</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getType</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.getDescription()+<span class="string">&quot;：&quot;</span>+<span class="built_in">this</span>.getType());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(FirstEnum.BLUE+<span class="string">&quot;的description：&quot;</span>+FirstEnum.BLUE.getDescription()+<span class="string">&quot;\t&quot;</span>+<span class="string">&quot;type：&quot;</span>+FirstEnum.BLUE.getType());<span class="comment">//BLUE的description：蓝色	type：3</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用 values() 方法获取所有枚举常量</span></span><br><span class="line">        FirstEnum[] enums = FirstEnum.values();</span><br><span class="line">        <span class="keyword">for</span> (FirstEnum enumValue : enums) &#123;</span><br><span class="line">            System.out.print(enumValue+<span class="string">&quot;   &quot;</span>); <span class="comment">//RED   GREEN   BLUE</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用 valueOf() 方法根据名称获取枚举常量</span></span><br><span class="line">        <span class="type">FirstEnum</span> <span class="variable">green</span> <span class="operator">=</span> FirstEnum.valueOf(<span class="string">&quot;GREEN&quot;</span>);</span><br><span class="line">        System.out.println(green); <span class="comment">//GREEN</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用 ordinal() 方法获取枚举常量的序号</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> FirstEnum.GREEN.ordinal();</span><br><span class="line">        System.out.println(index); <span class="comment">//1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>values()</code> 是一个静态方法，用于返回包含该枚举类中所有枚举常量的数组</li>
+<li><code>valueOf()</code> 方法是一个静态方法，用于根据指定的字符串名称返回对应的枚举常量。如果找不到匹配的枚举常量，会抛出 <code>IllegalArgumentException</code> 异常</li>
+<li><code>ordinal()</code> 方法返回枚举常量在枚举类中的声明顺序，从 0 开始计数。每个枚举常量都有一个唯一的序号，这个序号反映了它在枚举定义中的位置</li>
+</ul>
+<h3 id="12-2-final与static"><a href="#12-2-final与static" class="headerlink" title="12.2 final与static"></a>12.2 final与static</h3><h4 id="12-2-1-final"><a href="#12-2-1-final" class="headerlink" title="12.2.1 final"></a>12.2.1 final</h4><ul>
+<li><code>final</code> 关键字用于表示“最终的”或“不可变的”，它可以修饰<strong>类、方法和变量</strong></li>
+</ul>
+<blockquote>
+<p>1.修饰变量（常量）</p>
+</blockquote>
+<ul>
+<li>被 <code>final</code> 修饰的变量只能赋值一次，赋值后不能再改变</li>
+<li>对于基本类型，值不可变；对于引用类型，引用地址不可变，<strong>但对象内容可以改变</strong></li>
+</ul>
+<blockquote>
+<p>2.修饰方法</p>
+</blockquote>
+<ul>
+<li><strong>被 <code>final</code> 修饰的方法不能被子类重写</strong></li>
+</ul>
+<blockquote>
+<p>3.修士类</p>
+</blockquote>
+<ul>
+<li><strong>被 <code>final</code> 修饰的类不能被继承</strong></li>
+</ul>
+<h4 id="12-2-2-static"><a href="#12-2-2-static" class="headerlink" title="12.2.2 static"></a>12.2.2 static</h4><ul>
+<li><code>static</code> 关键字用于修饰类的成员（<strong>变量、方法、代码块、内部类</strong>），表示该成员属于类本身，而不是类的某个实例</li>
+</ul>
+<blockquote>
+<p>1.修饰变量（类变量）</p>
+</blockquote>
+<ul>
+<li>被 <code>static</code> 修饰的变量属于类，所有对象共享</li>
+<li>可通过类名直接访问</li>
+</ul>
+<blockquote>
+<p>2.修饰方法（类方法）</p>
+</blockquote>
+<ul>
+<li>被 <code>static</code> 修饰的方法属于类，无需创建对象即可调用</li>
+</ul>
+<blockquote>
+<p>3.修饰代码块</p>
+</blockquote>
+<ul>
+<li>静态代码块在类加载时执行一次，用于<strong>初始化静态变量和常量</strong></li>
+</ul>
+<h4 id="12-2-3-final-与-static-的结合使用"><a href="#12-2-3-final-与-static-的结合使用" class="headerlink" title="12.2.3 final 与 static 的结合使用"></a>12.2.3 <code>final</code> 与 <code>static</code> 的结合使用</h4><ul>
+<li>当 <code>final</code> 和 <code>static</code> 一起使用时，通常用于定义‌<strong>全局常量</strong></li>
+<li><code>static</code> 表示该变量属于类，所有对象共享</li>
+<li><code>final</code> 表示该变量一旦赋值就不能再修改</li>
+</ul>
+<h4 id="12-2-4-使用场景"><a href="#12-2-4-使用场景" class="headerlink" title="12.2.4 使用场景"></a>12.2.4 使用场景</h4><blockquote>
+<ol>
+<li><code>final</code> 的使用场景</li>
+</ol>
+</blockquote>
+<ul>
+<li>定义常量：<code>public static final int MAX_SIZE = 100;</code></li>
+<li>防止方法被重写：<code>public final void method() &#123; &#125;</code></li>
+<li>防止类被继承：<code>public final class MyClass &#123; &#125;</code></li>
+</ul>
+<blockquote>
+<ol start="2">
+<li><code>static</code> 的使用场景</li>
+</ol>
+</blockquote>
+<ul>
+<li>定义类变量：<code>public static int count = 0;</code></li>
+<li>定义类方法：<code>public static void method() &#123; &#125;</code></li>
+<li>静态代码块初始化：<code>static &#123; /* 初始化代码 */ &#125;</code></li>
+</ul>
+<blockquote>
+<ol start="3">
+<li><code>final</code> 与 <code>static</code> 结合使用场景</li>
+</ol>
+</blockquote>
+<ul>
+<li>定义全局常量：<code>public static final double PI = 3.14159;</code></li>
+<li>定义系统配置参数：<code>public static final String DATABASE_URL = &quot;jdbc:mysql://localhost:3306/mydb&quot;;</code></li>
+</ul>
+<h4 id="12-2-5-注意事项"><a href="#12-2-5-注意事项" class="headerlink" title="12.2.5 注意事项"></a>12.2.5 注意事项</h4><ol>
+<li>‌<strong>变量初始化</strong>‌：<ul>
+<li><code>final</code> 变量必须在<strong>声明时、构造方法和构造代码块中初始化</strong></li>
+<li><code>static final</code> 变量可以在<strong>声明时、静态代码块中初始化</strong></li>
+</ul>
+</li>
+<li>‌<strong>访问方式</strong>‌：<ul>
+<li><code>static</code> 成员可以通过类名直接访问</li>
+<li><code>final</code> 成员需要通过对象实例访问（非静态）</li>
+</ul>
+</li>
+<li>‌<strong>内存分配</strong>‌：<ul>
+<li><code>static</code> 成员在类加载时分配在方法区</li>
+<li><code>final</code> 成员在对象创建时分配在堆内存</li>
+</ul>
+</li>
+</ol>
+<h3 id="12-3-代码块"><a href="#12-3-代码块" class="headerlink" title="12.3 代码块"></a>12.3 代码块</h3><h4 id="12-3-1-分类"><a href="#12-3-1-分类" class="headerlink" title="12.3.1 分类"></a>12.3.1 分类</h4><blockquote>
+<p>1.普通代码块（局部代码块）</p>
+</blockquote>
+<ul>
+<li><strong>定义</strong>‌：直接声明在方法、循环或条件语句等局部作用域中的代码块，无特殊修饰符</li>
+<li>‌<strong>作用</strong>‌：限定变量作用域（变量仅在代码块内有效），或组织局部逻辑，避免代码冗余</li>
+<li>‌<strong>执行时机</strong>‌：调用所在方法 &#x2F; 执行到代码块位置时执行</li>
+</ul>
+<blockquote>
+<p>2.构造代码块（实例代码块）</p>
+</blockquote>
+<ul>
+<li><strong>定义</strong>‌：直接声明在类中（方法外部）的代码块，无修饰符</li>
+<li>‌<strong>作用</strong>‌：提取多个构造器的公共初始化逻辑（如初始化实例变量），避免构造器代码重复</li>
+<li>‌<strong>执行时机</strong>‌：<strong>每次创建对象时执行</strong>，且优先于构造器执行；多个构造代码块按定义顺序执行</li>
+</ul>
+<blockquote>
+<p>3.静态代码块</p>
+</blockquote>
+<ul>
+<li><strong>定义</strong>‌：用 <code>static</code> 修饰的 <code>&#123;&#125;</code> 块，写在类体中</li>
+<li>‌<strong>特点</strong>‌：类加载时执行一次（JVM第一次使用该类时），用于初始化静态资源（如数据库连接、配置加载）</li>
+<li>‌<strong>执行时机</strong>‌：<strong>类加载时执行一次</strong>，早于任何对象创建就执行</li>
+</ul>
+<blockquote>
+<p>4.同步代码块（多线程）</p>
+</blockquote>
+<ul>
+<li>‌<strong>定义</strong>‌：被 <code>synchronized</code> 关键字修饰的代码块</li>
+<li>‌<strong>作用</strong>‌：在多线程编程中，确保同一时间只有一个线程执行该代码块，用于保护共享资源</li>
+</ul>
+<h4 id="12-3-2-注意点"><a href="#12-3-2-注意点" class="headerlink" title="12.3.2 注意点"></a>12.3.2 注意点</h4><ul>
+<li><p>当类加载并创建对象时，执行优先级为：</p>
+<ul>
+<li>1.<strong>静态代码块</strong>‌（<font color="red">类加载时执行一次</font>）</li>
+<li>2‌.<strong>构造代码块</strong>‌（<font color="red">每次创建对象执行</font>）</li>
+<li>3‌.<strong>构造器</strong>‌（<font color="red">每次创建对象执行</font>）</li>
+</ul>
+</li>
+<li><p>若存在继承关系：父类静态代码块 → 子类静态代码块 → 父类构造代码块 → 父类构造器 → 子类构造代码块 → 子类构造器</p>
+</li>
+</ul>
+<h3 id="12-4-访问符"><a href="#12-4-访问符" class="headerlink" title="12.4 访问符"></a>12.4 访问符</h3><ul>
+<li>访问符（也称为访问修饰符或访问控制符）用于控制类、方法、变量等成员的访问权限</li>
+</ul>
+<blockquote>
+<ol>
+<li>public（公共访问符）</li>
+</ol>
+</blockquote>
+<ul>
+<li>‌<strong>作用</strong>‌：被 <code>public</code> 修饰的成员可以被任何类访问</li>
+<li>‌<strong>特点</strong>‌：具有最大的访问范围</li>
+<li>‌<strong>使用场景</strong>‌：通常用于定义公共接口、公共常量等</li>
+</ul>
+<blockquote>
+<ol start="2">
+<li>protected（受保护访问符）</li>
+</ol>
+</blockquote>
+<ul>
+<li>‌<strong>作用</strong>‌：被 <code>protected</code> 修饰的成员可以被同一包内的其他类访问，或者是其他包中的子类访问</li>
+<li>‌<strong>特点</strong>‌：提供了一定的访问控制，比 <code>public</code> 更加严格</li>
+<li>‌<strong>使用场景</strong>‌：通常用于继承关系中，允许子类访问父类的某些成员</li>
+</ul>
+<blockquote>
+<ol start="3">
+<li>默认访问符（包访问符）</li>
+</ol>
+</blockquote>
+<ul>
+<li>‌<strong>作用</strong>‌：不使用任何访问修饰符时，默认为包访问权限</li>
+<li>‌<strong>特点</strong>‌：只能被同一包内的其他类访问</li>
+<li>‌<strong>使用场景</strong>‌：用于包内组件之间的协作</li>
+</ul>
+<blockquote>
+<ol start="4">
+<li>private（私有访问符）</li>
+</ol>
+</blockquote>
+<ul>
+<li>‌<strong>作用</strong>‌：被 <code>private</code> 修饰的成员只能被定义它的类内部访问</li>
+<li>‌<strong>特点</strong>‌：访问范围最小，提供最高的封装性</li>
+<li>‌<strong>使用场景</strong>‌：用于封装类的内部实现细节，保护数据安全</li>
+</ul>
+<blockquote>
+<p>访问权限对比表</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>访问修饰符</th>
+<th>同一个类</th>
+<th>同一个包</th>
+<th>不同包的子类</th>
+<th>不同包的非子类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>✓</td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>private</td>
+<td>✓</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -2088,7 +2409,7 @@ C1["RuntimeException"] --> D8["其它RuntimeException类及其子类"]</pre></li
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-java%E4%B8%89%E5%A4%A7%E7%89%88%E6%9C%AC"><span class="nav-text">1.java三大版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-java%E7%89%B9%E6%80%A7%E5%92%8C%E4%BC%98%E5%8A%BF"><span class="nav-text">2.java特性和优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDK%E3%80%81JRE%E3%80%81JVM"><span class="nav-text">3.JDK、JRE、JVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HelloWorld"><span class="nav-text">4.HelloWorld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BC%96%E8%AF%91%E5%9E%8B%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B"><span class="nav-text">5.编译型和解释型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-text">6.java基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%B3%A8%E9%87%8A"><span class="nav-text">6.1 注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E6%A0%87%E8%AF%86%E7%AC%A6%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">6.2 标识符和关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">6.3 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E6%8B%93%E5%B1%95"><span class="nav-text">6.4 拓展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">6.5 类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">6.6 变量、常量、作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-1-%E5%8F%98%E9%87%8F"><span class="nav-text">6.6.1 变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-2-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">6.6.2 作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-3-%E5%B8%B8%E9%87%8F"><span class="nav-text">6.6.3 常量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-1-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7.1 算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-2-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7.2 关系运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-3-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7.3 逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-4-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7.4 位运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-5-%E6%9D%A1%E4%BB%B6%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7.5 条件运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-6-%E6%89%A9%E5%B1%95%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.7.6 扩展赋值运算符和赋值运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-8-%E5%8C%85%E6%9C%BA%E5%88%B6"><span class="nav-text">6.8 包机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-9-JavaDoc%E7%94%9F%E6%88%90%E6%96%87%E6%A1%A3"><span class="nav-text">6.9 JavaDoc生成文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-text">7.流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-Scanner%E7%B1%BB"><span class="nav-text">7.1 Scanner类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-text">7.2 顺序结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%80%89%E6%8B%A9%E8%A7%A3%E6%9E%84"><span class="nav-text">7.3 选择解构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-text">7.4 循环结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%96%B9%E6%B3%95"><span class="nav-text">8.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95"><span class="nav-text">8.1 什么是方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E8%B0%83%E7%94%A8"><span class="nav-text">8.2 方法的定义和调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-1-%E5%AE%9A%E4%B9%89"><span class="nav-text">8.2.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-2-%E8%B0%83%E7%94%A8"><span class="nav-text">8.2.2 调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-2-1-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-text">8.2.2.1 静态方法与非静态方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-2-2-%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82"><span class="nav-text">8.2.2.2 形参和实参</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-2-3-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92"><span class="nav-text">8.2.2.3 值传递和引用传递</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="nav-text">8.3 方法重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82"><span class="nav-text">8.4 命令行传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-text">8.5 可变参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-%E9%80%92%E5%BD%92"><span class="nav-text">8.6 递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%95%B0%E7%BB%84"><span class="nav-text">9.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-%E6%95%B0%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">9.1 数组的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-%E6%95%B0%E7%BB%84%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%88%9B%E5%BB%BA"><span class="nav-text">9.2 数组的声明和创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-text">9.3 java内存分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-%E6%95%B0%E7%BB%84%E4%BD%BF%E7%94%A8"><span class="nav-text">9.4 数组使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-text">9.5 多维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-Arrays%E7%B1%BB"><span class="nav-text">9.6 Arrays类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-1-%E6%8E%92%E5%BA%8F"><span class="nav-text">9.6.1 排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-2-%E6%90%9C%E7%B4%A2"><span class="nav-text">9.6.2 搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-3-%E6%AF%94%E8%BE%83"><span class="nav-text">9.6.3 比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-4-%E5%A1%AB%E5%85%85"><span class="nav-text">9.6.4 填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-5-%E8%BD%AC%E6%8D%A2"><span class="nav-text">9.6.5 转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-6-%E5%A4%8D%E5%88%B6"><span class="nav-text">9.6.6 复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-7-%E4%BD%BF%E7%94%A8"><span class="nav-text">9.6.7 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-8-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">9.6.8 注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-7-%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84"><span class="nav-text">9.7 稀疏数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-text">10.面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-text">10.1 什么是面向对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E5%88%86%E6%9E%90"><span class="nav-text">10.2 对象的创建分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-1-%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%B9%E8%B1%A1"><span class="nav-text">10.2.1  创建与初始化对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-text">10.2.2 创建对象内存分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-3-%E6%80%BB%E7%BB%93"><span class="nav-text">10.2.3 总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-text">10.3 三大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-1-%E5%B0%81%E8%A3%85"><span class="nav-text">10.3.1 封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-2-%E7%BB%A7%E6%89%BF"><span class="nav-text">10.3.2 继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-3-%E5%A4%9A%E6%80%81"><span class="nav-text">10.3.3 多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-this%E5%92%8Csuper"><span class="nav-text">10.4 this和super</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3"><span class="nav-text">10.5 抽象类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-5-1-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-text">10.5.1 抽象类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-5-2-%E6%8E%A5%E5%8F%A3"><span class="nav-text">10.5.2 接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6 内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-1-%E6%88%90%E5%91%98%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.1 成员内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-2-%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.2 静态内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-3-%E5%B1%80%E9%83%A8%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.3 局部内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-4-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.4 匿名内部类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%BC%82%E5%B8%B8"><span class="nav-text">11.异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-%E5%BC%82%E5%B8%B8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-text">11.1 异常的体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-1-Error"><span class="nav-text">11.1.1 Error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-2-Exception"><span class="nav-text">11.1.2 Exception</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-text">11.2 异常类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="nav-text">11.3 Java异常处理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-1-%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.3.1 编译时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-2-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.3.2 运行时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-3-java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-text">11.3.3 java异常处理方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4 自定义异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4.1 自定义编译时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4.2 自定义运行时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-3-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4.3 使用自定义异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">11.5 注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-1-throws%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">11.5.1 throws注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-2-throw%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">11.5.2 throw注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-3-throw%E5%92%8Cthrows%E5%8C%BA%E5%88%AB"><span class="nav-text">11.5.3 throw和throws区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-4-%E5%BC%82%E5%B8%B8%E9%93%BE"><span class="nav-text">11.5.4 异常链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-5-%E5%BC%82%E5%B8%B8%E5%8C%85%E8%A3%85"><span class="nav-text">11.5.5 异常包装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-6-%E5%BC%82%E5%B8%B8%E9%93%BE%E5%92%8C%E5%BC%82%E5%B8%B8%E5%8C%85%E8%A3%85%E5%8C%BA%E5%88%AB"><span class="nav-text">11.5.6 异常链和异常包装区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-7-%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8%E5%BC%82%E5%B8%B8%E9%93%BE%E5%92%8C%E5%BC%82%E5%B8%B8%E5%8C%85%E8%A3%85"><span class="nav-text">11.5.7 结合使用异常链和异常包装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-6-%E6%80%BB%E7%BB%93"><span class="nav-text">11.6 总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-java%E4%B8%89%E5%A4%A7%E7%89%88%E6%9C%AC"><span class="nav-text">1.java三大版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-java%E7%89%B9%E6%80%A7%E5%92%8C%E4%BC%98%E5%8A%BF"><span class="nav-text">2.java特性和优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDK%E3%80%81JRE%E3%80%81JVM"><span class="nav-text">3.JDK、JRE、JVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-HelloWorld"><span class="nav-text">4.HelloWorld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BC%96%E8%AF%91%E5%9E%8B%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B"><span class="nav-text">5.编译型和解释型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-text">6.java基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%B3%A8%E9%87%8A"><span class="nav-text">6.1 注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="nav-text">6.2 字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E6%A0%87%E8%AF%86%E7%AC%A6%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">6.3 标识符和关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">6.4 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E6%8B%93%E5%B1%95"><span class="nav-text">6.5 拓展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">6.6 类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">6.7 变量、常量、作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-1-%E5%8F%98%E9%87%8F"><span class="nav-text">6.7.1 变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-2-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">6.7.2 作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-3-%E5%B8%B8%E9%87%8F"><span class="nav-text">6.7.3 常量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-8-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-1-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8.1 算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-2-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8.2 关系运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-3-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8.3 逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-4-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8.4 位运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-5-%E6%9D%A1%E4%BB%B6%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8.5 条件运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-6-%E6%89%A9%E5%B1%95%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">6.8.6 扩展赋值运算符和赋值运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-9-%E5%8C%85%E6%9C%BA%E5%88%B6"><span class="nav-text">6.9 包机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-10-JavaDoc%E7%94%9F%E6%88%90%E6%96%87%E6%A1%A3"><span class="nav-text">6.10 JavaDoc生成文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-text">7.流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-Scanner%E7%B1%BB"><span class="nav-text">7.1 Scanner类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-text">7.2 顺序结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%80%89%E6%8B%A9%E8%A7%A3%E6%9E%84"><span class="nav-text">7.3 选择解构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-text">7.4 循环结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%96%B9%E6%B3%95"><span class="nav-text">8.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95"><span class="nav-text">8.1 什么是方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E8%B0%83%E7%94%A8"><span class="nav-text">8.2 方法的定义和调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-1-%E5%AE%9A%E4%B9%89"><span class="nav-text">8.2.1 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-2-%E8%B0%83%E7%94%A8"><span class="nav-text">8.2.2 调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-2-1-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-text">8.2.2.1 静态方法与非静态方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-2-2-%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82"><span class="nav-text">8.2.2.2 形参和实参</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-2-2-3-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92"><span class="nav-text">8.2.2.3 值传递和引用传递</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="nav-text">8.3 方法重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82"><span class="nav-text">8.4 命令行传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-text">8.5 可变参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-%E9%80%92%E5%BD%92"><span class="nav-text">8.6 递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%95%B0%E7%BB%84"><span class="nav-text">9.数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-%E6%95%B0%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-text">9.1 数组的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-%E6%95%B0%E7%BB%84%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%88%9B%E5%BB%BA"><span class="nav-text">9.2 数组的声明和创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-java%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-text">9.3 java内存分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-%E6%95%B0%E7%BB%84%E4%BD%BF%E7%94%A8"><span class="nav-text">9.4 数组使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-text">9.5 多维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-Arrays%E7%B1%BB"><span class="nav-text">9.6 Arrays类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-1-%E6%8E%92%E5%BA%8F"><span class="nav-text">9.6.1 排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-2-%E6%90%9C%E7%B4%A2"><span class="nav-text">9.6.2 搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-3-%E6%AF%94%E8%BE%83"><span class="nav-text">9.6.3 比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-4-%E5%A1%AB%E5%85%85"><span class="nav-text">9.6.4 填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-5-%E8%BD%AC%E6%8D%A2"><span class="nav-text">9.6.5 转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-6-%E5%A4%8D%E5%88%B6"><span class="nav-text">9.6.6 复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-7-%E4%BD%BF%E7%94%A8"><span class="nav-text">9.6.7 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-8-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">9.6.8 注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-7-%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84"><span class="nav-text">9.7 稀疏数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-text">10.面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-text">10.1 什么是面向对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E5%88%86%E6%9E%90"><span class="nav-text">10.2 对象的创建分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-1-%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%B9%E8%B1%A1"><span class="nav-text">10.2.1  创建与初始化对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-text">10.2.2 创建对象内存分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-3-%E6%80%BB%E7%BB%93"><span class="nav-text">10.2.3 总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-text">10.3 三大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-1-%E5%B0%81%E8%A3%85"><span class="nav-text">10.3.1 封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-2-%E7%BB%A7%E6%89%BF"><span class="nav-text">10.3.2 继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-3-%E5%A4%9A%E6%80%81"><span class="nav-text">10.3.3 多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-this%E5%92%8Csuper"><span class="nav-text">10.4 this和super</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3"><span class="nav-text">10.5 抽象类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-5-1-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-text">10.5.1 抽象类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-5-2-%E6%8E%A5%E5%8F%A3"><span class="nav-text">10.5.2 接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6 内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-1-%E6%88%90%E5%91%98%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.1 成员内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-2-%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.2 静态内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-3-%E5%B1%80%E9%83%A8%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.3 局部内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-4-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">10.6.4 匿名内部类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%BC%82%E5%B8%B8"><span class="nav-text">11.异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-%E5%BC%82%E5%B8%B8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-text">11.1 异常的体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-1-Error"><span class="nav-text">11.1.1 Error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-2-Exception"><span class="nav-text">11.1.2 Exception</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-text">11.2 异常类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="nav-text">11.3 Java异常处理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-1-%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.3.1 编译时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-2-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.3.2 运行时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-3-java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-text">11.3.3 java异常处理方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4 自定义异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4.1 自定义编译时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4.2 自定义运行时异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-3-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-text">11.4.3 使用自定义异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">11.5 注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-1-throws%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">11.5.1 throws注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-2-throw%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">11.5.2 throw注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-3-throw%E5%92%8Cthrows%E5%8C%BA%E5%88%AB"><span class="nav-text">11.5.3 throw和throws区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-4-%E5%BC%82%E5%B8%B8%E9%93%BE"><span class="nav-text">11.5.4 异常链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-5-%E5%BC%82%E5%B8%B8%E5%8C%85%E8%A3%85"><span class="nav-text">11.5.5 异常包装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-6-%E5%BC%82%E5%B8%B8%E9%93%BE%E5%92%8C%E5%BC%82%E5%B8%B8%E5%8C%85%E8%A3%85%E5%8C%BA%E5%88%AB"><span class="nav-text">11.5.6 异常链和异常包装区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-5-7-%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8%E5%BC%82%E5%B8%B8%E9%93%BE%E5%92%8C%E5%BC%82%E5%B8%B8%E5%8C%85%E8%A3%85"><span class="nav-text">11.5.7 结合使用异常链和异常包装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-6-%E6%80%BB%E7%BB%93"><span class="nav-text">11.6 总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%85%B6%E5%AE%83"><span class="nav-text">12.其它</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-1%E6%9E%9A%E4%B8%BE"><span class="nav-text">12.1枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-1-1-%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">12.1.1 注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-1-2-%E6%A1%88%E4%BE%8B"><span class="nav-text">12.1.2 案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-2-final%E4%B8%8Estatic"><span class="nav-text">12.2 final与static</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-1-final"><span class="nav-text">12.2.1 final</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-2-static"><span class="nav-text">12.2.2 static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-3-final-%E4%B8%8E-static-%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-text">12.2.3 final 与 static 的结合使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-4-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">12.2.4 使用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-5-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">12.2.5 注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-text">12.3 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-3-1-%E5%88%86%E7%B1%BB"><span class="nav-text">12.3.1 分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-3-2-%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-text">12.3.2 注意点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-%E8%AE%BF%E9%97%AE%E7%AC%A6"><span class="nav-text">12.4 访问符</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -2158,7 +2479,7 @@ C1["RuntimeException"] --> D8["其它RuntimeException类及其子类"]</pre></li
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2025</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2172,7 +2493,7 @@ C1["RuntimeException"] --> D8["其它RuntimeException类及其子类"]</pre></li
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">44:29</span>
+    <span title="站点阅读时长">44:34</span>
 </div>
 
         
