@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/java%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/image-20220830154050723.png">
 <meta property="og:image" content="https://xiaguyangdie.github.io/2023/02/26/java%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/image-20220830154806282.png">
 <meta property="article:published_time" content="2023-02-26T08:27:31.067Z">
-<meta property="article:modified_time" content="2026-03-22T16:43:31.487Z">
+<meta property="article:modified_time" content="2026-03-23T17:59:22.695Z">
 <meta property="article:author" content="峡谷杨爹">
 <meta property="article:tag" content="javase">
 <meta name="twitter:card" content="summary">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-03-23 00:43:31" itemprop="dateModified" datetime="2026-03-23T00:43:31+08:00">2026-03-23</time>
+                <time title="修改时间：2026-03-24 01:59:22" itemprop="dateModified" datetime="2026-03-24T01:59:22+08:00">2026-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -301,9 +301,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-注解"><a href="#1-注解" class="headerlink" title="1.注解"></a>1.注解</h1><ul>
+        <h1 id="1-注解"><a href="#1-注解" class="headerlink" title="1.注解"></a>1.注解</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><ul>
 <li>注解（<code>Annotation</code>）是从jdk5版本开始支持，是一种元数据，用于<strong>为代码元素（如类、方法、字段等）添加说明信息</strong>（<font color="red">并不直接影响程序的执行逻辑</font>）</li>
-<li>注解（<code>Annotation</code>）本质：是一种<strong>特殊的接口</strong>，继承<code>java.lang.annotation.Annotation</code>接口</li>
 <li>注解（<code>Annotation</code>）的作用：被编译器、开发工具或运行时环境读取和处理，以实现特定的功能</li>
 <li>注解（<code>Annotation</code>）的格式：以 <code>@</code> 符号开头，后跟注解名称，如果注解有参数，则参数值放在括号内，**@注解名(参数值)**</li>
 <li>注解（<code>Annotation</code>）的使用位置：<ul>
@@ -318,7 +317,72 @@
 </ul>
 </li>
 </ul>
-<h1 id="2-内置注解"><a href="#2-内置注解" class="headerlink" title="2.内置注解"></a>2.内置注解</h1><h2 id="2-1-内置注解"><a href="#2-1-内置注解" class="headerlink" title="2.1 内置注解"></a>2.1 内置注解</h2><ul>
+<h2 id="1-2-注解组成"><a href="#1-2-注解组成" class="headerlink" title="1.2 注解组成"></a>1.2 注解组成</h2><ul>
+<li>包括‌<strong>注解定义</strong>‌、‌<strong>元注解</strong>‌、‌<strong>注解元素</strong></li>
+</ul>
+<blockquote>
+<p>1.注解定义</p>
+</blockquote>
+<ul>
+<li>通过<code>@interface</code>关键字定义，是一种<strong>特殊的接口</strong>，继承<code>java.lang.annotation.Annotation</code>接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//元注解</span></span><br><span class="line">[<span class="keyword">public</span>] <span class="meta">@interface</span> 注解名 &#123;</span><br><span class="line">    <span class="comment">// 注解元素</span></span><br><span class="line">    元素类型 元素名称() [<span class="keyword">default</span> 默认值];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.元注解</p>
+</blockquote>
+<ul>
+<li>元注解（Meta-Annotation）作用：是用于<strong>定义其他注解行为的注解</strong>，它们控制注解的使用范围、生命周期以及是否可被继承等特性</li>
+<li>元注解位置：在<code>java.lang.annotation</code>包中</li>
+<li>Java 提供了 5 个标准的元注解：<code>@Target</code>、<code>@Retention</code>、<code>@Documented</code>、<code>@Inherited</code>、<code>@Repeatable</code></li>
+</ul>
+<blockquote>
+<p>3.注解元素</p>
+</blockquote>
+<ul>
+<li><p>注解元素是注解内部定义的方法，用于存储注解的配置信息</p>
+</li>
+<li><p>注解元素在注解中<strong>以方法的形式声明</strong>，但实际使用时作为键值对进行赋值</p>
+</li>
+<li><p>注解属性非必要</p>
+</li>
+<li><p>定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">元素类型 元素名称() [<span class="keyword">default</span> 默认值];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注解元素的返回值类型只能是：</p>
+<ul>
+<li>所有基本数据类型（int, float, boolean等）</li>
+<li>String类型</li>
+<li>Class类型</li>
+<li>enum类型</li>
+<li>Annotation类型</li>
+<li>以上类型的数组形式</li>
+</ul>
+</li>
+<li><p>注解元素的特殊规则</p>
+<ul>
+<li>元素可以设置默认值，使用<code>default</code>关键字</li>
+<li><strong>如果注解只有一个元素，通常命名为<code>value()</code>，这样使用时可以省略”value&#x3D;”</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-分类"><a href="#1-3-分类" class="headerlink" title="1.3 分类"></a>1.3 分类</h2><blockquote>
+<p>1.根据参数个数分类</p>
+</blockquote>
+<ul>
+<li>‌<strong>标记注解</strong>‌：一个没有成员定义的Annotation类型被称为标记注解。如：@Test、@Inherited、@Documented等</li>
+<li>‌<strong>单值注解</strong>‌：只有一个值</li>
+<li>‌<strong>完整注解</strong>‌：拥有多个值</li>
+</ul>
+<blockquote>
+<p>2.根据使用方法和用途分类</p>
+</blockquote>
+<ul>
+<li>‌<strong>内置注解</strong>‌</li>
+<li>‌<strong>元注解</strong>‌</li>
+<li>‌<strong>自定义注解</strong></li>
+</ul>
+<h1 id="2-内置注解"><a href="#2-内置注解" class="headerlink" title="2.内置注解"></a>2.内置注解</h1><ul>
 <li><p><code>@Override</code>：</p>
 <ul>
 <li>定义在<code>java.lang</code>包中，此注解只适用于修饰方法，标记一个方法是重写自父类（或实现接口）的方法</li>
@@ -356,12 +420,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="3-元注解"><a href="#3-元注解" class="headerlink" title="3.元注解"></a>3.元注解</h1><ul>
-<li>元注解（Meta-Annotation）作用：是用于<strong>定义其他注解行为的注解</strong>，它们控制注解的使用范围、生命周期以及是否可被继承等特性</li>
-<li>元注解位置：在<code>java.lang.annotation</code>包中</li>
-<li>Java 提供了 5 个标准的元注解：<code>@Target</code>、<code>@Retention</code>、<code>@Documented</code>、<code>@Inherited</code>、<code>@Repeatable</code></li>
-</ul>
-<blockquote>
+<h1 id="3-元注解"><a href="#3-元注解" class="headerlink" title="3.元注解"></a>3.元注解</h1><blockquote>
 <p>1.<code>@Target</code></p>
 </blockquote>
 <ul>
@@ -412,18 +471,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试元注解:@Target,@Retention,@Documented,注解可以被生成在文档中@Inherited子类可以继承父类的注解</span></span><br><span class="line"><span class="meta">@MyAnnotation</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMeta</span> &#123;</span><br><span class="line">    <span class="meta">@MyAnnotation</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个注解</span></span><br><span class="line"><span class="comment">//Target 表示注解可以用在什么地方</span></span><br><span class="line"><span class="meta">@Target(value = &#123;ElementType.METHOD,ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="comment">//Retention 表示注解在什么地方还有效</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="comment">//表示是否将我们的注解生成在javadoc中</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="comment">//@Inherited子类可以继承父类的注解</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-自定义注解"><a href="#4-自定义注解" class="headerlink" title="4.自定义注解"></a>4.自定义注解</h1><ul>
-<li>使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口</li>
-<li>@interface 用来声明一个注解，格式是：修饰符 @interface 注解名{定义内容}<ul>
-<li>内容中的每一个方法实际上是声明了一个配置参数，方法的名称就是参数的名称，方法的返回值类型就是参数的类型</li>
-<li>返回值类型只能是基本类型、Class、String、enum，如果返回值是String[]的时候，赋值的时候要用{“X1”, “X2”}这种形式；</li>
-<li>可以通过default来声明参数的默认值，声明默认值的可以不在自定义注解中赋值，反之必须赋值</li>
-<li>如果只有一个参数成员，一般参数名使用value字段，这是因为当参数名称是value并且自定义注解中只需要写一个参数的时候，可以省略参数名称，只有value可以这样，其他的都不行</li>
-<li>注解元素必须有值，我们定义注解元素时，经常使用空字符串、0、-1等作为默认值，当默认值为-1，代表不存在</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义注解</span></span><br><span class="line"><span class="comment">//参数名是value可以省略</span></span><br><span class="line"><span class="meta">@MyAnnotation3</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestInterface</span> &#123;</span><br><span class="line">    <span class="meta">@MyAnnotation2(name = &quot;杨&quot;)</span></span><br><span class="line">    <span class="comment">//@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(value = &#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2&#123;</span><br><span class="line">    <span class="comment">//注解的参数 ： 参数类型 + 参数名（）;</span></span><br><span class="line">    String <span class="title function_">name</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">age</span><span class="params">()</span> <span class="keyword">default</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">id</span><span class="params">()</span> <span class="keyword">default</span> -<span class="number">1</span>;</span><br><span class="line">    String[] school() <span class="keyword">default</span> &#123;<span class="string">&quot;浙江工商大学&quot;</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Target(value = &#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation3&#123;</span><br><span class="line">    <span class="comment">//注解的参数 ： 参数类型 + 参数名（）;</span></span><br><span class="line">    String <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-自定义注解"><a href="#4-自定义注解" class="headerlink" title="4.自定义注解"></a>4.自定义注解</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.yang.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义注解</span></span><br><span class="line"><span class="comment">//参数名是value可以省略</span></span><br><span class="line"><span class="meta">@MyAnnotation3</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestInterface</span> &#123;</span><br><span class="line">    <span class="meta">@MyAnnotation2(name = &quot;杨&quot;)</span></span><br><span class="line">    <span class="comment">//@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(value = &#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2&#123;</span><br><span class="line">    <span class="comment">//注解的参数 ： 参数类型 + 参数名（）;</span></span><br><span class="line">    String <span class="title function_">name</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">age</span><span class="params">()</span> <span class="keyword">default</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">id</span><span class="params">()</span> <span class="keyword">default</span> -<span class="number">1</span>;</span><br><span class="line">    String[] school() <span class="keyword">default</span> &#123;<span class="string">&quot;浙江工商大学&quot;</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Target(value = &#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation3&#123;</span><br><span class="line">    <span class="comment">//注解的参数 ： 参数类型 + 参数名（）;</span></span><br><span class="line">    String <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="5-反射概述"><a href="#5-反射概述" class="headerlink" title="5.反射概述"></a>5.反射概述</h1><ul>
 <li><strong>Reflection(反射)是Java被视为动态语言的关键</strong>，<em>反射机制允许程序在执行期间借助于Reflection API取得任何类的内部信息，并且能直接操作任意对象的内部属性以及方法</em></li>
@@ -789,7 +837,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%B3%A8%E8%A7%A3"><span class="nav-text">1.注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3"><span class="nav-text">2.内置注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3"><span class="nav-text">2.1 内置注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="nav-text">3.元注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="nav-text">4.自定义注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0"><span class="nav-text">5.反射概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E8%8E%B7%E5%8F%96%E5%8F%8D%E5%B0%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">6.获取反射对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">6.1 反射机制提供的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%BB%E8%A6%81API"><span class="nav-text">6.2 反射相关的主要API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E5%8F%8D%E5%B0%84%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-text">6.3 反射初体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-Class%E7%B1%BB%E8%AF%A6%E8%A7%A3"><span class="nav-text">6.4 Class类详解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%BE%97%E5%88%B0Class%E7%B1%BB%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">7.得到Class类的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-Class%E7%B1%BB"><span class="nav-text">7.1 Class类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-Class%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">7.2 Class类的常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E8%8E%B7%E5%8F%96Class%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">7.3 获取Class类的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-%E6%B5%8B%E8%AF%95-%E6%8F%90%E5%8D%87"><span class="nav-text">7.4 测试+提升</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84Class%E5%AF%B9%E8%B1%A1"><span class="nav-text">8.所有类型的Class对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E5%85%B7%E6%9C%89CLass%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">8.1 具有CLass对象的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%85%83%E7%B4%A0%E7%B1%BB%E5%9E%8B%E3%80%81%E7%BB%B4%E5%BA%A6%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">8.2 元素类型、维度和Class对象的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-text">9.类加载内存分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%88%86%E6%9E%90%E7%B1%BB%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">10.分析类初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-text">11.类加载器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%E8%8E%B7%E5%8F%96%E7%B1%BB%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-text">12.获取类运行时的结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-text">13.动态创建对象执行方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-text">14.性能对比分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-%E8%8E%B7%E5%8F%96%E6%B3%9B%E5%9E%8B%E4%BF%A1%E6%81%AF"><span class="nav-text">15.获取泛型信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-%E8%8E%B7%E5%8F%96%E6%B3%A8%E8%A7%A3%E4%BF%A1%E6%81%AF"><span class="nav-text">16.获取注解信息</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%B3%A8%E8%A7%A3"><span class="nav-text">1.注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%AE%80%E4%BB%8B"><span class="nav-text">1.1 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%B3%A8%E8%A7%A3%E7%BB%84%E6%88%90"><span class="nav-text">1.2 注解组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%88%86%E7%B1%BB"><span class="nav-text">1.3 分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3"><span class="nav-text">2.内置注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="nav-text">3.元注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="nav-text">4.自定义注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0"><span class="nav-text">5.反射概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E8%8E%B7%E5%8F%96%E5%8F%8D%E5%B0%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">6.获取反射对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">6.1 反射机制提供的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%BB%E8%A6%81API"><span class="nav-text">6.2 反射相关的主要API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E5%8F%8D%E5%B0%84%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-text">6.3 反射初体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-Class%E7%B1%BB%E8%AF%A6%E8%A7%A3"><span class="nav-text">6.4 Class类详解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%BE%97%E5%88%B0Class%E7%B1%BB%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-text">7.得到Class类的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-Class%E7%B1%BB"><span class="nav-text">7.1 Class类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-Class%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">7.2 Class类的常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E8%8E%B7%E5%8F%96Class%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-text">7.3 获取Class类的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-%E6%B5%8B%E8%AF%95-%E6%8F%90%E5%8D%87"><span class="nav-text">7.4 测试+提升</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%89%80%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84Class%E5%AF%B9%E8%B1%A1"><span class="nav-text">8.所有类型的Class对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E5%85%B7%E6%9C%89CLass%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">8.1 具有CLass对象的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%85%83%E7%B4%A0%E7%B1%BB%E5%9E%8B%E3%80%81%E7%BB%B4%E5%BA%A6%E5%92%8CClass%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">8.2 元素类型、维度和Class对象的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-text">9.类加载内存分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%88%86%E6%9E%90%E7%B1%BB%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">10.分析类初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-text">11.类加载器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%E8%8E%B7%E5%8F%96%E7%B1%BB%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-text">12.获取类运行时的结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-text">13.动态创建对象执行方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-text">14.性能对比分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-%E8%8E%B7%E5%8F%96%E6%B3%9B%E5%9E%8B%E4%BF%A1%E6%81%AF"><span class="nav-text">15.获取泛型信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-%E8%8E%B7%E5%8F%96%E6%B3%A8%E8%A7%A3%E4%BF%A1%E6%81%AF"><span class="nav-text">16.获取注解信息</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
